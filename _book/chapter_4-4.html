@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 4.4 TinyML Made Easy: Image Classification</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_4-5.html" rel="next">
+<link href="./chapter_4-3.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_4.html">Chapter 4: Project Practice Advanced - TinyML Applications</a></li><li class="breadcrumb-item"><a href="./chapter_4-4.html">4.4 TinyML Made Easy: Image Classification</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#things-used-in-this-project" id="toc-things-used-in-this-project" class="nav-link active" data-scroll-target="#things-used-in-this-project">4.4.1 Things used in this project</a>
+  <ul class="collapse">
+  <li><a href="#hardware-components" id="toc-hardware-components" class="nav-link" data-scroll-target="#hardware-components">4.4.1.1 Hardware components</a></li>
+  <li><a href="#software-apps-and-online-services" id="toc-software-apps-and-online-services" class="nav-link" data-scroll-target="#software-apps-and-online-services">4.4.2 Software apps and online services</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">4.4.2 Introduction</a></li>
+  <li><a href="#installing-the-xiao-esp32s3-sense-on-arduino-ide" id="toc-installing-the-xiao-esp32s3-sense-on-arduino-ide" class="nav-link" data-scroll-target="#installing-the-xiao-esp32s3-sense-on-arduino-ide">4.4.3 Installing the XIAO ESP32S3 Sense on Arduino IDE</a></li>
+  <li><a href="#testing-the-board-with-blink" id="toc-testing-the-board-with-blink" class="nav-link" data-scroll-target="#testing-the-board-with-blink">4.4.4 Testing the board with BLINK</a></li>
+  <li><a href="#connecting-sense-module-expansion-board" id="toc-connecting-sense-module-expansion-board" class="nav-link" data-scroll-target="#connecting-sense-module-expansion-board">4.4.5 Connecting Sense module (Expansion Board)</a></li>
+  <li><a href="#microphone-test" id="toc-microphone-test" class="nav-link" data-scroll-target="#microphone-test">4.4.6 Microphone Test</a></li>
+  <li><a href="#testing-the-camera" id="toc-testing-the-camera" class="nav-link" data-scroll-target="#testing-the-camera">4.4.7 Testing the Camera</a></li>
+  <li><a href="#testing-wifi" id="toc-testing-wifi" class="nav-link" data-scroll-target="#testing-wifi">4.4.8 Testing WiFi</a></li>
+  <li><a href="#fruits-versus-veggies---a-tinyml-image-classification-project" id="toc-fruits-versus-veggies---a-tinyml-image-classification-project" class="nav-link" data-scroll-target="#fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification project</a></li>
+  <li><a href="#training-the-model-with-edge-impulse-studio" id="toc-training-the-model-with-edge-impulse-studio" class="nav-link" data-scroll-target="#training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</a></li>
+  <li><a href="#testing-the-model-inference" id="toc-testing-the-model-inference" class="nav-link" data-scroll-target="#testing-the-model-inference">4.4.11 Testing the Model (Inference)</a></li>
+  <li><a href="#testing-with-a-bigger-model" id="toc-testing-with-a-bigger-model" class="nav-link" data-scroll-target="#testing-with-a-bigger-model">4.4.12 Testing with a bigger model</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.4.13 Conclusion</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/edit/main/chapter_4-4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/blob/main/chapter_4-4.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">4.4 TinyML Made Easy: Image Classification</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Exploring Machine Learning on the tremendous new tiny device of the Seeed XIAO family, the ESP32S3 Sense.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587471/_nOXij20mq1.blob?auto=compress%2Cformat&amp;w=900&amp;h=675&amp;fit=min" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<section id="things-used-in-this-project" class="level2">
+<h2 class="anchored" data-anchor-id="things-used-in-this-project">4.4.1 Things used in this project</h2>
+<section id="hardware-components" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-components">4.4.1.1 Hardware components</h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&amp;clientId=uc417d4eb-bab9-4&amp;from=paste&amp;height=100&amp;id=ub288bc7f&amp;originHeight=711&amp;originWidth=1063&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=518407&amp;status=done&amp;style=none&amp;taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&amp;title=&amp;width=149.5" class="img-fluid" alt="image.png"><a href="https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae">Seeed Studio Seeed XIAO ESP32S3 Sense</a> x 1</p>
+</section>
+<section id="software-apps-and-online-services" class="level3">
+<h3 class="anchored" data-anchor-id="software-apps-and-online-services">4.4.2 Software apps and online services</h3>
+<ul>
+<li><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&amp;clientId=u413b5b5e-84eb-4&amp;from=paste&amp;height=48&amp;id=bESIK&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9015&amp;status=done&amp;style=none&amp;taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&amp;title=&amp;width=48" class="img-fluid" alt="image.png"> <a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&amp;clientId=ud4d22600-5c37-4&amp;from=paste&amp;height=48&amp;id=k6jic&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8524&amp;status=done&amp;style=none&amp;taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&amp;title=&amp;width=48" class="img-fluid" alt="image.png"> <a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
+</ul>
+</section>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">4.4.2 Introduction</h2>
+<p>More and more, we are facing an artificial intelligence (AI) revolution where, as stated by Gartner, <strong>Edge AI</strong> has a very high impact potential, and <strong>it is for now</strong>!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587506/image_EZKT6sirt5.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>In the “bull-eye” of emerging technologies, radar is the <em>Edge Computer Vision</em>, and when we talk about Machine Learning (ML) applied to vision, the first thing that comes to mind is <strong>Image Classification</strong>, a kind of ML “Hello World”!</p>
+<p>Seeed Studio released a new affordable development board, the <a href="https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html">XIAO ESP32S3 Sense</a>, which integrates a camera sensor, digital microphone, and SD card support. Combining embedded ML computing power and photography capability, this development board is a great tool to start with TinyML (intelligent voice and vision AI).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587507/image_kRGbYBWevi.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p><strong>XIAO ESP32S3 Sense Main Features</strong></p>
+<ul>
+<li><strong>Powerful MCU Board</strong>: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported</li>
+<li><strong>Advanced Functionality</strong>: Detachable OV2640 camera sensor for 1600*1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone</li>
+<li><strong>Elaborate Power Design</strong>: Lithium battery charge management capability offer four power consumption model, which allows for deep sleep mode with power consumption as low as 14μA</li>
+<li><strong>Great Memory for more Possibilities</strong>: Offer 8MB PSRAM and 8MB FLASH, supporting SD card slot for external 32GB FAT memory</li>
+<li><strong>Outstanding RF performance</strong>: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna</li>
+<li><strong>Thumb-sized Compact Design</strong>: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587508/mty4odg1ntkynti4nteymg_561868_b55w78pjvck7sulf_1679553921_9rsX6h2aAP.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">MTY4ODg1NTkyNTI4NTEyMg_561868_B55w78PjvcK7SUlF_1679553921.png</figcaption>
+</figure>
+</div>
+<p>Below is the general board pinout:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">XIAO_ESP32C3_Sense_pin-out.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>For more details, please refer to Seeed Studio WiKi page: https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/</p>
+</blockquote>
+</section>
+<section id="installing-the-xiao-esp32s3-sense-on-arduino-ide" class="level2">
+<h2 class="anchored" data-anchor-id="installing-the-xiao-esp32s3-sense-on-arduino-ide">4.4.3 Installing the XIAO ESP32S3 Sense on Arduino IDE</h2>
+<p>On Arduino IDE, navigate to <strong>File &gt; Preferences</strong>, and fill in the URL:</p>
+<p><a href="https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json"><em>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json</em></a></p>
+<p>on the field ==&gt; <strong>Additional Boards Manager URLs</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587510/pasted_graphic_JkHMkNOmPR.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic.png</figcaption>
+</figure>
+</div>
+<p>Next, open boards manager. Go to <strong>Tools</strong> &gt; <strong>Board</strong> &gt; <strong>Boards Manager…</strong> and enter with <em>esp32.</em> Select and install the most updated and stable package (avoid <em>alpha</em> versions) :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 2.png</figcaption>
+</figure>
+</div>
+<p>On <strong>Tools</strong>, select the Board (<strong>XIAO ESP32S3</strong>):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587512/pasted_graphic_4_srwnXRNO0l.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 4.png</figcaption>
+</figure>
+</div>
+<p>Last but not least, select the <strong>Port</strong> where the ESP32S3 is connected.</p>
+<p>That is it! The device should be OK. Let’s do some tests.</p>
+</section>
+<section id="testing-the-board-with-blink" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-board-with-blink">4.4.4 Testing the board with BLINK</h2>
+<p>The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it (using the LED_BUILTIN Arduino constant) or by changing the Blink sketch accordantly:</p>
+<pre><code>#define LED_BUILT_IN 21 
+
+void setup() {
+  pinMode(LED_BUILT_IN, OUTPUT); // Set the pin as output
+}
+
+// Remember that the pin work with inverted logic
+// LOW to Turn on and HIGH to turn off
+void loop() {
+  digitalWrite(LED_BUILT_IN, LOW); //Turn on
+  delay (1000); //Wait 1 sec
+  digitalWrite(LED_BUILT_IN, HIGH); //Turn off
+  delay (1000); //Wait 1 sec
+}</code></pre>
+<blockquote class="blockquote">
+<p>Note that the pins work with inverted logic: LOW to Turn on and HIGH to turn off</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587515/blink_Lg3KqJa6ln.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">blink.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="connecting-sense-module-expansion-board" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-sense-module-expansion-board">4.4.5 Connecting Sense module (Expansion Board)</h2>
+<p>When purchased, the expansion board is separated from the main board, but installing the expansion board is very simple. You need to align the connector on the expansion board with the B2B connector on the XIAO ESP32S3, press it hard, and when you hear a “click,” the installation is complete.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587516/61.gif?auto=compress%2Cformat&amp;gifq=35&amp;w=740&amp;h=555&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>As commented in the introduction, the expansion board, or the “sense” part of the device, has a 1600x1200 OV2640 camera, an SD card slot, and a digital microphone.</p>
+</section>
+<section id="microphone-test" class="level2">
+<h2 class="anchored" data-anchor-id="microphone-test">4.4.6 Microphone Test</h2>
+<p>Let’s start with sound detection. Go to the <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense">GitHub project</a> and download the sketch: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Mic_Test/XiaoEsp32s3_Mic_Test">XIAOEsp2s3_Mic_Test</a> and run it on the Arduino IDE:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587517/pasted_graphic_9_g3jF00J26n.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 9.png</figcaption>
+</figure>
+</div>
+<p>When producing sound, you can verify it on the Serial Plotter.</p>
+<p><strong>Save recorded sound (.wav audio files) to a microSD card.</strong></p>
+<p>Let’s now use the onboard SD Card reader to save .wav audio files. For that, we need to habilitate the XIAO PSRAM.</p>
+<blockquote class="blockquote">
+<p>ESP32-S3 has only a few hundred kilobytes of internal RAM on the MCU chip. It can be insufficient for some purposes so that ESP32-S3 can use up to 16 MB of external PSRAM (Psuedostatic RAM) connected in parallel with the SPI flash chip. The external memory is incorporated in the memory map and, with certain restrictions, is usable in the same way as internal data RAM.</p>
+</blockquote>
+<p>For a start, Insert the SD Card on the XIAO as shown in the photo below (the SD Card should be formatted to <strong>FAT32</strong>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587521/image_Z0TlaWDD8O.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Download the sketch <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Mic_Test/Wav_Record">Wav_Record</a>, which you can find on GitHub.</li>
+<li>To execute the code (Wav Record), it is necessary to use the PSRAM function of the ESP-32 chip, so turn it on before uploading.: Tools&gt;PSRAM: “OPI PSRAM”&gt;OPI PSRAM</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587522/pasted_graphic_10_VYMCMnnxD3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 10.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Run the code Wav_Record.ino</li>
+<li>This program is executed only once after the user <strong>turns on the serial monitor</strong>, recording for 20 seconds and saving the recording file to a microSD card as “arduino_rec.wav”.</li>
+<li>When the “.” is output every 1 second in the serial monitor, the program execution is finished, and you can play the recorded sound file with the help of a card reader.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587523/pasted_graphic_11_bBwAlY3SeD.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 11.png</figcaption>
+</figure>
+</div>
+<p>The sound quality is excellent!</p>
+<blockquote class="blockquote">
+<p>The explanation of how the code works is beyond the scope of this tutorial, but you can find an excellent description on the <a href="https://wiki.seeedstudio.com/xiao_esp32s3_sense_mic#save-recorded-sound-to-microsd-card">wiki</a> page.</p>
+</blockquote>
+</section>
+<section id="testing-the-camera" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-camera">4.4.7 Testing the Camera</h2>
+<p>For testing the camera, you should download the folder <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/take_photos_command">take_photos_command</a> from GitHub. The folder contains the sketch (.ino) and two .h files with camera details.</p>
+<ul>
+<li>Run the code: take_photos_command.ino. Open the Serial Monitor and send the command “capture” to capture and save the image on the SD Card:</li>
+</ul>
+<blockquote class="blockquote">
+<p>Verify that [Both NL &amp; CR] is selected on Serial Monitor.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587526/capture_8aHAA2OzDt.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">capture.png</figcaption>
+</figure>
+</div>
+<p>Here is an example of a taken photo:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587527/image_vCiev0aEuH.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="testing-wifi" class="level2">
+<h2 class="anchored" data-anchor-id="testing-wifi">4.4.8 Testing WiFi</h2>
+<p>One of the differentiators of the XIAO ESP32S3 is its WiFi capability. So, let’s test its radio, scanning the wifi networks around it. You can do it by running one of the code examples on the board.</p>
+<p>Go to Arduino IDE Examples and look for <strong>WiFI ==&gt; WiFIScan</strong></p>
+<p>On the Serial monitor, you should see the wifi networks (SSIDs and RSSIs) in the range of your device. Here is what I got on the lab:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587529/pasted_graphic_14_mbFXPkj0kU.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 14.png</figcaption>
+</figure>
+</div>
+<p><strong>Simple WiFi Server (Turning LED ON/OFF)</strong></p>
+<p>Let’s test the device’s capability to behave as a WiFi Server. We will host a simple page on the device that sends commands to turn the XIAO built-in LED ON and OFF.</p>
+<p>Like before, go to GitHub to download the folder with the sketch: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/SimpleWiFiServer">SimpleWiFiServer</a>.</p>
+<p>Before running the sketch, you should enter your network credentials:</p>
+<pre><code>const char* ssid     = "Your credentials here";
+const char* password = "Your credentials here";</code></pre>
+<p>You can monitor how your server is working with the Serial Monitor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587531/image_l0yhot2BP2.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Take the IP address and enter it on your browser:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587532/pasted_graphic_18_Tihy6lYH9T.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 18.png</figcaption>
+</figure>
+</div>
+<p>You will see a page with links that can turn ON and OFF the built-in LED of your XIAO.</p>
+<p><strong>Streaming video to Web</strong></p>
+<p>Now that you know that you can send commands from the webpage to your device, let’s do the reverse. Let’s take the image captured by the camera and stream it to a webpage:</p>
+<p>Download from GitHub the <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Streeming_Video">folder</a> that contains the code: XIAO-ESP32S3-Streeming_Video.ino.</p>
+<blockquote class="blockquote">
+<p>Remember that the folder contains not only the.ino file, but also a couple of.h files, necessary to handle the camera.</p>
+</blockquote>
+<p>Enter your credentials and run the sketch. On the Serial monitor, you can find the page address to enter in your browser:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587533/pasted_graphic_21_s4OswByvQx.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 21.png</figcaption>
+</figure>
+</div>
+<p>Open the page on your browser (wait a few seconds to start the streaming). That’s it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587534/pasted_graphic_19_xsDOsUz1vB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 19.png</figcaption>
+</figure>
+</div>
+<p>Streamlining what your camera is “seen” can be important when you position it to capture a dataset for an ML project (for example, using the code “take_phots_commands.ino”.</p>
+<p>Of course, we can do both things simultaneously, show what the camera is seeing on the page, and send a command to capture and save the image on the SD card. For that, you can use the code Camera_HTTP_Server_STA which <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Camera_HTTP_Server_STA">folder</a> can be downloaded from GitHub.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587535/pasted_graphic_29_Tq37VCI7wB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 29.png</figcaption>
+</figure>
+</div>
+<p>The program will do the following tasks:</p>
+<ul>
+<li>Set the camera to JPEG output mode.</li>
+<li>Create a web page (for example ==&gt; http://192.168.4.119//). The correct address will be displayed on the Serial Monitor.</li>
+<li>If server.on (“/capture”, HTTP_GET, serverCapture), the program takes a photo and sends it to the Web.</li>
+<li>It is possible to rotate the image on webPage using the button [ROTATE]</li>
+<li>The command [CAPTURE] only will preview the image on the webpage, showing its size on Serial Monitor</li>
+<li>The [SAVE] command will save an image on the SD Card, also showing the image on the web.</li>
+<li>Saved images will follow a sequential naming (image1.jpg, image2.jpg.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587540/pasted_graphic_32_XjZcdijNwT.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 32.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>This program can be used for an image dataset capture with an Image Classification project.</p>
+</blockquote>
+<p>Inspect the code; it will be easier to understand how the camera works. This code was developed based on the great Rui Santos Tutorial: <a href="https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/">ESP32-CAM Take Photo and Display in Web Server</a>, which I invite all of you to visit.</p>
+</section>
+<section id="fruits-versus-veggies---a-tinyml-image-classification-project" class="level2">
+<h2 class="anchored" data-anchor-id="fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification project</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587486/vegetables-g3276e6aa0_1280_y8LhyxRCDB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>Now that we have an embedded camera running, it is time to try image classification. For comparative motive, we will replicate the same image classification project developed to be used with an old ESP2-CAM:</p>
+<p><a href="https://www.hackster.io/mjrobot/esp32-cam-tinyml-image-classification-fruits-vs-veggies-4ab970">ESP32-CAM: TinyML Image Classification - Fruits vs Veggies</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587541/image_60a57gQ8VS.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>The whole idea of our project will be training a model and proceeding with inference on the XIAO ESP32S3 Sense. For training, we should find some data <strong>(in fact, tons of data!</strong>).</p>
+<p><em>But first of all, we need a goal! What do we want to classify?</em></p>
+<p>With TinyML, a set of technics associated with machine learning inference on embedded devices, we should limit the classification to three or four categories due to limitations (mainly memory in this situation). We will differentiate <strong>apples</strong> from <strong>bananas</strong> and <strong>potatoes</strong> (you can try other categories)<strong>.</strong></p>
+<p>So, let’s find a specific dataset that includes images from those categories. Kaggle is a good start:</p>
+<p>https://www.kaggle.com/kritikseth/fruit-and-vegetable-image-recognition</p>
+<p>This dataset contains images of the following food items:</p>
+<ul>
+<li><strong>Fruits</strong> - <em>banana, apple</em>, pear, grapes, orange, kiwi, watermelon, pomegranate, pineapple, mango.</li>
+<li><strong>Vegetables</strong> - cucumber, carrot, capsicum, onion, <em>potato,</em> lemon, tomato, radish, beetroot, cabbage, lettuce, spinach, soybean, cauliflower, bell pepper, chili pepper, turnip, corn, sweetcorn, sweet potato, paprika, jalepeño, ginger, garlic, peas, eggplant.</li>
+</ul>
+<p>Each category is split into the <strong>train</strong> (100 images), <strong>test</strong> (10 images), and <strong>validation</strong> (10 images).</p>
+<ul>
+<li>Download the dataset from the Kaggle website to your computer.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Optionally, you can add some fresh photos of bananas, apples, and potatoes from your home kitchen, using, for example, the sketch discussed in the last section.</p>
+</blockquote>
+</section>
+<section id="training-the-model-with-edge-impulse-studio" class="level2">
+<h2 class="anchored" data-anchor-id="training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</h2>
+<p>We will use the Edge Impulse Studio for training our model. <a href="https://www.edgeimpulse.com/">Edge Impulse</a> is a leading development platform for machine learning on edge devices.</p>
+<p>Enter your account credentials (or create a free account) at Edge Impulse. Next, create a new project:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587543/image_MDgkE355g3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p><strong>Data Acquisition</strong></p>
+<p>Next, on the UPLOAD DATA section, upload from your computer the files from chosen categories:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>You should now have your training dataset, split in three classes of data:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>You can upload extra data for further model testing or split the training data. I will leave as it, to use most data possible.</p>
+</blockquote>
+<p><strong>Impulse Design</strong></p>
+<p>An impulse takes raw data (in this case, images), extracts features (resize pictures), and then uses a learning block to classify new data.</p>
+<p>As mentioned, classifying images is the most common use of Deep Learning, but much data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousand of images to “teach or model” to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We called this technic “Transfer Learning” (TL).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>With TL, we can fine-tune a pre-trained image classification model on our data, performing well even with relatively small image datasets (our case).</p>
+<p>So, starting from the raw images, we will resize them (96x96) pixels and so, feeding them to our Transfer Learning block:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587491/image_QhTt0Av8u3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p><strong>Pre-processing (Feature generation)</strong></p>
+<p>Besides resizing the images, we should change them to Grayscale instead to keep the actual RGB color depth. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587492/image_eqGdUoXrMb.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>Do not forget to “Save parameters.” This will generate the features to be used in training.</p>
+<p><strong>Training (Transfer Learning &amp; Data Augmentation)</strong></p>
+<p>In 2007, Google introduced <a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNetV1,</a>a family of general-purpose computer vision neural networks designed with mobile devices in mind to support classification, detection, and more. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints of various use cases.</p>
+<p>Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller and less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.</p>
+<p>Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different <strong>α</strong> values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The highest the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model and imply more latency.</p>
+<p>The smaller footprint will be obtained at another extreme with <strong>MobileNet V1</strong> and α=0.10 (around 53.2K RAM and 101K ROM).</p>
+<p>When we first published this project to be running on an ESP32-CAM, we stayed at the lower side of possibilities which guaranteed the inference with small latency but not with high accuracy. For this first pass, we will keep this model design (<strong>MobileNet V1</strong> and α=0.10).</p>
+<p>Another important technic to be used with Deep Learning is <strong>Data Augmentation</strong>. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).</p>
+<p>Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:</p>
+<pre><code># Implements the data augmentation policy
+def augment_image(image, label):
+    # Flips the image randomly
+    image = tf.image.random_flip_left_right(image)
+
+    # Increase the image size, then randomly crop it down to
+    # the original dimensions
+    resize_factor = random.uniform(1, 1.2)
+    new_height = math.floor(resize_factor * INPUT_SHAPE[0])
+    new_width = math.floor(resize_factor * INPUT_SHAPE[1])
+    image = tf.image.resize_with_crop_or_pad(image, new_height, new_width)
+    image = tf.image.random_crop(image, size=INPUT_SHAPE)
+
+    # Vary the brightness of the image
+    image = tf.image.random_brightness(image, max_delta=0.2)
+
+    return image, label</code></pre>
+<p>Exposure to these variations during training can help prevent your model from taking shortcuts by “memorizing” superficial clues in your training data, meaning it may better reflect the deep underlying patterns in your dataset.</p>
+<p>The final layer of our model will have 16 neurons with a 10% of dropout for overfitting prevention. Here is the Training output:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>The result is not great. The model reached around 77% of accuracy, but the amount of RAM expected to be used during the inference is relatively small (around 60 KBytes), which is very good.</p>
+<p><strong>Deployment</strong></p>
+<p>The trained model will be deployed as a.zip Arduino library:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
+<p>Open your Arduino IDE, and under <strong>Sketch,</strong> go to <strong>Include Library</strong> and <strong>add.ZIP Library.</strong> Select the file you download from Edge Impulse Studio, and that’s it!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587590/image_BQwzaHFlzZ.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Under the <strong>Examples</strong> tab on Arduino IDE, you should find a sketch code under your project name.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587591/image_Xglfrz0mwe.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Open the Static Buffer example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587593/image_1ZSC9qmEuR.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>You can see that the first line of code is exactly the calling of a library with all the necessary stuff for running inference on your device.</p>
+<pre><code>#include &lt;XIAO-ESP32S3-CAM-Fruits-vs-Veggies_inferencing.h&gt;</code></pre>
+<p>Of course, this is a generic code (a “template”), that only gets one sample of raw data (stored on the variable: <em>features = {}</em> and run the classifier, doing the inference. The result is shown on Serial Monitor.</p>
+<p>We should get the sample (image) from the camera and pre-process it (resizing to 96x96, converting to grayscale, and flatting it). This will be the input tensor of our model. The output tensor will be a vector with three values (labels), showing the probabilities of each one of the classes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587596/image_vrxwEjpaAl.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Returning to your project (Tab Image), copy one of the Raw Data Sample:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587598/image_J6oBO8SFpW.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>9, 216 features will be copied to the clipboard. This is the input tensor (a flattened image of 96x96x1), in this case, bananas. Past this Input tensor on features[] = {0xb2d77b, 0xb5d687, 0xd8e8c0, 0xeaecba, 0xc2cf67, …}</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Edge Impulse included the <a href="https://github.com/espressif/esp-nn">library ESP NN</a> in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (runing at Arduino IDE).</p>
+<p>Now, when running the inference, you should get, as a result, the highest score for “banana”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 35.png</figcaption>
+</figure>
+</div>
+<p>Great news! Our device handles an inference, discovering that the input image is a banana. Also, note that the inference time was around 317ms, resulting in a maximum of 3 fps if you tried to classify images from a video. It is a better result than the ESP32 CAM (525ms of latency).</p>
+<p>Now, we should incorporate the camera and classify images in real-time.</p>
+<p>Go to the Arduino IDE Examples and download from your project the sketch esp32_camera:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587604/image_hjX5k8gTl8.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>You should change lines 32 to 75, which define the camera model and pins, using the data related to our model. Copy and paste the below lines, replacing the lines 32-75:</p>
+<pre><code>#define PWDN_GPIO_NUM     -1 
+#define RESET_GPIO_NUM    -1 
+#define XCLK_GPIO_NUM     10 
+#define SIOD_GPIO_NUM     40 
+#define SIOC_GPIO_NUM     39
+#define Y9_GPIO_NUM       48 
+#define Y8_GPIO_NUM       11 
+#define Y7_GPIO_NUM       12 
+#define Y6_GPIO_NUM       14 
+#define Y5_GPIO_NUM       16 
+#define Y4_GPIO_NUM       18 
+#define Y3_GPIO_NUM       17 
+#define Y2_GPIO_NUM       15 
+#define VSYNC_GPIO_NUM    38 
+#define HREF_GPIO_NUM     47 
+#define PCLK_GPIO_NUM     13</code></pre>
+<p>Here you can see the resulting code:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587605/image_4VmERAOAfF.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>The modified sketch can be downloaded from GitHub: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/xiao_esp32s3_camera">xiao_esp32s3_camera</a>.</p>
+<blockquote class="blockquote">
+<p>Note that you can optionally keep the pins as a.h file as we did on previous sections.</p>
+</blockquote>
+<p>Upload the code to your XIAO ESP32S3 Sense, and you should be OK to start classifying your fruits and vegetables! You can check the result on Serial Monitor.</p>
+</section>
+<section id="testing-the-model-inference" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-model-inference">4.4.11 Testing the Model (Inference)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587606/inferencia_FM2hfD6ETR.jpg?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">inferencia.jpg</figcaption>
+</figure>
+</div>
+<p>Getting a photo with the camera, the classification result will appear on the Serial Monitor:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587607/pasted_graphic_40_6R61QEiLGp.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Pasted Graphic 40.png</figcaption>
+</figure>
+</div>
+<p>Other tests:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587608/inferencia2_eGWjtNny2o.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">inferencia2.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="testing-with-a-bigger-model" class="level2">
+<h2 class="anchored" data-anchor-id="testing-with-a-bigger-model">4.4.12 Testing with a bigger model</h2>
+<p>Now, let’s go to the other side of the model size. Let’s select a MobilinetV2 96x96 0.35, having as input RGB images.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Even with a bigger model, the accuracy is not good, and worst, the amount of memory necessary to run the model increases five times, with latency increasing seven times (note that the performance here is estimated with a smaller device, the ESP-EYE. So, the real inference with the ESP32S3 should be better).</p>
+<blockquote class="blockquote">
+<p>To make our model better, we will probably need more images to be trained.</p>
+</blockquote>
+<p>Even though our model did not improve in terms of accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
+<p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it has no influence on accuracy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">ESPnn-infe1.png</figcaption>
+</figure>
+</div>
+<p>In our tests, this option works with MobileNet V2 but not V1. So, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the resultin accuraccy was higher.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>Note that the estimated latency for an Arduino Portenta (ou Nicla), running with a clock of 480MHz is 45ms.</p>
+</blockquote>
+<p>Deploying the model, I got an inference of only 135ms, remembering that the XIAO run with half of the clock used by the Portenta/Nicla (240MHz):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">4.4.13 Conclusion</h2>
+<p>The XIAO ESP32S3 Sense is a very flexible, not expensive, and easy-to-program device. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.</p>
+<p>On the GitHub repository, you will find the last version of the codes: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense">XIAO-ESP32S3-Sense.</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_4-3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_4-5.html" class="pagination-link">
+        <span class="nav-page-text">4.5 TinyML Made Easy: Object Detection</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

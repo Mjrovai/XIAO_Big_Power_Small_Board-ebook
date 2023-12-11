@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 3.3 Air Piano</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_3-4.html" rel="next">
+<link href="./chapter_3-2.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_3.html">Chapter 3: Intermediate Project Practice—Complex Projects</a></li><li class="breadcrumb-item"><a href="./chapter_3-3.html">3.3 Air Piano</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-1-reading-the-grove-ultrasonic-distance-sensor-value" id="toc-task-1-reading-the-grove-ultrasonic-distance-sensor-value" class="nav-link active" data-scroll-target="#task-1-reading-the-grove-ultrasonic-distance-sensor-value">3.3.2 Task 1: Reading the Grove Ultrasonic Distance Sensor Value</a>
+  <ul class="collapse">
+  <li><a href="#task-2-ultrasonic-air-harp" id="toc-task-2-ultrasonic-air-harp" class="nav-link" data-scroll-target="#task-2-ultrasonic-air-harp">Task 2: Ultrasonic Air Harp</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/edit/main/chapter_3-3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/blob/main/chapter_3-3.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">3.3 Air Piano</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Normally, when we play a musical instrument, we have to pluck strings or press keys to produce musical notes. However, with electronic modules, playing music can become more exciting. For instance, you can simulate piano playing with push-button switches and even integrate light effects for interactive music. But if you use push-button switches as piano keys, you need to integrate many modules into the circuit. Is there a simpler and more unique idea? A combination of ultrasonic distance sensor and passive buzzer can do just that - detecting different distances with ultrasonics to trigger different notes, just like playing a piano in the air. ## 3.3.1 Background Knowledge ### <strong>3.3.1.1 Grove Ultrasonic Distance Sensor</strong> <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615017246763-78687753-32ee-45e0-a7b6-486e42e78542.png#averageHue=%23d2cdc7&amp;height=287&amp;id=l1aMj&amp;originHeight=525&amp;originWidth=700&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=236524&amp;status=done&amp;style=none&amp;title=&amp;width=383" class="img-fluid" alt="image.png"> The <a href="https://www.seeedstudio.com/Grove-Ultrasonic-Distance-Sensor.html">Grove Ultrasonic Distance Sensor</a> is a non-contact distance measurement module. Thanks to its strong directivity, the ultrasonic waves it emits can travel long distances in a medium. The calculations are simple and it is easy to control, so it’s often used for distance measurements. When the ultrasonic distance sensor works, the transmitter emits ultrasonic waves in a certain direction. When the waves hit an obstacle, they reflect back. The ultrasonic receiver stops timing as soon as it receives the reflected waves. The actual distance from the emission point to the obstacle is calculated based on the time difference between emission and reception, much like bat echolocation. The application range of ultrasonic waves is becoming broader, commonly seen in reverse radar systems, intelligent guidance systems, robot obstacle avoidance systems, medical ultrasound examinations, and more. &gt; ⚠️ Note The Grove Ultrasonic Distance Sensor module is not included in the Seeed Studio XIAO Starter Kit!</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096488936-8c147f58-275f-488c-917b-a9ed093a1367.png#averageHue=%2382909e&amp;height=346&amp;id=xpKtS&amp;originHeight=346&amp;originWidth=520&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=336431&amp;status=done&amp;style=none&amp;title=&amp;width=520" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096585003-073e6f75-739a-4ffa-a3fa-5242f9620937.png#averageHue=%238a8c89&amp;height=359&amp;id=UZ3lF&amp;originHeight=359&amp;originWidth=500&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=387734&amp;status=done&amp;style=none&amp;title=&amp;width=500" class="img-fluid" alt="image.png"></p>
+<section id="task-1-reading-the-grove-ultrasonic-distance-sensor-value" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-reading-the-grove-ultrasonic-distance-sensor-value">3.3.2 Task 1: Reading the Grove Ultrasonic Distance Sensor Value</h2>
+<section id="adding-the-seeed_arduino_ultrasonicranger-library" class="level4">
+<h4 class="anchored">Adding the <a href="https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger">Seeed_Arduino_UltrasonicRanger</a> Library</h4>
+<p>Before starting to program the Grove Ultrasonic Distance Sensor with Arduino IDE, it’s necessary to add the essential library for the sensor. Type the library address 🔗 <a href="https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger" class="uri">https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger</a> into the browser address bar, enter the GitHub page, click <code>Code→Download ZIP</code> to download the resource package <code>Seeed_Arduino_UltrasonicRanger-master.zip</code> to your local drive, as shown below. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669707238660-b7ab1ece-573b-474d-8567-61879e3313c4.png#averageHue=%23d1e4c5&amp;clientId=u3a18b45e-69b6-4&amp;from=paste&amp;height=933&amp;id=pncJX&amp;originHeight=1866&amp;originWidth=2774&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=641624&amp;status=done&amp;style=stroke&amp;taskId=u948b7cfc-e59c-4d32-ae18-71a626ede32&amp;title=&amp;width=1387" class="img-fluid" alt="image.png"> Add the downloaded resource package <code>Seeed_Arduino_UltrasonicRanger-master.zip</code> to the <code>Sketch→Include Library→Add .ZIP Library</code> from the menu bar until you see a successful library loading prompt. #### Opening the Example File After successfully installing the library, a new item <code>Grove Ultrasonic Ranger</code> will be added to the Arduino’s <code>File→Examples</code> list. Open the <code>UltrasonicDisplayOnTerm</code> sample program from it. This program can display the value of the ultrasonic distance sensor on the Serial Monitor. Modify <code>Ultrasonic ultrasonic(7);</code> in the sample program to <code>Ultrasonic ultrasonic(0);</code> (the ultrasonic distance sensor will be connected to the <code>A0</code> port of the XIAO expansion board). <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685331752187-81cc77aa-c5ec-40fb-b76b-a469f3dae12b.png#averageHue=%2371846b&amp;clientId=u82deeb5d-5cb5-4&amp;from=ui&amp;id=uc36cae36&amp;originHeight=2224&amp;originWidth=2562&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=1385725&amp;status=done&amp;style=stroke&amp;taskId=uf603f08d-712f-42dc-b2db-e6729fe063f&amp;title=" class="img-fluid" alt="L13-企业微信20230529-114208@2x.png"> Open the modified sample file through the following path, 🔗 <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicDisplayOnTerm_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicDisplayOnTerm_XIAO_en</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Ultrasonic.h"</span><span class="co">//declare the library file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Ultrasonic ultrasonic<span class="op">(</span><span class="dv">0</span><span class="op">);</span><span class="co">//define variables, connect pins. If you're using XIAO RP2040/XIAO ESP32, please change 0 to D0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> RangeInInches<span class="op">;</span><span class="co">//define a long integer variable named RangeInInches</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> RangeInCentimeters<span class="op">;</span><span class="co">//define a long integer variable named RangeInCentimeters</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"The distance to obstacles in front is: "</span><span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    RangeInInches <span class="op">=</span> ultrasonic<span class="op">.</span>MeasureInInches<span class="op">();</span><span class="co">//read the distance value (inches) measured by the ultrasonic distance sensor and store it in the variable RangeInInches</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>RangeInInches<span class="op">);</span><span class="co">//serial print value</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" inch"</span><span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">250</span><span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    RangeInCentimeters <span class="op">=</span> ultrasonic<span class="op">.</span>MeasureInCentimeters<span class="op">();</span> <span class="co">//read the distance value (centimeters) measured by the ultrasonic distance sensor and store it in the variable RangeInCentimeters</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>RangeInCentimeters<span class="op">);</span><span class="co">//serial print value</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" cm"</span><span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">250</span><span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The ultrasonic distance sensor is connected to the <code>A0</code> interface, as shown in the figure below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&amp;height=472&amp;id=CFHCS&amp;originHeight=1686&amp;originWidth=2071&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=301550&amp;status=done&amp;style=none&amp;title=&amp;width=580" class="img-fluid" alt="页面_16.png"> After uploading the code, open the Serial Monitor. Place your hand or a card at any position in front of the ultrasonic distance sensor and observe the change in the values output by the Serial Monitor. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685334833276-3be4eb94-cf29-4e33-8d7e-f05c12962d6b.png#averageHue=%23d18c61&amp;clientId=u82deeb5d-5cb5-4&amp;from=ui&amp;id=ua61a26b5&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=472868&amp;status=done&amp;style=none&amp;taskId=ub36eea95-7b5b-4f44-a311-66fe7c241a7&amp;title=" class="img-fluid" alt="L13-企业微信20230529-122835@2x.png"> ## 3.3.3 Project Production: Ultrasonic Air Harp ### Project Description The working principle of the air harp is to measure the distance from the module to the palm of your hand through the ultrasonic distance sensor. Depending on the distance, the buzzer emits different musical notes. We have already learned how to measure distance and read values through the ultrasonic distance sensor with the sample program. Next, we just need to define different musical notes for the corresponding distances. As shown in the figure below: According to the width of the palm, one musical note corresponds to a unit of 2cm, and the performance starts from 4cm. “Do, Re, Mi, Fa, Sol, La, Xi, Do” respectively correspond to 4cm, 6cm, 8cm, 10cm, 12cm, 14cm, 16cm, 18cm… and so on. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056971427-c5508a5b-8ccc-4b0a-b0dc-80d83291b7fd.png#averageHue=%237cbb64&amp;height=661&amp;id=B61vo&amp;originHeight=661&amp;originWidth=1236&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=43028&amp;status=done&amp;style=none&amp;title=&amp;width=1236" class="img-fluid" alt="image.png"> ### Writing the Program</p>
+<p>The implementation of the air harp program requires the following steps:</p>
+<ul>
+<li>Declare the library file, define different notes and buzzer pins.</li>
+<li>Initialization, setting the status of the buzzer pin.</li>
+<li>Read the distance (cm) measured by the ultrasonic distance sensor, and make a condition judgment to set different distances to emit different notes.</li>
+</ul>
+<blockquote class="blockquote">
+<h3 id="using-the-tone-function-to-play-melody" class="anchored" data-anchor-id="adding-the-seeed_arduino_ultrasonicranger-library">Using the tone() Function to Play Melody</h3>
+<p>When we want to control the buzzer to play notes or songs through the program, we need to set the frequency value of each note ourselves. If a song has many notes, it’s too troublesome to adjust one by one, and it tests our music theory knowledge and pitch. Is there a simpler method? Of course! When defining notes, we can refer to the <code>tone()</code> function written on the Arduino website 🔗 <a href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody" class="uri">https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody</a>, this function defines the corresponding frequency of different notes through <code>pitches.h</code>, which is convenient for us to use the <code>tone()</code> function to set the notes emitted by the buzzer. The code of <code>pitches.h</code> is shown below:</p>
+</blockquote>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">* pitches.h</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B0  </span><span class="dv">31</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C1  </span><span class="dv">33</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS1 </span><span class="dv">35</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D1  </span><span class="dv">37</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS1 </span><span class="dv">39</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E1  </span><span class="dv">41</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F1  </span><span class="dv">44</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS1 </span><span class="dv">46</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G1  </span><span class="dv">49</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS1 </span><span class="dv">52</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A1  </span><span class="dv">55</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS1 </span><span class="dv">58</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B1  </span><span class="dv">62</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C2  </span><span class="dv">65</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS2 </span><span class="dv">69</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D2  </span><span class="dv">73</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS2 </span><span class="dv">78</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E2  </span><span class="dv">82</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F2  </span><span class="dv">87</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS2 </span><span class="dv">93</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G2  </span><span class="dv">98</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS2 </span><span class="dv">104</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A2  </span><span class="dv">110</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS2 </span><span class="dv">117</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B2  </span><span class="dv">123</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C3  </span><span class="dv">131</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS3 </span><span class="dv">139</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D3  </span><span class="dv">147</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS3 </span><span class="dv">156</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E3  </span><span class="dv">165</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F3  </span><span class="dv">175</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS3 </span><span class="dv">185</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G3  </span><span class="dv">196</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS3 </span><span class="dv">208</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A3  </span><span class="dv">220</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS3 </span><span class="dv">233</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B3  </span><span class="dv">247</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C4  </span><span class="dv">262</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS4 </span><span class="dv">277</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D4  </span><span class="dv">294</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS4 </span><span class="dv">311</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E4  </span><span class="dv">330</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F4  </span><span class="dv">349</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS4 </span><span class="dv">370</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G4  </span><span class="dv">392</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS4 </span><span class="dv">415</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A4  </span><span class="dv">440</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS4 </span><span class="dv">466</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B4  </span><span class="dv">494</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C5  </span><span class="dv">523</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS5 </span><span class="dv">554</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D5  </span><span class="dv">587</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS5 </span><span class="dv">622</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E5  </span><span class="dv">659</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F5  </span><span class="dv">698</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS5 </span><span class="dv">740</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G5  </span><span class="dv">784</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS5 </span><span class="dv">831</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A5  </span><span class="dv">880</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS5 </span><span class="dv">932</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B5  </span><span class="dv">988</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C6  </span><span class="dv">1047</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS6 </span><span class="dv">1109</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D6  </span><span class="dv">1175</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS6 </span><span class="dv">1245</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E6  </span><span class="dv">1319</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F6  </span><span class="dv">1397</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS6 </span><span class="dv">1480</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G6  </span><span class="dv">1568</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS6 </span><span class="dv">1661</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A6  </span><span class="dv">1760</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS6 </span><span class="dv">1865</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B6  </span><span class="dv">1976</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C7  </span><span class="dv">2093</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS7 </span><span class="dv">2217</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D7  </span><span class="dv">2349</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS7 </span><span class="dv">2489</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E7  </span><span class="dv">2637</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F7  </span><span class="dv">2794</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS7 </span><span class="dv">2960</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G7  </span><span class="dv">3136</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS7 </span><span class="dv">3322</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A7  </span><span class="dv">3520</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS7 </span><span class="dv">3729</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B7  </span><span class="dv">3951</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C8  </span><span class="dv">4186</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS8 </span><span class="dv">4435</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D8  </span><span class="dv">4699</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS8 </span><span class="dv">4978</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="task-2-ultrasonic-air-harp" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-ultrasonic-air-harp">Task 2: Ultrasonic Air Harp</h3>
+<p><strong>Step 1:</strong> Declare the library file, define different notes and buzzer pins. The main notes we use are “Do Re Mi Fa Sol La Xi Do”, corresponding to “C5 D5 E5 F5 G5 A5 B5 C6”. You can only define the notes you need to avoid the program looking too lengthy.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Ultrasonic.h"</span><span class="co">//declare the library file</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Ultrasonic ultrasonic<span class="op">(</span><span class="dv">0</span><span class="op">);</span><span class="co">//define the ultrasonic object and connect the ultrasonic wave to the A0 interface. If you're using XIAO RP2040, please change 0 to D0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buzzerPin <span class="op">=</span> <span class="dv">3</span><span class="op">;</span><span class="co">//The buzzer is connected to the A3 interface, if you're using XIAO RP2040, please change 3 to A3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C5  </span><span class="dv">523</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_CS5 </span><span class="dv">554</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_D5  </span><span class="dv">587</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_DS5 </span><span class="dv">622</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_E5  </span><span class="dv">659</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_F5  </span><span class="dv">698</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_FS5 </span><span class="dv">740</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_G5  </span><span class="dv">784</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_GS5 </span><span class="dv">831</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_A5  </span><span class="dv">880</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_AS5 </span><span class="dv">932</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_B5  </span><span class="dv">988</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NOTE_C6  </span><span class="dv">1047</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 2:</strong> Initialize the baud rate and set the buzzer pin status.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>buzzerPin<span class="op">,</span>OUTPUT<span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 3:</strong> Read the distance (cm) measured by the ultrasonic distance sensor and make a condition judgment to set different distances to emit different notes. Since the setting of the air harp is that different distances trigger different notes, and this distance is a long integer value, so we need to use the <code>long()</code> function to define the value returned by the ultrasonic wave. For example, <code>(long)RangeInCentimeters== 4</code>, that is, the distance value returned by the ultrasonic wave is 4. Corresponding to the buzzer emitting different notes, use the <code>tone()</code> function, for example, <code>tone(3,NOTE_C5,100)</code>, that is, the buzzer on pin <code>3</code>, emits <code>NOTE_C5 (Do)</code> note, lasts for 100 milliseconds.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Read the distance value detected by the ultrasonic distance sensor, in centimeters, and print it on the serial monitor</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> RangeInCentimeters<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    RangeInCentimeters <span class="op">=</span> ultrasonic<span class="op">.</span>MeasureInCentimeters<span class="op">();</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>RangeInCentimeters<span class="op">);</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" cm"</span><span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">250</span><span class="op">);</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Using an if statement for conditional judgment, when the distance is 4, 6, 8, 10, 12, 14, 16, 18, it corresponds to C5, D5, E5, F5, G5, A5, B5, C6</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span>RangeInCentimeters<span class="op">==</span> <span class="dv">4</span><span class="op">))</span> <span class="op">{</span>  <span class="co">//Do</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_C5<span class="op">,</span><span class="dv">100</span><span class="op">);</span>   </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">6</span><span class="op">))</span> <span class="op">{</span> <span class="co">//Re</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_D5<span class="op">,</span><span class="dv">100</span><span class="op">);</span>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">8</span><span class="op">))</span> <span class="op">{</span> <span class="co">//Mi</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_E5<span class="op">,</span><span class="dv">100</span><span class="op">);</span>  </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">10</span><span class="op">))</span> <span class="op">{</span>  <span class="co">//Fa</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_F5<span class="op">,</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">12</span><span class="op">))</span> <span class="op">{</span>  <span class="co">//Sol</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_G5<span class="op">,</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">14</span><span class="op">))</span> <span class="op">{</span>  <span class="co">//La</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_A5<span class="op">,</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">16</span><span class="op">))</span> <span class="op">{</span> <span class="co">//Xi</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_B5<span class="op">,</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(((</span><span class="dt">long</span><span class="op">)</span> RangeInCentimeters<span class="op">==</span> <span class="dv">18</span><span class="op">))</span> <span class="op">{</span>  <span class="co">//Do</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        tone<span class="op">(</span><span class="dv">3</span><span class="op">,</span>NOTE_C6<span class="op">,</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicPiano_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicPiano_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 4:</strong> Connect the hardware and upload the program. Connect the ultrasonic distance sensor to the <code>A0</code> interface of the XIAO expansion board as shown below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&amp;height=372&amp;id=i60fc&amp;originHeight=1686&amp;originWidth=2071&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=301550&amp;status=done&amp;style=none&amp;title=&amp;width=457" class="img-fluid" alt="页面_16.png"></p>
+<p>Use the data cable to connect XIAO to the computer, click the “Upload” button, upload the program to the hardware, when the debugging area shows “Upload Successful”, open the serial monitor, and start playing with your palm. ## 3.3.4 Exterior Design The inspiration for the air harp comes from the piano, with a note every 2 cm also designed according to the style of the piano keys. In the process of creating the appearance, we can cut a harp surface from a basswood board, and fix the ultrasonic range sensor at the left end of the harp. We also provide laser cutting files for reference, which can be easily assembled, as shown in the picture: <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618279501210-18916324-9fcb-4186-adba-7f9fa8ba1f65.jpeg#averageHue=%23fdfcfc&amp;from=drop&amp;id=BhJ1k&amp;originHeight=2406&amp;originWidth=3308&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2726262&amp;status=done&amp;style=none&amp;taskId=uf19a063b-ec0e-4da3-9532-c044f088a57&amp;title=" class="img-fluid"> Download the files suitable for the laser cutting machine 🔗 <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_Air_Piano.dxf" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_Air_Piano.dxf</a>. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343963412-daf5e882-cf21-40b3-af6c-002e8ad88d52.jpeg#averageHue=%23d9cdc2&amp;height=401&amp;id=DU0XT&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3094846&amp;status=done&amp;style=none&amp;title=&amp;width=535" class="img-fluid" alt="1L13(2).jpg"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343980271-f551df3d-1a6f-46cf-af0a-35600ceee9ff.jpeg#averageHue=%23e3ded4&amp;height=460&amp;id=NzZUa&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2493009&amp;status=done&amp;style=none&amp;title=&amp;width=614" class="img-fluid" alt="1L13(4).jpg"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344008805-b3428704-b9da-44ff-b829-83ca8e03a0ea.jpeg#averageHue=%23ccc4af&amp;height=350&amp;id=8e8vZ&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3020181&amp;status=done&amp;style=none&amp;title=&amp;width=467" class="img-fluid" alt="1L13(3).jpg"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344030111-9a57e3c1-9e92-4ff3-89a4-d4779a2a8cae.jpeg#averageHue=%23dbd5ca&amp;height=359&amp;id=zYRlA&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2066215&amp;status=done&amp;style=none&amp;title=&amp;width=478" class="img-fluid" alt="1L13(1).jpg"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_3-2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3.2 Smart Watch</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_3-4.html" class="pagination-link">
+        <span class="nav-page-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

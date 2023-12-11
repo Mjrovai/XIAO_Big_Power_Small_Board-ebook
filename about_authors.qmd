@@ -1,0 +1,19 @@
+# About the authors {.unnumbered}
+
+**Lei Feng** is the leader of the technical support group and product curriculum at Seeed Studio. An experienced author in the fields of open-source hardware and edge computing, he has published several books in China, including "GameGo Beginner Programming Course for Arcade 《做游戏，玩编程------零基础开发微软 Arcade 掌机游戏》," "Grove Beginner Kit For Arduino - Codecraft Graphical Programming Course 《Arduino 图形化编程轻松学》", and the Chinese translation of "IoT for Beginners 《深入浅出 IoT：完整项目通关实战》" with support from Microsoft China.
+
+Lei Feng has created numerous tutorials and open-source documentation in Chinese and English with his team. His hands-on experience developing IoT and edge computing projects gives him unique insights into simplifying complex concepts for beginners. As an engaging writer and patient teacher, Lei Feng is the ideal guide to make Arduino and TinyML approachable for newcomers worldwide.
+
+*LinkedIn profile:* [*https://www.linkedin.com/in/leon-feng-a029bb1/*](https://www.linkedin.com/in/leon-feng-a029bb1/)
+
+**Marcelo Rovai** is a recognized figure in engineering and technology education, holding the title of Professor Honoris Causa from the Federal University of Itajubá, Brazil. His educational background includes an Engineering degree from UNIFEI and an advanced specialization from the Polytechnic School of São Paulo University. Further enhancing his expertise, he earned an MBA from IBMEC (INSPER) and a Master's in Data Science from the Universidad del Desarrollo in Chile.
+
+With a career spanning several high-profile technology companies such as AVIBRAS Airspace, ATT, NCR, and IGT, where he served as Vice President for Latin America, he brings a wealth of industry experience to his academic endeavors. He is a prolific writer on electronics-related topics and shares his knowledge through open platforms like Hackster.io.
+
+In addition to his professional pursuits, he is dedicated to educational outreach, serving as a volunteer professor at UNIFEI and engaging with the TinyML4D group as a Co-Chair, promoting TinyML education in developing countries. His work underscores a commitment to leveraging technology for societal advancement.
+
+*LinkedIn profile:* [*https://www.linkedin.com/in/marcelo-jose-rovai-brazil-chile/*](https://www.linkedin.com/in/marcelo-jose-rovai-brazil-chile/)
+
+*Twitter handle:* *\@mjrovai*
+
+*Author public speaking samples (YouTube, etc.):* [*https://www.youtube.com/watch?v=KeXlAazzgKw*](https://www.youtube.com/watch?v=KeXlAazzgKw)

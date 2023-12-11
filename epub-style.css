@@ -1,0 +1,30 @@
+    a {
+      color: #3498db; /* Soft blue */
+    }
+    
+    a {
+        transition: color 0.3s ease;
+    }
+    
+    a:hover {
+        color: #2c3e50; /* Darker shade when hovered */
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+    @font-face {
+        font-family: 'Nunito';
+        src: url('fonts/Nunito-Regular.ttf'), /* Adjust the path and filename as necessary */
+             url('fonts/Nunito-Bold.ttf');    /* Add other variations as needed */
+    }
+    
+    body {
+        font-family: 'Nunito', sans-serif;
+    }

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 3.1 Smart Remote Control Door</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_3-2.html" rel="next">
+<link href="./chapter_3.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_3.html">Chapter 3: Intermediate Project Practice—Complex Projects</a></li><li class="breadcrumb-item"><a href="./chapter_3-1.html">3.1 Smart Remote Control Door</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-1-reading-remote-control-key-codes" id="toc-task-1-reading-remote-control-key-codes" class="nav-link active" data-scroll-target="#task-1-reading-remote-control-key-codes">3.1.2 Task 1: Reading Remote Control Key Codes</a></li>
+  <li><a href="#project-creation-smart-remote-door" id="toc-project-creation-smart-remote-door" class="nav-link" data-scroll-target="#project-creation-smart-remote-door">3.1.3 Project Creation: Smart Remote Door</a>
+  <ul class="collapse">
+  <li><a href="#project-description" id="toc-project-description" class="nav-link" data-scroll-target="#project-description">Project Description</a></li>
+  <li><a href="#program-writing" id="toc-program-writing" class="nav-link" data-scroll-target="#program-writing">Program Writing</a></li>
+  <li><a href="#task-2-control-the-rotation-of-the-servo-with-an-infrared-remote-control" id="toc-task-2-control-the-rotation-of-the-servo-with-an-infrared-remote-control" class="nav-link" data-scroll-target="#task-2-control-the-rotation-of-the-servo-with-an-infrared-remote-control">Task 2: Control the Rotation of the Servo with an Infrared Remote Control</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/edit/main/chapter_3-1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/blob/main/chapter_3-1.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">3.1 Smart Remote Control Door</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In everyday life, privacy and security are matters of great concern to everyone. In recent years, the doors of residential areas have become increasingly smart, only accessible through electronic keys or passwords, preventing outsiders from gaining entry. In public areas or parking lot entrances, having a smart remote control to operate doors could facilitate the work of security personnel. A simple smart remote control door can be implemented using an infrared transmitter and an infrared receiver, which sends and receives infrared signals to open and close the door. In this section, we will build such a smart remote control door. ## 3.1.1 Background Knowledge ### 3.1.1.1 Infrared Receivers and Transmitters An infrared receiver is used to receive infrared signals, and is also used for remote control detection. The infrared receiver has an infrared detector for picking up the infrared light emitted by the infrared transmitter. The <a href="https://www.seeedstudio.com/Grove-Infrared-Receiver.html?queryID=07158d4ed1af8b12bb25a91e2bf51431&amp;objectID=2247&amp;indexName=bazaar_retailer_products">Grove - IR Infrared Receiver Module</a> has a range of 10 meters; signals cannot be received beyond this effective range. Generally, the infrared receiver and infrared transmitter work together. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1614740243010-49d75ada-b1df-46fa-9bb8-dfc240843ba3.jpeg#averageHue=%23e3e5dc&amp;height=197&amp;id=aFdnO&amp;originHeight=811&amp;originWidth=1023&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=true&amp;size=0&amp;status=done&amp;style=none&amp;title=Grove%20-%20IR%20Infrared%20Receiver%20Module&amp;width=249" title="Grove - IR Infrared Receiver Module" class="img-fluid" alt="Grove - IR Infrared Receiver Module"> An infrared transmitter is a type of remote control device with a remote control function. It emits light through an infrared emission tube within a certain range, thereby achieving control signal functions. The remote controls we use to control TVs, air conditioners, and car doors in daily life are infrared transmitters. Common infrared transmitters include modular ones like the <a href="https://www.seeedstudio.com/Grove-Infrared-Emitter.html?queryID=371d0912a7af3a54dbafe9aa92839339&amp;objectID=2248&amp;indexName=bazaar_retailer_products">Grove - Infrared Emitter Module</a>, as well as regular remote controls, each with corresponding usage scenarios and methods. For our smart remote control door, we will be using an infrared remote control. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1614759285351-23e174e0-2e67-40ab-bc12-a2561e41753d.jpeg#averageHue=%23f9f8f7&amp;height=298&amp;id=EC3A2&amp;originHeight=474&amp;originWidth=563&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=true&amp;size=63755&amp;status=done&amp;style=none&amp;title=Grove%20-%20Infrared%20Emitter%20Infrared%20Transmitter%20Module&amp;width=354" title="Grove - Infrared Emitter Infrared Transmitter Module" class="img-fluid" alt="Grove - Infrared Emitter Infrared Transmitter Module"><a href="https://detail.1688.com/offer/584164427949.html"><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1614757758971-8469db83-9b28-49cf-9e32-fad7a6c25667.jpeg#averageHue=%23fdfcfc&amp;height=327&amp;id=RPF5d&amp;originHeight=800&amp;originWidth=800&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=true&amp;size=0&amp;status=done&amp;style=none&amp;title=Mini%20Infrared%20Remote%20Control&amp;width=327" title="Mini Infrared Remote Control" class="img-fluid" alt="Mini Infrared Remote Control"></a> To explain simply, the principle of infrared transmission and reception is that the infrared transmitter inputs the signal, amplifies it, and sends it through the infrared transmission tube. The infrared receiver then receives this infrared signal, amplifies it and converts it back to an electrical signal, thereby realizing infrared control.</p>
+<section id="task-1-reading-remote-control-key-codes" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-reading-remote-control-key-codes">3.1.2 Task 1: Reading Remote Control Key Codes</h2>
+<section id="adding-thearduino-irremotehttpsgithub.comarduino-irremotearduino-irremotelibrary-file" class="level4">
+<h4 class="anchored" data-anchor-id="adding-thearduino-irremotehttpsgithub.comarduino-irremotearduino-irremotelibrary-file">Adding the<code>[Arduino-IRremote](https://github.com/Arduino-IRremote/Arduino-IRremote)</code>Library File</h4>
+<p>Before we begin programming the Grove - IR Infrared Receiver with the Arduino IDE, we need to add the necessary library files. Enter the library file address 🔗 <a href="https://github.com/Arduino-IRremote/Arduino-IRremote" class="uri">https://github.com/Arduino-IRremote/Arduino-IRremote</a> in your browser address bar, go to the GitHub page, and click <code>Code→Download ZIP</code> to download the resource package <code>Arduino-IRremote-master.zip</code> to your local machine, as shown in the image below: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669615819680-87e00c64-d502-4e72-9c54-b4f09a367227.png#averageHue=%23a8b39a&amp;clientId=ud4a80bec-5aae-4&amp;from=paste&amp;height=888&amp;id=XXjdT&amp;originHeight=1776&amp;originWidth=2602&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=721562&amp;status=done&amp;style=stroke&amp;taskId=ud4c71a55-247f-46b1-bbcd-8a85eb0dd97&amp;title=&amp;width=1301" class="img-fluid" alt="image.png"> Add the resource package <code>Arduino-IRremote-master.zip</code> you just downloaded through <code>Sketch→Include Library→Add .ZIP Library</code> in the Arduino IDE menu bar until you see a message indicating successful library loading. #### Open the Example File If you want to control other devices through the infrared remote control, such as pressing the left key on the mini infrared remote control to rotate the servo to the left, or pressing the right key to rotate the servo to the right, you first need to know what kind of code each key on the remote control will emit. This way, you can set it through the program. But how do you read the codes of different keys on the remote control? You can use the <code>IRremote</code> library and open the <code>IRrecvDemo</code> example via the following path: <code>**File→Examples→IRremote→ReceiveDemo**</code>. This example program can read the key codes of the remote control, but some parameters need to be modified: <code>**int RECV_PIN = 7**</code>, change the number according to the hardware connection pin. We have connected the infrared receiver to pin 7. Next, we select useful code. We only need to define the header file and the part that reads the remote control key codes. After reducing, the program is as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte IR_RECEIVE_PIN<span class="op">=</span><span class="dv">7</span><span class="op">;</span> <span class="co">// The infrared receiver is connected to pin 7. If you are using XIAO RP2040/XIAO ESP32, please change 7 to A0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>F<span class="op">(</span><span class="st">"Enabling IRin"</span><span class="op">));</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    IrReceiver<span class="op">.</span>begin<span class="op">(</span>IR_RECEIVE_PIN<span class="op">,</span>ENABLE_LED_FEEDBACK<span class="op">);</span> <span class="co">// Start infrared decoding</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>F<span class="op">(</span><span class="st">"Ready to receive IR signals at pin "</span><span class="op">));</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>IR_RECEIVE_PIN<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decode<span class="op">())</span> <span class="co">// Decode successfully, receive a set of infrared signals</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>   <span class="op">{</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>command<span class="op">,</span> HEX<span class="op">);</span> <span class="co">// Output infrared decoding result (hexadecimal)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>command<span class="op">);</span> <span class="co">// Output infrared decoding result (octal)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      IrReceiver<span class="op">.</span>resume<span class="op">();</span> <span class="co">// Receive the next set of values</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L11_IRrecvDemo_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L11_IRrecvDemo_en</a></p>
+</blockquote>
+<p>The infrared receiver module is connected to the port 7, as shown in the following figure: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616046021265-4edd3d68-cb9c-4ded-8562-fb9123b41c72.png#averageHue=%23f0cb4e&amp;height=349&amp;id=T4PAR&amp;originHeight=907&amp;originWidth=1644&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=126576&amp;status=done&amp;style=none&amp;title=&amp;width=633" class="img-fluid" alt="image.png"></p>
+<blockquote class="blockquote">
+<p>⚠️ Note: If you are using XIAO RP2040/XIAO ESP32, please change <code>7</code> to <code>A0</code>.</p>
+</blockquote>
+<p>After the code is uploaded, open the serial monitor, aim the remote control at the black component of the infrared receiver at a close distance, press any key, and observe the characters output by the serial monitor. The hexadecimal code appears in the first line, and the octal code appears in the second line. The two lines form one group, representing one key. Please note that if you press the key for too long, “FFFFFFFF” will appear, and this line of code and the numeric code below are invalid. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685324062734-87940708-2b64-4156-adf5-fec957a2d4c0.png#averageHue=%23cc9061&amp;clientId=ueb14e430-274d-4&amp;from=ui&amp;id=ud7719213&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=371474&amp;status=done&amp;style=none&amp;taskId=u37c0a98a-b8cf-4792-ba0e-3a2ef7a9bac&amp;title=" class="img-fluid" alt="L11-企业微信20230529-093358@2x.png"> &gt; ⚠️ Note: Different remote controls may give different values.</p>
+</section>
+</section>
+<section id="project-creation-smart-remote-door" class="level2">
+<h2 class="anchored" data-anchor-id="project-creation-smart-remote-door">3.1.3 Project Creation: Smart Remote Door</h2>
+<section id="project-description" class="level3">
+<h3 class="anchored" data-anchor-id="project-description">Project Description</h3>
+<p>How can we recreate a smart remote control door? With a remote control and an infrared receiver, the next step is to control the opening and closing of the door. Recall how the remote control doors in our life work? When the remote control is pressed, the door slowly opens. When it opens to a certain angle, it slowly closes. We can use a servo to control the rotation of the door. When closing the door, the servo rotates from 90° to 0°. When opening the door, the servo rotates from 0° to 90°. By transmitting the signals to open and close the door with a remote control, we can implement the function of a smart remote control door.</p>
+</section>
+<section id="program-writing" class="level3">
+<h3 class="anchored" data-anchor-id="program-writing">Program Writing</h3>
+<p>To control the rotation of the servo with an infrared remote control, you need to follow these steps:</p>
+<ul>
+<li>Declare the <code>IRremote</code> library and <code>Serve</code> library to be called, and define variables.</li>
+<li>Initialize the library files, initialize the servo.</li>
+<li>Read the infrared decoding result and control the rotation of the servo according to the instructions to the left and right.</li>
+</ul>
+</section>
+<section id="task-2-control-the-rotation-of-the-servo-with-an-infrared-remote-control" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-control-the-rotation-of-the-servo-with-an-infrared-remote-control">Task 2: Control the Rotation of the Servo with an Infrared Remote Control</h3>
+<p><strong>Step 1:</strong> Declare the <code>IRremote</code> library and <code>Serve</code> library to be called, and define variables.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Servo myservo<span class="op">;</span> <span class="co">// Create a servo object myservo to control the servo</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> RECV_PIN <span class="op">=</span> <span class="dv">7</span><span class="op">;</span> <span class="co">// The infrared receiver is connected to pin 7. If you are using XIAO RP2040/XIAO ESP32, please change 7 to A0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>IRrecv irrecv<span class="op">(</span>RECV_PIN<span class="op">);</span> <span class="co">// Define an IRrecv object to receive infrared signals</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>decode_results results<span class="op">;</span> <span class="co">// Decoding results are placed in results</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pos <span class="op">=</span> <span class="dv">90</span><span class="op">;</span> <span class="co">// Define pos as 90°</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 2:</strong> Initialize the library files, initialize the servo.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Enabling IRin"</span><span class="op">);</span>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    irrecv<span class="op">.</span>enableIRIn<span class="op">();</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    myservo<span class="op">.</span>attach<span class="op">(</span><span class="dv">5</span><span class="op">);</span> <span class="co">// Connect the servo on pin 5 to myservo. If you are using XIAO RP2040/XIAO ESP32, please change 5 to D5</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Step 3: Read the infrared decoding result and control the rotation of the servo according to the instructions to the left and right. If you have questions about the program, you can refer to the comment section. &gt; ⚠️ Note: In the example, the infrared signal value of the right key <code>16761405</code>, and the infrared signal value of the left key <code>16712445</code>, need to be replaced by the values obtained from the “Read Remote Control Key Code” example using the remote control in your hand. Otherwise, there will be no response after pressing the key.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span>  <span class="co">// If decoding is successful, a set of infrared signals is received</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16761405</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// If the received signal is 16761405 (right key)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>pos<span class="op">;</span> pos <span class="op">&lt;=</span> <span class="dv">89</span><span class="op">;</span> pos <span class="op">+=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Then the servo is incremented from 0° to 90° in sequence</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                myservo<span class="op">.</span>write<span class="op">(</span>pos<span class="op">);</span>              <span class="co">// Write the rotation angle value to the servo pin</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                delay<span class="op">(</span><span class="dv">40</span><span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                <span class="co">// The following is to interrupt the above instruction and exit the loop</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span>  </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                    irrecv<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16712445</span><span class="op">)</span>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16712445</span><span class="op">)</span> <span class="op">{</span>    <span class="co">// If the received signal is 16712445 (left key)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>pos<span class="op">;</span> pos <span class="op">&gt;=</span> <span class="dv">1</span><span class="op">;</span> pos <span class="op">-=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Then the servo is decremented from 90° to 0° in sequence</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                myservo<span class="op">.</span>write<span class="op">(</span>pos<span class="op">);</span>              <span class="co">// Write the rotation angle value to the servo pin</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                delay<span class="op">(</span><span class="dv">40</span><span class="op">);</span>                       </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="co">// The following is to interrupt the above instruction and exit the loop</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                    irrecv<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16761405</span><span class="op">)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Display hexadecimal and octal codes in the serial port</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>pos<span class="op">);</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>results<span class="op">.</span>value<span class="op">,</span> HEX<span class="op">);</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>results<span class="op">.</span>value<span class="op">);</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        irrecv<span class="op">.</span>resume<span class="op">();</span>                    </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Complete program details:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Servo myservo<span class="op">;</span> <span class="co">// Create a servo object myservo to control the servo</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> RECV_PIN <span class="op">=</span> <span class="dv">7</span><span class="op">;</span> <span class="co">// The infrared receiver is connected to pin 7. If you are using XIAO RP2040/XIAO ESP32, please change 7 to A0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>IRrecv irrecv<span class="op">(</span>RECV_PIN<span class="op">);</span> <span class="co">// Define an IRrecv object to receive infrared signals</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>decode_results results<span class="op">;</span> <span class="co">// Decoding results are placed in results</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pos <span class="op">=</span> <span class="dv">90</span><span class="op">;</span> <span class="co">// Define pos as 90°</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Enabling IRin"</span><span class="op">);</span>  </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    irrecv<span class="op">.</span>enableIRIn<span class="op">();</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    myservo<span class="op">.</span>attach<span class="op">(</span><span class="dv">5</span><span class="op">);</span> <span class="co">// Connect the servo on pin 5 to myservo. If you are using XIAO RP2040/XIAO ESP32, please change 5 to D5</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Note: Left 16712445 Right 16761405, please replace with the key values read from your own remote control</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span>  <span class="co">// If decoding is successful, a set of infrared signals is received</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16761405</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// If the received signal is 16761405 (right key)</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>pos<span class="op">;</span> pos <span class="op">&lt;=</span> <span class="dv">89</span><span class="op">;</span> pos <span class="op">+=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Then the servo is incremented from 0° to 90° in sequence</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                myservo<span class="op">.</span>write<span class="op">(</span>pos<span class="op">);</span>              <span class="co">// Write the rotation angle value to the servo pin</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                delay<span class="op">(</span><span class="dv">40</span><span class="op">);</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                <span class="co">// The following is to interrupt the above instruction and exit the loop</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span>  </span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                    irrecv<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16712445</span><span class="op">)</span>  </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16712445</span><span class="op">)</span> <span class="op">{</span>    <span class="co">// If the received signal is 16712445 (left key)</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>pos<span class="op">;</span> pos <span class="op">&gt;=</span> <span class="dv">1</span><span class="op">;</span> pos <span class="op">-=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span> <span class="co">// Then the servo is decremented from 90° to 0° in sequence</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>                myservo<span class="op">.</span>write<span class="op">(</span>pos<span class="op">);</span>              <span class="co">// Write the rotation angle value to the servo pin</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>                delay<span class="op">(</span><span class="dv">40</span><span class="op">);</span>                       </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>                <span class="co">// The following is to interrupt the above instruction and exit the loop</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>irrecv<span class="op">.</span>decode<span class="op">(&amp;</span>results<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>                    irrecv<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>results<span class="op">.</span>value <span class="op">==</span> <span class="dv">16761405</span><span class="op">)</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Display hexadecimal and octal codes in the serial port</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>pos<span class="op">);</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>results<span class="op">.</span>value<span class="op">,</span> HEX<span class="op">);</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>results<span class="op">.</span>value<span class="op">);</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        irrecv<span class="op">.</span>resume<span class="op">();</span>                    </span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L11_IR_Servo_ino_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L11_IR_Servo_ino_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 4:</strong> Connect the hardware and upload the program. First, connect the infrared receiving module to the 7th interface of the XIAO expansion board, and connect the servo to the I2C interface, as shown in the figure below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616046769231-58c746e3-95a2-4789-84e8-a0f90221ed61.png#averageHue=%23dcd8d4&amp;height=1086&amp;id=jbAWa&amp;originHeight=1086&amp;originWidth=2000&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=221872&amp;status=done&amp;style=none&amp;title=&amp;width=2000" class="img-fluid" alt="image.png"> &gt; ⚠️ Note: If you are using XIAO RP2040, please connect the infrared receiving module to the <code>A0</code> interface.</p>
+<p>Connect XIAO to the computer with a data cable, click the “Upload” button, upload the program to the hardware, and when the debug area shows “Upload Successful”, open the serial monitor, aim the remote control at the infrared receiver, press the “Left” key and the “Right” key, observe the rotation of the servo, and check the encoding information output by the serial monitor. ## 3.1.4 Exterior Design In this unit, we need to implement a more complete project, combining the functions implemented by the program, the modules, and the appearance of the structure to form a prototype. Going back to the smart remote control door project, we need to control the rotation of the servo through the remote control, simulate the opening and closing of the door. When making the appearance, we need to focus on the following issues:</p>
+<ul>
+<li>How to combine the servo and the door panel to make the rotation of the servo drive the rotation of the door panel.</li>
+<li>The infrared receiver should be exposed in a conspicuous position, without any cover.</li>
+<li>Whether the main control, expansion board, and connecting wires are covered to keep the appearance neat.</li>
+<li>How to make the work stand steadily.</li>
+</ul>
+<p>The figure below provides an appearance case, which is laser cut from basswood, and provides cutting files for reference. If you can use drawing software, you can process and design it yourself. If you don’t have a laser cutting machine, you can also use corrugated paper, cardstock, non-woven fabric, and other handmade materials to make it, which tests your hands-on ability more. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617260228306-50b819ae-70e4-40fb-9d32-7fcc7c44d757.jpeg#averageHue=%23fefefe&amp;height=608&amp;id=Xwxcw&amp;originHeight=608&amp;originWidth=2482&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1258414&amp;status=done&amp;style=none&amp;title=&amp;width=2482" class="img-fluid" alt="ADR.jpg"></p>
+<p>Download files for use with a laser cutter 🔗 <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_ADR.dxf" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_ADR.dxf</a>. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616468195911-f9c0facd-5b57-468b-9a59-20072972d362.jpeg#averageHue=%23e0dcd0&amp;height=398&amp;id=ddWpA&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1174771&amp;status=done&amp;style=none&amp;title=&amp;width=530" class="img-fluid" alt="L11(1)(2).jpg"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343247427-95ad067c-a206-49f6-a422-1a934012a437.jpeg#averageHue=%23cfc7b8&amp;height=356&amp;id=GpoVn&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3159560&amp;status=done&amp;style=none&amp;title=&amp;width=475" class="img-fluid" alt="1L11(3).jpg"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343284494-6409b655-aad6-4b2c-9a45-4f88ee7cfc79.jpeg#averageHue=%23d3cabc&amp;height=369&amp;id=ShfS4&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=492" class="img-fluid"> <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343459383-d3012574-80f6-4d74-ae33-5e50bf719156.jpeg#averageHue=%23cec6b8&amp;height=365&amp;id=lFA7j&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3067635&amp;status=done&amp;style=none&amp;title=&amp;width=486" class="img-fluid" alt="1L11(4).jpg"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 3: Intermediate Project Practice—Complex Projects</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_3-2.html" class="pagination-link">
+        <span class="nav-page-text">3.2 Smart Watch</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

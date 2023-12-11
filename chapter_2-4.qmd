@@ -1,0 +1,329 @@
+# 2.4 Rhythmic Dance with a Triaxial Accelerometer {.unnumbered}
+
+When we use smartphones or tablets, we notice that the screen display automatically flips depending on whether the device is vertical or horizontal. In racing or flying games, phones and tablets can be used as steering wheels, with turning accomplished by tilting the device. Increasingly popular drones, for the most part, can now fly more and more steadily by detecting and controlling the attitude of the aircraft. All of these feats are thanks to the triaxial accelerometer. In this section, we will learn to use programming to retrieve data from a triaxial accelerometer and use this data for display and control. \## 2.4.1 Background Knowledge \### **2.4.1.1 Triaxial Accelerometer** As people pay more and more attention to their health, an increasing number of people are starting to wear wristbands, pedometers, or use smartphones to record their steps, which has become a lifestyle habit for many. So how exactly does a pedometer work? The answer lies in a tiny chip called a triaxial accelerometer which is usually found in modern phones or wristbands and is the key component in step counting. An accelerometer is a sensor capable of measuring acceleration. It usually consists of a mass, a damper, an elastic element, a sensitive element, and an adjustment circuit. During acceleration, the sensor measures the inertial force applied to the mass, and uses Newton's second law to determine acceleration. Depending on the different sensitive elements of the sensor, common accelerometers include capacitive, inductive, strain, piezoresistive, piezoelectric, and others. ![](https://cdn.nlark.com/yuque/0/2020/png/2392200/1604365221866-e28bdbe1-7358-4e59-a781-1cd1e5a8573b.png#averageHue=%23666467&height=329&id=ezQEb&originHeight=994&originWidth=1904&originalType=binary&ratio=1&rotation=0&showTitle=false&size=0&status=done&style=none&title=&width=630) The capacitive accelerometer, based on the principle of capacitance, is a common type of accelerometer and is indispensable in certain fields, such as safety airbags, mobile devices like phones, etc. Capacitive accelerometers employ Micro-Electro-Mechanical Systems (MEMS) technology, which makes them very economical when mass-produced, thus ensuring low cost. \#### Applications of Accelerometers Accelerometers can help robots understand their environment. Are they climbing a hill? Or going downhill, or have they fallen? For balance cars or drones, accelerometers can help them maintain balance. In addition to everyday areas like smartphones and health wristbands, accelerometers have also found wide application in other fields.
+
+-   **Accelerometers in seismic probe design:** Seismic detectors are special sensors used for geological exploration and engineering measurements. They are sensors that convert ground vibration into electrical signals, turning ground movement caused by seismic waves into electrical signals, which are then converted into binary data through an analog/digital converter, organized, stored, and processed.
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/2392200/1604365995285-acfa2051-9c64-4ff5-9bcc-a65883097c06.png#averageHue=%23726635&height=601&id=zFeHZ&originHeight=601&originWidth=602&originalType=binary&ratio=1&rotation=0&showTitle=false&size=928311&status=done&style=none&title=&width=602) <https://www.directindustry-china.cn/prod/sercel-inc/product-137881-1920062.html>
+
+-   **Monitoring high-voltage line dancing**: Currently, domestic monitoring of line dancing mainly adopts two main technical schemes: video image acquisition and motion acceleration measurement. The former requires high reliability and stability of video equipment under high-temperature, high-humidity, severe cold, dense fog, dust storms, and other weather conditions, and the effects of the video images taken will also be affected. Hence, it can only serve as auxiliary monitoring means and cannot quantitatively analyze line motion parameters. Using an accelerometer to monitor line dancing allows for quantitative analysis of the up-and-down vibration and left-right swing of transmission lines at a certain point, but it can only measure the amplitude and frequency of line linear motion and not accurately measure complex circular motion.
+
+![高压线.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604366123235-46c60ad0-1b98-4051-b9ab-aa7478e491d1.jpeg#averageHue=%23393f3c&height=650&id=d1bh5&originHeight=6000&originWidth=4000&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3037463&status=done&style=none&title=&width=433) <https://www.pexels.com/zh-cn/photo/4221070/>
+
+-   **Automotive Safety**: Accelerometers are mainly used in automotive safety airbags, anti-lock braking systems, traction control systems, and other safety features. In safety applications, the rapid response of the accelerometer is crucial. It must be quickly determined when a safety airbag should deploy, so the accelerometer must respond instantly. A sensor design that can quickly reach a stable state rather than continuing to vibrate can shorten the device's response time.
+
+![汽车安全.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604366298517-16cf85aa-5920-441f-a57b-bc4fa890d77c.jpeg#averageHue=%234b6063&height=1116&id=ZIbBM&originHeight=4464&originWidth=2976&originalType=binary&ratio=1&rotation=0&showTitle=false&size=806489&status=done&style=none&title=&width=744) <https://www.pexels.com/zh-cn/photo/2526127/>
+
+-   **Drones**: Accelerometers are also key components of drone control, positioning, and stability.
+
+![无人机.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604366388508-6f53ae66-3425-4e7c-be2e-0403bc1bed99.jpeg#averageHue=%23726e4d&height=3441&id=MvbC9&originHeight=3441&originWidth=5216&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2796584&status=done&style=none&title=&width=5216) <https://www.pexels.com/zh-cn/photo/dji-mavic-pro-2393537/>
+
+-   **Game Control**: Accelerometers can detect changes in the tilt angles up, down, left, and right, so it becomes straightforward to control the directions of objects in games by tilting handheld devices forward and backward. Many new game console controllers and VR device controllers incorporate accelerometers.
+
+![Photo by Eugene Capon from Pexels.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604366685400-0925b366-723c-4a30-b5a0-be6bbe45d9cf.jpeg#averageHue=%235f4b85&height=2760&id=OKsrv&originHeight=2760&originWidth=4912&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1237813&status=done&style=none&title=&width=4912) <https://www.pexels.com/photo/man-using-virtual-reality-headset-doing-an-action-1261820/>
+
+-   **Image Auto-flip**: Accelerometers detect the rotation movements and directions of handheld devices, making the displayed images upright.
+
+![pexels-plann-4549416.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604366926989-940e87b6-94fb-4127-b5f1-f984bc6d8002.jpeg#averageHue=%23c6c7cb&height=6678&id=KCsyR&originHeight=6678&originWidth=4452&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3428946&status=done&style=none&title=&width=4452) <https://www.pexels.com/photo/person-holding-smartphone-4549416/>
+
+-   **Compensation for GPS Navigation System Blind Spots**: GPS systems determine an object's location by receiving signals from three satellites distributed at 120 degrees. In special circumstances and terrains, like tunnels, dense buildings, jungle areas, GPS signals may weaken or even be completely lost, creating blind spots. By adding an accelerometer and using inertial navigation we previously mentioned, we can measure system dead zones. By integrating the accelerometer once, we change it into the speed change per unit time, thereby measuring the movement of an object in the dead zone.
+
+![pexels-pixabay-33488.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604367065581-b89e8b4a-8636-4e89-8e2d-a5b085490589.jpeg#averageHue=%238a9c9e&height=3456&id=BzCyl&originHeight=3456&originWidth=4608&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1379295&status=done&style=none&title=&width=4608) <https://www.pexels.com/photo/smartphone-car-technology-phone-33488/>
+
+-   **Pedometer Function**: Accelerometers can detect AC signals and object vibrations. When people walk, they produce regular vibrations, and the accelerometer can detect the zero crossing of the vibrations, thereby calculating the number of steps walked or run, and thus calculating the displacement moved by the person. Using certain formulas, we can also calculate the calories burned.
+
+![pexels-cottonbro-5081922.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604367179041-b381f909-b5e6-4f8f-bf47-d9e71c1834dd.jpeg#averageHue=%232a3234&height=4160&id=ThdMy&originHeight=4160&originWidth=6240&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2981868&status=done&style=none&title=&width=6240) <https://www.pexels.com/photo/black-smart-watch-at-10-54-5081922/>
+
+-   **Image Stabilization and Shooting Stabilizers**: The image stabilization function uses an accelerometer to detect the vibration/swing amplitude of handheld devices, and when the vibration/swing amplitude is too large, it locks the camera shutter to ensure the images taken are always clear. The shooting stabilizer uses an accelerometer to maintain the stability of the entire device.
+
+![pexels-just-name-1051544.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604367343159-0c56a5c8-ea29-43ab-b195-1a38c898bf0a.jpeg#averageHue=%23caccc5&height=3744&id=qwGVw&originHeight=3744&originWidth=5616&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1105439&status=done&style=none&title=&width=5616) <https://www.pexels.com/photo/person-holding-black-dslr-camera-1051544/>
+
+-   **Hard Drive Protection**: By detecting the state of free fall with an accelerometer, necessary protection can be implemented for hard drives. It is well known that when a hard drive is reading data, the gap between the read/write head and the platter is minuscule, and even minor external vibrations can have severe consequences for the hard drive, leading to data loss. By using an accelerometer, the state of free fall can be detected. When the state of free fall is detected, the read/write head is reset to reduce the extent of hard drive damage.
+
+![pexels-pixabay-33278.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/2392200/1604368036141-65b929d2-b837-49a6-aced-8a62317af8d3.jpeg#averageHue=%23484933&height=3648&id=J5QF8&originHeight=3648&originWidth=5472&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2699837&status=done&style=none&title=&width=5472) <https://www.pexels.com/photo/silver-hard-drive-interals-33278/> \#### Grove Three-Axis Accelerometer In our kit, we have a three-axis accelerometer module - \[Grove Three-Axis Accelerometer Module\]. This tiny, incredible three-axis accelerometer supports I2C, SPI, and ADC GPIO interfaces, which means you can choose any way to connect to your development board. Additionally, the accelerometer can also monitor the surrounding temperature to adjust for errors caused by it. ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1614952888738-91bc6821-b45a-4224-91c9-745c0306ace8.png#averageHue=%23fcfcfc&height=204&id=rv8Xa&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=182806&status=done&style=none&title=&width=272) \## 2.4.2 Task1: Reading Values from the XYZ Axes of the Three-Axis Accelerometer The key to using a three-axis accelerometer for project creation is learning how to read the values of the X, Y, Z axes of the accelerometer. \#### Add the [Seeed_Arduino_LIS3DHTR](https://github.com/Seeed-Studio/Seeed_Arduino_LIS3DHTR) Library
+
+Before starting to program the Grove Three-Axis Accelerometer with the Arduino IDE, it is necessary to add the required library for the sensor. Enter the library address 🔗 <https://github.com/Seeed-Studio/Seeed_Arduino_LIS3DHTR/> in the browser address bar, enter the GitHub page, click `Code→Download ZIP` to download the resource package `Seeed_Arduino_LIS3DHTR-master.zip` to local, as shown in the figure below. ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669369411558-c33d7e7f-c795-4ad0-80a3-82923a82a92e.png#averageHue=%237b813a&clientId=ue4dd1b2d-075a-4&from=paste&height=513&id=imK1V&originHeight=1025&originWidth=1496&originalType=binary&ratio=1&rotation=0&showTitle=false&size=268634&status=done&style=stroke&taskId=u3d48cc95-2ece-468a-bcdf-ff663f04a65&title=&width=748) Add the previously downloaded resource package `Seeed_Arduino_LIS3DHTR-master.zip` through `Sketch→Include Library→Add .ZIP Library` in the menu bar, until you see a library load successful prompt. \#### Open the Sample File Similarly, you can refer to the library file and open the `LIS3DHTR_IIC` sample through the following path: **File→Examples→Grove-3-Axis-Digital-Accelerometer-2g-to-16g-LIS3DHTR→LIS3DHTR_IIC.**
+
+``` cpp
+// This example use I2C.
+#include "LIS3DHTR.h"
+#include <Wire.h>
+LIS3DHTR<TwoWire> LIS; //IIC
+#define WIRE Wire
+
+void setup()
+{
+  Serial.begin(115200);
+  while (!Serial)
+  {
+  };
+  LIS.begin(WIRE); //IIC init dafault :0x18
+  //LIS.begin(WIRE, 0x19); //IIC init
+  LIS.openTemp();  //If ADC3 is used, the temperature detection needs to be turned off.
+  //  LIS.closeTemp();//default
+  delay(100);
+  //  LIS.setFullScaleRange(LIS3DHTR_RANGE_2G);
+  //  LIS.setFullScaleRange(LIS3DHTR_RANGE_4G);
+  //  LIS.setFullScaleRange(LIS3DHTR_RANGE_8G);
+  //  LIS.setFullScaleRange(LIS3DHTR_RANGE_16G);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_1HZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_10HZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_25HZ);
+  LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_100HZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_200HZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_1_6KHZ);
+  //  LIS.setOutputDataRate(LIS3DHTR_DATARATE_5KHZ);
+  LIS.setHighSolution(true); //High solution enable
+}
+void loop()
+{
+  if (!LIS)
+  {
+    Serial.println("LIS3DHTR didn't connect.");
+    while (1)
+      ;
+    return;
+  }
+  //3 axis
+  //  Serial.print("x:"); Serial.print(LIS.getAccelerationX()); Serial.print("  ");
+  //  Serial.print("y:"); Serial.print(LIS.getAccelerationY()); Serial.print("  ");
+  //  Serial.print("z:"); Serial.println(LIS.getAccelerationZ());
+  //ADC
+  //    Serial.print("adc1:"); Serial.println(LIS.readbitADC1());
+  //    Serial.print("adc2:"); Serial.println(LIS.readbitADC2());
+  //    Serial.print("adc3:"); Serial.println(LIS.readbitADC3());
+
+  //temperature
+  Serial.print("temp:");
+  Serial.println(LIS.getTemperature());
+  delay(500);
+}
+```
+
+The sample program can read the values of the X, Y, Z axes of the three-axis accelerometer and output through the serial monitor. The sample program provides us with different setting choices using the "//" comment method, but you need to manually select the required parts, as follows: `**LIS.begin(WIRE);**` initializes the default values, you can choose between 0×18 and 0×19, we need to choose `LIS.begin(WIRE,0×19);`. `**LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ);**` The accelerometer's output rate has multiple choices, choose 50Hz. The three-axis accelerometer can also monitor the ambient temperature, we temporarily do not need to delete the related code, the complete program is as follows:
+
+``` cpp
+// This example shows the 3-axis acceleration.
+#include "LIS3DHTR.h" // Declare library
+#include <Wire.h>
+LIS3DHTR<TwoWire> LIS; 
+#define WIRE Wire // Initialize the module above using hardware I2C
+
+void setup()
+{
+    Serial.begin(9600);
+    while (!Serial) { }; // If you can't open the serial monitor, the code will stop here
+    LIS.begin(WIRE, 0x19); // Initialize I2C with default value
+    delay(100);
+    LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ); // Set the accelerometer's output rate to 50Hz.
+}
+void loop()
+{
+    if (!LIS) {
+        Serial.println("LIS3DHTR didn't connect.");
+        while (1);
+        return;
+    }
+    // Read the values of the X, Y, Z axes from the sensor, and display them on the serial monitor
+    Serial.print("x:"); Serial.print(LIS.getAccelerationX()); Serial.print("  ");
+    Serial.print("y:"); Serial.print(LIS.getAccelerationY()); Serial.print("  ");
+    Serial.print("z:"); Serial.println(LIS.getAccelerationZ());
+    delay(500);
+}
+```
+
+> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L10_LIS3DHTR_IIC_XIAO_en>
+
+Next, connect the three-axis accelerometer to the I2C interface. There are two I2C interfaces on the XIAO expansion board, as shown in the picture below: ![页面_11.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616037780780-31e00acd-095c-4e8e-9b1b-9fe5cde115ee.png#averageHue=%23c2bfba&height=814&id=PYHc5&originHeight=814&originWidth=1187&originalType=binary&ratio=1&rotation=0&showTitle=false&size=60922&status=done&style=none&title=&width=1187) \#### Monitor Data Changes via Serial Monitor Connect XIAO to your computer with a data cable, upload the program, wait for the program to upload successfully, then open the serial monitor. Move the three-axis accelerometer in the X, Y, Z axis direction and observe the changes in the readings. ![L0-企业微信20230526-180924\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685095843412-eb6e56c6-de9e-4683-b9b1-267673d504c3.png#averageHue=%23c79260&clientId=u964be685-0da9-4&from=ui&id=uff3b3723&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=392866&status=done&style=stroke&taskId=u70a41b01-0b0a-4bce-a531-41163a9801a&title=) \#### Monitor Data Changes with Serial Plotter The numerical way of presenting the changes in the accelerometer's 3-axis values is not very intuitive. You can open the serial plotter, as shown in the picture below. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685096098894-5db8197f-6a0b-43b9-8bc3-8e919ae5aa1c.jpeg)
+
+## 2.4.3 Project Production: Rhythmic Dance
+
+### Project Description
+
+We can add an RGB LED strip in the project to achieve cool light effects changes. The three-axis accelerometer is used to detect movement, and different light effects are triggered based on different values on the X, Y, Z axes of the accelerometer. \### Program Writing To control the RGB LED strip to change the light effects via the three-axis accelerometer, follow these steps:
+
+-   Declare the library files that need to be invoked, define the strip pin and LED quantity.
+-   Initialize the three-axis accelerometer and the strip.
+-   Set the light effect of the strip to red, green and blue flashing, set the conditional judgment, and control the change by different value intervals on the X, Y, Z axis of the three-axis accelerometer. \### Task: Control RGB LED Strip to Change Light Effects via Three-Axis Accelerometer **Step 1:** Declare the library files that need to be invoked, define the strip pin and the number of LEDs.
+
+``` cpp
+#include "LIS3DHTR.h" // Declare the library file of the three-axis accelerometer
+#include <Adafruit_NeoPixel.h> // Declare the strip's library file
+#ifdef __AVR__
+#include <avr/power.h> 
+#endif
+// Below are to initialize the module using software I2C or hardware I2C
+#ifdef SOFTWAREWIRE
+#include <SoftwareWire.h>
+SoftwareWire myWire(3, 2);
+LIS3DHTR<SoftwareWire> LIS; 
+#define WIRE myWire
+#else
+#include <Wire.h>
+LIS3DHTR<TwoWire> LIS;    
+#define WIRE Wire
+#endif
+
+#define PIXEL_PIN 0 // Define the pin of the strip, if you use XIAO RP2040/XIAO ESP32, please modify 0 to A0
+#define PIXEL_COUNT 30 // Define the number of LEDs in the strip as 30
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800); // Declare the strip object, set the data type
+```
+
+**Step 2:** Initialize the three-axis accelerometer and the strip. Here, you need to initialize the accelerometer and set the rate to 50HZ.
+
+``` cpp
+void setup() { 
+    Serial.begin(9600); // Initialize the serial monitor
+    while (!Serial) {}; // If the serial monitor isn't opened, the code will stop here, so please open the serial monitor
+    LIS.begin(WIRE, 0x19); // Initialize I2C
+    delay(100);
+    LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ); // Set the accelerometer's output rate to 50Hz
+    strip.begin(); // Start the strip
+    strip.show(); // Display the strip
+}
+```
+
+**Step 3:** Set the light effects to flash in red, green, and blue, respectively. Conditionals are used to change the color of the light strip according to the varying readings on the X, Y, and Z axes of the 3-axis accelerometer. These readings can be viewed via the serial monitor. By observing the change in values when the accelerometer is moved along the X, Y, and Z axes, we can determine the appropriate settings for the light strip. Since the readings may sometimes be negative, we take the absolute value of the readings. The `abs()` function can be used to get the absolute value, for example, `abs(LIS.getAccelerationX())` would give the absolute value of the reading on the X-axis.
+
+``` cpp
+void loop() {
+    if (!LIS) {  // Check if the 3-axis accelerometer is connected properly
+        Serial.println("LIS3DHTR didn't connect.");
+        while (1);
+        return;
+    }
+
+    if ((abs(LIS.getAccelerationX()) > 0.2)) {
+        theaterChase(strip.Color(127, 0, 0), 50); // The light strip turns red
+    }
+    if ((abs(LIS.getAccelerationY()) > 0.2)) {
+        theaterChase(strip.Color(0, 127, 0), 50); // The light strip turns green
+    }
+    if ((abs(LIS.getAccelerationZ()) > 1.0)) {
+        theaterChase(strip.Color(0, 0, 127), 50); // The light strip turns blue
+    }
+    else
+    {
+        strip.clear(); 
+        strip.show();
+    }
+
+    // Read the values of the X, Y, and Z axes from the sensor and display them on the serial monitor
+    Serial.print("x:"); Serial.print(LIS.getAccelerationX()); Serial.print("  ");
+    Serial.print("y:"); Serial.print(LIS.getAccelerationY()); Serial.print("  ");
+    Serial.print("z:"); Serial.println(LIS.getAccelerationZ());
+
+    delay(500);
+}
+// Set theaterChase for flashing light effects
+void theaterChase(uint32_t color, int wait) {
+    for(int a=0; a<10; a++) {  
+        for(int b=0; b<3; b++) { 
+            strip.clear();   
+            for(int c=b; c<strip.numPixels(); c += 3) {
+                strip.setPixelColor(c, color);
+            }
+            strip.show(); 
+            delay(wait);
+        }
+    }
+}
+```
+
+Complete program as follows:
+
+``` cpp
+#include "LIS3DHTR.h"// Declare the library file for the 3-axis accelerometer
+#include <Adafruit_NeoPixel.h>// Declare the library file for the light strip
+#ifdef __AVR__
+#include <avr/power.h> 
+#endif
+// The following is to initialize the module using software I2C or hardware I2C
+#ifdef SOFTWAREWIRE
+#include <SoftwareWire.h>
+SoftwareWire myWire(3, 2);
+LIS3DHTR<SoftwareWire> LIS; 
+#define WIRE myWire
+#else
+#include <Wire.h>
+LIS3DHTR<TwoWire> LIS;    
+#define WIRE Wire
+#endif
+
+#define PIXEL_PIN 0 // Define the pin of the light strip, if you are using XIAO RP2040/XIAO ESP32, please change 0 to A0
+#define PIXEL_COUNT 30 // Define the number of LEDs on the light strip as 30
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800); // Declare the light strip object and set the data type
+
+void setup() { 
+    Serial.begin(9600); // Initialize the serial monitor
+    while (!Serial) {};// If you do not open the serial monitor, the code will stop here, so please open the serial monitor
+    LIS.begin(WIRE, 0x19); // IIC initialization
+    delay(100);
+    LIS.setOutputDataRate(LIS3DHTR_DATARATE_50HZ); // Set the output rate of the accelerometer to 50Hz
+    strip.begin(); // The light strip starts working
+    strip.show(); // The light strip displays
+}
+void loop() {
+    if (!LIS) {  // Check if the 3-axis accelerometer is connected correctly
+        Serial.println("LIS3DHTR didn't connect.");
+        while (1);
+        return;
+    }
+
+    if ((abs(LIS.getAccelerationX()) > 0.2)) {
+        theaterChase(strip.Color(127, 0, 0), 50); // The light strip turns red
+    }
+    if ((abs(LIS.getAccelerationY()) > 0.2)) {
+        theaterChase(strip.Color(0, 127, 0), 50); // The light strip turns green
+    }
+    if ((abs(LIS.getAccelerationZ()) > 1.0)) {
+        theaterChase(strip.Color(0, 0, 127), 50); // The light strip turns blue
+    }
+    else
+    {
+        strip.clear(); 
+        strip.show();
+    }
+
+    // Read the values of the X, Y, and Z axes from the sensor and display them on the serial monitor
+    Serial.print("x:"); Serial.print(LIS.getAccelerationX()); Serial.print("  ");
+    Serial.print("y:"); Serial.print(LIS.getAccelerationY()); Serial.print("  ");
+    Serial.print("z:"); Serial.println(LIS.getAccelerationZ());
+
+    delay(500);
+}
+// Set theaterChase for flashing light effects
+void theaterChase(uint32_t color, int wait) {
+    for(int a=0; a<10; a++) {  
+        for(int b=0; b<3; b++) { 
+            strip.clear();   
+            for(int c=b; c<strip.numPixels(); c += 3) {
+                strip.setPixelColor(c, color);
+            }
+            strip.show(); 
+            delay(wait);
+        }
+    }
+}
+```
+
+> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L10_MovementRGBLED_XIAO_en>
+
+**Step 4:** Connect the hardware and upload the program. First, connect the RGB LED light strip to the `A0/D0` interface of the XIAO expansion board, and the three-axis accelerometer to the I2C interface, as shown in the figure: ![页面_12.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616038044696-fb56da75-82b2-4519-a816-55b3a9126e02.png#averageHue=%23e8e6e3&height=1087&id=yULgw&originHeight=1087&originWidth=2458&originalType=binary&ratio=1&rotation=0&showTitle=false&size=80658&status=done&style=none&title=&width=2458) Use a data cable to connect XIAO to your computer, click the "Upload" button in Arduino IDE, and upload the program to the hardware. Once the debugging area shows "Upload Successful", you can open the serial monitor and try swinging the three-axis accelerometer left, right, up, and down to feel the light effect changes of the light strip.
+
+## 2.4.4 **Exterior Design**
+
+Imagine how cool it would be if there were lights flashing with your dance steps as you passionately swing your arms. That's where the inspiration for Rhythm Dance comes from. It can be combined with clothes or accessories to create a wearable style.
+
+| Product Name       | Rhythm Dance                                                                                                                                           |
+|------------------------------------|------------------------------------|
+| Product Features   | Wearable, Cool light effects, Posture detection                                                                                                        |
+| Product Functions  | RGB LED light strip displays different light effects based on the values detected by the three-axis accelerometer                                      |
+| Product Appearance | (For example: The waterproof layer on the outside of the RGB LED light strip can be removed, and it can be sewn together with clothes or a belt, etc.) |
+
+#### Reference for the case
+
+![](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618369376903-a60faaea-f30e-40ef-944a-bf9a6c0e8d39.jpeg#averageHue=%23899486&from=drop&id=uf58f9c5d&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2649877&status=done&style=none&taskId=u2d38758e-03b6-4805-80b3-00a7a0619b9&title=) \###
+
+## 

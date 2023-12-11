@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 5.1 Creative and useful XIAO projects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./chapter_5.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_5.html">Chapter 5: Creative Experiments</a></li><li class="breadcrumb-item"><a href="./chapter_5-1.html">5.1 Creative and useful XIAO projects</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#train-controller-with-seeed-studio-xiao-esp32c3" id="toc-train-controller-with-seeed-studio-xiao-esp32c3" class="nav-link active" data-scroll-target="#train-controller-with-seeed-studio-xiao-esp32c3">5.1.6 Train Controller With Seeed Studio XIAO ESP32C3</a></li>
+  <li><a href="#pet-activity-tracker-using-xiao-ble-sense-edge-impulse" id="toc-pet-activity-tracker-using-xiao-ble-sense-edge-impulse" class="nav-link" data-scroll-target="#pet-activity-tracker-using-xiao-ble-sense-edge-impulse">5.1.8 Pet Activity Tracker using XIAO BLE Sense &amp; Edge Impulse</a></li>
+  <li><a href="#h.e.d.s.-on-your-wrist-new-seeeduino-xiao-board" id="toc-h.e.d.s.-on-your-wrist-new-seeeduino-xiao-board" class="nav-link" data-scroll-target="#h.e.d.s.-on-your-wrist-new-seeeduino-xiao-board">5.1.9 H.E.D.S. On your wrist, New Seeeduino XIAO Board</a></li>
+  <li><a href="#hearbeat-monitor-with-xiao-nrf52840" id="toc-hearbeat-monitor-with-xiao-nrf52840" class="nav-link" data-scroll-target="#hearbeat-monitor-with-xiao-nrf52840">5.1.10 Hearbeat Monitor With XIAO NRF52840</a></li>
+  <li><a href="#multi-midi-controller-filter-router-sound-generator" id="toc-multi-midi-controller-filter-router-sound-generator" class="nav-link" data-scroll-target="#multi-midi-controller-filter-router-sound-generator">5.1.11 Multi MIDI Controller, Filter, Router &amp; Sound Generator</a></li>
+  <li><a href="#death-stranding-desk-lamp" id="toc-death-stranding-desk-lamp" class="nav-link" data-scroll-target="#death-stranding-desk-lamp">5.1.15 Death Stranding Desk Lamp</a></li>
+  <li><a href="#hackerbox-0077veritas" id="toc-hackerbox-0077veritas" class="nav-link" data-scroll-target="#hackerbox-0077veritas">5.1.16 HackerBox 0077：Veritas</a></li>
+  <li><a href="#discipline---a-workout-timer" id="toc-discipline---a-workout-timer" class="nav-link" data-scroll-target="#discipline---a-workout-timer">5.1.17 DISCIPLINE - A workout timer</a>
+  <ul class="collapse">
+  <li><a href="#nd-prize-beyblock20-a-magnetic-modular-macropad" id="toc-nd-prize-beyblock20-a-magnetic-modular-macropad" class="nav-link" data-scroll-target="#nd-prize-beyblock20-a-magnetic-modular-macropad">2nd Prize: Beyblock20 | a magnetic, modular MacroPad</a></li>
+  <li><a href="#nd-prize-purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040" id="toc-nd-prize-purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040" class="nav-link" data-scroll-target="#nd-prize-purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040">2nd Prize: Purple Owl | a 60% keyboard powered by Seeed XIAO RP2040</a></li>
+  <li><a href="#rd-prize-klein-a-wireless-ergonomical-keyboard" id="toc-rd-prize-klein-a-wireless-ergonomical-keyboard" class="nav-link" data-scroll-target="#rd-prize-klein-a-wireless-ergonomical-keyboard">3rd Prize: KLEIN | a wireless ergonomical keyboard</a></li>
+  <li><a href="#rd-prize-grin-quern-an-ergonomic-keyboard-on-center-trackpad" id="toc-rd-prize-grin-quern-an-ergonomic-keyboard-on-center-trackpad" class="nav-link" data-scroll-target="#rd-prize-grin-quern-an-ergonomic-keyboard-on-center-trackpad">3rd Prize: GRIN Quern | an ergonomic keyboard on center trackpad</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/edit/main/chapter_5-1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/blob/main/chapter_5-1.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">5.1 Creative and useful XIAO projects</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>After going through the sections in this book, you might have many novel ideas that you can’t wait to implement. But before you rush into it, let’s take a look at what interesting stuff others have done with XIAO. For this, we have collected some user-made project cases using XIAO primarily from the globally renowned innovators’ communities like <a href="https://www.hackster.io/">hackster.io</a> and <a href="http://www.instructables.com/">instructables</a>, to help you see more possibilities of XIAO. ## 5.1.1 Drone-borne Salt Water Tracker (SWT) <a href="https://www.hackster.io/txnghia/salt-water-tracker-swt-cb68be" class="uri">https://www.hackster.io/txnghia/salt-water-tracker-swt-cb68be</a> Author: <a href="https://www.hackster.io/txnghia">Nghia Tran</a> The ‘Salt Water Tracker’ project, using the <a href="https://www.hackster.io/seeed/products/seeed-xiao-ble-nrf52840-sense1?ref=project-cb68be">XIAO BLE nRF52840 Sense</a>, addresses the problem of seawater erosion in rice fields in areas like the Mekong Delta in Vietnam. The project integrates a saltwater sensor system onto a Hovergames drone, turning the drone into an efficient saltwater tracking tool. This project helps farmers monitor the salinity of rivers and large water networks in real-time to ensure water safety and guide the allocation of reservoir water. The system also features temperature, water quality, air quality sensors, and a camera function for taking pictures or videos of the water area and assisting in determining water type and conditions. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685700340583-fa720db5-daac-4626-9d23-471a201e3e9d.png#averageHue=%2393b28b&amp;clientId=u1e5171ef-e229-4&amp;from=ui&amp;id=uc7e45613&amp;originHeight=2025&amp;originWidth=2700&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5996213&amp;status=done&amp;style=none&amp;taskId=u34394fff-fe8e-4905-9f06-6aa8d208f14&amp;title=" class="img-fluid" alt="L19_ctSMYnZKV9.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685935851245-9b1c1185-266a-4fa8-b74e-02fc7aede6f0.png#averageHue=%23a25c23&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ub6028bf6&amp;originHeight=1000&amp;originWidth=1734&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2888265&amp;status=done&amp;style=none&amp;taskId=u89caeb2c-2dde-4c5a-84b0-37deff768bb&amp;title=" class="img-fluid" alt="L19-1-3-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685935875981-b5c40998-39c7-4d06-9c31-ddc542991c88.png#averageHue=%23a8563a&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uaf39f9bc&amp;originHeight=988&amp;originWidth=1704&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2083698&amp;status=done&amp;style=none&amp;taskId=u636393f0-2e40-4128-88e5-f65c079543c&amp;title=" class="img-fluid" alt="L19-1-4-2.png"> ## 5.1.2 SAJAC Project: Intelligent Jacket for Caving Adventure <a href="https://www.hackster.io/rifqiabdillah/sajac-project-smart-jacket-for-caving-0e6a19" class="uri">https://www.hackster.io/rifqiabdillah/sajac-project-smart-jacket-for-caving-0e6a19</a> Author: <a href="https://www.hackster.io/rifqiabdillah">Rifqi Abdillah</a> Caving has become increasingly popular in recent years. However, cavers may face a variety of safety hazards, including extreme temperatures, damp air, low air pressure, poor air quality, and toxic gases. To address this, we developed the SAJAC project, an intelligent monitoring system designed to observe environmental conditions within a cave. The system uses Nicla Sense ME to measure the environmental quality around the user and sends the results to the SAJAC app on the user’s smartphone. If the cave conditions are not suitable for exploration, Nicla Sense ME or the user’s smartphone will receive notification reminders. Meanwhile, at each checkpoint within the cave, there will be a transmitter directly connected to the guard outside the cave. The user can quickly seek help via the transmitter when in danger. Considering that there is no internet connection in the cave, we use a LoRa communication system based on XIAO ESP32C3 to transmit checkpoint data. When the user reaches the checkpoint, they just need to connect to the transmitter and press the “send” button. If the user encounters a situation where they cannot continue the exploration, they can decide whether to return on their own or wait for the guard’s response. The main post guard will use LoRa to receive data transmitted from within the cave. There is a Wio Terminal equipped with Grove Wio E5 at the outpost to receive data from transmitters inside the cave. The Wio Terminal only needs a 5-volt power supply, suitable for places with limited power. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685700606090-e45c8310-c630-4b07-9062-1ddb27307e81.png#averageHue=%23c7deef&amp;clientId=u1e5171ef-e229-4&amp;from=ui&amp;id=u2176044e&amp;originHeight=2304&amp;originWidth=3072&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=7694156&amp;status=done&amp;style=none&amp;taskId=uc52b6708-2a1d-4618-9ea2-3b2da6bbde2&amp;title=" class="img-fluid" alt="L19-sajac_project_(4)_8eGmnMnOsB.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685935787454-86691c3d-5dd6-4d38-aca7-3686e5460148.png#averageHue=%2393844c&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u93e3908c&amp;originHeight=1926&amp;originWidth=1896&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5826817&amp;status=done&amp;style=none&amp;taskId=u93581b97-d8fe-4d09-a87c-3e8a030167b&amp;title=" class="img-fluid" alt="ImageToStl.com_l19-2-1-2.png"> ## 5.1.3 Bicycle Computer on Spresense <a href="https://www.hackster.io/jens6151/bicycle-computer-on-spresense-b0e332" class="uri">https://www.hackster.io/jens6151/bicycle-computer-on-spresense-b0e332</a> Author: <a href="https://www.hackster.io/jens6151">Jens</a> The goal of this project is to build a bike computer using the Sony Spresense main board, LTE expansion board, XIAO, and other peripherals. The main features include:</p>
+<ol type="1">
+<li>Capture a low-resolution video stream and display it on a monitor. Option to take high-resolution photos and store them on an SD card.</li>
+<li>Capture mono audio, using the OPUS codec and OGG container format for high compression, to be sent or recorded to SD card via an LTE-M connection.</li>
+<li>Track location via GNSS, combining the location with weather data and points of interest (POI) data received from cloud services via an LTE connection.</li>
+<li>Connect bike sensors (currently heart rate) via Bluetooth Low Energy, display data on the monitor, and record.</li>
+<li>Remote access to the camera, real-time audio stream, and various data (including location) via MQTT.</li>
+<li>Theft detection and notification via GNSS geofencing, accelerometer, and monitoring for nearby smartphones.</li>
+</ol>
+<p>This project by Jens demonstrates the astonishing complexity of a hardcore prototype project, as can be seen from the schematic on the right. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685935964492-bb5dccfc-3eb9-4dac-8eaf-b29737e6f29c.png#averageHue=%238ea369&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u67b02bb6&amp;originHeight=675&amp;originWidth=900&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=750891&amp;status=done&amp;style=none&amp;taskId=ue8ffdb5c-1cc2-471c-bfee-f93951b4beb&amp;title=" class="img-fluid" alt="ImageToStl.com_l19-6-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936001220-dec65084-69a7-4189-a176-04a05a4c4f66.png#averageHue=%23f4f0e9&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=udc80b8b1&amp;originHeight=3002&amp;originWidth=5476&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=8674878&amp;status=done&amp;style=none&amp;taskId=u5c1bdfd0-9577-486e-bb55-92c362efaee&amp;title=" class="img-fluid" alt="bike-cam-schematic-hardware.drawio.png"> ## 5.1.4 IoT AI-driven Yogurt Processing &amp; Texture Prediction W/ Blynk <a href="https://www.instructables.com/IoT-AI-driven-Yogurt-Processing-Texture-Prediction/" class="uri">https://www.instructables.com/IoT-AI-driven-Yogurt-Processing-Texture-Prediction/</a> Author: <a href="https://www.instructables.com/member/Kutluhan+Aktar/">Kutluhan Aktar</a> The aim of this project is to provide texture prediction for yogurt processing using IoT technology and AI. By using the XIAO ESP32C3 development board, along with a temperature and humidity sensor, integrated pressure sensor kit, I2C weight sensor kit, and DS18B20 waterproof temperature sensor, the project creator built an artificial neural network model and trained it with Edge Impulse to predict yogurt texture without the addition of chemical additives. Users can remotely view sensor readings and control devices through the Blynk app. Finally, the author designed a durable enclosure suitable for a dairy environment. This project has the potential to help dairy product manufacturers reduce costs and improve product quality. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685936058008-f1a2a4b6-c695-4755-82d1-555a3b6f4488.jpeg#averageHue=%2389877b&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u733db18b&amp;originHeight=4687&amp;originWidth=3000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1240165&amp;status=done&amp;style=none&amp;taskId=u5eb22d14-0fb6-4e9a-ad0f-54b0c6c3bcb&amp;title=" class="img-fluid" alt="L19-5-5-2.jpg"> ## 5.1.5 Web browser operated robot for gas leak detection <a href="https://www.hackster.io/ivan-arakistain/web-browser-operated-robot-for-gas-leak-detection-4cbe1b" class="uri">https://www.hackster.io/ivan-arakistain/web-browser-operated-robot-for-gas-leak-detection-4cbe1b</a> Author: <a href="https://www.hackster.io/ivan-arakistain">Ivan Arakistain</a> This project repurposes an old hoverboard into a remote-controlled robot equipped with a hydrogen sensor for early detection of hydrogen leaks. It uses Bluetooth to connect the Seedstudio Xiao Ble Sense, MQ-8 gas sensor, and other devices, and uses Edge Impulse Studio to train a machine learning model. The robot also uses the Blues Wireless Notecard NBGL cellular connection technology to upload data to the cloud. With Remo.TV, it can be remotely operated to drive the robot and view real-time camera feeds through a browser. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685936138783-cc8c5f3e-baa2-407e-921b-5e51507cab93.jpeg#averageHue=%23dcd5c1&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u3b9aad66&amp;originHeight=756&amp;originWidth=2496&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=458833&amp;status=done&amp;style=none&amp;taskId=u1db820c7-0a03-4514-ab99-5ca6d81f057&amp;title=" class="img-fluid" alt="schema_final_Z0K7X9BwAi.jpg"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936232155-a1f8a0b2-3110-4c82-bf12-1e363618116c.png#averageHue=%23b7b9a5&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uf87bd23f&amp;originHeight=1968&amp;originWidth=2172&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=3557089&amp;status=done&amp;style=none&amp;taskId=u8904fa76-8f4c-4514-bc1d-84c08ba87fb&amp;title=" class="img-fluid" alt="ImageToStl.com_l19-3-1-4-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936261371-a67158b5-a13e-460a-84f1-2c36eba167f1.png#averageHue=%2393ac94&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ua48267ab&amp;originHeight=1856&amp;originWidth=1949&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=4252730&amp;status=done&amp;style=none&amp;taskId=u017829c4-f684-4abe-afe4-51c21adb881&amp;title=" class="img-fluid" alt="ImageToStl.com_imagen6_ztxd8qsavn-2.png"></p>
+<section id="train-controller-with-seeed-studio-xiao-esp32c3" class="level2">
+<h2 class="anchored" data-anchor-id="train-controller-with-seeed-studio-xiao-esp32c3">5.1.6 Train Controller With Seeed Studio XIAO ESP32C3</h2>
+<p><a href="https://www.instructables.com/Train-Controller-With-Seeed-Studio-XIAO-ESP32C3/" class="uri">https://www.instructables.com/Train-Controller-With-Seeed-Studio-XIAO-ESP32C3/</a> Author: <a href="https://www.hackster.io/dark_storm">Tiago Santos</a> This project designs a train controller using the XIAO ESP32C3 module from Seeed Studio. The project is divided into a train part and a controller part. The train part uses the XIAO ESP32C3 module to connect to the train and controls the train motor through the L293D motor driver. The controller part uses the Wemos D1 Mini to receive speed and direction information and displays the actual speed on a 0.96-inch ssd1306 screen. The controller communicates with the train part through Wi-Fi and an MQTT server. The project simplifies the complexity of traditional Lego train remote control systems and improves control efficiency. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936319307-8ceefbf2-cfaa-4b5c-9b4c-488741dbfe47.png#averageHue=%23627863&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uab4d8307&amp;originHeight=2304&amp;originWidth=4096&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=20279688&amp;status=done&amp;style=none&amp;taskId=u068f0379-a191-4c89-80ff-b18e4af628d&amp;title=" class="img-fluid" alt="F2Y4DD4LC3DT0T6-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936343322-cc2d9921-7ccd-4232-a9f6-893b1d966c9c.png#averageHue=%23e7e0df&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u8ed895b6&amp;originHeight=1295&amp;originWidth=1941&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=247676&amp;status=done&amp;style=none&amp;taskId=u2a372df8-84df-4bcd-bd79-b1d1bef2ece&amp;title=" class="img-fluid" alt="F2NY3WELC3DT0TA.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936373287-b63715b5-49c9-46c6-bba7-ed991322f694.png#averageHue=%23dfdad8&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ue0f58040&amp;originHeight=1172&amp;originWidth=2000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=212620&amp;status=done&amp;style=none&amp;taskId=u80494f00-271b-4f17-9a08-54c68d8f73d&amp;title=" class="img-fluid" alt="FY056YSLC3DT0T9.png"> <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685936547898-3b73d5d5-e65c-439c-b1dd-ddf2aced00dc.jpeg#averageHue=%232f686a&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;height=4000&amp;id=dS2xF&amp;originHeight=4000&amp;originWidth=4000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1134768&amp;status=done&amp;style=none&amp;taskId=u5997b67a-5847-4609-8b53-9abaaa5d636&amp;title=&amp;width=4000" class="img-fluid" alt="FUI4QQULC4T87GV.jpg"> ## 5.1.7 RC Car (Arduino-Based 3D Resin Printed) RC_Car_RP <a href="https://www.hackster.io/devinnamaky/rc-car-arduino-based-3d-resin-printed-rc-car-rp-9b4dce" class="uri">https://www.hackster.io/devinnamaky/rc-car-arduino-based-3d-resin-printed-rc-car-rp-9b4dce</a> Author: Devin Namaky This project is a 3D printed remote-controlled car based on Arduino Nano and Seeeduino XIAO, named RC_Car_RP. The project uses two standard 130 type DC motors as drive and steering, and the steering system uses gear transmission. The Seeeduino XIAO module is used to control the motor driver TB6612FNG, realizing the control of the car speed and direction. Communication between the remote control and the car is achieved through the nRF24L01 wireless module. The project is small in size, simple in design, easy to build, and can meet the remote-controlled car needs in different scenarios. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936482708-ecbe67bc-2dc3-4997-bad1-23c11c7fc8e1.png#averageHue=%2392a882&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;height=463&amp;id=u61bb52bf&amp;originHeight=1568&amp;originWidth=1352&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1684010&amp;status=done&amp;style=none&amp;taskId=u46436c26-1ed7-40f4-9396-469401be7d0&amp;title=&amp;width=399.00848388671875" class="img-fluid" alt="ImageToStl.com_screen_shot_2020-11-26_at_4_21_05_am_rejveexzjm-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685936431746-87465c09-87fb-40b2-a0da-46ae908ff06b.png#averageHue=%236e6a61&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u65bf119f&amp;originHeight=804&amp;originWidth=1280&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=401470&amp;status=done&amp;style=none&amp;taskId=uc8c31f3d-c444-468a-a41b-2d64af0dce5&amp;title=" class="img-fluid" alt="ImageToStl.com_screen_shot_2020-11-26_at_4_21_05_am_rejveexzjm.png"></p>
+</section>
+<section id="pet-activity-tracker-using-xiao-ble-sense-edge-impulse" class="level2">
+<h2 class="anchored" data-anchor-id="pet-activity-tracker-using-xiao-ble-sense-edge-impulse">5.1.8 Pet Activity Tracker using XIAO BLE Sense &amp; Edge Impulse</h2>
+<p><a href="https://www.hackster.io/mithun-das/pet-activity-tracker-using-xiao-ble-sense-edge-impulse-858d73" class="uri">https://www.hackster.io/mithun-das/pet-activity-tracker-using-xiao-ble-sense-edge-impulse-858d73</a> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1668407254331-74141e29-8741-45ca-a06c-8c53a275b953.png#averageHue=%23818a5d&amp;clientId=u0e440d1d-d28c-4&amp;from=paste&amp;height=60&amp;id=udfda7cbe&amp;originHeight=120&amp;originWidth=120&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=32039&amp;status=done&amp;style=none&amp;taskId=u983fc694-ad4d-43c5-ab40-f511163a159&amp;title=&amp;width=60" class="img-fluid" alt="image.png">Author: <a href="https://www.hackster.io/mithun-das">Mithun Das</a> This project is a wearable device that tracks pet activities using XIAO BLE Sense and Edge Impulse, aimed at helping our pets stay active. The XIAO BLE Sense is a mini controller equipped with a powerful Nordic nRF52840 MCU, built-in Bluetooth 5.0 module, and designed around a 32-bit ARM® Cortex™-M4 CPU. It features a 6-axis IMU that can be used to predict activities such as rest, walking, and running. With the accompanying smartphone app, users can connect to the device via Bluetooth and obtain minute-by-minute prediction data. The data is stored in the smartphone’s local storage and presented graphically to provide meaningful insights. The project collects data via the EI Blue mobile app, creates machine learning models using Edge Impulse Studio, and builds an iOS app using Google Flutter. The whole system can monitor the pet’s activity status in real-time and view the data through the mobile app. <img src="https://cdn.nlark.com/yuque/0/2022/png/2586586/1668166987470-63de1c10-a3b3-4bea-b2b6-1fd203bfe3ba.png#averageHue=%239f7b51&amp;clientId=ucbeeb7e2-0039-4&amp;from=paste&amp;height=347&amp;id=uc144afc7&amp;originHeight=434&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=272817&amp;status=done&amp;style=none&amp;taskId=u0a39751a-24f4-4c1b-a22c-7088a1d3afc&amp;title=&amp;width=461.6" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674866870576-943291f4-7b03-45af-98d8-9b87431bbc1e.png#averageHue=%23484a46&amp;clientId=ud8af12b2-be52-4&amp;from=paste&amp;height=399&amp;id=uba661bfe&amp;originHeight=798&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1173125&amp;status=done&amp;style=none&amp;taskId=ubdf7b343-2e3b-41d4-a04c-df227d62e40&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674866858279-df152b81-868f-4184-88c2-8b993126fdef.png#averageHue=%23af9a7b&amp;clientId=ud8af12b2-be52-4&amp;from=paste&amp;height=480&amp;id=u2a0d6135&amp;originHeight=960&amp;originWidth=1160&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=982039&amp;status=done&amp;style=none&amp;taskId=u9cc50f67-e544-4c0c-8e83-631b05035bf&amp;title=&amp;width=580" class="img-fluid" alt="image.png"></p>
+</section>
+<section id="h.e.d.s.-on-your-wrist-new-seeeduino-xiao-board" class="level2">
+<h2 class="anchored" data-anchor-id="h.e.d.s.-on-your-wrist-new-seeeduino-xiao-board">5.1.9 H.E.D.S. On your wrist, New Seeeduino XIAO Board</h2>
+<p><a href="https://www.hackster.io/ihayri1/h-e-d-s-on-your-wrist-new-seeeduino-xiao-board-7d8f74" class="uri">https://www.hackster.io/ihayri1/h-e-d-s-on-your-wrist-new-seeeduino-xiao-board-7d8f74</a> <a href="https://youtu.be/ql2wnFtSQqQ" class="uri">https://youtu.be/ql2wnFtSQqQ</a> Author: <a href="https://www.thingiverse.com/Hayri">Hayri Uygur</a> Hayri has made a Maker-style multifunctional wristwatch, H.E.D.S., using XIAO. It provides a set of small, handy tools with many functions and variations, and is equipped with a beautiful, sharp 240x240 pixel IPS display. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944516046-13727dd9-1012-49c2-aed9-95d7ea6577f4.png#averageHue=%23828776&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u5ec83928&amp;originHeight=1954&amp;originWidth=3809&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=7063565&amp;status=done&amp;style=none&amp;taskId=ubcb5c566-faef-4b60-b2fb-3899d243ac0&amp;title=" class="img-fluid" alt="L19-4-2.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944515178-d9208cd4-043c-46a8-8909-34ad754e5956.png#averageHue=%23507955&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u24f0ec82&amp;originHeight=1978&amp;originWidth=3815&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5213861&amp;status=done&amp;style=none&amp;taskId=uc20fcabc-1a63-4a53-ba54-c415f9f63c3&amp;title=" class="img-fluid" alt="L19-4-3.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944515534-a7aaa548-ab7b-4587-a9ec-ce251d52a8dd.png#averageHue=%23808a78&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u8fbf1009&amp;originHeight=2254&amp;originWidth=4054&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=6544656&amp;status=done&amp;style=none&amp;taskId=u0d02993c-6621-4fb5-8ccc-ca7196e6f3e&amp;title=" class="img-fluid" alt="L19-4-4.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944515551-c72a8726-4a85-4428-a262-e92dee116fdd.png#averageHue=%236c7c65&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u9c74c088&amp;originHeight=2286&amp;originWidth=3848&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=6476556&amp;status=done&amp;style=none&amp;taskId=u2937cd74-b0db-4e4f-b632-f08b8aecd90&amp;title=" class="img-fluid" alt="L19-4-5.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944515384-d3d10823-3785-41f2-9c65-5cc621606a41.png#averageHue=%239fa199&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u98651544&amp;originHeight=2246&amp;originWidth=3932&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=6197539&amp;status=done&amp;style=none&amp;taskId=u7309b803-0b91-43d6-9836-6c1d5ca35fb&amp;title=" class="img-fluid" alt="L19-4-6.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944519529-0e8c3da8-1454-425a-a193-5d7ebc20c129.png#averageHue=%236d6149&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u82f3564c&amp;originHeight=1984&amp;originWidth=3819&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2880724&amp;status=done&amp;style=none&amp;taskId=u3b86d21a-773f-4abe-b780-a13427588fe&amp;title=" class="img-fluid" alt="L19-4-1.png"></p>
+</section>
+<section id="hearbeat-monitor-with-xiao-nrf52840" class="level2">
+<h2 class="anchored" data-anchor-id="hearbeat-monitor-with-xiao-nrf52840">5.1.10 Hearbeat Monitor With XIAO NRF52840</h2>
+<p><a href="https://www.instructables.com/Hearbeat-Monitor-With-XIAO-NRF52840/" class="uri">https://www.instructables.com/Hearbeat-Monitor-With-XIAO-NRF52840/</a> Author: <a href="https://www.instructables.com/member/TiagoSantos/">TiagoSantos</a> This project uses a XIAO NRF52840 microcontroller, based on the Nordic nRF52840 CPU, to make a heartbeat monitor. This microcontroller supports Bluetooth 5.0 and NFC and has a super small size, making it ideal for wearable devices and other projects with limited space. The project uses another biomedical microcontroller called Bitalino to monitor the heartbeat. The XIAO NRF52840 receives information from the ECG (Electrocardiogram) sensor and then transmits it to a set of LEDs. Through this project, we can view the heart rate in real-time and observe the data of heart activity.</p>
+<ol type="1">
+<li>Prepare the Bluetooth version of XIAO nRF52840. Its small size is very suitable for wearable devices. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944800515-02fda978-a263-499e-83e3-78cc1fcf9edd.png#averageHue=%232c636a&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=mAmLt&amp;originHeight=993&amp;originWidth=1581&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=3369603&amp;status=done&amp;style=none&amp;taskId=ucc963cfe-998b-4820-a233-f2c28b2415b&amp;title=" class="img-fluid" alt="FWWS2TAL92SE6B1.png"></li>
+<li>Bitalino is a biomedical kit similar to Arduino developed by Hugo Silva in Portugal. This project will use some modules from it. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944863741-5f80cf09-ac66-4bf0-80c3-ac6d99aeecbd.png#averageHue=%23295459&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=iox9K&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1138484&amp;status=done&amp;style=none&amp;taskId=ue3779dfc-fa5b-4063-8d54-0bd50753b47&amp;title=" class="img-fluid" alt="FK4ZQKDL92SE5S1.png"></li>
+<li>Circuit diagram: XIAO receives heart rate information from the ECG sensor, converts it, and sends it. The LED flashes with the heart rate, and the Arduino serial port plotter displays the graphical information of the heart rate. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944993094-999a21ad-28f6-45d5-9043-09eb67b5e38c.png#averageHue=%23ca7155&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=M1Gl0&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=343219&amp;status=done&amp;style=none&amp;taskId=u489a0b6c-3e9e-41a9-9e54-42778763a78&amp;title=" class="img-fluid" alt="FPH48PGL92SE6AN.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685944992920-be97a0c9-3ebd-47ac-8231-6d2504398dc0.png#averageHue=%23888888&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;height=576&amp;id=YVSe8&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=51276&amp;status=done&amp;style=none&amp;taskId=ubcacfdd5-e66c-4dff-9523-b35ea60feca&amp;title=&amp;width=1024" class="img-fluid" alt="FHW3ILOL92SE68P.png"></li>
+<li>Use a perforated board to place components and solder. First, place resistors and the female pins of XIAO, then solder the ECG sensor. Finally, cut the perforated board to the required size. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945063856-d06c4777-e358-49fd-8372-d2ebb68ec249.png#averageHue=%23dcd2b0&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=nP4Wn&amp;originHeight=831&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=491636&amp;status=done&amp;style=none&amp;taskId=uf08d18fd-c099-420e-966c-1e073cf72b7&amp;title=" class="img-fluid" alt="FNWKUEGL972O4PT.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945063986-6d22d9ec-f107-4730-b8a5-7ea35c6eff58.png#averageHue=%23386970&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=TIefE&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=735956&amp;status=done&amp;style=none&amp;taskId=ubcb28d39-436e-4166-814f-84c332d4628&amp;title=" class="img-fluid" alt="FXCVO4OL92SE5V9.png"></li>
+<li>Use Fusion 360 to design the LED shell, the main shell, and the structure of the chest part. Use Creality Slicer to transcode and send it to the 3D printer to get structural parts. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945111327-1b57754d-c945-424e-9bf2-4dac078975db.png#averageHue=%23e5e4e4&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=HlWlk&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=160142&amp;status=done&amp;style=none&amp;taskId=u247b64a9-d7bd-420d-ae1f-f0f93f56e5b&amp;title=" class="img-fluid" alt="FGTQ0YUL92SE5VC.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945111414-1d5ca78e-eaa8-4dcd-bf39-497397fa8171.png#averageHue=%237eb5c8&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=jLQqj&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=258636&amp;status=done&amp;style=none&amp;taskId=u433fa7c8-f058-4d93-aa92-1ac18945913&amp;title=" class="img-fluid" alt="FQQHJBPL92SE6AQ.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945111567-733ee1d7-e08c-4e2e-b490-a043d4434e73.png#averageHue=%233c4838&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=zkEkm&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=607041&amp;status=done&amp;style=none&amp;taskId=u8aa6cf3f-00c5-4c8f-b458-b5bb6117695&amp;title=" class="img-fluid" alt="FW8NY6PL92SE5OW.png"></li>
+<li>When connecting the LED, use a perforated board to connect all cathodes and place a ground connector. After all connections are completed, it is necessary to check whether VCC is isolated from the ground and perform a test. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945146224-7466535d-e553-418b-8be9-dab55f518794.png#averageHue=%232c4c4d&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=Pq4tU&amp;originHeight=1140&amp;originWidth=1938&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=4008646&amp;status=done&amp;style=none&amp;taskId=u75d58332-095d-45a1-a052-0ed0cbbcac6&amp;title=" class="img-fluid" alt="FYPL3LSL92SE6AU.png"></li>
+<li>Not everything can go as expected. During the connection check, the fixture exerted too much force, causing the perforated board to break. It had to be redone. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945358540-168f99aa-c46c-48ea-a69b-9e918a252417.png#averageHue=%232a575e&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=dj1zb&amp;originHeight=2049&amp;originWidth=3072&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=10174672&amp;status=done&amp;style=none&amp;taskId=u0fe6bf2c-235a-49b8-8c82-36d6ac72614&amp;title=" class="img-fluid" alt="FGLPH3IL92SE5S2.png"></li>
+<li>Finally, it’s time to connect the battery and isolate all circuits to avoid short circuits. Usually, heat-shrink tubing would be used here, but if there is no suitable size, hot glue can also work. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945220253-a5c41526-9bd3-4244-a49a-b8ac24d884c5.png#averageHue=%238b9189&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=BqxHu&amp;originHeight=1728&amp;originWidth=3072&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=8439873&amp;status=done&amp;style=none&amp;taskId=u3e402d86-bdff-4969-b659-8b80b736a77&amp;title=" class="img-fluid" alt="FBK4HVIL92SE5VK.png"></li>
+<li>Place all components on the 3D printed parts and perform a test, then use super glue to connect the parts. The part fixed on the chest was pasted with an elastic band. Finally, replace the LED and remove the resistor to get more noticeable light effects. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945232552-a1eed414-a07d-4f87-8cfb-7c7e74a00db7.png#averageHue=%236e887f&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=Ga417&amp;originHeight=576&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=940803&amp;status=done&amp;style=none&amp;taskId=u30e4038f-bb47-42cd-96e7-69413083c63&amp;title=" class="img-fluid" alt="FEP437UL92SE5SD.png"></li>
+<li>The final effect. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945378230-63e17052-3503-40e7-8619-edb5e8a6e7a8.png#averageHue=%23202e3a&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=qkUUe&amp;originHeight=1742&amp;originWidth=3922&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=6712161&amp;status=done&amp;style=none&amp;taskId=ubb3df27f-ba1a-48e7-b0f2-9503641e2ad&amp;title=" class="img-fluid" alt="FBK4HVIL92SE5VK-2.png"></li>
+</ol>
+</section>
+<section id="multi-midi-controller-filter-router-sound-generator" class="level2">
+<h2 class="anchored" data-anchor-id="multi-midi-controller-filter-router-sound-generator">5.1.11 Multi MIDI Controller, Filter, Router &amp; Sound Generator</h2>
+<p><a href="https://www.synthtopia.com/content/2022/03/29/multi-midi-controller-filter-router-sound-generator/" class="uri">https://www.synthtopia.com/content/2022/03/29/multi-midi-controller-filter-router-sound-generator/</a> <a href="https://github.com/pangrus/multi" class="uri">https://github.com/pangrus/multi</a> Author: Pangrus Multi is a multifunctional MIDI controller, primarily used for audio synthesis, with a very small size. Compared with the latest generation of commercial controllers, it has a USB port and two DIN interfaces. The Multi controller is fully programmable, allowing for some functionalities in a computer-free setup. In addition, it can also be used as a sound generator as it is equipped with a 10-bit DAC converter, making it ideal for exploring digital synthesis technology. The Multi controller is powered by the robust Seeeduino XIAO, featuring 6 knobs, 2 buttons, 2 Midi DIN interfaces, and a 1/8 inch audio interface. Its MIDI input has opto-isolation to avoid ground loops, complying with the official specification. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685945522155-6b84bc6e-9883-4f5b-b2b5-4ebd59e16a10.jpeg#averageHue=%23e2cf44&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ud07bbc1d&amp;originHeight=1168&amp;originWidth=1168&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=148346&amp;status=done&amp;style=none&amp;taskId=ufeb544a9-8727-4920-a5c3-f841f6b4c77&amp;title=" class="img-fluid" alt="2022-01-11T10_22_36.781Z-multi1.jpg"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945542246-c6ec01f7-9113-48e8-9ecc-31e397ce9b61.png#averageHue=%23bdaa54&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u92d1e2c7&amp;originHeight=922&amp;originWidth=1642&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2129989&amp;status=done&amp;style=none&amp;taskId=u7a50a7a8-ef95-4181-ba31-d76b2a97548&amp;title=" class="img-fluid" alt="1674869509543-2560e21b-2127-420f-a379-ed8fb1a8d203-2.png"> ## 5.1.12 DIY eurorack modular synth Raspberry Pi VCO with Seeed XIAO <a href="https://www.hackster.io/hagiwo/diy-eurorack-modular-synth-rasberry-pi-vco-with-seeed-xiao-133ac0" class="uri">https://www.hackster.io/hagiwo/diy-eurorack-modular-synth-rasberry-pi-vco-with-seeed-xiao-133ac0</a> Author: <a href="https://note.com/solder_state">HAGIWO/ハギヲ</a> A maker from Japan, <a href="https://note.com/solder_state">HAGIWO/ハギヲ</a>, used the Seeed XIAO RP2040 development board to create a Voltage-Controlled Oscillator (VCO) module for a Eurorack modular synthesizer. This board has a Raspberry Pi RP2040 microcontroller, 4 AD converters, and is easier to use than the Raspberry Pi Pico. The VCO module has three modes: Wavefold, FM, and AM, with eight built-in waveforms, costing only about 1100 yen. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685945762066-2200106e-98c6-4b60-9757-0418678e30b2.png#averageHue=%23515855&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ua17ad968&amp;originHeight=2560&amp;originWidth=2560&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=9034998&amp;status=done&amp;style=none&amp;taskId=ubb1a6a7a-d052-454a-9234-9abcdb52f8e&amp;title=" class="img-fluid" alt="1657041068139-pK9AV0g9Te.png"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685945756647-8245cbeb-4937-4292-ba69-f16b0dbdd1e0.jpeg#averageHue=%23878b83&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uf85d6177&amp;originHeight=909&amp;originWidth=1800&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=232974&amp;status=done&amp;style=none&amp;taskId=udf70e5b9-1e7e-49db-a7d0-2f61827ddb6&amp;title=" class="img-fluid" alt="1657041021618-2RJ6HwSl9H.jpg"> ## 5.1.13 Xiao CV Sequencer <a href="https://www.instructables.com/Xiao-CV-Sequencer/" class="uri">https://www.instructables.com/Xiao-CV-Sequencer/</a> Author: <a href="https://www.instructables.com/member/analogsketchbook/">analogsketchbook</a> Using the Seeduino Xiao microcontroller and a few parts, a decent CV synthesizer was created, mainly for modular synthesizer systems. Xiao’s role in this project is to output Control Voltage (CV) signals through its analog output pins for passing note information between modules. It also controls other features such as adjusting speed, mode switching, and sequence selection. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946381866-6de03a77-18e6-4c27-b1f7-b2443bc30ef1.png#averageHue=%23535857&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uc63b72fc&amp;originHeight=2880&amp;originWidth=2160&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=9366302&amp;status=done&amp;style=none&amp;taskId=u8deee4a8-77cf-48ac-9c74-9b0d05277fc&amp;title=" class="img-fluid" alt="1672215531581-4228a44b-ca4a-426e-8961-32b86c86fbb2-2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946139386-cc19321e-e376-4527-a0b6-f392d1c9f5e2.png#averageHue=%23726556&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uff3c00c6&amp;originHeight=270&amp;originWidth=360&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=201900&amp;status=done&amp;style=none&amp;taskId=u4dc913fb-4961-4b6b-be97-d610041e214&amp;title=" class="img-fluid" alt="1672215620929-bb82bfc6-be17-43c7-b9bb-7f09bfc5715c.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946137254-4c2de357-c14b-41f6-9f4a-ad1394e62326.png#averageHue=%2337362d&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u676c8ede&amp;originHeight=270&amp;originWidth=360&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=138937&amp;status=done&amp;style=none&amp;taskId=u73389d1c-5a16-4379-9e2f-2bd9502da8c&amp;title=" class="img-fluid" alt="1672215588808-1460f5fb-0e6b-439a-ab3e-9c5fa0d17831.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946146383-e0e209bf-924d-45e3-b756-35599979bbcf.png#averageHue=%23f1efed&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u5161ba65&amp;originHeight=1115&amp;originWidth=1920&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=541516&amp;status=done&amp;style=none&amp;taskId=u863aa2f3-7372-40b6-819c-0a5cdc24c40&amp;title=" class="img-fluid" alt="FNSHARLKNRGTAED.png"> <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946193866-c4d235ad-64cf-46f5-a775-442c9d69e0a5.jpeg#averageHue=%238a8d78&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u2c30bc33&amp;originHeight=540&amp;originWidth=720&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=52481&amp;status=done&amp;style=none&amp;taskId=ufd530a76-de85-4727-b11c-5a31d0170ba&amp;title=" class="img-fluid" alt="FFVOTJSKNQ1DE5S.jpg"> ## 5.1.14 ANAVI Macro Pad 10 &amp; Knobs <a href="https://www.crowdsupply.com/anavi-technology/anavi-macro-pad-10" class="uri">https://www.crowdsupply.com/anavi-technology/anavi-macro-pad-10</a> Author: Crowd Supply A company has designed and manufactured three small, programmable, open-source mechanical input devices through crowdfunding: ANAVI Macro Pad 10 keyboard, ANAVI Knob 3, and ANAVI Knob 1. All are driven by the powerful Raspberry Pi RP2040 microcontroller inside Seeed XIAO RP2040, support USB Type-C, and run the KMK firmware based on CircuitPython. These customizable devices are suitable for video or audio editing, entertainment broadcasting, gaming, programming, etc., providing precise control and practical lighting effects. They are simple to use, and their plans and schematics can be found on GitHub. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946655383-58e11621-605b-429a-86aa-469f8a536865.png#averageHue=%2350534f&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ucf2763fd&amp;originHeight=2694&amp;originWidth=4800&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=19805688&amp;status=done&amp;style=none&amp;taskId=u764743db-8ed3-4ff1-bf0b-067b942077b&amp;title=" class="img-fluid" alt="anavi-all-04-edit_jpg_md-xl.png"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946644289-37e4e9b7-8e79-4bb1-ac1a-15f0d8d95242.jpeg#averageHue=%23737671&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u88b960e9&amp;originHeight=899&amp;originWidth=1598&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=155228&amp;status=done&amp;style=none&amp;taskId=u211ffaf2-8db3-4b40-b9bd-83a45a5d80c&amp;title=" class="img-fluid" alt="anavi-knobs-3-03-edit_jpg_md-xl.jpg"></p>
+</section>
+<section id="death-stranding-desk-lamp" class="level2">
+<h2 class="anchored" data-anchor-id="death-stranding-desk-lamp">5.1.15 Death Stranding Desk Lamp</h2>
+<p><a href="https://www.hackster.io/wyx269263336/death-stranding-desk-lamp-ae5f71" class="uri">https://www.hackster.io/wyx269263336/death-stranding-desk-lamp-ae5f71</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1672276337924-8c6e26b7-a366-40a6-a59c-a27bd6bb2623.png#averageHue=%23fdfefe&amp;clientId=uc86364f8-203e-4&amp;from=paste&amp;height=200&amp;id=WRJLU&amp;originHeight=400&amp;originWidth=400&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=125245&amp;status=done&amp;style=none&amp;taskId=ua47a5eb8-0134-4cbf-ac89-7241574b3b8&amp;title=&amp;width=200" class="img-fluid" alt="image.png"> Author: <a href="https://www.hackster.io/wyx269263336">Pinkman</a> This smart lamp, based on the multifunctional scanning device Odradek in the game Death Stranding, is made up of five separate light blades, each with three degrees of freedom, so you can adjust the desired angle at any time. It integrates the XIAO nRF52840 Sense Bluetooth main control board and WS2812 magic color light strip, and you can control its color and brightness through a mobile app. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946563321-f5db4682-9e82-42b3-97d5-eec2d9ba4a11.jpeg?x-oss-process=image/auto-orient,1#averageHue=%23274d5b&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u782fc3ae&amp;originHeight=4000&amp;originWidth=3000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=3714969&amp;status=done&amp;style=none&amp;taskId=u47d894aa-e84e-46c0-8380-8ef9baec7e6&amp;title=" class="img-fluid" alt="20221127_224252.jpg"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946548749-cab4ce22-ea61-45ea-85f9-af28349494ea.jpeg?x-oss-process=image/auto-orient,1#averageHue=%238e9684&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u7bf8c37d&amp;originHeight=4000&amp;originWidth=3000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=3159996&amp;status=done&amp;style=none&amp;taskId=uaf744bbb-0e4a-405f-b176-7ed0b9a2c21&amp;title=" class="img-fluid" alt="20221203_232610.jpg"> <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946524510-88a78809-cc28-4f54-b88c-4639ec65a4fa.jpeg#averageHue=%237e0539&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u07213c1a&amp;originHeight=3000&amp;originWidth=4000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2231819&amp;status=done&amp;style=none&amp;taskId=uca2efc3f-8342-4c19-b0e8-dfb895fc080&amp;title=" class="img-fluid" alt="20221204_225944.jpg"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685946524134-2d489281-98fa-40d7-9007-8331a9098c0a.jpeg#averageHue=%23babcc0&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u29d2d0e0&amp;originHeight=3000&amp;originWidth=4000&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2270023&amp;status=done&amp;style=none&amp;taskId=u22d33c7c-1c08-4037-aee0-88a5ee4d46f&amp;title=" class="img-fluid" alt="20221203_233552.jpg"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946530100-596c9740-85fa-4aa3-bdda-251c8aa2f86d.png#averageHue=%23e7e6e3&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=uc734d604&amp;originHeight=820&amp;originWidth=1683&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=175434&amp;status=done&amp;style=none&amp;taskId=u19399aca-23a6-4975-9863-9803a6fd459&amp;title=" class="img-fluid" alt="1_QZR1fixy7v.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946759809-9b28232f-63c6-4d1c-96a3-a9f5c460283b.png#averageHue=%231c4da6&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u1bf4e530&amp;originHeight=1536&amp;originWidth=2648&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=2899063&amp;status=done&amp;style=none&amp;taskId=u77d2d81c-3695-47f8-beab-d72f0e33648&amp;title=" class="img-fluid" alt="chunchun-4.png"></p>
+</section>
+<section id="hackerbox-0077veritas" class="level2">
+<h2 class="anchored" data-anchor-id="hackerbox-0077veritas">5.1.16 HackerBox 0077：Veritas</h2>
+<p><a href="https://www.instructables.com/HackerBox-0077-Veritas/" class="uri">https://www.instructables.com/HackerBox-0077-Veritas/</a> Author: <a href="https://www.instructables.com/member/HackerBoxes/">HackerBoxes</a> This project teaches you how to make a simple lie detector. It involves configuring the Seeeduino XIAO microcontroller module, modifying the OLED module to achieve dual display operation with a single microcontroller, assembling a Galvanic Skin Response (GSR) sensor based on an operational amplifier, and integrating a heart rate sensor. XIAO acts as the core controller in the project, realizing data collection, processing, and display. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685946899343-0ba110b4-2ab8-4403-b41c-dcd6dcb6223f.png#averageHue=%238c8980&amp;clientId=u5d7f497f-7464-4&amp;from=paste&amp;height=389&amp;id=udf678d0d&amp;originHeight=855&amp;originWidth=1024&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=633192&amp;status=done&amp;style=none&amp;taskId=u4bcfbfa3-55c8-48e4-b98b-620ecf81471&amp;title=&amp;width=465.4545353660901" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947043879-224f61af-c8a6-4c0d-b60a-35f4cbd6f835.png#averageHue=%23cdcac0&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ua463f072&amp;originHeight=1502&amp;originWidth=1799&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1189054&amp;status=done&amp;style=none&amp;taskId=uc5916b84-7048-4204-8833-3cb5cc2496e&amp;title=" class="img-fluid" alt="L19-FC61578L1HV9IT5.png"></p>
+</section>
+<section id="discipline---a-workout-timer" class="level2">
+<h2 class="anchored" data-anchor-id="discipline---a-workout-timer">5.1.17 DISCIPLINE - A workout timer</h2>
+<p><a href="https://www.hackster.io/rw2493/discipline-a-workout-timer-6b5614" class="uri">https://www.hackster.io/rw2493/discipline-a-workout-timer-6b5614</a> Author: <a href="https://www.hackster.io/rw2493">Rui Wang</a> DISCIPLINE: This is a homemade timer that helps you strictly control rest intervals during muscle training. The project uses the Seeeduino XIAO microcontroller, along with two buttons, a display screen, a battery, and other components to achieve a simple user interface and a portable design. XIAO is responsible for the core control function of the timer in the project, providing accurate timing services to users. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1686301910513-fab9a7fd-3a26-4734-b4a3-3e820d6469f8.png#averageHue=%23b6b6c3&amp;clientId=u498e7e33-38a4-4&amp;from=ui&amp;id=uc4629532&amp;originHeight=1782&amp;originWidth=2372&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1741174&amp;status=done&amp;style=none&amp;taskId=u27c71bef-9bed-4a7b-9021-f4d982c54a3&amp;title=" class="img-fluid" alt="ImageToStl.com__4ll3lolfzf.png"> <strong>The design goals include:</strong></p>
+<ul>
+<li>Small, portable, and compact</li>
+<li>Complete timer functions</li>
+<li>Simple user interface design</li>
+<li>Clear interaction flow</li>
+<li>Cool appearance</li>
+</ul>
+<p>Interaction is designed to be as simple as possible to minimize operation steps. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947235875-5249e148-7d97-45a0-865c-acaa4275502b.png#averageHue=%23f4f4f4&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ue5c7a60f&amp;originHeight=1244&amp;originWidth=2208&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=374263&amp;status=done&amp;style=none&amp;taskId=uf792ee1b-20ed-4461-a306-004216c1c24&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-14.png"> <strong>Yellow and blue button light interaction description:</strong> After some playtests, I then use the yellow button to control the time setup, and I use the blue button to start the counting. To provide a good indication, I did several things for the LEDs. ( Y for Yellow, B for Blue) When powering it on: Y -&gt; Fade; B -&gt; ON, indicate to pick up a time period.</p>
+<ul>
+<li>When powering it on: Y -&gt; Fade; B -&gt; ON, indicate to pick up a time period.</li>
+</ul>
+<p>Press Y to switch timing options: 30s, 60s, 90s, 120s.</p>
+<ul>
+<li>Press Y to switch timing options: 30s, 60s, 90s, 120s.</li>
+</ul>
+<p>Press B to confirm your choice, the timer starts counting down. Y -&gt; OFF; B -&gt; OFF.</p>
+<ul>
+<li>Press B to confirm your choice, the timer starts counting down. Y -&gt; OFF; B -&gt; OFF.</li>
+</ul>
+<p>Timer ends counting, B -&gt; ON; Y -&gt; OFF forever.</p>
+<ul>
+<li>Timer ends counting, B -&gt; ON; Y -&gt; OFF forever.</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947279917-6b64726a-a96c-4adf-95bf-50809fed50c8.png#averageHue=%23f6f6f6&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u778e9af1&amp;originHeight=2216&amp;originWidth=2264&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=609917&amp;status=done&amp;style=none&amp;taskId=uc02319e3-c351-4396-a9b2-e66a7312cae&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-3.png"> <strong>Two finger operation:</strong> The final design choice was to allow users to hold it easily with one hand and operate it with two fingers. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947310311-e3d31eca-70da-4137-8914-92838c3a70a2.png#averageHue=%23f1f1f1&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u807aefca&amp;originHeight=978&amp;originWidth=3076&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=343899&amp;status=done&amp;style=none&amp;taskId=ufdc1127a-168e-4417-92fa-7bb1fb1ff5c&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-6.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947310392-a5d21550-019e-4b08-a0de-1e9fb39af697.png#averageHue=%23f5f5f4&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u78dbf247&amp;originHeight=1920&amp;originWidth=2894&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=490217&amp;status=done&amp;style=none&amp;taskId=uc09bcefb-bfea-4343-bcac-1abd26baec0&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-5.png"> <strong>Magnetic Attachment:</strong> After analyzing pain points, it was decided to use magnets to attach the product to places where interaction and operation are more easily realized. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947360263-9b5a4fcf-598a-459b-8fbe-6ad9d6e185f8.png#averageHue=%23f9f8f8&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=UicwS&amp;originHeight=1774&amp;originWidth=3558&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1107822&amp;status=done&amp;style=none&amp;taskId=u76bd5dec-f121-447c-8888-1c530c9e7bf&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-9.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947360021-96432c13-129b-4354-9243-ee6974e1e328.png#averageHue=%23f8f2ea&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ua003ca03&amp;originHeight=1824&amp;originWidth=3708&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=679966&amp;status=done&amp;style=none&amp;taskId=u671d7f88-acc0-4664-8236-5a053af5849&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-8.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947360563-f7bdf634-d186-4fc4-aa7b-c0411e397dd3.png#averageHue=%23f3f2f2&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u43578f64&amp;originHeight=2264&amp;originWidth=3298&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=1697320&amp;status=done&amp;style=none&amp;taskId=uf3c4ddf8-0eaf-42b4-9834-f21d5fe93be&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-12.png"><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947362421-b33f25ba-f14a-47f3-9e94-1cdb0ab50e19.png#averageHue=%23706d60&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u3031426b&amp;originHeight=1742&amp;originWidth=3352&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5005927&amp;status=done&amp;style=none&amp;taskId=u7570a68a-df6e-419f-8c08-93f9b2a19ff&amp;title=" class="img-fluid" alt="L19-DISCIPLINE-13.png"> ## 5.1.18 Seeed Fusion DIY XIAO Mecha <a href="https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html" class="uri">https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html</a> XIAO 的小巧尺寸与其强悍的性能，没想到在 DIY 键盘与控制器玩家中得到认可，为此 Seeed 在2022年7月至10月，组织了一次 <a href="https://www.seeedstudio.com/seeed-fusion-diy-xiao-mechanical-keyboard-contest.html">Fusion XIAO 机器键盘大赛</a>，下面我们展示了此次比赛的一些获奖项目，以帮助对 DIY 键盘有兴趣的读者。 ### 1st Prize: TOTEM | a tiny splitkeyboard with splay (2x)19 key ergo split: 3-key thumb cluster, pinky splay, low profile. Useful repo and classy, unique case. Nicely documented and open source. And it’s a usable keyboard, which could be used as a daily driver. Other than that, Marc took a great effort to present his design aesthetically <a href="https://www.hackster.io/geist/totem-a-tiny-splitkeyboard-with-splay-cb2e43" class="uri">https://www.hackster.io/geist/totem-a-tiny-splitkeyboard-with-splay-cb2e43</a> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671017087052-dabdd41b-16cc-4195-b287-2548434ada1c.png#averageHue=%238583d9&amp;clientId=u1de88263-9814-4&amp;from=paste&amp;height=200&amp;id=uc2cacff9&amp;originHeight=400&amp;originWidth=400&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=124604&amp;status=done&amp;style=none&amp;taskId=u153f3238-f93f-466e-9f57-f8c69c45bd7&amp;title=&amp;width=200" class="img-fluid" alt="image.png"> Author: Marc Rühl <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671016944069-267184c3-66bb-4acd-b12f-92dae3229127.png#averageHue=%23c2a232&amp;clientId=u1de88263-9814-4&amp;from=paste&amp;height=427&amp;id=u49807074&amp;originHeight=854&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1459133&amp;status=done&amp;style=none&amp;taskId=uf3606853-9032-44ab-9217-3ba8bbbf0db&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671018338158-8831efae-b82c-4862-abce-6d00c65a39ff.png#averageHue=%23252a2c&amp;clientId=u1de88263-9814-4&amp;from=paste&amp;height=427&amp;id=u9bfd8dbf&amp;originHeight=853&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1312810&amp;status=done&amp;style=none&amp;taskId=uf689cd67-4bc8-4763-80e2-1f59e6f8a3a&amp;title=&amp;width=640" class="img-fluid" alt="image.png"></p>
+<section id="nd-prize-beyblock20-a-magnetic-modular-macropad" class="level3">
+<h3 class="anchored" data-anchor-id="nd-prize-beyblock20-a-magnetic-modular-macropad">2nd Prize: Beyblock20 | a magnetic, modular MacroPad</h3>
+<p><a href="https://github.com/ChrisChrisLoLo/beyblock20" class="uri">https://github.com/ChrisChrisLoLo/beyblock20</a> Author: Christian Lo <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685947795549-eaac697e-f198-4679-8c67-f96dc7a9f1f3.jpeg#averageHue=%2353534b&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u189272c8&amp;originHeight=3072&amp;originWidth=4080&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=6385852&amp;status=done&amp;style=none&amp;taskId=u69ecbd31-1240-479d-b119-9fea940e9e8&amp;title=" class="img-fluid" alt="PXL_20220821_181421951.jpg"></p>
+</section>
+<section id="nd-prize-purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040" class="level3">
+<h3 class="anchored" data-anchor-id="nd-prize-purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040">2nd Prize: Purple Owl | a 60% keyboard powered by Seeed XIAO RP2040</h3>
+<p><a href="https://www.hackster.io/sonalpinto/purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040-f73604" class="uri">https://www.hackster.io/sonalpinto/purple-owl-a-60-keyboard-powered-by-seeed-xiao-rp2040-f73604</a> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671016598690-fbc32853-e904-453f-8d99-d0aa5f69b1fa.png#averageHue=%23067d2a&amp;clientId=u1de88263-9814-4&amp;from=paste&amp;height=40&amp;id=t86Iv&amp;originHeight=80&amp;originWidth=80&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3609&amp;status=done&amp;style=none&amp;taskId=ue8691a0b-dffb-4f9b-9658-3a584583f13&amp;title=&amp;width=40" class="img-fluid" alt="image.png"> Author: Sonal Pinto <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947752473-eabaf5df-8d7d-4fe8-b297-f152908b9978.png#averageHue=%2335423b&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=ud398c607&amp;originHeight=1968&amp;originWidth=2956&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5553820&amp;status=done&amp;style=none&amp;taskId=u17490f08-3ef9-42a2-a318-71330c53cf7&amp;title=" class="img-fluid" alt="企业微信20230411-211023@2x.png"></p>
+</section>
+<section id="rd-prize-klein-a-wireless-ergonomical-keyboard" class="level3">
+<h3 class="anchored" data-anchor-id="rd-prize-klein-a-wireless-ergonomical-keyboard">3rd Prize: KLEIN | a wireless ergonomical keyboard</h3>
+<p><a href="https://www.hackster.io/nosnk/klein-a-wireless-ergonomical-keyboard-b4cd9a" class="uri">https://www.hackster.io/nosnk/klein-a-wireless-ergonomical-keyboard-b4cd9a</a> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671083529104-7618e393-2c5c-4fde-97bc-d1b038f4c472.png#averageHue=%23542b8c&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=40&amp;id=u1963cbc1&amp;originHeight=80&amp;originWidth=80&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3606&amp;status=done&amp;style=none&amp;taskId=u51f63832-aa34-432a-9ea7-5281fa518d2&amp;title=&amp;width=40" class="img-fluid" alt="image.png"> Author: Shashank <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671083614180-8283ca90-bf9f-4752-8b3b-34e1a1eb688f.png#averageHue=%23646764&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=399&amp;id=u1151e7c7&amp;originHeight=655&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=636660&amp;status=done&amp;style=none&amp;taskId=u78ace1a0-b0c4-4618-b78a-837f946c807&amp;title=&amp;width=779" class="img-fluid" alt="image.png"></p>
+</section>
+<section id="rd-prize-grin-quern-an-ergonomic-keyboard-on-center-trackpad" class="level3">
+<h3 class="anchored" data-anchor-id="rd-prize-grin-quern-an-ergonomic-keyboard-on-center-trackpad">3rd Prize: GRIN Quern | an ergonomic keyboard on center trackpad</h3>
+<p><a href="https://www.hackster.io/policium/grin-quern-ergonomic-keyboard-on-center-trackpad-8b58c3" class="uri">https://www.hackster.io/policium/grin-quern-ergonomic-keyboard-on-center-trackpad-8b58c3</a> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671083919308-d07e6c3c-7b47-4298-b7d7-fca8b0ba229f.png#averageHue=%234b473a&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=60&amp;id=ud4587dc3&amp;originHeight=120&amp;originWidth=120&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=26647&amp;status=done&amp;style=none&amp;taskId=u6ab5816a-673d-41eb-8aba-12b6eebab6b&amp;title=&amp;width=60" class="img-fluid" alt="image.png"> Author: policium <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671084221090-e6c7e971-7fa7-4b8e-9728-4f59ca67b99f.png#averageHue=%23434a44&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=480&amp;id=u69088541&amp;originHeight=959&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=958232&amp;status=done&amp;style=none&amp;taskId=u48c813d6-8c3c-4bc2-bd40-ba19e6ef9e5&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671084235798-861d27b2-ff83-4a14-97a6-74c000bb7baa.png#averageHue=%2331312e&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=360&amp;id=ua2b15d20&amp;originHeight=720&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=610974&amp;status=done&amp;style=none&amp;taskId=u765a2b0e-6d32-4884-8469-b9e4e17c475&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671084248316-0cbab451-8f8f-4c83-bf3c-ef2b041cca69.png#averageHue=%23181b17&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=360&amp;id=u15c9e420&amp;originHeight=719&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=804881&amp;status=done&amp;style=none&amp;taskId=ud36f5d43-f1ce-49e3-af8c-e6bbc84827e&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> ### 3rd Prize: Kidoairaku Swallowtail | a cute butterfly-shaped keyboard <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671084719667-c5d7f528-f3a5-464f-bb53-747b9c89a809.png#averageHue=%23939382&amp;clientId=u4e4e5bd7-414b-4&amp;from=paste&amp;height=200&amp;id=u242c15b2&amp;originHeight=400&amp;originWidth=400&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=269821&amp;status=done&amp;style=none&amp;taskId=u7667ad4b-a499-49cb-9691-297e062c56f&amp;title=&amp;width=200" class="img-fluid" alt="image.png"> Author: yswallow <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685947978271-3a6bce64-8de9-4465-a140-aaef067a2c04.png#averageHue=%23492560&amp;clientId=u5d7f497f-7464-4&amp;from=ui&amp;id=u8f71e415&amp;originHeight=2026&amp;originWidth=2702&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=4611830&amp;status=done&amp;style=none&amp;taskId=ua52a3127-86a8-45f0-ad54-a5fe133bc1b&amp;title=" class="img-fluid" alt="企业微信20230411-212216@2x.png"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 5: Creative Experiments</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

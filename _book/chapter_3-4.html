@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_3-5.html" rel="next">
+<link href="./chapter_3-3.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_3.html">Chapter 3: Intermediate Project Practice—Complex Projects</a></li><li class="breadcrumb-item"><a href="./chapter_3-4.html">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-2-ping-a-specified-website" id="toc-task-2-ping-a-specified-website" class="nav-link active" data-scroll-target="#task-2-ping-a-specified-website">3.4.3 Task 2: Ping a Specified Website</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/edit/main/chapter_3-4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook/blob/main/chapter_3-4.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Rather than saying computers have changed the world, it would be more accurate to say that computer networks have. The emergence of networks has truly made computers different from previous tools. The sharing and exchange of information have made computers an epoch-making product. In this section, we will learn how to implement network requests using XIAO ESP32C3, which has Wi-Fi and Bluetooth (BLE) capabilities. This includes connecting XIAO to a Wi-Fi network, pinging specified websites, and issuing GET/POST requests using the HTTP protocol. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1668493151650-8c620601-2584-46d5-a4d9-c1683e4e24ee.png#averageHue=%2395948e&amp;clientId=u640cf75b-7515-4&amp;from=paste&amp;height=215&amp;id=nu8Ft&amp;originHeight=650&amp;originWidth=970&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=true&amp;size=563331&amp;status=done&amp;style=none&amp;taskId=uc70bf138-7cea-4a77-9c21-1d0b9e93d05&amp;title=Seeed%20Studio%20XIAO%20ESP32C3&amp;width=321" title="Seeed Studio XIAO ESP32C3" class="img-fluid" alt="Seeed Studio XIAO ESP32C3"> ## 3.4.1 Background Knowledge ### 3.4.1.1 OSI Reference Model (Network Seven-Layer Model) OSI (Open System Interconnect) is commonly known as the OSI reference model or network seven-layer structure, which is the network interconnect model researched by the ISO organization in 1985. This architectural standard defines the seven-layer framework (physical layer, data link layer, network layer, transport layer, session layer, presentation layer, and application layer) for network interconnection. For ease of understanding, the following diagram uses a logistics transportation process to correspond to each layer of the OSI model. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685343834538-7399e43c-c460-495a-ab1a-dedecfb1c5fb.jpeg" class="img-fluid"></p>
+<p>The following knowledge will use the concepts of these layers. ### 3.4.1.2 ICMP (Internet Control Message Protocol) and ping Command ICMP (Internet Control Message Protocol) is a sub-protocol of the TCP/IP protocol suite. It is used to transmit control messages between IP hosts and routers. Control messages refer to messages about the network itself, such as whether the network is available, whether the host is reachable, whether the route is available, etc. Although these control messages do not transmit user data, they play an important role in the transmission of user data. &gt; 🎓 Learn more: visit <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol">the Wikipedia entry on ICMP</a>.</p>
+<p>We often use the ICMP protocol in the network, such as the <code>Ping</code> command (available in both Linux and Windows) we often use to check whether the network is available. This <code>Ping</code> process is actually the working process of the ICMP protocol. <code>ping</code> can test the connection speed between two devices and accurately report the time it takes for a packet to reach its destination and return to the sender’s device. Although <code>ping</code> does not provide data about routing or hops, it is still a useful metric for measuring latency between two devices. Below we will learn how to implement <code>ping</code> requests on XIAO ESP32C3. Before starting this attempt, we need to learn how to connect XIAO ESP32C3 with your Wi-Fi. ## 3.4.2 Task 1: Using Wi-Fi Network on XIAO ESP32C3 XIAO ESP32C3 supports Wi-Fi connections with IEEE 802.11b/g/n.&nbsp;The following will introduce the basic knowledge of using Wi-Fi on this board.</p>
+<blockquote class="blockquote">
+<p>⚠️ Note: Be careful when attempting to use the XIAO ESP32C3 development board as a hotspot (access point). Overheating issues may occur and lead to burns.</p>
+</blockquote>
+<section id="hardware-setup-connect-an-antenna-to-the-xiao-esp32c3-and-connect-it-to-your-computer" class="level4">
+<h4 class="anchored" data-anchor-id="hardware-setup-connect-an-antenna-to-the-xiao-esp32c3-and-connect-it-to-your-computer">Hardware Setup: Connect an Antenna to the XIAO ESP32C3 and Connect it to Your Computer</h4>
+<p><strong>Step 1.</strong> Connect the provided Wi-Fi/Bluetooth antenna to the IPEX connector on the development board. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671593226962-acd28780-ba60-42a2-9e6c-f965cc516fa1.png#averageHue=%23908e8a&amp;clientId=u573b9584-9406-4&amp;from=paste&amp;height=1265&amp;id=d3k01&amp;originHeight=1920&amp;originWidth=589&amp;originalType=url&amp;ratio=1&amp;rotation=90&amp;showTitle=false&amp;size=103504&amp;status=done&amp;style=none&amp;taskId=u1581d1a6-ddda-4a25-9e0f-6690541b9cc&amp;title=&amp;width=388" class="img-fluid" alt="image.png"> <strong>Step 2.</strong> Connect the XIAO ESP32C3 to your computer via a USB Type-C data cable. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677379321876-f263e7bb-5c0f-4f9a-a7dd-70e4531fef9a.jpeg" class="img-fluid"> #### Software Setup: Add the ESP32 Board Package to the Arduino IDE <strong>Step 1.</strong> Open the Arduino IDE preferences to add the Board Manager URL.</p>
+<ul>
+<li>For Windows users, first open your Arduino IDE, click on “File→Preferences” in the top menu bar, and copy the following URL into “Additional Board Manager URLs”.</li>
+<li>For Mac users, first open your Arduino IDE, click on “Arduino IDE→Preferences” in the top menu bar, and copy the following URL into “Additional Board Manager URLs”.</li>
+</ul>
+<p>For Seeed Studio XIAO ESP32C3, copy the link below: <a href="https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json" class="uri">https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json</a> to the Board Manager URL bar and confirm, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346119044-f14e471a-f3bc-4cb9-82fe-fc368b77848c.png#averageHue=%23c5c8c8&amp;clientId=uea85d720-6c57-4&amp;from=ui&amp;id=ub7bd94b2&amp;originHeight=1270&amp;originWidth=1904&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=211373&amp;status=done&amp;style=none&amp;taskId=u7e245529-1a70-4c66-9885-5ad5515f5c8&amp;title=" class="img-fluid" alt="L14-企业微信20230529-154118@2x.png"> <strong>Step 2.</strong> In the Arduino IDE menu, click “Tools→Board→Board Manager”, type “esp32” into the search bar, find the latest version of ESP32 Arduino in the resulting entries, and click “Install”. When the installation starts, you will see an output pop-up. Once the installation is complete, the “Installed” option will appear. <strong>Step 3.</strong> Select the Board. Navigate to “Tools &gt; Board &gt; ESP32 Arduino” and select “XIAO_ESP32C3”. The list will be a bit long, and you will need to scroll down to find it, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346367578-6dc48db9-e0eb-4ce0-8df0-c47559039dde.png#averageHue=%23788485&amp;clientId=uea85d720-6c57-4&amp;from=ui&amp;id=uac42f724&amp;originHeight=2234&amp;originWidth=3456&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=1179463&amp;status=done&amp;style=none&amp;taskId=u48aa5df0-fb13-40d5-bb6f-7ce1dddc7c0&amp;title=" class="img-fluid" alt="L14-企业微信20230529-154414@2x.png"></p>
+<p><strong>Step 4.</strong> Add Port. Check if the port connection is correct in the Arudino IDE. If not, you need to manually select.</p>
+<ul>
+<li>For Windows systems, the serial port is displayed as “COM+number”, as shown in the figure below.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346759383-b6f85d0c-ff83-4167-a43a-26c280a28705.png#averageHue=%23d9cab9&amp;clientId=uea85d720-6c57-4&amp;from=ui&amp;height=340&amp;id=uc42ffce1&amp;originHeight=826&amp;originWidth=1264&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=166742&amp;status=done&amp;style=stroke&amp;taskId=u5ae1a3fa-119f-4c72-a06b-950e2fd0e85&amp;title=&amp;width=520" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">L14-企业微信20230529-155124@2x.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>On Mac or Linux systems, the port name is typically <code>/dev/tty.usbmodem+number</code> or <code>/dev/cu.usbmodem+number</code>, as shown in the figure below.</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346709683-7a736599-af0d-461f-b464-63196ba33671.png#averageHue=%23e7b64e&amp;clientId=uea85d720-6c57-4&amp;from=ui&amp;height=341&amp;id=uRGRf&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=321121&amp;status=done&amp;style=stroke&amp;taskId=u2a35149e-d2fd-46b9-bcfd-2a75371c154&amp;title=&amp;width=527" class="img-fluid" alt="L14-企业微信20230529-154825@2x.png"> #### Scanning Nearby Wi-Fi Networks (STA Mode) In this example, we will use the XIAO ESP32C3 to scan for available Wi-Fi networks in the area. The development board in this example will be configured in STA mode. <strong>Step 1.</strong> Copy and paste the code below into the Arduino IDE.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"WiFi.h"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Set WiFi to station mode and disconnect from an AP if it was previously connected</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    WiFi<span class="op">.</span>mode<span class="op">(</span>WIFI_STA<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    WiFi<span class="op">.</span><span class="fu">disconnect</span><span class="op">();</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Setup done"</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"scan start"</span><span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// WiFi.scanNetworks will return the number of networks found</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n <span class="op">=</span> WiFi<span class="op">.</span>scanNetworks<span class="op">();</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"scan done"</span><span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"no networks found"</span><span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>print<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" networks found"</span><span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Print SSID and RSSI for each network found</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span><span class="st">": "</span><span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span>WiFi<span class="op">.</span>SSID<span class="op">(</span>i<span class="op">));</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" ("</span><span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span>WiFi<span class="op">.</span>RSSI<span class="op">(</span>i<span class="op">));</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>print<span class="op">(</span><span class="st">")"</span><span class="op">);</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">((</span>WiFi<span class="op">.</span>encryptionType<span class="op">(</span>i<span class="op">)</span> <span class="op">==</span> WIFI_AUTH_OPEN<span class="op">)?</span><span class="st">" "</span><span class="op">:</span><span class="st">"*"</span><span class="op">);</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Wait a bit before scanning again</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">5000</span><span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Scanwifi_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Scanwifi_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 2.</strong> Upload the code and open the serial monitor to start scanning for Wi-Fi networks, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685348127115-f35f67f9-c230-4c2b-975a-aa7bd7496409.png#averageHue=%23d18a5f&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=u561bb89b&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=399256&amp;status=done&amp;style=stroke&amp;taskId=u97345602-2652-4f30-9ec1-3f1b7945ede&amp;title=" class="img-fluid" alt="L14-企业微信20230529-160725@2x.png"> #### Connecting to a Wi-Fi Network In this example, we will use the XIAO ESP32C3 to connect to your Wi-Fi network. <strong>Step 1.</strong> Copy and paste the code below into the Arduino IDE.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> ssid     <span class="op">=</span> <span class="st">"your-ssid"</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"your-password"</span><span class="op">;</span>   </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// We start by connecting to a WiFi network</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to "</span><span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"WiFi connected"</span><span class="op">);</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"IP address: "</span><span class="op">);</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>WiFi<span class="op">.</span>localIP<span class="op">());</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>  </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Connectwifi_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Connectwifi_XIAO_en</a></p>
+</blockquote>
+<p>Then, replace <code>your-ssid</code> in the code with the name of your Wi-Fi network, and replace <code>your-password</code> in the code with the password for your Wi-Fi network.</p>
+<p><strong>Step 2.</strong> Upload the code and open the serial monitor to check whether the development board is connected to the Wi-Fi network, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349471522-ee87524d-4200-41e8-a601-6f3b2a9a1bfc.png#averageHue=%23d28b60&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=u21a9b0d9&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=344018&amp;status=done&amp;style=stroke&amp;taskId=u05b61f81-ca78-4510-889b-6bc57dec395&amp;title=" class="img-fluid" alt="L14-企业微信20230529-163441@2x.png"> &gt; 🎓 Learn more: You can read the <a href="https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/">Wiki documentation</a> for more about using the XIAO ESP32C3.</p>
+</section>
+<section id="task-2-ping-a-specified-website" class="level2">
+<h2 class="anchored" data-anchor-id="task-2-ping-a-specified-website">3.4.3 Task 2: Ping a Specified Website</h2>
+<p>With the knowledge above, we can now learn how to use the XIAO ESP32C3 to ping a specified website. <strong>Step 1.</strong> Download and install the ESP32Ping library. Enter the URL 🔗 <a href="https://github.com/marian-craciunescu/ESP32Ping" class="uri">https://github.com/marian-craciunescu/ESP32Ping</a> to go to the GitHub page, click on Code→Download ZIP to download the resource pack to your local machine, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1671606106896-eb364ac9-6ce7-403e-8da7-c44f26b5546d.png#averageHue=%23c5e3c1&amp;clientId=u573b9584-9406-4&amp;from=paste&amp;height=397&amp;id=ogU0i&amp;originHeight=793&amp;originWidth=1133&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=185167&amp;status=done&amp;style=stroke&amp;taskId=u55d4265c-d44c-42a7-a849-f25c8e75938&amp;title=&amp;width=566.5" class="img-fluid" alt="image.png"> After downloading, open the Arduino IDE, click on Sketch→Include Library→Add .ZIP Library, and choose the ZIP file you just downloaded. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349822660-9447c8fa-efd8-4dcd-970b-59fc413d06ae.png#averageHue=%2373a15d&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=u818fcc4b&amp;originHeight=1098&amp;originWidth=1908&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=636794&amp;status=done&amp;style=stroke&amp;taskId=u5900e086-a5b3-434e-a466-ef757e4f73d&amp;title=" class="img-fluid" alt="L14-企业微信20230529-164251@2x.png"> <strong>Step 2.</strong> Copy and paste the code below into the Arduino IDE. This code sets the test website to <code>www.seeedstudio.com</code>. Remember to replace <code>your-ssid</code> in the code with your Wi-Fi network name and <code>your-password</code> in the code with your Wi-Fi password.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">////////////////////////////////////////////////////////////////////////////////</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// IDE:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">//   Arduino 2.0.3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Platform:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">//   esp32 2.0.4 - https://github.com/espressif/arduino-esp32</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Board:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">//   XIAO_ESP32C3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Libraries:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">//   ESP32Ping 1.6 - https://github.com/marian-craciunescu/ESP32Ping</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">////////////////////////////////////////////////////////////////////////////////</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Includes</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ESP32Ping.h&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">unsigned</span> <span class="dt">long</span> INTERVAL <span class="op">=</span> <span class="dv">3000</span><span class="op">;</span> <span class="co">// [msec.]</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="at">const</span> <span class="dt">char</span> WIFI_SSID<span class="op">[]</span> <span class="op">=</span> <span class="st">"your-ssid"</span><span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="at">const</span> <span class="dt">char</span> WIFI_PASSPHRASE<span class="op">[]</span> <span class="op">=</span> <span class="st">"your-password"</span><span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="at">const</span> <span class="dt">char</span> SERVER<span class="op">[]</span> <span class="op">=</span> <span class="st">"www.google.com"</span><span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"WIFI: Start."</span><span class="op">);</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    WiFi<span class="op">.</span>mode<span class="op">(</span>WIFI_STA<span class="op">);</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>WIFI_SSID<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">!=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">)</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        WiFi<span class="op">.</span>begin<span class="op">(</span>WIFI_SSID<span class="op">,</span> WIFI_PASSPHRASE<span class="op">);</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        WiFi<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">bool</span> wifiStatus <span class="op">=</span> WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">==</span> WL_CONNECTED<span class="op">;</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> wifiRssi <span class="op">=</span> WiFi<span class="op">.</span>RSSI<span class="op">();</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">bool</span> pingResult <span class="op">=</span> <span class="op">!</span>wifiStatus <span class="op">?</span> <span class="kw">false</span> <span class="op">:</span> Ping<span class="op">.</span>ping<span class="op">(</span>SERVER<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">float</span> pingTime <span class="op">=</span> <span class="op">!</span>pingResult <span class="op">?</span> <span class="fl">0.</span><span class="bu">f</span> <span class="op">:</span> Ping<span class="op">.</span>averageTime<span class="op">();</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>count<span class="op">);</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="ch">'</span><span class="sc">\t</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>wifiStatus <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="ch">'</span><span class="sc">\t</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>wifiRssi<span class="op">);</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="ch">'</span><span class="sc">\t</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>pingResult <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="ch">'</span><span class="sc">\t</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>pingTime<span class="op">);</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    count<span class="op">++;</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span>INTERVAL<span class="op">);</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Ping_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Ping_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 3.</strong> Upload the code and open the serial monitor to check the ping results, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685351005677-97bb715f-f048-4051-866c-4b9f71cfec95.png#averageHue=%23cf8e60&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=u9d9ebc5b&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=368346&amp;status=done&amp;style=stroke&amp;taskId=u7d524643-206b-4feb-b05f-a2c2a12c9a8&amp;title=" class="img-fluid" alt="L14-企业微信20230529-170259@2x.png"> ## 3.4.4 Project Creation: Using XIAO ESP32C3 to Make HTTP GET and HTTP POST Requests ### 3.4.4.1 Introduction to HTTP Protocol HTTP stands for HyperText Transfer Protocol. It’s an application-layer protocol for distributed, collaborative, and hypermedia information systems. HTTP is the most widely used network transmission protocol on the Internet, and all WWW files must comply with this standard. HTTP is designed for communication between Web browsers and Web servers, but it can also be used for other purposes. HTTP is a protocol that uses TCP/IP to transmit data (such as HTML files, image files, query results, etc.). Despite its wide use, HTTP has significant security flaws, mainly its plain text data transmission and lack of message integrity checks. These are exactly the two most critical security aspects in emerging applications like online payment, online trading, Internet of Things, etc. Browsers like Google Chrome, Internet Explorer, and Firefox issue warnings about insecure connections when visiting websites with mixed content composed of encrypted and unencrypted content using HTTP. ### 3.4.4.2 Introduction to HTTPS Protocol HTTPS stands for HyperText Transfer Protocol Secure. It’s a protocol for secure communication over a computer network. HTTPS communicates via HTTP but uses SSL/TLS to encrypt packets. The main purpose of HTTPS is to authenticate the website server’s identity and protect the privacy and integrity of the exchanged data.</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677388728990-795425f3-9ebb-4728-bd60-86c69387d67e.jpeg" class="img-fluid"> ### 3.4.4.3 HTTP Request Methods According to the HTTP standard, HTTP requests can use multiple request methods. HTTP1.0 defined three request methods: GET, POST, and HEAD. HTTP1.1 added six new request methods: OPTIONS, PUT, PATCH, DELETE, TRACE, and CONNECT.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>No.</strong></th>
+<th><strong>Method</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>GET</td>
+<td>Requests specified page information and returns the entity body.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>HEAD</td>
+<td>Similar to a GET request, but the response returned doesn’t contain specific content, used to obtain headers.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>POST</td>
+<td>Submits data for processing to a specified resource (e.g., submits a form or uploads a file). The data is included in the request body. POST requests may result in the creation of a new resource and/or the modification of an existing resource.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>PUT</td>
+<td>The data sent from the client to the server replaces the content of a specified document.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>DELETE</td>
+<td>Requests the server to delete a specified page.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>CONNECT</td>
+<td>Reserved in HTTP/1.1 for proxy servers that can switch the connection to a pipe mode.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>OPTIONS</td>
+<td>Allows the client to view the server’s capabilities.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>TRACE</td>
+<td>Echoes the request received by the server, mainly used for testing or diagnosis.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>PATCH</td>
+<td>It’s a supplement to the PUT method, used to partially update a known resource.</td>
+</tr>
+</tbody>
+</table>
+<p>We’ve already learned how to connect to a Wi-Fi network using XIAO ESP32C3. Now, let’s try some more complex operations based on the network. The following sections will introduce how to use XIAO ESP32C3 to send HTTP GET and HTTP POST requests. ### 3.4.4.4 Task 3: Using XIAO ESP32C3 to Send an HTTP GET Request To send an HTTP GET request, a corresponding backend server that supports the request is required. For convenient testing, we can set up a backend server on our own PC, allowing XIAO ESP32C3 to send an HTTP GET request to the PC through the local Wi-Fi connection. There are many ways to set up a backend service. In this case, we’ll use the popular Python web framework — FastAPI to set up the backend server. To learn more about this tool, visit its <a href="https://fastapi.tiangolo.com/zh/">official documentation</a>. #### Setting Up a Backend Server with FastAPI Here is the Python server code.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> {}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Sensor_Item(BaseModel):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    value: <span class="bu">float</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">@app.on_event</span>(<span class="st">"startup"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> startup_event():</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    items[<span class="st">"sensor"</span>] <span class="op">=</span> {<span class="st">"name"</span>: <span class="st">"Sensor"</span>,<span class="st">"Value"</span>:<span class="dv">0</span>}</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/items/</span><span class="sc">{item_id}</span><span class="st">"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> read_items(item_id: <span class="bu">str</span>):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> items[item_id],datetime.datetime.now()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/sensor/"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> update_sensor(si: Sensor_Item):</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    items[<span class="st">"sensor"</span>][<span class="st">"Value"</span>] <span class="op">=</span> si.value</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> si</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_root():</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"Hello"</span>: <span class="st">"World"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code snippet, implemented using the Python FastAPI framework, can return the latest information of the Sensor stored on the backend server when we use a <code>get</code> request on <code>http://domain/items/sensor</code>. When we use <code>post</code> to send data to <code>http://domain/sensor/</code>, it can modify and record the latest Sensor value. The operation steps are as follows: <strong>Step 1.</strong> Create a python file named <code>main.py</code> locally, copy and paste the code above into <code>main.py</code>. Then, on your PC, open the terminal and execute the following commands to install FastAPI.</p>
+<pre class="shell"><code>pip install fastapi
+pip install "uvicorn[standard]"</code></pre>
+<p><strong>Step 2.</strong> Execute the following command to start the backend service and local monitoring.</p>
+<pre class="shell"><code>uvicorn main:app --reload --host 0.0.0.0</code></pre>
+<blockquote class="blockquote">
+<p>⚠️ Note: When running the command above, make sure the terminal is currently in the directory where <code>main:app</code> resides. If there is a prompt during running:</p>
+</blockquote>
+<pre class="shell"><code>ERROR:    [Errno 48] Address already in use</code></pre>
+<blockquote class="blockquote">
+<p>This means the current address is already occupied and there is an address conflict. You can specify a specific port as shown in the command below.</p>
+</blockquote>
+<pre class="shell"><code>uvicorn main:app --reload --host 0.0.0.0 --port 1234</code></pre>
+<blockquote class="blockquote">
+<p>If the [Errno 48] error still appears, you can modify the port number after port.</p>
+</blockquote>
+<p>The prompt information after the command is successfully run is as follows</p>
+<pre class="shell"><code>INFO:     Will watch for changes in these directories: ['']
+INFO:     Uvicorn running on http://0.0.0.0:1234 (Press CTRL+C to quit)
+INFO:     Started reloader process [53850] using WatchFiles
+INFO:     Started server process [53852]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.</code></pre>
+<p>The backend server for testing is now running normally. #### Using XIAO ESP32C3 to Send an HTTP GET Request Next, we’ll perform a request test on XIAO ESP32C3. The GET method should only be used for reading data, and should not be used in operations that generate “side effects”. GET requests directly issued by browsers can only be triggered by a URL. If you want to carry some parameters outside of the URL in GET, you can only rely on the querystring (query string) attached to the URL.</p>
+<p><strong>Step 1:</strong> Copy and paste the following code into the Arduino IDE. This code sets the tested <code>serverName</code> to <code>http://192.168.1.2/items/sensor</code>. The <code>192.168.1.2</code> needs to be replaced with the IP address of your PC acting as the backend server. To get the IP address of your PC, Windows users can enter the <code>ipconfig</code> command in the command line window, and Mac users can enter the <code>ifconfig</code> command in the terminal window. Remember to change <code>your-ssid</code> in the code to your Wi-Fi network name and <code>your-password</code> to the corresponding Wi-Fi password.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"WiFi.h"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;HTTPClient.h&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"your-ssid"</span><span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"your-password"</span><span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>String serverName <span class="op">=</span> <span class="st">"http://192.168.1.2/items/sensor"</span><span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastTime <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> timerDelay <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting"</span><span class="op">);</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connected to WiFi network with IP Address: "</span><span class="op">);</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>WiFi<span class="op">.</span>localIP<span class="op">());</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Timer set to 5 seconds (timerDelay variable), it will take 5 seconds before publishing the first reading."</span><span class="op">);</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Setup done"</span><span class="op">);</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">((</span>millis<span class="op">()</span> <span class="op">-</span> lastTime<span class="op">)</span> <span class="op">&gt;</span> timerDelay<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">//Check WiFi connection status</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()==</span> WL_CONNECTED<span class="op">){</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>            HTTPClient http<span class="op">;</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>            String serverPath <span class="op">=</span> serverName <span class="op">;</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>            http<span class="op">.</span>begin<span class="op">(</span>serverPath<span class="op">.</span>c_str<span class="op">());</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> httpResponseCode <span class="op">=</span> http<span class="op">.</span>GET<span class="op">();</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>httpResponseCode<span class="op">&gt;</span><span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>                Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"HTTP Response code: "</span><span class="op">);</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>                Serial<span class="op">.</span>println<span class="op">(</span>httpResponseCode<span class="op">);</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>                String payload <span class="op">=</span> http<span class="op">.</span>getString<span class="op">();</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>                Serial<span class="op">.</span>println<span class="op">(</span>payload<span class="op">);</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>                Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Error code: "</span><span class="op">);</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>                Serial<span class="op">.</span>println<span class="op">(</span>httpResponseCode<span class="op">);</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>            http<span class="op">.</span>end<span class="op">();</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"WiFi Disconnected"</span><span class="op">);</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>        lastTime <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPget_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPget_XIAO_en</a></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>⚠️ Note: We need to change the <code>serverName</code> in the Arduino code to the IP address of the host running the backend service. The XIAO ESP32C3 needs to be on the same local area network as it. If the local area network IP of the backend server (in this example, your PC) is <code>192.168.1.2</code>, then the GET request interface is <code>http://192.168.1.2/items/sensor</code>, and other interfaces are similar. If you specified a port when running the backend service and local monitoring, the GET request interface would be <code>http://192.168.1.2:1234/items/sensor</code>.</p>
+</blockquote>
+<p><strong>Step 2:</strong> Upload the code to XIAO ESP32C3 in the Arduino IDE. After the upload is successful, open the serial monitor to check the result returned by our backend server after the GET is issued, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685355061575-0b66c69f-b816-4408-96fa-9a255422693e.png#averageHue=%23d18f61&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=ucc3a3a73&amp;originHeight=1490&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=445026&amp;status=done&amp;style=stroke&amp;taskId=u6aaa0659-ecb7-428f-a122-c5e2a269265&amp;title=" class="img-fluid" alt="L14-企业微信20230529-181015@2x.png"> The prompt <code>HTTP Response code: 200</code> means the request has been successful, and our XIAO ESP32C3 has successfully gotten data from the server. ### 3.4.4.5 Task 4: Using XIAO ESP32C3 to Send an HTTP POST Request Submit data to a specified resource and request the server to process it (for example, submit a form or upload a file). The data is included in the request body. This request may create new resources or modify existing resources, or both. Each time it is submitted, the form data is encoded into the body of the HTTP request by the browser. The body of a POST request issued by a browser mainly has two formats, one is <code>application/x-www-form-urlencoded</code> used to transmit simple data, roughly in the format of <code>key1=value1&amp;key2=value2</code>. The other is for transmitting files and will use the <code>multipart/form-data</code> format. The latter is adopted because the encoding method of <code>application/x-www-form-urlencoded</code> is very inefficient for binary data like files. Next, we will submit experimental data to the backend server built on our machine in a manner similar to submitting a form, and verify whether the backend server has received the data. <strong>Step 1:</strong> Before starting this example, make sure that the backend server built with FastAPI in the previous step is running normally. If not, please refer to the above instructions to start the server program. <strong>Step 2:</strong> Copy and paste the following code into the Arduino IDE. This code sets the tested <code>serverName</code> to <code>http://192.168.1.2/sensor/</code>. The <code>192.168.1.2</code> needs to be replaced with the IP address of your PC acting as the backend server. Remember to change <code>your-ssid</code> in the code to your Wi-Fi network name and <code>your-password</code> to the corresponding Wi-Fi password.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;HTTPClient.h&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"your-ssid"</span><span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"your-password"</span><span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> serverName <span class="op">=</span> <span class="st">"https://192.168.1.2/sensor/"</span><span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastTime <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> timerDelay <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting"</span><span class="op">);</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span><span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connected to WiFi network with IP Address: "</span><span class="op">);</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>WiFi<span class="op">.</span>localIP<span class="op">());</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Timer set to 5 seconds (timerDelay variable), it will take 5 seconds before publishing the first reading."</span><span class="op">);</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">//Send an HTTP POST request every 10 minutes</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">((</span>millis<span class="op">()</span> <span class="op">-</span> lastTime<span class="op">)</span> <span class="op">&gt;</span> timerDelay<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">//Check WiFi connection status</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()==</span> WL_CONNECTED<span class="op">){</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>      WiFiClient client<span class="op">;</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>      HTTPClient http<span class="op">;</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>      http<span class="op">.</span>begin<span class="op">(</span>client<span class="op">,</span> serverName<span class="op">);</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>      http<span class="op">.</span>addHeader<span class="op">(</span><span class="st">"Content-Type"</span><span class="op">,</span> <span class="st">"application/json"</span><span class="op">);</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> httpResponseCode <span class="op">=</span> http<span class="op">.</span>POST<span class="op">(</span><span class="st">"{</span><span class="sc">\"</span><span class="st">name</span><span class="sc">\"</span><span class="st">:</span><span class="sc">\"</span><span class="st">sensor</span><span class="sc">\"</span><span class="st">,</span><span class="sc">\"</span><span class="st">value</span><span class="sc">\"</span><span class="st">:</span><span class="sc">\"</span><span class="st">123</span><span class="sc">\"</span><span class="st">}"</span><span class="op">);</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"HTTP Response code: "</span><span class="op">);</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span>httpResponseCode<span class="op">);</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Free resources</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>      http<span class="op">.</span>end<span class="op">();</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"WiFi Disconnected"</span><span class="op">);</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    lastTime <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPpost_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPpost_XIAO_en</a></p>
+</blockquote>
+<p>Step 2: Upload the code to XIAO ESP32C3 using the Arduino IDE. After a successful upload, open the Serial Monitor to examine the result returned by our backend server in response to the GET request. The image below illustrates the process. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356197478-3f391ca1-a374-4d62-94c8-012290f93dfe.png#averageHue=%23c69360&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=uf3d3fe37&amp;originHeight=1606&amp;originWidth=2304&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=425006&amp;status=done&amp;style=stroke&amp;taskId=u45acb132-2b11-442e-bbb7-3ef5841eea4&amp;title=" class="img-fluid" alt="L14-企业微信20230529-182525@2x.png"> The message <code>**HTTP Response code: 200**</code> signifies a successful request. On your local PC, open a browser and navigate to <code>**http://192.168.1.2/items/sensor**</code> (please replace the IP address according to your actual PC’s IP address, and if a port has been set, append a colon followed by the designated port number after the IP address). You should now see the most recent data sent by the XIAO ESP32C3. Since XIAO sends data every 5 seconds, you can always view the most recent data received by the backend server by refreshing the current page (the timestamp of the data will change). <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356647204-53e829b3-83ac-499c-a8a2-65f9cf974e8c.png#averageHue=%23fcfcfc&amp;clientId=u562d138d-862f-4&amp;from=ui&amp;id=u1992e56b&amp;originHeight=512&amp;originWidth=1934&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=71628&amp;status=done&amp;style=stroke&amp;taskId=uef9ceadf-b39a-49c7-bb67-b55c74b78c3&amp;title=" class="img-fluid" alt="L14-企业微信20230529-183703@2x.png"> We have now successfully sent data from XIAO ESP32C3 to the local backend server.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_3-3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3.3 Air Piano</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_3-5.html" class="pagination-link">
+        <span class="nav-page-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

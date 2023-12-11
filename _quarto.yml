@@ -1,0 +1,111 @@
+project:
+  type: book
+  output-dir: _book
+  preview:
+    browser: true
+    navigate: true
+  render: 
+    - "*.qmd"
+
+book:
+  navbar:
+    search: true
+    pinned: true
+    collapse: true
+  sidebar:
+    search: true
+  page-navigation: true
+  
+  title: "XIAO: Big Power, Small Board" 
+  subtitle: "Mastering Arduino and TinyML"
+  author: "Lei Feng, Marcelo Rovai"
+  date: "12/08/2023"
+  search: true
+  repo-url: https://github.com/Mjrovai/TinyML_Made_Easy_NiclaV_eBook
+  repo-actions: [edit, issue, source]
+  downloads: [pdf, epub]
+  sharing: [twitter, linkedin, facebook]
+  reader-mode: true
+  cover-image: cover.jpg
+  favicon: cover.jpg
+  
+  page-footer:
+    left: |
+      XIAO: Big Power, Small Board
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+ 
+  chapters:
+    - index.qmd
+    - Acknowledgements.qmd
+    - intro.qmd
+    - about_book.qmd
+    - part: chapter_1.qmd
+      chapters:
+      - chapter_1-1.qmd
+      - chapter_1-2.qmd
+      - chapter_1-3.qmd
+      - chapter_1-4.qmd
+      - chapter_1-5.qmd
+      - chapter_1-6.qmd
+    - part: chapter_2.qmd
+      chapters:
+      - chapter_2-1.qmd
+      - chapter_2-2.qmd
+      - chapter_2-3.qmd
+      - chapter_2-4.qmd
+    - part: chapter_3.qmd
+      chapters:
+      - chapter_3-1.qmd
+      - chapter_3-2.qmd
+      - chapter_3-3.qmd
+      - chapter_3-4.qmd
+      - chapter_3-5.qmd
+    - part: chapter_4.qmd
+      chapters:
+      - chapter_4-1.qmd
+      - chapter_4-2.qmd
+      - chapter_4-3.qmd
+      - chapter_4-4.qmd
+      - chapter_4-5.qmd
+    - part: chapter_5.qmd
+      chapters:
+      - chapter_5-1.qmd
+    - references.qmd
+    - about_authors.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    before_body:
+    - resource: "https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      type: "css"
+    after_body:
+    - resource: "custom.css"
+      type: "css"
+    theme: cosmo
+    cover-image: cover.jpg
+    css: styles.css
+    toc: true
+    mainfont: Nunito
+    code-link: true
+    link-external-icon: true
+    link-external-newwindow: true
+    callout-appearance: simple
+    anchor-sections: true
+
+    
+  epub:
+    cover-image: cover.jpg
+    number_sections: true
+    #toc: true
+    css: epub-style.css
+    resource_files:
+    - fonts/*
+    
+
+editor: visual
+
+html:
+  mermaid: true

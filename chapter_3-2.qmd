@@ -1,0 +1,283 @@
+# 3.2 Smart Watch {.unnumbered}
+
+The watch is a common item in life. Even though various electronic devices now have timing functions, and mobile phones can replace watches as timing tools, watches are still a popular item. They are not only timing tools, but also have fashion matching functions. Although watches are delicate and small, they involve complex craftsmanship. Now with XIAO and its expansion board, we can easily make them. \## 3.2.1 Background Knowledge \### 3.2.1.1 RTC Clock RTC stands for Real_Time Clock, which is an integrated circuit used to display time, also called an RTC clock chip. RTCs are widely used, and we can find RTC in almost any electronic device. In the XIAO expansion board, there is an RTC clock chip, as shown in the following figure. We can display the date and time on the OLED display on the expansion board, and it can be powered by a button battery or lithium battery. Even if we disconnect, it can continue to track time. When we reconnect the power supply, we will find that the time is still moving. With the RTC clock, we can make timed reminder devices, such as timed watering, timed pet feeding, and so on. ![Position of the RTC clock chip on the XIAO expansion board](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616051420512-bbec8921-b77f-42dc-8306-cc37e48963f6.png#averageHue=%23585858&height=306&id=eLEx9&originHeight=1148&originWidth=1611&originalType=binary&ratio=1&rotation=0&showTitle=true&size=221653&status=done&style=none&title=Position%20of%20the%20RTC%20clock%20chip%20on%20the%20XIAO%20expansion%20board&width=429 "Position of the RTC clock chip on the XIAO expansion board") Grove also has an RTC module: [Grove - DS1307 RTC (Real Time Clock) for Arduino](https://www.seeedstudio.com/Grove-RTC-DS1307.html?queryID=73f4015b0d2879c1ce927a4167c7ac98&objectID=1814&indexName=bazaar_retailer_products), as shown in the figure below. ![Grove RTC Module](https://cdn.nlark.com/yuque/0/2021/png/2746511/1617093581035-fa4404a8-e769-4707-8a5e-205c1bdcb772.png#averageHue=%23bdafa2&height=345&id=x663L&originHeight=345&originWidth=370&originalType=binary&ratio=1&rotation=0&showTitle=true&size=160199&status=done&style=none&title=Grove%20RTC%20Module&width=370 "Grove RTC Module") \## 3.2.2 Task 1: Displaying RTC Clock in the Serial Monitor \#### Adding [PCF8563-Arduino-Library](https://github.com/Bill2462/PCF8563-Arduino-Library) Library Before starting to program the RTC on the XIAO expansion board with Arduino IDE, you need to add the necessary library files. Enter the library file address 🔗 <https://github.com/Bill2462/PCF8563-Arduino-Library> in the browser address bar, go to the GitHub page, click `Code→Download ZIP` to download the resource package `PCF8563-Arduino-Library-master.zip` to the local, as shown in the figure below. ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669622515752-b98f2f3c-edfb-4a44-a926-18f74d30a144.png#averageHue=%23c7d3a7&clientId=u5d906864-e067-4&from=paste&height=933&id=buFC3&originHeight=1866&originWidth=2596&originalType=binary&ratio=1&rotation=0&showTitle=false&size=486305&status=done&style=stroke&taskId=u28ec6525-73f7-4119-9cca-6e2a71218b1&title=&width=1298) Add the previously downloaded resource package `PCF8563-Arduino-Library-master.zip` in `Sketch→Include Library→Add .ZIP Library` in the menu bar until you see the library loading success prompt.
+
+#### Opening the Sample File
+
+Creating an RTC clock can't be without the powerful library file. Open the `simple` example through the following path: `File→Examples→PCF8563→simple`. This example program can display the RCT clock through the serial monitor. After opening the example program, we only need to modify the current date and start time:
+
+``` cpp
+#include <PCF8563.h> //Declare library file
+PCF8563 pcf;//Define variable pcf
+
+void setup() {
+    Serial.begin(9600);
+    pcf.init();//Initialize the clock
+    pcf.stopClock();//Stop the clock
+
+    //Set the current date and time. After setting, it will start timing from this moment
+
+    pcf.setYear(23);//Year
+    pcf.setMonth(05);//Month
+    pcf.setDay(29);//Day
+    pcf.setHour(16);//Hour
+    pcf.setMinut(10);//Minute
+    pcf.setSecond(0);//Second
+
+    pcf.startClock();//Clock starts timing
+}
+
+void loop() {
+    Time nowTime = pcf.getTime();//Get time
+
+    //Print the current date and time on the serial monitor
+    Serial.print(nowTime.day);
+    Serial.print("/");
+    Serial.print(nowTime.month);
+    Serial.print("/");
+    Serial.print("20"); // Manually input the set year
+    Serial.print(nowTime.year);
+    Serial.print("/");
+    Serial.print(nowTime.hour);
+    Serial.print(":");
+    Serial.print(nowTime.minute);
+    Serial.print(":");
+    Serial.println(nowTime.second);
+    delay(1000);
+}
+```
+
+> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L12_RTC_simple_XIAO_en>
+
+Without connecting other electronic modules, you can click the upload program button. After the code is uploaded, open the serial monitor, and you will be able to see the time. ![L12-企业微信20230529-110223.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685329396755-9e64e75c-8ddc-4be0-be18-36bd486e1e63.png#averageHue=%23f5f4f3&clientId=ue272b6ed-d0d5-4&from=ui&id=u5f85a709&originHeight=882&originWidth=1364&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=190455&status=done&style=none&taskId=u75997b0e-e3cb-4041-ba65-c2ea62a32d5&title=) \## 3.2.3 Project Making: Smart Watch \### Project Description In this section, we are going to make a smart watch that can display the date, time, temperature, and humidity in real time. To display the date and time, we just need XIAO and the expansion board. To display the temperature and humidity, we need to add a temperature and humidity sensor. \### Programming The program consists of the following steps:
+
+-   Declare the necessary libraries and define variables.
+-   Initialize the libraries, and set the current time.
+-   Read temperature and humidity variables, get the current time, and display the temperature, humidity, and date/time on the OLED screen.
+
+> ⚠️ Note
+>
+> -   Before starting to program for the OLED of the XIAO expansion board, make sure that the `U8g2_Arduino` library has been loaded into the Arduino IDE. The loading method can be referred to the instructions in the "How to Download and Install Arduino Libraries" section of Section 1.1.
+> -   Before starting to program for the Grove temperature and humidity sensor, make sure that the Arduino IDE has loaded the `Grove_Temperature_And_Humidity_Sensor` library. The loading method can be referred to the instructions in the "Adding the \[Grove_Temperature_And_Humidity_Sensor\] Library" section of Section 2.2.
+
+#### Task 2: Display the current time and temperature/humidity values on the OLED display of the XIAO expansion board (based on the DHT20 sensor)
+
+Step 1: Declare the necessary libraries and define variables.
+
+``` cpp
+#include <Arduino.h>
+#include <U8x8lib.h> //use u8x8 library
+#include <PCF8563.h> //RTC library
+PCF8563 pcf; //define variable pcf
+#include <Wire.h>
+#include "DHT.h" //DHT library
+#define DHTTYPE DHT20 //The type of the temperature and humidity sensor is DHT20
+DHT dht(DHTTYPE);
+U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE); //OLED's constructor, set data type, connect OLED display
+```
+
+Step 2: Initialize the libraries, and set the current time.
+
+``` cpp
+void setup() {
+    Serial.begin(9600);
+    u8x8.begin(); //u8x8 starts working
+    u8x8.setFlipMode(1);
+    Wire.begin();
+    pcf.init(); //Initialize the clock
+    pcf.stopClock(); //Stop the clock
+    //Set the current time and date:
+    pcf.setYear(23);
+    pcf.setMonth(05);
+    pcf.setDay(29);
+    pcf.setHour(18);
+    pcf.setMinut(53);
+    pcf.setSecond(0);
+    pcf.startClock(); //The clock starts timing
+}
+```
+
+Step 3: Read temperature and humidity variables, get the current time, and display the temperature, humidity, and date/time on the OLED screen.
+
+``` cpp
+void loop() {
+    float temp, humi; //Define temperature and humidity variables
+    temp = dht.readTemperature(); //Read the temperature value
+    humi = dht.readHumidity(); //Read the humidity value
+    Time nowTime = pcf.getTime(); //Get the time
+    u8x8.setFont(u8x8_font_chroma48medium8_r); //u8x8 font
+
+    //Display the current date, time, temperature, and humidity at different coordinates on the OLED screen.
+    u8x8.setCursor(0, 0);
+    u8x8.print(nowTime.day);
+    u8x8.print("/");
+    u8x8.print(nowTime.month);
+    u8x8.print("/");
+    u8x8.print("20");
+    u8x8.print(nowTime.year);
+    u8x8.setCursor(0, 1);
+    u8x8.print(nowTime.hour);
+    u8x8.print(":");
+    u8x8.print(nowTime.minute);
+    u8x8.print(":");
+    u8x8.println(nowTime.second);
+    delay(1000);
+    u8x8.setCursor(0, 2);
+    u8x8.print("Temp:");
+    u8x8.print(temp);
+    u8x8.print("C");
+    u8x8.setCursor(0,3);
+    u8x8.print("Humidity:");
+    u8x8.print(humi);
+    u8x8.print("%");
+    u8x8.refreshDisplay();
+    delay(200);
+}
+```
+
+For the complete program, please refer to:
+
+``` cpp
+#include <Arduino.h>
+#include <U8x8lib.h> //use u8x8 library
+#include <PCF8563.h> //RTC library
+PCF8563 pcf; //define variable pcf
+#include <Wire.h>
+#include "DHT.h" //DHT library
+#define DHTTYPE DHT20 //The type of the temperature and humidity sensor is DHT20
+DHT dht(DHTTYPE);
+U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE); //OLED's constructor, set data type, connect OLED display
+
+void setup() {
+    Serial.begin(9600);
+    u8x8.begin(); //u8x8 starts working
+    u8x8.setFlipMode(1);
+    Wire.begin();
+    pcf.init(); //Initialize the clock
+    pcf.stopClock(); //Stop the clock
+    //Set the current time and date:
+    pcf.setYear(23);
+    pcf.setMonth(05);
+    pcf.setDay(29);
+    pcf.setHour(18);
+    pcf.setMinut(53);
+    pcf.setSecond(0);
+    pcf.startClock(); //The clock starts timing
+}
+void loop() {
+    float temp, humi; //Define temperature and humidity variables
+    temp = dht.readTemperature(); //Read the temperature value
+    humi = dht.readHumidity(); //Read the humidity value
+    Time nowTime = pcf.getTime(); //Get the time
+    u8x8.setFont(u8x8_font_chroma48medium8_r); //u8x8 font
+
+    //Display the current date, time, temperature, and humidity at different coordinates on the OLED screen.
+    u8x8.setCursor(0, 0);
+    u8x8.print(nowTime.day);
+    u8x8.print("/");
+    u8x8.print(nowTime.month);
+    u8x8.print("/");
+    u8x8.print("20");
+    u8x8.print(nowTime.year);
+    u8x8.setCursor(0, 1);
+    u8x8.print(nowTime.hour);
+    u8x8.print(":");
+    u8x8.print(nowTime.minute);
+    u8x8.print(":");
+    u8x8.println(nowTime.second);
+    delay(1000);
+    u8x8.setCursor(0, 2);
+    u8x8.print("Temp:");
+    u8x8.print(temp);
+    u8x8.print("C");
+    u8x8.setCursor(0,3);
+    u8x8.print("Humidity:");
+    u8x8.print(humi);
+    u8x8.print("%");
+    u8x8.refreshDisplay();
+    delay(200);
+}
+```
+
+> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L12_SmartWatch_DHT20_XIAO_en>
+
+**Step 4:** Connect the hardware and upload the program. First, connect the DHT20 temperature and humidity sensor to the I2C interface of the XIAO expansion board, and connect the XIAO to the computer with a data cable, as shown in the picture: ![页面_16.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1622194320862-9b735534-46a3-4d47-b6f2-c2a10dfca350.png#averageHue=%23d2cfcc&clientId=uc227b708-b230-4&from=paste&height=434&id=kUfo0&originHeight=867&originWidth=1588&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63207&status=done&style=none&taskId=udc305db4-f257-4ebc-b16d-5776d1cdda3&title=&width=794)
+
+Click the "Upload" button in the Arduino IDE to upload the program to the hardware. When the debugging area shows "Upload successful", observe whether the OLED display correctly outputs the current time and starts timing, as well as the real-time temperature and humidity. ![L12-1669704683415-365e2a95-0f2a-48e0-b797-1ba6166ae9f7.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685328850661-b00aad74-9fc3-450a-b479-844893ffda44.png#averageHue=%2399926b&clientId=ue272b6ed-d0d5-4&from=ui&id=jC0uw&originHeight=1459&originWidth=1875&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=3106016&status=done&style=none&taskId=u03feb677-96dd-45e3-b985-295d156fb59&title=) \#### Task 3: Display the current time and temperature and humidity values on the OLED display of the XIAO expansion board (based on the DHT11 sensor)
+
+If you are using the Grove DHT11 temperature and humidity sensor with a blue casing, part of the program code needs to be modified as follows: `#define DHTPIN 0`, this needs to be modified according to the actual pin number to which the temperature and humidity sensor is connected. `#define DHTTYPE DHT11`, since there are different models of temperature and humidity sensors, you need to select the correct model --- DHT11. The modified example code is as follows:
+
+``` cpp
+#include <Arduino.h>
+#include <U8x8lib.h>
+#include <PCF8563.h>
+PCF8563 pcf;
+#include <Wire.h>
+#include "DHT.h" 
+#define DHTPIN 0  
+#define DHTTYPE DHT11 
+DHT dht(DHTPIN, DHTTYPE);
+U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE);
+//U8X8_SSD1306_128X64_NONAME_SW_I2C u8x8(/* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);   // OLEDs without Reset of the Display
+ 
+void setup() {
+  Serial.begin(115200);
+  u8x8.begin();
+  u8x8.setFlipMode(1);
+  Wire.begin();
+  pcf.init(); //initialize the clock
+  pcf.stopClock(); //stop the clock
+  pcf.setYear(23); //set year
+  pcf.setMonth(05); //set month
+  pcf.setDay(29); //set date
+  pcf.setHour(18); //set hour
+  pcf.setMinut(53); //set minute
+  pcf.setSecond(0); //set second
+  pcf.startClock(); //start the clock
+}
+ 
+void loop() {
+  float temp, humi;
+  temp = dht.readTemperature();
+  humi = dht.readHumidity();
+  Time nowTime = pcf.getTime(); //get current time
+  u8x8.setFont(u8x8_font_chroma48medium8_r);   // choose a suitable font
+ 
+  u8x8.setCursor(0, 0);
+  u8x8.print(nowTime.day);
+  u8x8.print("/");
+  u8x8.print(nowTime.month);
+  u8x8.print("/");
+  u8x8.print("20");
+  u8x8.print(nowTime.year);
+  u8x8.setCursor(0, 1);
+  u8x8.print(nowTime.hour);
+  u8x8.print(":");
+  u8x8.print(nowTime.minute);
+  u8x8.print(":");
+  u8x8.println(nowTime.second);
+  delay(1000);
+  u8x8.setCursor(0, 2);
+  u8x8.print("Temp:");
+  u8x8.print(temp);
+  u8x8.print("C");
+  u8x8.setCursor(0,3);
+  u8x8.print("Humidity:");
+  u8x8.print(humi);
+  u8x8.print("%");
+  u8x8.refreshDisplay();
+  delay(200);
+}
+```
+
+> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L12_SmartWatch_DHT11_XIAO_en>
+
+------------------------------------------------------------------------
+
+After modifying the code, first connect the DHT11 temperature and humidity sensor to the `A0` interface of the XIAO expansion board, as shown in the image below. ![](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615980137686-9e769644-c1d1-4a74-84d1-78b22b5ac287.png?x-oss-process=image%2Fresize%2Cw_518#averageHue=%23bebcb8&from=paste&height=195&id=p9yFT&originHeight=388&originWidth=518&originalType=url&ratio=1&rotation=90&showTitle=false&status=done&style=none&title=&width=260) Then connect the XIAO development board to your computer, upload the modified sample program to the XIAO via Arduino IDE, and you should be able to see the time, temperature, and humidity readings on the OLED of the XIAO expansion board. You can place the temperature and humidity sensor in different environments to observe changes in temperature and humidity readings. ![L12-1669704224558-c60ffc4b-243c-4a3c-9a49-391771a6a37f.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685330949558-bc038bbb-5a9a-438e-9c80-976d547bb788.png#averageHue=%23868659&clientId=ue272b6ed-d0d5-4&from=ui&id=ue7cd4320&originHeight=1403&originWidth=1875&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=3534592&status=done&style=none&taskId=u7d112834-045a-41a4-b21d-a30c072fc5f&title=)
+
+## 3.2.4 Exterior Design
+
+Given its compact size, XIAO is especially suitable for creating wearable devices. The expansion board incorporates an RTC chip, a buzzer, and an OLED display screen, which means you can create a variety of applications even without adding other modules. In this section, we have made a smart watch using the on-board OLED display, RTC chip, and an external temperature and humidity sensor. When creating the appearance, we only need to consider wearability, organization of modules and connecting wires, and the exposure of the OLED display screen. As shown below, we provide a wearable watch style and the laser cutting files for it. With just a simple installation, your wearable device is ready. ![](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618278902917-9231154e-01f0-4d17-a117-ab3c70b4feb0.jpeg#averageHue=%23fefdfd&from=drop&id=xQ6uJ&originHeight=802&originWidth=2482&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1148804&status=done&style=none&taskId=uacb51d8d-b802-4645-9a24-fd11b72acc9&title=) Download files for laser cutting machine 🔗 <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_X_watch.dxf>. ![1L12(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343501872-11087122-7a34-4c7f-969d-023f6654e0cf.jpeg#averageHue=%23e2ddd6&height=358&id=dbK0y&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2193253&status=done&style=none&title=&width=477)![1L12(1).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343636905-adec72be-b019-4105-b968-562c95990628.jpeg#averageHue=%23e1dbd0&height=362&id=Fzx1r&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=728941&status=done&style=none&title=&width=483) ![L12(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617091656160-aaf9b0d1-5d37-417b-8523-9859d02079cd.jpeg#averageHue=%23c4bbae&height=293&id=SVmXe&originHeight=2320&originWidth=3488&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2561188&status=done&style=none&title=&width=441)
+
+![1L12(3).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343538935-49e8a4ab-4298-4d6d-ba53-c0f58e3d011e.jpeg#averageHue=%23f6f4f1&height=365&id=dTnuE&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1602925&status=done&style=none&title=&width=486)
