@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 2.3 Surprise Gift Box Based on Light Sensor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_2-4.html" rel="next">
+<link href="./chapter_2-2.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_2.html">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</a></li><li class="breadcrumb-item"><a href="./chapter_2-3.html">2.3 Surprise Gift Box Based on Light Sensor</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#program-writing" id="toc-program-writing" class="nav-link active" data-scroll-target="#program-writing">Program Writing</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_2-3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_2-3.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">2.3 Surprise Gift Box Based on Light Sensor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Are you thinking about gifting a special birthday present to your friend? Instead of buying one, you can create it with the modules we have at hand. In this section, we are going to create a surprise gift box for a good friend. What kind of surprise will appear when the gift box is opened? What kind of modules do we need to complete such a surprise gift box? Start today’s class with these questions. ## 2.3.1 Background Knowledge ### <strong>2.3.1.1 Light Sensor</strong> Light sensors can detect the light intensity in the surrounding environment and convert the detected light energy into electrical energy. Light sensors are divided into types such as photoresistive, photodiode, and photoelectric transistor. Here, we will simply introduce two commonly used light sensors, photoresistive and photodiode. <strong>Photoresistive Type</strong> Firstly, the photoresistive type, its module will integrate a photoresistor, as shown below. The photoresistor is extremely sensitive to light, any light visible to our eyes can cause its reaction. High-intensity light will cause the resistance value to decrease, and low-intensity light will cause the resistance value to increase. By adjusting the resistance value in the circuit through the light intensity, it can control other devices, such as controlling the LED light on and off. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615987373790-af78ec56-4855-403f-b399-10087db334eb.png#averageHue=%23d3b79a&amp;height=1350&amp;id=AkVfZ&amp;originHeight=1350&amp;originWidth=2400&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=6352979&amp;status=done&amp;style=none&amp;title=&amp;width=2400" class="img-fluid" alt="image.png"> <strong>Photodiode Type</strong> Photodiodes, also known as photoelectric sensors or photodetectors, when a beam of light hits the diode, the electrons in the tube will quickly scatter to form electron holes, thereby causing current to flow. The stronger the light, the stronger the current. Since the current generated by the photodiode is proportional to the intensity of light, it is very beneficial for light detection that requires a rapid change in light response. The light sensor we are going to use in this lesson is of this type. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615989543919-24df23ba-c345-48bf-b8b0-0cd83e60036f.png#averageHue=%23cccec6&amp;height=395&amp;id=BMR6R&amp;originHeight=395&amp;originWidth=501&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=237311&amp;status=done&amp;style=none&amp;title=&amp;width=501" class="img-fluid" alt="image.png"> Talking about the uses of light sensors, we can build a light-controlled switch through a light sensor, such as controlling the light on and off through a light sensor, turning off the light during the day, and turning on the light at night. The main purpose of the light control device is to save energy, improve efficiency through intelligent automation, the most common in life is probably the light control light, light control desk lamp, light control street lamp, highway tunnel lighting, etc., bringing convenience to our life and also contributing to environmental protection and energy conservation. ### <strong>2.3.1.2</strong> RGB LED Strip <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1614872725775-96ba64e0-872b-498f-ac8b-06e487e15852.png#averageHue=%23ebe6d0&amp;height=293&amp;id=r7Rqb&amp;originHeight=525&amp;originWidth=700&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=239439&amp;status=done&amp;style=none&amp;title=&amp;width=390" class="img-fluid" alt="image.png"> The project in this class is paired with an RGB LED strip. The strip integrates multiple color-adjustable light beads. Compared with a single LED, it can achieve more lighting effects and cool visual impacts, making it ideal for creating surprises. RGB LED strips come in various styles and models. The one we are going to use is the [Grove - WS2813 RGB LED Strip], 30-bead model. We can control the RGB LED strip to achieve a rich lighting effect through programming, and build more interesting lighting projects. ## 2.3.2 Task 1: Light up RGB LED Strip To get started with RGB LED strips, start by installing and understanding its library. #### Add the <code>Adafruit_NeoPixel</code> Library Before starting to program the RGB LED strip with the Arduino IDE, you need to add the necessary library files. Enter the library file address 🔗 <a href="https://github.com/adafruit/Adafruit_NeoPixel" class="uri">https://github.com/adafruit/Adafruit_NeoPixel</a> in the browser address bar, enter the GitHub page, click <code>Code→Download ZIP</code> to download the resource package <code>Adafruit_NeoPixel-master.zip</code> to your local machine. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685085604000-2eff1c3b-2f67-49a2-980b-ba9faea9acb2.png#averageHue=%239c9783&amp;clientId=u40c6ad26-33e0-4&amp;from=ui&amp;id=uccad804d&amp;originHeight=1924&amp;originWidth=3292&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=724880&amp;status=done&amp;style=stroke&amp;taskId=uc9f4b2e1-ea9f-4c4c-b7e1-11eeedac271&amp;title=" class="img-fluid" alt="L9-企业微信20230526-151930@2x.png"> Next, add the resource package <code>Adafruit_NeoPixel-master.zip</code> downloaded in the previous step via the menu bar <code>Sketch→Include Library→Add .ZIP Library</code> until you see the library loaded successfully. #### Open the Simple Example You can open the simple example through the following path: File → Examples → Adafruit NeoPixel → simple. Once the example program is opened, we can see the following program:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// NeoPixel Ring simple sketch (c) 2013 Shae Erisson</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Released under the GPLv3 license to match the rest of the</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Adafruit NeoPixel library</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __AVR__</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/power.h&gt;</span><span class="pp"> </span><span class="co">// Required for 16 MHz Adafruit Trinket</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Which pin on the Arduino is connected to the NeoPixels?</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN        </span><span class="dv">6</span><span class="pp"> </span><span class="co">// On Trinket or Gemma, suggest changing this to 1</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// How many NeoPixels are attached to the Arduino?</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NUMPIXELS </span><span class="dv">16</span><span class="pp"> </span><span class="co">// Popular NeoPixel ring size</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">// When setting up the NeoPixel library, we tell it how many pixels,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">// and which pin to use to send signals. Note that for older NeoPixel</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">// strips you might need to change the third parameter -- see the</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">// strandtest example for more information on possible values.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Adafruit_NeoPixel pixels<span class="op">(</span>NUMPIXELS<span class="op">,</span> PIN<span class="op">,</span> NEO_GRB <span class="op">+</span> NEO_KHZ800<span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DELAYVAL </span><span class="dv">500</span><span class="pp"> </span><span class="co">// Time (in milliseconds) to pause between pixels</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">// These lines are specifically to support the Adafruit Trinket 5V 16 MHz.</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Any other board, you can remove this part (but no harm leaving it):</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="pp">#if defined(__AVR_ATtiny85__) &amp;&amp; (F_CPU == 16000000)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    clock_prescale_set<span class="op">(</span>clock_div_1<span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="pp">#endif</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="re">END</span><span class="co"> of Trinket-specific code.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    pixels<span class="op">.</span>begin<span class="op">();</span> <span class="co">// INITIALIZE NeoPixel strip object (REQUIRED)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    pixels<span class="op">.</span>clear<span class="op">();</span> <span class="co">// Set all pixel colors to 'off'</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The first NeoPixel in a strand is #0, second is 1, all the way up</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// to the count of pixels minus one.</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>NUMPIXELS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span> <span class="co">// For each pixel...</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">// pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Here we're using a moderately bright green color:</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        pixels<span class="op">.</span>setPixelColor<span class="op">(</span>i<span class="op">,</span> pixels<span class="op">.</span>Color<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">0</span><span class="op">));</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        pixels<span class="op">.</span>show<span class="op">();</span>   <span class="co">// Send the updated pixel colors to the hardware.</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span>DELAYVAL<span class="op">);</span> <span class="co">// Pause before next pass through loop</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This program allows the strip to light up 30 beads (green light) in sequence. This is a simple light strip example, and we need to modify some parameters: <code>#define PIN 0</code>, you need to modify the pin connected to the light strip according to the actual situation. It is connected to the <code>A0</code> interface of the XIAO expansion board, so it is <code>PIN 0</code>. <code>#define NUMPIXELS 30</code>, defines the number of LEDs in the light strip. Since the light strip has different models and the number of integrated beads is different, we use a light strip with 30 beads, so it is <code>NUMPIXELS 30</code>.</p>
+<p>After modifying the parameters, you can remove the English comments for a clearer view of the code. It occupies a large amount of space.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_NeoPixel.h&gt;</span><span class="pp"> </span><span class="co">// Header file, declaring the library</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __AVR__</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/power.h&gt;</span><span class="pp"> </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN </span><span class="dv">0</span><span class="pp"> </span><span class="co">// The light strip is connected to pin 0. If you are using XIAO RP2040, please change 0 to A0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NUMPIXELS </span><span class="dv">30</span><span class="pp"> </span><span class="co">// The number of LED lights on the light strip</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Adafruit_NeoPixel pixels<span class="op">(</span>NUMPIXELS<span class="op">,</span> PIN<span class="op">,</span> NEO_GRB <span class="op">+</span> NEO_KHZ800<span class="op">);</span> <span class="co">// Create a new light strip object, define data mode</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DELAYVAL </span><span class="dv">500</span><span class="pp"> </span><span class="co">// The interval time for each light to light up</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">#if defined(__AVR_ATtiny85__) &amp;&amp; (F_CPU == 16000000)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    clock_prescale_set<span class="op">(</span>clock_div_1<span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">#endif</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    pixels<span class="op">.</span>begin<span class="op">();</span> <span class="co">// The light strip is ready to output data</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    pixels<span class="op">.</span>clear<span class="op">();</span> <span class="co">// All beads on the light strip are turned off</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>NUMPIXELS<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span> </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        pixels<span class="op">.</span>setPixelColor<span class="op">(</span>i<span class="op">,</span> pixels<span class="op">.</span>Color<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">0</span><span class="op">));</span> <span class="co">// Light up the beads in sequence, the color is green</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        pixels<span class="op">.</span>show<span class="op">();</span> <span class="co">// Display the light strip</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span>DELAYVAL<span class="op">);</span> </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_NeoPixel30_simple_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_NeoPixel30_simple_XIAO_en</a></p>
+</blockquote>
+<p>In the code above, <code>pixels.Color(0,150,0)</code> is a function to set the color of the LED light strip. The numbers in the parentheses represent the three primary colors (red, green, blue) respectively. If it is <code>(0,150,0)</code>, it means that the brightness of red is <code>0</code>, the brightness of green is <code>150</code>, and the brightness of blue is <code>0</code>. The entire light strip will show a green effect. The larger the number, the brighter it will be, with a maximum of <code>255</code>. Next, connect the light strip to the <code>A0/D0</code> interface of the XIAO expansion board, as shown in the following figure: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616036910481-a33b34f2-64e3-429d-8f8a-d5dbdf82c971.png#averageHue=%23d7d5d2&amp;height=754&amp;id=cos80&amp;originHeight=754&amp;originWidth=2026&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=61756&amp;status=done&amp;style=none&amp;title=&amp;width=2026" class="img-fluid" alt="页面_6.png"> Connect the XIAO main board to the computer with a data cable, and upload the program to the main board. After the upload is successful, observe the effect of the light strip.</p>
+<p>The light strip can change color, flicker, and present various lighting effects such as breathing. We can refer to the sample program in the library: <strong>File → Example → Adafruit NeoPixel → buttoncycler</strong>. This sample program switches different lighting effects on the light strip through buttons. We can find the code for various lighting effects in it, such as flickering, rainbow lights, chasing, etc. ## 2.3.3 Project Making: Surprise Gift Box ### Project Description The program for the surprise gift box wants to realize: Use a light sensor to control the on and off of the RGB LED light strip, just like a light-controlled lamp, but the effect is opposite. When the value detected by the light sensor is less than a fixed value, that is, it is in a dim environment, the RGB LED light strip is off. When the value detected by the light sensor is greater than a fixed value, that is, in a bright environment, the RGB LED light strip lights up the rainbow light.</p>
+<section id="program-writing" class="level3">
+<h3 class="anchored" data-anchor-id="program-writing">Program Writing</h3>
+<p>The program writing idea is as follows:</p>
+<ul>
+<li>Declare the files to be called, create a new light strip object, define the sensor pin and the number of LEDs on the light strip.</li>
+<li>Initialize the light strip and set the light sensor pin mode.</li>
+<li>Read the light value. If the light value is greater than 100, the light strip will present a rainbow and breathing light effect. Otherwise, the light strip will turn off.</li>
+</ul>
+<p>The program is completed in two tasks:</p>
+<section id="task-1-make-the-light-strip-present-rainbow-and-breathing-light-effect" class="level4">
+<h4 class="anchored" data-anchor-id="task-1-make-the-light-strip-present-rainbow-and-breathing-light-effect">Task 1: Make the Light Strip Present Rainbow and Breathing Light Effect</h4>
+<p><strong>Step 1:</strong> Declare the files to be called, declare the light strip object, and define the pin and the number of LEDs on the light strip.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_NeoPixel.h&gt;</span><span class="pp"> </span><span class="co">// Header file, declaring the library</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __AVR__</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/power.h&gt;</span><span class="pp"> </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIXEL_PIN </span><span class="dv">0</span><span class="pp"> </span><span class="co">// The light strip is connected to pin A0. If you are using XIAO RP2040, please change 0 to A0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIXEL_COUNT </span><span class="dv">30</span><span class="pp"> </span><span class="co">// The number of LED lights on the light strip</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Adafruit_NeoPixel strip<span class="op">(</span>PIXEL_COUNT<span class="op">,</span> PIXEL_PIN<span class="op">,</span> NEO_GRB <span class="op">+</span> NEO_KHZ800<span class="op">);</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Declare a new light strip object and define the data mode</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 2:</strong> Initialize the light strip.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    strip<span class="op">.</span>begin<span class="op">();</span> <span class="co">// Initialize the light strip, the light strip is ready to output data</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 3:</strong> The light strip presents a rainbow and breathing light effect. This part uses the <code>for()</code> function to present the breathing effect. For example, <code>for( i = 0; i&lt;5; i ++ ){}</code> means that the initial value of <code>i</code> is <code>0</code>, when <code>i</code> is less than <code>5</code>, the statement in the loop body <code>{}</code> is run, each time the loop is run, <code>i</code> is incremented by <code>1</code>. This loop will run <code>5</code> times.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    strip<span class="op">.</span>clear<span class="op">();</span><span class="co">// Turn off all the lights on the light strip</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    rainbow<span class="op">(</span><span class="dv">10</span><span class="op">);</span><span class="co">// The light strip displays a rainbow light effect. The number in the parenthesis represents the speed of the rainbow light circulation. The smaller the number, the faster the circulation speed</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// The following is the code for the rainbow light effect, presenting the breathing light effect. This code can be found in the example program buttoncycler</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> rainbow<span class="op">(</span><span class="dt">int</span> wait<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">long</span> firstPixelHue <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> firstPixelHue <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span><span class="dv">65536</span><span class="op">;</span> firstPixelHue <span class="op">+=</span> <span class="dv">256</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>strip<span class="op">.</span>numPixels<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> pixelHue <span class="op">=</span> firstPixelHue <span class="op">+</span> <span class="op">(</span>i <span class="op">*</span> <span class="dv">65536</span><span class="bu">L</span> <span class="op">/</span> strip<span class="op">.</span>numPixels<span class="op">());</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            strip<span class="op">.</span>setPixelColor<span class="op">(</span>i<span class="op">,</span> strip<span class="op">.</span>gamma32<span class="op">(</span>strip<span class="op">.</span>ColorHSV<span class="op">(</span>pixelHue<span class="op">)));</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span>show<span class="op">();</span> <span class="co">// The light strip presents a light effect</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span>wait<span class="op">);</span>  <span class="co">// Delay</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_Rainbow_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_Rainbow_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 4:</strong> Connect the hardware and upload the program. First, connect the RGB LED light strip to the <code>A0/D0</code> interface of the XIAO expansion board, as shown in the figure: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616036920681-e21b8112-ffdc-45f4-ae51-11c0a15a3479.png#averageHue=%23d7d5d2&amp;height=754&amp;id=FBx5j&amp;originHeight=754&amp;originWidth=2026&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=61756&amp;status=done&amp;style=none&amp;title=&amp;width=2026" class="img-fluid" alt="页面_6.png"> Use a data cable to connect XIAO to the computer, click the “Upload” button, and upload the program to the hardware. When the debugging area shows “Upload successful”, you can observe the light effect of the light strip. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617008632744-66a95ead-31b4-40b6-a264-118dd9decadc.jpeg#averageHue=%23586e5f&amp;height=2320&amp;id=zLhae&amp;originHeight=2320&amp;originWidth=3099&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2396350&amp;status=done&amp;style=none&amp;title=&amp;width=3099" class="img-fluid" alt="L9.jpg"></p>
+</section>
+<section id="task-2-adding-light-control-switch-function" class="level4">
+<h4 class="anchored" data-anchor-id="task-2-adding-light-control-switch-function">Task 2: Adding Light Control Switch Function</h4>
+<p><strong>Step 1:</strong> Add code. The added function is mainly to read the light value detected by the light sensor, and use the <code>if…else…</code> statement to judge the light value. When it is greater than 100 (this value can be adjusted according to the actual environment), the RGB LED light strip will show a rainbow breathing light effect. Part of the program added:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is an added part of the program, it cannot run directly</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LIGHT_PIN </span><span class="dv">7</span><span class="co">// Define the light sensor connected to A7. If you are using XIAO RP2040, please change 7 to A3. If you are using XIAO BLE, please change 7 to 5</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIXEL_PIN </span><span class="dv">0</span><span class="co">// Define light strip. If you are using XIAO RP2040, please change 0 to A0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> readValue <span class="op">=</span> <span class="dv">0</span><span class="op">;</span><span class="co">// Define the variable readValue to store the light value</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>LIGHT_PIN <span class="op">,</span> INPUT<span class="op">);</span> <span class="co">// Set the pin of the light sensor as input status</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    readValue <span class="op">=</span> analogRead<span class="op">(</span>A7<span class="op">);</span><span class="co">// Read the analog value of the A7 pin light and store it in the readValue variable. If you are using XIAO RP2040, please change A7 to A3. If you are using XIAO BLE, please change A7 to A5</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>readValue <span class="op">&gt;</span> <span class="dv">500</span><span class="op">){</span> <span class="co">// Condition judgment, if the light value is greater than 500, then the light strip presents a rainbow light effect, otherwise, the light strip is turned off</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        rainbow<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span><span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span>clear<span class="op">();</span>  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span>show<span class="op">();</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We add the entered statement to the corresponding position of Task 1’s program. See the complete program:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_NeoPixel.h&gt;</span><span class="co">// Header file, declare library</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __AVR__</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/power.h&gt;</span><span class="pp"> </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LIGHT_PIN </span><span class="dv">7</span><span class="co">// Define the light sensor connected to A7. If you are using XIAO RP2040, please change 7 to A3. If you are using XIAO BLE, please change 7 to 5</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIXEL_PIN </span><span class="dv">0</span><span class="pp"> </span><span class="co">// The light strip is connected to the A0 pin. If you are using XIAO RP2040, please change 0 to A0</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIXEL_COUNT </span><span class="dv">30</span><span class="pp"> </span><span class="co">// The number of LEDs on the light strip</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> readValue <span class="op">=</span> <span class="dv">0</span><span class="op">;</span><span class="co">// Define variable readValue to store light values</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Adafruit_NeoPixel strip<span class="op">(</span>PIXEL_COUNT<span class="op">,</span> PIXEL_PIN<span class="op">,</span> NEO_GRB <span class="op">+</span> NEO_KHZ800<span class="op">);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Declare the light strip object and define the data mode</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  strip<span class="op">.</span>begin<span class="op">();</span> <span class="co">// Initialize the light strip and prepare the light strip to output data</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LIGHT_PIN <span class="op">,</span> INPUT<span class="op">);</span> <span class="co">// Set the pin of the light sensor to input state</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  strip<span class="op">.</span>clear<span class="op">();</span><span class="co">// Turn off all the beads on the light strip</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  rainbow<span class="op">(</span><span class="dv">10</span><span class="op">);</span><span class="co">// The light strip shows a rainbow light effect. The number in the parentheses represents the speed of the rainbow light rotation. The smaller the number, the faster the rotation speed</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  readValue <span class="op">=</span> analogRead<span class="op">(</span>A7<span class="op">);</span><span class="co">// Read the analog value of the light on the A7 pin and store it in the readValue variable. If you are using XIAO RP2040, please change A7 to A3. If you are using XIAO BLE, please change A7 to A5</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>readValue <span class="op">&gt;</span> <span class="dv">500</span><span class="op">){</span> <span class="co">// Conditional judgment, if the light value is greater than 500, then the light strip presents a rainbow light effect, otherwise, the light strip is turned off</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        rainbow<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span><span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span>clear<span class="op">();</span>  </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span>show<span class="op">();</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">// The following is the code for the rainbow light effect, presenting the breathing light effect, this code can be found in the sample program buttoncycler</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> rainbow<span class="op">(</span><span class="dt">int</span> wait<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">long</span> firstPixelHue <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> firstPixelHue <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span><span class="dv">65536</span><span class="op">;</span> firstPixelHue <span class="op">+=</span> <span class="dv">256</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>strip<span class="op">.</span>numPixels<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span> </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> pixelHue <span class="op">=</span> firstPixelHue <span class="op">+</span> <span class="op">(</span>i <span class="op">*</span> <span class="dv">65536</span><span class="bu">L</span> <span class="op">/</span> strip<span class="op">.</span>numPixels<span class="op">());</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      strip<span class="op">.</span>setPixelColor<span class="op">(</span>i<span class="op">,</span> strip<span class="op">.</span>gamma32<span class="op">(</span>strip<span class="op">.</span>ColorHSV<span class="op">(</span>pixelHue<span class="op">)));</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    strip<span class="op">.</span>show<span class="op">();</span> <span class="co">// The light strip presents a light effect</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span>wait<span class="op">);</span>  <span class="co">// Delay</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_StripLight_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L9_StripLight_XIAO_en</a></p>
+</blockquote>
+<p><strong>Step 2:</strong> Connect the hardware and upload the program. First, connect the RGB LED light strip to the <code>A0</code> interface of the XIAO expansion board, and connect the light sensor to the <code>A7</code> interface, as shown in the figure below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616391526326-95ce8bbb-0737-44a0-b93d-3117b2ce3cd4.png#averageHue=%23d9d6d1&amp;height=445&amp;id=NMRzf&amp;originHeight=1056&amp;originWidth=1489&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=78069&amp;status=done&amp;style=none&amp;title=&amp;width=627" class="img-fluid" alt="页面_20.png"></p>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Note</strong> If you are using XIAO BLE, please connect the light sensor to the I2C interface of the XIAO expansion board. If you are using XIAO RP2040, due to the limited number of pins exposed, you need to connect the SIG pin of the light sensor and the <code>A3</code> pin of XIAO RP2040 with Dupont wires on your own.</p>
+</blockquote>
+<p>Next, connect XIAO to your computer with a data cable, click the “Upload” button in the Arduino IDE to upload the program to the hardware. When the debugging area shows “Upload successful”, you can cover the light sensor with your hand, then release the light sensor, and observe the changes in the light strip. Note that because it takes a certain amount of time for the light strip to display light effects, the light strip will not turn off immediately when you cover the light sensor. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617010053289-761d4404-ce8c-4872-a385-3c1f1f9b9249.jpeg#averageHue=%234e8375&amp;height=2320&amp;id=E9UUL&amp;originHeight=2320&amp;originWidth=3099&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2075974&amp;status=done&amp;style=none&amp;title=&amp;width=3099" class="img-fluid" alt="L9(2).jpg"> ## 2.3.4 Exterior Design Combining the program design of the surprise gift box, when the light sensor is in a dim environment, the RGB LED light strip is off, and when the light sensor is in a bright environment, the RGB LED light strip lights up with rainbow lights. We can imagine that the electronic part is placed in a closed box, which can match the function implemented by the program and can also meet the positioning of the gift. Of course, you can also have other designs.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Product Name</th>
+<th>Surprise Gift Box</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Product Features</td>
+<td>Cool light effects, photocontrol, surprise, birthday</td>
+</tr>
+<tr class="even">
+<td>Product Functions</td>
+<td>Control the lighting of the RGB LED light strip with a light sensor</td>
+</tr>
+<tr class="odd">
+<td>Product Appearance</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="case-reference" class="level4">
+<h4 class="anchored" data-anchor-id="case-reference">Case reference</h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618369083578-5095b85d-c0ee-4652-a189-808d1df863dd.jpeg#averageHue=%234f775a&amp;from=drop&amp;id=alZZN&amp;originHeight=3024&amp;originWidth=4032&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2993320&amp;status=done&amp;style=none&amp;taskId=ua752649c-0eb9-4445-b908-fb81b5cd88b&amp;title=" class="img-fluid"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_2-2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2.2 Smart Hygrometer and Thermometer</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_2-4.html" class="pagination-link">
+        <span class="nav-page-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

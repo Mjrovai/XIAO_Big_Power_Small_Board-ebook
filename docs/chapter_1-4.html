@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>XIAO: Big Power, Small Board - 1.4 Monitor Knob Value Changes with Serial Monitor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter_1-5.html" rel="next">
+<link href="./chapter_1-3.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">XIAO: Big Power, Small Board</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="./XIAO--Big-Power,-Small-Board.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter_1.html">Chapter 1: Introduction to Hardware and Programming</a></li><li class="breadcrumb-item"><a href="./chapter_1-4.html">1.4 Monitor Knob Value Changes with Serial Monitor</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About this Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1: Introduction to Hardware and Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 First Arduino program with Seeed Studio XIAO: Blink</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Using the Button Switch on the XIAO Expansion Board to Control an LED Light</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1.4 Monitor Knob Value Changes with Serial Monitor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Controlling LED and Servo with a Knob</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_1-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.6 Displaying “Hello World” on OLED</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Project Practice for Beginners - Introduction to Prototype Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Introduction to Product Prototype Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 Smart Hygrometer and Thermometer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 Surprise Gift Box Based on Light Sensor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_2-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Rhythmic Dance with a Triaxial Accelerometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Intermediate Project Practice---Complex Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Smart Remote Control Door</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Smart Watch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 Air Piano</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_3-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Telemetry and Commands using the MQTT protocol with XIAO ESP32C3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Project Practice Advanced - TinyML Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Understanding TinyML and Edge Impulse Studio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 TinyML Made Easy: Anomaly Detection &amp; Motion Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 TinyML Made Easy: Sound Classification (KWS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 TinyML Made Easy: Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_4-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 TinyML Made Easy: Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./chapter_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Creative Experiments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter_5-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Creative and useful XIAO projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about_authors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the authors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#serial-communication" id="toc-serial-communication" class="nav-link active" data-scroll-target="#serial-communication">1.4.1.3 Serial Communication</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_1-4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_1-4.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1.4 Monitor Knob Value Changes with Serial Monitor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>When we write a few lines of code to control the board to light up the LED, or to use a button switch to control the buzzer, we can intuitively see the working state of these external hardware. If it achieves our expected results, it is very fortunate. What if it doesn’t? The program compiles without error, where is the mistake? It would be nice if they could speak up. In this section, we will learn how to communicate with the computer through the serial monitor and check the running status and information of the program and hardware. ## 1.4.1 Background Knowledge ### 1.4.1.1 Rotary Potentiometer The rotary potentiometer, although it doesn’t seem common, has a very wide range of uses in household appliances and industrial equipment. For example, the volume knob on the sound system. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615884101164-d2520bfe-4c22-427c-8d36-debf45973631.png#averageHue=%23e3e2e0&amp;height=293&amp;id=UzSSZ&amp;originHeight=293&amp;originWidth=622&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=89079&amp;status=done&amp;style=none&amp;title=&amp;width=622" class="img-fluid" alt="image.png"> The rotary potentiometer can produce an analog output value between 0 and VCC (the voltage of the connected circuit) on its connected pins. By rotating the knob, you can change the output voltage value. The range of the knob’s angle is 300°, and the output value is 0-1023. We can use the rotary potentiometer to control the LED light to show brightness changes, or control the servo to rotate at different angles, etc. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1613485032481-2488751d-9e4b-4c8c-acff-47cb9bfb5b72.png#averageHue=%23a99681&amp;height=168&amp;id=syUsX&amp;originHeight=525&amp;originWidth=700&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=361140&amp;status=done&amp;style=none&amp;title=&amp;width=224" class="img-fluid" alt="image.png"> ### 1.4.1.2 Analog I/O In the Arduino series of development boards, the pins with “A” in front of the pin number are analog input pins. We can read the analog value on these pins to achieve the effect we want. #### Analog Signal In life, analog signals are everywhere, such as the change in sound, light, temperature, etc., the frequency, amplitude, etc. of the signal can change continuously with time. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684917511360-8d2327f5-4145-4763-81e1-82e59a80e11b.jpeg" class="img-fluid"> So how do we read the analog value of the pin through the development board? The analog input pin has an ADC (analog-to-digital converter), which can convert the external input analog signal into a digital signal that the development board can recognize, thereby achieving the function of reading in analog values, i.e., it can convert a 0-5V voltage signal into an integer value of 0-1023.</p>
+<ul>
+<li><code>analogRead();</code></li>
+</ul>
+<p>Read the value from the specified analog pin. <strong>Syntax</strong> <code>analogRead(pin);</code> <strong>Parameters</strong> <code>pin:</code>The name of the analog input pin to be read.</p>
+<ul>
+<li><code>analogWrite();</code></li>
+</ul>
+<p>Corresponding to analog input is analog output. We use the <code>analogWrite()</code> function to achieve this function. It should be noted that when using this function, it is only through a special way to output different voltages to achieve the effect of approximate analog values. This method is called PWM pulse width modulation, so we are writing PWM square waves to the specified pin, not the true analog value. <strong>Syntax</strong> <code>analogWrite(pin, value);</code> <strong>Parameters</strong> <code>pin:</code>The pin to output PWM, allowed data type: int. <code>value:</code> Duty cycle, between 0-255, allowed data type: int. &gt; ### PWM Pulse Width Modulation &gt; Pulse width modulation (PWM) is a way to achieve analog results through digital output. Simply put, you can control the charging current by adjusting the period of PWM and the duty cycle of PWM. As shown in the figure, the voltage is switched back and forth between 0V (low level) and 5V (high level). A switchback is a period. In this period, if the time of high voltage is 25% and the time of low voltage is 75%, the duty cycle is 25%, and the output voltage is 5V. &gt; When we write a few lines of code to control the lighting of LEDs on the development board, or use button switches to control the buzzer, we can directly observe the working status of these external hardware. If it achieves our expected results, we are lucky. But what if it doesn’t? The program compiles without errors, so where is the problem? It would be nice if they could talk. In this section, we will learn how to communicate with the computer, monitor the running status and information of the program and hardware through the serial monitor. &gt; <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1613458123437-662c754b-9ca0-4ba5-8038-162b5ebb7e8e.png#averageHue=%230b0b0b&amp;height=438&amp;id=F1X4U&amp;originHeight=438&amp;originWidth=400&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=22878&amp;status=done&amp;style=none&amp;title=&amp;width=400" class="img-fluid" alt="image.png"></p>
+<section id="serial-communication" class="level3">
+<h3 class="anchored" data-anchor-id="serial-communication">1.4.1.3 Serial Communication</h3>
+<p>When we want to communicate with other devices using XIAO, the most common method is serial communication. All Arduino series development boards have this functionality. As we know, computers understand binary data (like 1010). Therefore, among electronic devices, serial communication achieves its function by sending and receiving such data. The key component to implement this function is the USART (Universal Synchronous/Asynchronous Receiver Transmitter). In the Arduino IDE, we can observe the sent and received data through the Serial Monitor, and we need related serial communication functions to implement this feature. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684918306693-34cb5007-fd14-49d9-a1c0-3a3e2c5a578f.jpeg" class="img-fluid"></p>
+<ul>
+<li><code>**Serial.begin()；**</code></li>
+</ul>
+<p>This function is used to open the serial port and set the data transmission rate. <strong>Syntax</strong> <code>Serial.begin(speed);</code> <strong>Parameters</strong> <code>Serial</code>: Serial port object. <code>speed</code>: Baud rate, commonly set to values like 9600, 115200, etc.</p>
+<ul>
+<li><code>**Serial.println();**</code></li>
+</ul>
+<p><strong>Syntax</strong> <code>Serial.println(val);</code> <strong>Parameters</strong> <code>Serial</code>: Serial port object. <code>val</code>: The value to be printed, which can be of any data type.</p>
+<p>For example, to print “hello world!!!” to the Serial Monitor, we need to initialize the serial port in the <code>setup()</code> function and output “hello world!!!” through the serial port in the <code>loop()</code> function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span> <span class="co">// Initialize the serial port and set the data transmission rate to 9600</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"hello world!!!"</span><span class="op">);</span> <span class="co">// Output "hello world!!!" through the serial port</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Returning to the question at the beginning of this section: when we have written the code and verified it to be correct, but the effect of running the code exceeds expectations or the hardware doesn’t respond at all, where is the problem? At this time, we can use the Serial Monitor to observe the data sent or received by the hardware to make a judgment. For instance, we can control the on-off state of an LED with a button, and we can use the Serial Monitor to check the returned value when the button is pressed to determine whether the button is working properly. Next, we will learn how to use the Serial Monitor to make the hardware “speak”. ## 1.4.2 Task 1: Use the Serial Monitor to Check if the Button is Pressed #### Analysis Remember controlling the on-off state of an LED with a button? Some of the code can be reused. We only need to read the button on-off setting and button on-off state code, and then add the initialization of the serial port and the data sent to the serial port. The program writing still follows three steps:</p>
+<ul>
+<li>Define button pins and variables.</li>
+<li>Initialize the serial port, set the serial port baud rate, and set the status of the button on-off pin.</li>
+<li>Read the button state and send it to the serial port. #### Write the program <strong>Step 1:</strong> Define the button pin and variable.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> buttonPin <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// Define the button switch as pin 1. If you are using XIAO RP2040/XIAO ESP32, please change 1 to D1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buttonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// Define buttonState as a variable to store the button status</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 2:</strong> Initialize the serial port, set the baud rate of the serial port, and set the button switch pin status.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>buttonPin<span class="op">,</span> INPUT_PULLUP<span class="op">);</span>  <span class="co">// Set the button pin as input</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span> <span class="co">// Initialize the serial port</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 3:</strong> Read the button status and send it to the serial port</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>buttonPin<span class="op">);</span>  <span class="co">// Read the button status and store it in the buttonState variable</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>buttonState<span class="op">);</span> <span class="co">// Send the button status data to the serial port</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadButton_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadButton_XIAO_en</a></p>
+</blockquote>
+<section id="upload-the-program" class="level4">
+<h4 class="anchored">Upload the program:</h4>
+<p>We will upload the written program to the hardware. First, connect the XIAO to the computer with the data cable from the kit. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684977221668-62259e38-ab6e-4645-b9c9-be8b2ec59bdb.jpeg" class="img-fluid"> Note the position of the buttons on the XIAO extensions used for testing in the figure.</p>
+<p>Click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=33&amp;id=rMAbX&amp;originHeight=66&amp;originWidth=70&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4632&amp;status=done&amp;style=none&amp;taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&amp;title=&amp;width=35" class="img-fluid" alt="image.png"> (Verify Button) in the Arduino IDE to verify the program. If the verification is correct, click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=34&amp;id=hqQPy&amp;originHeight=68&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4597&amp;status=done&amp;style=none&amp;taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&amp;title=&amp;width=34" class="img-fluid" alt="image.png">(Upload Button) to upload the program to XIAO. When the debug area shows “Done uploading.”, open the serial monitor and observe the value changes printed by the serial monitor when the button is pressed and released. What did you find?</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979740759-7ec42f4e-4930-46e1-a8ca-657b3988c1fe.jpeg" class="img-fluid"></p>
+<p>When we press the button on the XIAO expansion board, the serial monitor shows <code>0</code>, and when we release the button, the serial monitor shows <code>1</code>. ## 1.4.3 Task 2: Using the Serial Monitor to View Knob Value Changes #### Analysis: In Task 1, the button switch is a digital input that sends out digital signals 0 and 1, while the knob potentiometer returns an analog signal. We need to read the rotation angle value of the knob potentiometer on pin <code>A0</code> and send it to the serial port. The program also consists of three steps:</p>
+<ul>
+<li>Define the knob potentiometer pin and variables.</li>
+<li>Initialize the serial port and set the status of the knob potentiometer pin.</li>
+<li>Read and calculate the rotation angle value of the knob potentiometer and send it to the serial port. #### Write the program <strong>Step 1:</strong> Define the knob potentiometer pin and variables. Here we need to define the voltage value of the ADC (Analog-to-Digital Converter) and the reference voltage of the Grove module interface, because we will calculate the voltage changes in the circuit where the knob switch is connected through these voltage values.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROTARY_ANGLE_SENSOR </span>A0<span class="pp">  </span><span class="co">// Define the rotary potentiometer interface A0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ADC_REF </span><span class="dv">3</span><span class="pp"> </span><span class="co">// ADC reference voltage is 3V</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define GROVE_VCC </span><span class="dv">3</span><span class="pp"> </span><span class="co">// Grove interface reference voltage is 3V</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define FULL_ANGLE </span><span class="dv">300</span><span class="pp"> </span><span class="co">// The maximum rotation angle of the knob potentiometer is 300°</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 2:</strong> Initialize the serial port, set the baud rate of the serial port, and set the status of the knob potentiometer pin.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span><span class="co">//Initialize the serial port</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROTARY_ANGLE_SENSOR<span class="op">,</span> INPUT<span class="op">);</span><span class="co">//Set the rotary potentiometer pin to input state</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Step 3:</strong> Read and calculate the rotational angle value of the rotary potentiometer and send it to the serial port. Here, we first need to set the data type of the voltage variable, set the analog value variable of the rotary potentiometer pin, and then calculate the real-time voltage. After calculating the real-time voltage, calculate the rotational angle value of the rotary potentiometer.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span>   </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> voltage<span class="op">;</span>    <span class="co">//Variable voltage is of floating-point type</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> sensorValue <span class="op">=</span> analogRead<span class="op">(</span>ROTARY_ANGLE_SENSOR<span class="op">);</span>    <span class="co">//Read the analog value at the rotary potentiometer pin</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    voltage <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>sensorValue<span class="op">*</span>ADC_REF<span class="op">/</span><span class="dv">1023</span><span class="op">;</span>    <span class="co">//Calculate real-time voltage</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> degrees <span class="op">=</span> <span class="op">(</span>voltage<span class="op">*</span>FULL_ANGLE<span class="op">)/</span>GROVE_VCC<span class="op">;</span>    <span class="co">//Calculate the rotation angle of the knob</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"The angle between the mark and the starting position:"</span><span class="op">);</span>    <span class="co">//Print characters at the serial port</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>degrees<span class="op">);</span>    <span class="co">//Print the rotation angle value of the rotary potentiometer at the serial port</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<h3 id="define-macro-definition" class="anchored" data-anchor-id="upload-the-program"><code>#define</code> Macro Definition</h3>
+<p><code>#define</code> is a pre-processing command used for macro definitions. In Arduino, we can use <code>#define</code> to name constants. During the compilation of the program, all occurrences of the “macro name” will be replaced with the string in the macro definition, such as <code>#define ledPin 5</code>. During compilation, 5 will replace all uses of <code>ledPin</code>. Syntax: <code>#define constant name constant value</code>. The “#” symbol is mandatory, and there is no need to use the “;” symbol at the end of the sentence.</p>
+</blockquote>
+<p>The complete code is as follows:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Use the serial monitor to view the knob potentiometer</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROTARY_ANGLE_SENSOR </span>A0<span class="co">//Define the rotary potentiometer interface A0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ADC_REF </span><span class="dv">3</span><span class="pp"> </span><span class="co">//ADC reference voltage 3V</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define GROVE_VCC </span><span class="dv">3</span><span class="pp"> </span><span class="co">//Reference voltage 3V</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define FULL_ANGLE </span><span class="dv">300</span><span class="pp"> </span><span class="co">//The maximum rotation angle of the rotary potentiometer is 300°</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span><span class="co">//Initialize the serial port</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROTARY_ANGLE_SENSOR<span class="op">,</span> INPUT<span class="op">);</span><span class="co">//Set the rotary potentiometer pin as an input</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="op">{</span>   </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> voltage<span class="op">;</span><span class="co">//Variable voltage is of floating-point type</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> sensorValue <span class="op">=</span> analogRead<span class="op">(</span>ROTARY_ANGLE_SENSOR<span class="op">);</span><span class="co">//Read the analog value at the rotary potentiometer pin</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    voltage <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>sensorValue<span class="op">*</span>ADC_REF<span class="op">/</span><span class="dv">1023</span><span class="op">;</span><span class="co">//Calculate real-time voltage</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> degrees <span class="op">=</span> <span class="op">(</span>voltage<span class="op">*</span>FULL_ANGLE<span class="op">)/</span>GROVE_VCC<span class="op">;</span><span class="co">//Calculate the rotation angle of the knob</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"The angle between the mark and the starting position:"</span><span class="op">);</span><span class="co">//Print characters at the serial port</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>degrees<span class="op">);</span><span class="co">//Print the rotation angle value of the rotary potentiometer at the serial port</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadRotary_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadRotary_XIAO_en</a></p>
+</blockquote>
+</section>
+<section id="upload-the-program-1" class="level4">
+<h4 class="anchored" data-anchor-id="upload-the-program-1">Upload the program:</h4>
+<p>After writing the program, since external sensors are used, connect the knob module to the <code>A0</code> interface using the four-color Grove cable as shown in the image below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615960111957-ae473500-4455-4879-95bc-1a9ef78e59ba.png#averageHue=%23bdbab6&amp;height=424&amp;id=SqEDk&amp;originHeight=792&amp;originWidth=1135&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=90418&amp;status=done&amp;style=none&amp;title=&amp;width=607" class="img-fluid" alt="页面_6.png"> After connecting, connect the XIAO main control board to your computer using a data cable. In the Arduino IDE, click on the verification button <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=33&amp;id=Ahp1c&amp;originHeight=66&amp;originWidth=70&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4632&amp;status=done&amp;style=none&amp;taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&amp;title=&amp;width=35" class="img-fluid" alt="image.png"> to verify the program. If it verifies correctly, click the upload button to upload the program to<img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=34&amp;id=RDMtQ&amp;originHeight=68&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4597&amp;status=done&amp;style=none&amp;taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&amp;title=&amp;width=34" class="img-fluid" alt="image.png"> the hardware. When the debugging area shows “Done uploading.”, you can proceed. Open the serial monitor and rotate the knob potentiometer to observe the data changes displayed in the serial monitor. These changes represent the angle value of the knob. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979680733-1fe3cef3-4d32-4d6c-b7ab-a15e09bdd107.jpeg" class="img-fluid"> ## 1.4.4 Extended Exercise While observing the angle value of the knob potentiometer in the serial monitor, we find that the value is constantly jumping and changing. Observing through the numbers alone is not very intuitive. At this time, we can use the serial plotter. With it, we can plot the data that is printed to the Arduino’s serial port in real time. Based on the second task, close the serial monitor and open the <strong>“Tools → Serial Plotter”</strong> as shown in the image below: <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979746835-ffab0b7c-2970-40b3-bb5e-0084f7801040.jpeg" class="img-fluid"> The serial plotter draws the data obtained from the serial port into an XY axis curve chart, where the X-axis represents the change in time and the Y-axis represents the data obtained from the serial port. Through the chart, you can more intuitively see the change in data. Please give it a try.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter_1-3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.3 Transforming XIAO and its Expansion Board into a Morse Code Transmitter</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter_1-5.html" class="pagination-link">
+        <span class="nav-page-text">1.5 Controlling LED and Servo with a Knob</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
