@@ -1,5 +1,5 @@
 # Acknowledgments {.unnumbered}
-
+<br />
 We want to express our sincere gratitude to Jiamou Yang, Yanming Wen, Mengdu Li, Chunchun Tian, Haixu Liu, Tianrui Wang, and Jianjing Huang for their invaluable technical support and manuscript revisions. This book would not have been possible without their contributions.
 
 We extend our deepest gratitude to the entire TinyML4D Academic Network, comprised of distinguished professors, researchers, and professionals. Notable contributions from Marco Zennaro, Brian Plancher, José Alberto Ferreira, Jesus Lopez, Diego Mendez, Shawn Hymel, Dan Situnayake, Pete Warden, and Laurence Moroney have been instrumental in advancing our understanding of Embedded Machine Learning (TinyML).

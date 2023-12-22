@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -433,18 +467,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Exploring Computer Vision applications with the XIAO ESP32S3 Sense,Edge Impulse Studio and Arduino IDE.</p>
-<p><img src="https://hackster.imgix.net/uploads/attachments/1654474/_i6VjLqLn1X.blob?auto=compress%2Cformat&amp;w=900&amp;h=675&amp;fit=min" class="img-fluid" alt="img">)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://hackster.imgix.net/uploads/attachments/1654474/_i6VjLqLn1X.blob?auto=compress%2Cformat&amp;w=900&amp;h=675&amp;fit=min" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">img</figcaption>
+</figure>
+</div>
 <section id="things-used-in-this-project" class="level2">
 <h2 class="anchored" data-anchor-id="things-used-in-this-project">4.5.1 Things used in this project</h2>
 <section id="hardware-components" class="level3">
 <h3 class="anchored" data-anchor-id="hardware-components">4.5.1.1 Hardware components</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&amp;clientId=uc417d4eb-bab9-4&amp;from=paste&amp;height=100&amp;id=ub288bc7f&amp;originHeight=711&amp;originWidth=1063&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=518407&amp;status=done&amp;style=none&amp;taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&amp;title=&amp;width=149.5" class="img-fluid" alt="image.png"><a href="https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae">Seeed Studio Seeed XIAO ESP32S3 Sense</a> x 1</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5) -->
+<p><a href="https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae">Seeed Studio Seeed XIAO ESP32S3 Sense</a> x 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-4_1.png" width="400" height="auto"></p>
 </section>
 <section id="software-apps-and-online-services" class="level3">
 <h3 class="anchored" data-anchor-id="software-apps-and-online-services">4.5.2 Software apps and online services</h3>
 <ul>
-<li><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&amp;clientId=u413b5b5e-84eb-4&amp;from=paste&amp;height=48&amp;id=bESIK&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9015&amp;status=done&amp;style=none&amp;taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&amp;title=&amp;width=48" class="img-fluid" alt="image.png"> <a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
-<li><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&amp;clientId=ud4d22600-5c37-4&amp;from=paste&amp;height=48&amp;id=k6jic&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8524&amp;status=done&amp;style=none&amp;taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&amp;title=&amp;width=48" class="img-fluid" alt="image.png"> <a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
+<li><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png" class="img-fluid"> <a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
+<li><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_5.png" class="img-fluid"> <a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
 </ul>
 </section>
 </section>
@@ -770,22 +810,22 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>You should change lines 32 to 75, which define the camera model and pins, by the data related to our model. Copy and paste the below lines, replacing the lines 32-75:</p>
-<pre><code>#define PWDN_GPIO_NUM     -1 
-#define RESET_GPIO_NUM    -1 
-#define XCLK_GPIO_NUM     10 
-#define SIOD_GPIO_NUM     40 
-#define SIOC_GPIO_NUM     39
-#define Y9_GPIO_NUM       48 
-#define Y8_GPIO_NUM       11 
-#define Y7_GPIO_NUM       12 
-#define Y6_GPIO_NUM       14 
-#define Y5_GPIO_NUM       16 
-#define Y4_GPIO_NUM       18 
-#define Y3_GPIO_NUM       17 
-#define Y2_GPIO_NUM       15 
-#define VSYNC_GPIO_NUM    38 
-#define HREF_GPIO_NUM     47 
-#define PCLK_GPIO_NUM     13</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PWDN_GPIO_NUM     </span><span class="op">-</span><span class="dv">1</span><span class="pp"> </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RESET_GPIO_NUM    </span><span class="op">-</span><span class="dv">1</span><span class="pp"> </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define XCLK_GPIO_NUM     </span><span class="dv">10</span><span class="pp"> </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SIOD_GPIO_NUM     </span><span class="dv">40</span><span class="pp"> </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SIOC_GPIO_NUM     </span><span class="dv">39</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y9_GPIO_NUM       </span><span class="dv">48</span><span class="pp"> </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y8_GPIO_NUM       </span><span class="dv">11</span><span class="pp"> </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y7_GPIO_NUM       </span><span class="dv">12</span><span class="pp"> </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y6_GPIO_NUM       </span><span class="dv">14</span><span class="pp"> </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y5_GPIO_NUM       </span><span class="dv">16</span><span class="pp"> </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y4_GPIO_NUM       </span><span class="dv">18</span><span class="pp"> </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y3_GPIO_NUM       </span><span class="dv">17</span><span class="pp"> </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Y2_GPIO_NUM       </span><span class="dv">15</span><span class="pp"> </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define VSYNC_GPIO_NUM    </span><span class="dv">38</span><span class="pp"> </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define HREF_GPIO_NUM     </span><span class="dv">47</span><span class="pp"> </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PCLK_GPIO_NUM     </span><span class="dv">13</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here you can see the resulting code:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

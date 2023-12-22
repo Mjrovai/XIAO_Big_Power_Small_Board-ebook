@@ -414,7 +414,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board" id="toc-task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board" class="nav-link active" data-scroll-target="#task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board">1.5.2 Task 1: Using a knob potentiometer to control the brightness of the onboard LED on the XIAO board</a></li>
+  <li><a href="#background-knowledge" id="toc-background-knowledge" class="nav-link active" data-scroll-target="#background-knowledge">1.5.1 Background Knowledge</a>
+  <ul class="collapse">
+  <li><a href="#servo-and-servo-library" id="toc-servo-and-servo-library" class="nav-link" data-scroll-target="#servo-and-servo-library">1.5.1.1 Servo and Servo Library</a></li>
+  <li><a href="#map-function" id="toc-map-function" class="nav-link" data-scroll-target="#map-function">1.5.1.2 <code>map()</code> Function</a></li>
+  </ul></li>
+  <li><a href="#task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board" id="toc-task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board" class="nav-link" data-scroll-target="#task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board">1.5.2 Task 1: Using a knob potentiometer to control the brightness of the onboard LED on the XIAO board</a>
+  <ul class="collapse">
+  <li><a href="#controlling-an-external-led-with-a-knob-on-the-xiao-esp32c3" id="toc-controlling-an-external-led-with-a-knob-on-the-xiao-esp32c3" class="nav-link" data-scroll-target="#controlling-an-external-led-with-a-knob-on-the-xiao-esp32c3">Controlling an External LED with a Knob on the XIAO ESP32C3</a></li>
+  </ul></li>
   <li><a href="#task-2-control-a-servo-motor-with-a-rotary-potentiometer" id="toc-task-2-control-a-servo-motor-with-a-rotary-potentiometer" class="nav-link" data-scroll-target="#task-2-control-a-servo-motor-with-a-rotary-potentiometer">1.5.3 Task 2: Control a Servo Motor with a Rotary Potentiometer</a></li>
   <li><a href="#extended-exercise" id="toc-extended-exercise" class="nav-link" data-scroll-target="#extended-exercise">1.5.4 Extended Exercise</a></li>
   </ul>
@@ -440,43 +448,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In the last section, we learned how to use the serial monitor and observed the differences between digital input and analog input through it. In this section, we will further explore the use of analog values by combining them with a rotary potentiometer! ## 1.5.1 Background Knowledge ### 1.5.1.1 Servo and Servo Library #### Servo <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1613486221628-4feeb222-371c-4de8-aa38-14ad683a6c06.png#averageHue=%23e3e3de&amp;height=170&amp;id=bABR6&amp;originHeight=525&amp;originWidth=700&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=339968&amp;status=done&amp;style=none&amp;title=&amp;width=227" class="img-fluid" alt="image.png"> A servo, also known as a servo motor, is a DC motor with gears and a feedback system. We can control the servo to rotate to a specific angular position by sending signals to the circuit. This makes it suitable for electronic devices or robots that require precise position control. #### Servo Library servo.h When we want to control a servo using XIAO or other Arduino development boards, we can use the servo.h library file. It’s one of the Arduino standard libraries, which is convenient to use and also avoids the problem of limited PWM pin quantity. Here are the relevant functions of the servo library:</p>
+<p><br> In the last section, we learned how to use the serial monitor and observed the differences between digital input and analog input through it. In this section, we will further explore the use of analog values by combining them with a rotary potentiometer!</p>
+<section id="background-knowledge" class="level2">
+<h2 class="anchored" data-anchor-id="background-knowledge">1.5.1 Background Knowledge</h2>
+<section id="servo-and-servo-library" class="level3">
+<h3 class="anchored" data-anchor-id="servo-and-servo-library">1.5.1.1 Servo and Servo Library</h3>
+<section id="servo" class="level4">
+<h4 class="anchored" data-anchor-id="servo"><strong>Servo </strong></h4>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1613486221628-4feeb222-371c-4de8-aa38-14ad683a6c06.png#averageHue=%23e3e3de&height=170&id=bABR6&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=339968&status=done&style=none&title=&width=227)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_1.png" alt="verify-button.png" width="300" height="auto"></p>
+<p>A servo, also known as a servo motor, is a DC motor with gears and a feedback system. We can control the servo to rotate to a specific angular position by sending signals to the circuit. This makes it suitable for electronic devices or robots that require precise position control.</p>
+</section>
+<section id="servo-library-servo.h" class="level4">
+<h4 class="anchored" data-anchor-id="servo-library-servo.h"><strong>Servo Library servo.h </strong></h4>
+<p>When we want to control a servo using XIAO or other Arduino development boards, we can use the servo.h library file. It’s one of the Arduino standard libraries, which is convenient to use and also avoids the problem of limited PWM pin quantity. Here are the relevant functions of the servo library:</p>
 <ul>
-<li>Declare the library file</li>
+<li><p>Declare the library file <br> <code>#include &lt;Servo.h&gt;</code></p></li>
+<li><p>Create the <code>myservo</code> object to control the servo <br> <code>Servo myservo;</code></p></li>
+<li><p>Use the <code>attach()</code> function to call the signal pin<br> <code>myservo.attach();</code></p></li>
+<li><p>Use the <code>write()</code> function to write the angle to the servo, setting the rotation angle of the shaft<br> <code>myservo.write();</code></p></li>
 </ul>
-<p><code>#include &lt;Servo.h&gt;</code></p>
-<ul>
-<li>Create the <code>myservo</code> object to control the servo</li>
-</ul>
-<p><code>Servo myservo;</code></p>
-<ul>
-<li>Use the <code>attach()</code> function to call the signal pin</li>
-</ul>
-<p><code>myservo.attach();</code></p>
-<ul>
-<li>Use the <code>write()</code> function to write the angle to the servo, setting the rotation angle of the shaft</li>
-</ul>
-<p><code>myservo.write();</code></p>
-<p>The servo library does not need to be manually installed. You can open the example program <strong>“File → Examples → Servo”</strong> and check the two example programs “Knob” and “Sweep” to familiarize yourself with the use of the servo library. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684997950475-c430bc88-359a-49e0-913b-62fc99bedd89.jpeg" class="img-fluid"> If you can’t find Servo under Examples, you can visit <a href="https://github.com/arduino-libraries/Servo" class="uri">https://github.com/arduino-libraries/Servo</a> and add the Servo example by installing the library. ### 1.5.1.2 <code>map()</code> Function The <code>map()</code> function is used to map a number from one range to another. That is, <code>fromLow</code> gets mapped to <code>toLow</code>, and <code>fromHigh</code> gets mapped to <code>toHigh</code>. It’s the simplest form of linear mapping. <strong>Syntax</strong> <code>map(value, fromLow, fromHigh, toLow, toHigh)</code></p>
-<p><strong>Parameters</strong> <code>value</code>: The number to be mapped. <code>fromLow</code>: The lower limit of the current range of the value. <code>fromHigh</code>: The upper limit of the current range of the value. <code>toLow</code>: The lower limit of the target range of the value. <code>toHigh</code>: The upper limit of the target range of the value.</p>
-<p><strong>Example: Map</strong> <code>**val**</code>** from the range 0-1023 to 0-255.**</p>
+<p>The servo library does not need to be manually installed. You can open the example program <strong>“File → Examples → Servo”</strong> and check the two example programs “Knob” and “Sweep” to familiarize yourself with the use of the servo library.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684997950475-c430bc88-359a-49e0-913b-62fc99bedd89.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_2.jpeg" class="img-fluid"></p>
+<p>If you can’t find Servo under Examples, you can visit <a href="https://github.com/arduino-libraries/Servo" class="uri">https://github.com/arduino-libraries/Servo</a> and add the Servo example by installing the library.</p>
+</section>
+</section>
+<section id="map-function" class="level3">
+<h3 class="anchored" data-anchor-id="map-function">1.5.1.2 <code>map()</code> Function</h3>
+<p>The <code>map()</code> function is used to map a number from one range to another. That is, <code>fromLow</code> gets mapped to <code>toLow</code>, and <code>fromHigh</code> gets mapped to <code>toHigh</code>. It’s the simplest form of linear mapping.</p>
+<p><strong>Syntax</strong> <br> <code>map(value, fromLow, fromHigh, toLow, toHigh)</code></p>
+<p><strong>Parameters</strong> <br> <code>value</code>: The number to be mapped. <br> <code>fromLow</code>: The lower limit of the current range of the value. <br> <code>fromHigh</code>: The upper limit of the current range of the value. <br> <code>toLow</code>: The lower limit of the target range of the value. <br> <code>toHigh</code>: The upper limit of the target range of the value.</p>
+<p><strong>Example: Map <code>val</code> from the range 0-1023 to 0-255.</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> val <span class="op">=</span> analogRead<span class="op">(</span><span class="dv">0</span><span class="op">);</span> <span class="co">// read the value from analog pin A0</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> map<span class="op">(</span>val<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span> <span class="co">// map val to the range 0-255</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    analogWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> val<span class="op">);</span> <span class="co">// output the analog value to pin 9</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
 <section id="task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board" class="level2">
 <h2 class="anchored" data-anchor-id="task-1-using-a-knob-potentiometer-to-control-the-brightness-of-the-onboard-led-on-the-xiao-board">1.5.2 Task 1: Using a knob potentiometer to control the brightness of the onboard LED on the XIAO board</h2>
 <section id="analysis" class="level4">
-<h4 class="anchored" data-anchor-id="analysis">Analysis:</h4>
+<h4 class="anchored" data-anchor-id="analysis"><strong>Analysis:</strong></h4>
 <p>When using a knob potentiometer to control the LED, we need to use the map() function, because the analog value directly output by the knob potentiometer is 0-1023, this value is not the angle value of the knob rotation, we need to calculate the angle value of the knob potentiometer rotation first, then map this value to the brightness range of the LED 0-255 with the map() function. The steps to write the program are as follows:</p>
 <ul>
 <li>Define the knob potentiometer, LED pin.</li>
 <li>Initialize the serial port, set the status of the knob potentiometer and LED pin.</li>
 <li>Read and calculate the rotation angle value of the knob potentiometer, and send it to the serial port.</li>
-<li>Map the angle value of the knob potentiometer to the LED brightness value and store it in the brightness variable, and the LED outputs this variable value. #### Writing the program: <strong>Step 1:</strong> Define the knob potentiometer, LED pin, here we need to define ADC and VCC reference voltage, in order to calculate the angle value of the knob potentiometer.</li>
+<li>Map the angle value of the knob potentiometer to the LED brightness value and store it in the brightness variable, and the LED outputs this variable value.</li>
 </ul>
+</section>
+<section id="writing-the-program" class="level4">
+<h4 class="anchored" data-anchor-id="writing-the-program"><strong>Writing the program</strong>:</h4>
+<p><strong>Step 1:</strong> Define the knob potentiometer, LED pin, here we need to define ADC and VCC reference voltage, in order to calculate the angle value of the knob potentiometer.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROTARY_ANGLE_SENSOR </span>A0<span class="pp"> </span><span class="co">//Define rotary potentiometer interface A0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LEDPIN </span><span class="dv">13</span><span class="pp"> </span><span class="co">//Define LED interface 13</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ADC_REF </span><span class="dv">3</span><span class="pp"> </span><span class="co">//Reference voltage 3V</span></span>
@@ -536,13 +562,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_en</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_en</a></p>
 </blockquote>
 </section>
 <section id="uploading-the-program" class="level4">
-<h4 class="anchored" data-anchor-id="uploading-the-program">Uploading the Program:</h4>
-<p>After writing the program, connect the rotary potentiometer to the <code>A0</code> interface using a four-color Grove wire, as shown in the following figure: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616058445509-71340a2d-8ef4-4604-a346-678ed89c359f.png#averageHue=%23a6a4a0&amp;height=420&amp;id=pFpoB&amp;originHeight=1600&amp;originWidth=2036&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=297035&amp;status=done&amp;style=none&amp;title=&amp;width=534" class="img-fluid" alt="页面_18.png"> Connect the XIAO main control board to your computer with a data cable. After connecting, click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=33&amp;id=uVrMY&amp;originHeight=66&amp;originWidth=70&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4632&amp;status=done&amp;style=none&amp;taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&amp;title=&amp;width=35" class="img-fluid" alt="image.png"> (the verify button) in the Arduino IDE to check the program. If there are no errors, click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=34&amp;id=DjxES&amp;originHeight=68&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4597&amp;status=done&amp;style=none&amp;taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&amp;title=&amp;width=34" class="img-fluid" alt="image.png"> (the upload button) to upload the program to the hardware. When the debug area shows “Done uploading.”, you can open the serial monitor to observe the rotation angle and LED brightness values as you rotate the potentiometer. <img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669278548855-2d9ad08d-fd87-4af2-95b1-fc0bf0472018.jpeg#averageHue=%23a2937e&amp;clientId=u639539d7-a2d8-4&amp;from=ui&amp;id=R11Cd&amp;originHeight=2761&amp;originWidth=4297&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4954739&amp;status=done&amp;style=none&amp;taskId=ube8bd904-d337-4dcf-b881-dec6aac3939&amp;title=" class="img-fluid" alt="L5-2-1.jpg"> &gt; ⚠️ Note The onboard LED of the XIAO board is used in this example.</p>
-<p>If you need to operate offline, you can connect a lithium battery to the expansion board, as shown in the following figure. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616918339465-aa2fe9d9-3969-4015-967d-cc28a37268ee.jpeg#averageHue=%23faf9f8&amp;height=2320&amp;id=h16yS&amp;originHeight=2320&amp;originWidth=3500&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1515510&amp;status=done&amp;style=none&amp;title=&amp;width=3500" class="img-fluid" alt="L5.jpg"> ### Controlling an External LED with a Knob on the XIAO ESP32C3 The Seeed XIAO ESP32C3 does not have an onboard LED for users. To run this program, you need to first connect an LED to the <code>D10</code> pin of the board, as shown below: <img src="https://cdn.nlark.com/yuque/0/2022/png/2586586/1666778092446-9a6e722a-8823-48fe-a890-9016f300cb66.png#averageHue=%23d8d4cb&amp;clientId=u5d6c62e5-f3ec-4&amp;from=paste&amp;id=lYn2o&amp;originHeight=1068&amp;originWidth=1920&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uacd00b90-dfae-494b-96d7-a127e884d1f&amp;title=" class="img-fluid"> &gt; ⚠️ Note Be sure to connect a resistor (about 150Ω) in series with the LED to limit the current passing through the LED and prevent it from being damaged by overcurrent.</p>
+<h4 class="anchored" data-anchor-id="uploading-the-program"><strong>Uploading the Program:</strong></h4>
+<p>After writing the program, connect the rotary potentiometer to the <code>A0</code> interface using a four-color Grove wire, as shown in the following figure:</p>
+<!-- ![页面_18.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616058445509-71340a2d-8ef4-4604-a346-678ed89c359f.png#averageHue=%23a6a4a0&height=420&id=pFpoB&originHeight=1600&originWidth=2036&originalType=binary&ratio=1&rotation=0&showTitle=false&size=297035&status=done&style=none&title=&width=534)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_3.png" class="img-fluid"></p>
+<p>Connect the XIAO main control board to your computer with a data cable. After connecting, click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/verify-button.png" alt="verify-button.png" width="30" height="30"> (the verify button) in the Arduino IDE to check the program. If there are no errors, click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/upload-button.png" alt="upload-button.png" width="30" height="30"> (the upload button) to upload the program to the hardware. When the debug area shows “Done uploading.”, you can open the serial monitor to observe the rotation angle and LED brightness values as you rotate the potentiometer.</p>
+<!-- ![L5-2-1.jpg](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669278548855-2d9ad08d-fd87-4af2-95b1-fc0bf0472018.jpeg#averageHue=%23a2937e&clientId=u639539d7-a2d8-4&from=ui&id=R11Cd&originHeight=2761&originWidth=4297&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4954739&status=done&style=none&taskId=ube8bd904-d337-4dcf-b881-dec6aac3939&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_4.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>⚠️ Note <br> The onboard LED of the XIAO board is used in this example.</p>
+</blockquote>
+<p>If you need to operate offline, you can connect a lithium battery to the expansion board, as shown in the following figure.</p>
+<!-- ![L5.jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616918339465-aa2fe9d9-3969-4015-967d-cc28a37268ee.jpeg#averageHue=%23faf9f8&height=2320&id=h16yS&originHeight=2320&originWidth=3500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1515510&status=done&style=none&title=&width=3500)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_5.jpg" class="img-fluid"></p>
+</section>
+<section id="controlling-an-external-led-with-a-knob-on-the-xiao-esp32c3" class="level3">
+<h3 class="anchored" data-anchor-id="controlling-an-external-led-with-a-knob-on-the-xiao-esp32c3">Controlling an External LED with a Knob on the XIAO ESP32C3</h3>
+<p>The Seeed XIAO ESP32C3 does not have an onboard LED for users. To run this program, you need to first connect an LED to the <code>D10</code> pin of the board, as shown below:</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/png/2586586/1666778092446-9a6e722a-8823-48fe-a890-9016f300cb66.png#averageHue=%23d8d4cb&clientId=u5d6c62e5-f3ec-4&from=paste&id=lYn2o&originHeight=1068&originWidth=1920&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uacd00b90-dfae-494b-96d7-a127e884d1f&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_24.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>⚠️ Note <br> Be sure to connect a resistor (about 150Ω) in series with the LED to limit the current passing through the LED and prevent it from being damaged by overcurrent.</p>
+</blockquote>
 <p>Next, copy the following program into the Arduino IDE:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROTARY_ANGLE_SENSOR </span>A0<span class="pp"> </span><span class="co">// Define rotary potentiometer interface A0</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LEDPIN </span>D10<span class="pp"> </span><span class="co">// Define LED light interface 10</span></span>
@@ -573,20 +618,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_ESP32C3_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_ESP32C3_en</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_ESP32C3_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_XIAO_ESP32C3_en</a></p>
 </blockquote>
 </section>
 </section>
 <section id="task-2-control-a-servo-motor-with-a-rotary-potentiometer" class="level2">
 <h2 class="anchored" data-anchor-id="task-2-control-a-servo-motor-with-a-rotary-potentiometer">1.5.3 Task 2: Control a Servo Motor with a Rotary Potentiometer</h2>
 <section id="analysis-1" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-1">Analysis</h4>
+<h4 class="anchored" data-anchor-id="analysis-1"><strong>Analysis</strong></h4>
 <p>When controlling a servo motor with a rotary potentiometer, we can use the <code>servo.h</code> library and modify our first task slightly. The program can be divided into the following steps:</p>
 <ul>
 <li>Declare the servo library, define the servo rotation angle variable, define the rotary potentiometer pin and voltage.</li>
 <li>Initialize the serial port, set the status of the rotary potentiometer and servo pins.</li>
-<li>Read and calculate the rotation angle value of the rotary potentiometer, send it to the serial port, and drive the servo to rotate according to the angle value change. #### Program Writing <strong>Step 1:</strong> Declare the servo library, define the servo rotation angle variable, define the rotary potentiometer pin and voltage.</li>
+<li>Read and calculate the rotation angle value of the rotary potentiometer, send it to the serial port, and drive the servo to rotate according to the angle value change.</li>
 </ul>
+</section>
+<section id="program-writing" class="level4">
+<h4 class="anchored" data-anchor-id="program-writing"><strong>Program Writing </strong></h4>
+<p><strong>Step 1:</strong> Declare the servo library, define the servo rotation angle variable, define the rotary potentiometer pin and voltage.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span><span class="co">// Declare the use of the servo library</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROTARY_ANGLE_SENSOR </span>A0<span class="pp"> </span><span class="co">// Define the rotary potentiometer pin as A0</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ADC_REF </span><span class="dv">3</span><span class="pp"> </span><span class="co">// ADC reference voltage is 3V</span></span>
@@ -637,19 +686,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    myservo<span class="op">.</span>write<span class="op">(</span>degrees<span class="op">);</span> <span class="co">// Write the rotation angle value of the rotary potentiometer into the servo</span></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryServo_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryServo_XIAO_en</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryServo_XIAO_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryServo_XIAO_en</a></p>
 </blockquote>
 <hr>
 </section>
 <section id="upload-program" class="level4">
-<h4 class="anchored" data-anchor-id="upload-program">Upload Program</h4>
-<p>After writing the program, first connect the knob potentiometer and the servo to the XIAO expansion board as shown in the figure below. Then, connect the XIAO main control board to the computer with a data cable. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615961383454-c1376417-7f86-441f-88d3-7fda06823f4c.png#averageHue=%23cfcbc6&amp;height=800&amp;id=NYhd9&amp;originHeight=800&amp;originWidth=1597&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=96917&amp;status=done&amp;style=none&amp;title=&amp;width=1597" class="img-fluid" alt="页面_8.png"></p>
-<p>After the connection, click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=33&amp;id=o72Xj&amp;originHeight=66&amp;originWidth=70&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4632&amp;status=done&amp;style=none&amp;taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&amp;title=&amp;width=35" class="img-fluid" alt="image.png">(the verify button) in the Arduino IDE to verify the program. If the verification is error-free, click <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=34&amp;id=tajNA&amp;originHeight=68&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4597&amp;status=done&amp;style=none&amp;taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&amp;title=&amp;width=34" class="img-fluid" alt="image.png">(the upload button) to upload the program to the hardware. When the debugging area shows “Done uploading.”, you can open the serial monitor, rotate the knob potentiometer, and observe the changes in angle value and the movement of the servo. What have you found? <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616920615726-feefed3b-b3e5-450d-ae4e-df89991aec5e.jpeg#averageHue=%23f8f7f5&amp;height=407&amp;id=drlBM&amp;originHeight=2320&amp;originWidth=3500&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1639602&amp;status=done&amp;style=none&amp;title=&amp;width=614" class="img-fluid" alt="L5(2).jpg"> &gt; <strong>⚠️ Note:</strong> The rotation range of the servo is 0°-180°, so you will see in the serial monitor that when the angle value is greater than 180°, the servo stops rotating.</p>
+<h4 class="anchored" data-anchor-id="upload-program"><strong>Upload Program</strong></h4>
+<p>After writing the program, first connect the knob potentiometer and the servo to the XIAO expansion board as shown in the figure below. Then, connect the XIAO main control board to the computer with a data cable.</p>
+<!-- ![页面_8.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615961383454-c1376417-7f86-441f-88d3-7fda06823f4c.png#averageHue=%23cfcbc6&height=800&id=NYhd9&originHeight=800&originWidth=1597&originalType=binary&ratio=1&rotation=0&showTitle=false&size=96917&status=done&style=none&title=&width=1597) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_6.png" class="img-fluid"></p>
+<p>After the connection, click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/verify-button.png" alt="verify-button.png" width="30" height="30">(the verify button) in the Arduino IDE to verify the program. If the verification is error-free, click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/upload-button.png" alt="upload-button.png" width="30" height="30"> (the upload button) to upload the program to the hardware. When the debugging area shows “Done uploading.”, you can open the serial monitor, rotate the knob potentiometer, and observe the changes in angle value and the movement of the servo. What have you found?</p>
+<!-- ![L5(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616920615726-feefed3b-b3e5-450d-ae4e-df89991aec5e.jpeg#averageHue=%23f8f7f5&height=407&id=drlBM&originHeight=2320&originWidth=3500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1639602&status=done&style=none&title=&width=614)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_7.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>⚠️ Note <br> The rotation range of the servo is 0°-180°, so you will see in the serial monitor that when the angle value is greater than 180°, the servo stops rotating.</p>
+</blockquote>
 </section>
 </section>
 <section id="extended-exercise" class="level2">
 <h2 class="anchored" data-anchor-id="extended-exercise">1.5.4 Extended Exercise</h2>
-<p>We have been using the LED on the XIAO board. If I want to use an external LED and control it with a knob potentiometer to create a breathing light effect, what should I do? The XIAO expansion board brings out two digital-analog Grove interfaces, and there is an <code>A7/D7</code> interface. We can connect the external LED to this interface, as shown in the figure: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616391747619-d3b4991d-b79a-40cf-b889-ecad4efd5757.png#averageHue=%23cdc8c2&amp;height=449&amp;id=YUZbg&amp;originHeight=1056&amp;originWidth=1160&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=90422&amp;status=done&amp;style=none&amp;title=&amp;width=493" class="img-fluid" alt="页面_21.png"> After the connection, we can slightly modify the program from Task 1, changing <code>#define LEDPIN 13</code> to <code>#define LEDPIN 7</code>. Upload the modified program and see if it can achieve our desired effect. &gt; Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_ledmodule_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_ledmodule_en</a></p>
+<p>We have been using the LED on the XIAO board. If I want to use an external LED and control it with a knob potentiometer to create a breathing light effect, what should I do? The XIAO expansion board brings out two digital-analog Grove interfaces, and there is an <code>A7/D7</code> interface. We can connect the external LED to this interface, as shown in the figure:</p>
+<!-- ![页面_21.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616391747619-d3b4991d-b79a-40cf-b889-ecad4efd5757.png#averageHue=%23cdc8c2&height=449&id=YUZbg&originHeight=1056&originWidth=1160&originalType=binary&ratio=1&rotation=0&showTitle=false&size=90422&status=done&style=none&title=&width=493)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-5/chapter_1-5_8.png" class="img-fluid"></p>
+<p>After the connection, we can slightly modify the program from Task 1, changing <code>#define LEDPIN 13</code> to <code>#define LEDPIN 7</code>. Upload the modified program and see if it can achieve our desired effect.</p>
+<blockquote class="blockquote">
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_ledmodule_en" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L5_RotaryLed_ledmodule_en</a></p>
+</blockquote>
 
 
 </section>
