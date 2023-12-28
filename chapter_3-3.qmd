@@ -1,14 +1,50 @@
 # 3.3 Air Piano {.unnumbered}
+<br />
+Normally, when we play a musical instrument, we have to pluck strings or press keys to produce musical notes. However, with electronic modules, playing music can become more exciting. For instance, you can simulate piano playing with push-button switches and even integrate light effects for interactive music. But if you use push-button switches as piano keys, you need to integrate many modules into the circuit. Is there a simpler and more unique idea? A combination of ultrasonic distance sensor and passive buzzer can do just that - detecting different distances with ultrasonics to trigger different notes, just like playing a piano in the air. 
 
-Normally, when we play a musical instrument, we have to pluck strings or press keys to produce musical notes. However, with electronic modules, playing music can become more exciting. For instance, you can simulate piano playing with push-button switches and even integrate light effects for interactive music. But if you use push-button switches as piano keys, you need to integrate many modules into the circuit. Is there a simpler and more unique idea? A combination of ultrasonic distance sensor and passive buzzer can do just that - detecting different distances with ultrasonics to trigger different notes, just like playing a piano in the air. \## 3.3.1 Background Knowledge \### **3.3.1.1 Grove Ultrasonic Distance Sensor** ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615017246763-78687753-32ee-45e0-a7b6-486e42e78542.png#averageHue=%23d2cdc7&height=287&id=l1aMj&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=236524&status=done&style=none&title=&width=383) The [Grove Ultrasonic Distance Sensor](https://www.seeedstudio.com/Grove-Ultrasonic-Distance-Sensor.html) is a non-contact distance measurement module. Thanks to its strong directivity, the ultrasonic waves it emits can travel long distances in a medium. The calculations are simple and it is easy to control, so it's often used for distance measurements. When the ultrasonic distance sensor works, the transmitter emits ultrasonic waves in a certain direction. When the waves hit an obstacle, they reflect back. The ultrasonic receiver stops timing as soon as it receives the reflected waves. The actual distance from the emission point to the obstacle is calculated based on the time difference between emission and reception, much like bat echolocation. The application range of ultrasonic waves is becoming broader, commonly seen in reverse radar systems, intelligent guidance systems, robot obstacle avoidance systems, medical ultrasound examinations, and more. \> ⚠️ Note The Grove Ultrasonic Distance Sensor module is not included in the Seeed Studio XIAO Starter Kit!
+## 3.3.1 Background Knowledge 
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096488936-8c147f58-275f-488c-917b-a9ed093a1367.png#averageHue=%2382909e&height=346&id=xpKtS&originHeight=346&originWidth=520&originalType=binary&ratio=1&rotation=0&showTitle=false&size=336431&status=done&style=none&title=&width=520) ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096585003-073e6f75-739a-4ffa-a3fa-5242f9620937.png#averageHue=%238a8c89&height=359&id=UZ3lF&originHeight=359&originWidth=500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=387734&status=done&style=none&title=&width=500)
+### **3.3.1.1 Grove Ultrasonic Distance Sensor**  
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615017246763-78687753-32ee-45e0-a7b6-486e42e78542.png#averageHue=%23d2cdc7&height=287&id=l1aMj&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=236524&status=done&style=none&title=&width=383)  -->
+
+<div style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_1.png" width="400" height="auto" style="margin:0 auto" /></div>
+
+The [Grove Ultrasonic Distance Sensor](https://www.seeedstudio.com/Grove-Ultrasonic-Distance-Sensor.html) is a non-contact distance measurement module. Thanks to its strong directivity, the ultrasonic waves it emits can travel long distances in a medium. The calculations are simple and it is easy to control, so it's often used for distance measurements. When the ultrasonic distance sensor works, the transmitter emits ultrasonic waves in a certain direction. When the waves hit an obstacle, they reflect back. The ultrasonic receiver stops timing as soon as it receives the reflected waves. The actual distance from the emission point to the obstacle is calculated based on the time difference between emission and reception, much like bat echolocation. The application range of ultrasonic waves is becoming broader, commonly seen in reverse radar systems, intelligent guidance systems, robot obstacle avoidance systems, medical ultrasound examinations, and more. 
+
+> ⚠️ Note <br />
+> The Grove Ultrasonic Distance Sensor module is not included in the Seeed Studio XIAO Starter Kit!
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096488936-8c147f58-275f-488c-917b-a9ed093a1367.png#averageHue=%2382909e&height=346&id=xpKtS&originHeight=346&originWidth=520&originalType=binary&ratio=1&rotation=0&showTitle=false&size=336431&status=done&style=none&title=&width=520)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_2.png)
+
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615096585003-073e6f75-739a-4ffa-a3fa-5242f9620937.png#averageHue=%238a8c89&height=359&id=UZ3lF&originHeight=359&originWidth=500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=387734&status=done&style=none&title=&width=500) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_3.png)
+
 
 ## 3.3.2 Task 1: Reading the Grove Ultrasonic Distance Sensor Value
 
-#### Adding the [Seeed_Arduino_UltrasonicRanger](https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger) Library
+#### **Adding the [Seeed_Arduino_UltrasonicRanger](https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger) Library**
 
-Before starting to program the Grove Ultrasonic Distance Sensor with Arduino IDE, it's necessary to add the essential library for the sensor. Type the library address 🔗 <https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger> into the browser address bar, enter the GitHub page, click `Code→Download ZIP` to download the resource package `Seeed_Arduino_UltrasonicRanger-master.zip` to your local drive, as shown below. ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669707238660-b7ab1ece-573b-474d-8567-61879e3313c4.png#averageHue=%23d1e4c5&clientId=u3a18b45e-69b6-4&from=paste&height=933&id=pncJX&originHeight=1866&originWidth=2774&originalType=binary&ratio=1&rotation=0&showTitle=false&size=641624&status=done&style=stroke&taskId=u948b7cfc-e59c-4d32-ae18-71a626ede32&title=&width=1387) Add the downloaded resource package `Seeed_Arduino_UltrasonicRanger-master.zip` to the `Sketch→Include Library→Add .ZIP Library` from the menu bar until you see a successful library loading prompt. \#### Opening the Example File After successfully installing the library, a new item `Grove Ultrasonic Ranger` will be added to the Arduino's `File→Examples` list. Open the `UltrasonicDisplayOnTerm` sample program from it. This program can display the value of the ultrasonic distance sensor on the Serial Monitor. Modify `Ultrasonic ultrasonic(7);` in the sample program to `Ultrasonic ultrasonic(0);` (the ultrasonic distance sensor will be connected to the `A0` port of the XIAO expansion board). ![L13-企业微信20230529-114208\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685331752187-81cc77aa-c5ec-40fb-b76b-a469f3dae12b.png#averageHue=%2371846b&clientId=u82deeb5d-5cb5-4&from=ui&id=uc36cae36&originHeight=2224&originWidth=2562&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=1385725&status=done&style=stroke&taskId=uf603f08d-712f-42dc-b2db-e6729fe063f&title=) Open the modified sample file through the following path, 🔗 <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicDisplayOnTerm_XIAO_en>.
+Before starting to program the Grove Ultrasonic Distance Sensor with Arduino IDE, it's necessary to add the essential library for the sensor. Type the library address 🔗 <https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger> into the browser address bar, enter the GitHub page, click `Code→Download ZIP` to download the resource package `Seeed_Arduino_UltrasonicRanger-master.zip` to your local drive, as shown below. 
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669707238660-b7ab1ece-573b-474d-8567-61879e3313c4.png#averageHue=%23d1e4c5&clientId=u3a18b45e-69b6-4&from=paste&height=933&id=pncJX&originHeight=1866&originWidth=2774&originalType=binary&ratio=1&rotation=0&showTitle=false&size=641624&status=done&style=stroke&taskId=u948b7cfc-e59c-4d32-ae18-71a626ede32&title=&width=1387)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_4.png)
+
+
+Add the downloaded resource package `Seeed_Arduino_UltrasonicRanger-master.zip` to the `Sketch→Include Library→Add .ZIP Library` from the menu bar until you see a successful library loading prompt. 
+
+#### **Opening the Example File** 
+
+After successfully installing the library, a new item `Grove Ultrasonic Ranger` will be added to the Arduino's `File→Examples` list. Open the `UltrasonicDisplayOnTerm` sample program from it. This program can display the value of the ultrasonic distance sensor on the Serial Monitor. Modify `Ultrasonic ultrasonic(7);` in the sample program to `Ultrasonic ultrasonic(0);` (the ultrasonic distance sensor will be connected to the `A0` port of the XIAO expansion board). 
+
+<!-- ![L13-企业微信20230529-114208\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685331752187-81cc77aa-c5ec-40fb-b76b-a469f3dae12b.png#averageHue=%2371846b&clientId=u82deeb5d-5cb5-4&from=ui&id=uc36cae36&originHeight=2224&originWidth=2562&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=1385725&status=done&style=stroke&taskId=uf603f08d-712f-42dc-b2db-e6729fe063f&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_5.png)
+
+
+Open the modified sample file through the following path, 🔗 <br />
+<https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicDisplayOnTerm_XIAO_en>.
 
 ``` cpp
 #include "Ultrasonic.h"//declare the library file
@@ -33,7 +69,29 @@ void loop() {
 }
 ```
 
-The ultrasonic distance sensor is connected to the `A0` interface, as shown in the figure below: ![页面_16.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&height=472&id=CFHCS&originHeight=1686&originWidth=2071&originalType=binary&ratio=1&rotation=0&showTitle=false&size=301550&status=done&style=none&title=&width=580) After uploading the code, open the Serial Monitor. Place your hand or a card at any position in front of the ultrasonic distance sensor and observe the change in the values output by the Serial Monitor. ![L13-企业微信20230529-122835\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685334833276-3be4eb94-cf29-4e33-8d7e-f05c12962d6b.png#averageHue=%23d18c61&clientId=u82deeb5d-5cb5-4&from=ui&id=ua61a26b5&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=472868&status=done&style=none&taskId=ub36eea95-7b5b-4f44-a311-66fe7c241a7&title=) \## 3.3.3 Project Production: Ultrasonic Air Harp \### Project Description The working principle of the air harp is to measure the distance from the module to the palm of your hand through the ultrasonic distance sensor. Depending on the distance, the buzzer emits different musical notes. We have already learned how to measure distance and read values through the ultrasonic distance sensor with the sample program. Next, we just need to define different musical notes for the corresponding distances. As shown in the figure below: According to the width of the palm, one musical note corresponds to a unit of 2cm, and the performance starts from 4cm. "Do, Re, Mi, Fa, Sol, La, Xi, Do" respectively correspond to 4cm, 6cm, 8cm, 10cm, 12cm, 14cm, 16cm, 18cm... and so on. ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056971427-c5508a5b-8ccc-4b0a-b0dc-80d83291b7fd.png#averageHue=%237cbb64&height=661&id=B61vo&originHeight=661&originWidth=1236&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43028&status=done&style=none&title=&width=1236) \### Writing the Program
+The ultrasonic distance sensor is connected to the `A0` interface, as shown in the figure below: 
+
+<!-- ![页面_16.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&height=472&id=CFHCS&originHeight=1686&originWidth=2071&originalType=binary&ratio=1&rotation=0&showTitle=false&size=301550&status=done&style=none&title=&width=580)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_6.png)
+
+
+After uploading the code, open the Serial Monitor. Place your hand or a card at any position in front of the ultrasonic distance sensor and observe the change in the values output by the Serial Monitor. 
+
+<!-- ![L13-企业微信20230529-122835\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685334833276-3be4eb94-cf29-4e33-8d7e-f05c12962d6b.png#averageHue=%23d18c61&clientId=u82deeb5d-5cb5-4&from=ui&id=ua61a26b5&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=472868&status=done&style=none&taskId=ub36eea95-7b5b-4f44-a311-66fe7c241a7&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_7.png)
+
+
+## 3.3.3 Project Production: Ultrasonic Air Harp 
+
+### Project Description 
+
+The working principle of the air harp is to measure the distance from the module to the palm of your hand through the ultrasonic distance sensor. Depending on the distance, the buzzer emits different musical notes. We have already learned how to measure distance and read values through the ultrasonic distance sensor with the sample program. Next, we just need to define different musical notes for the corresponding distances. As shown in the figure below: According to the width of the palm, one musical note corresponds to a unit of 2cm, and the performance starts from 4cm. "Do, Re, Mi, Fa, Sol, La, Xi, Do" respectively correspond to 4cm, 6cm, 8cm, 10cm, 12cm, 14cm, 16cm, 18cm... and so on. 
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056971427-c5508a5b-8ccc-4b0a-b0dc-80d83291b7fd.png#averageHue=%237cbb64&height=661&id=B61vo&originHeight=661&originWidth=1236&originalType=binary&ratio=1&rotation=0&showTitle=false&size=43028&status=done&style=none&title=&width=1236)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_8.png)
+
+
+### Writing the Program
 
 The implementation of the air harp program requires the following steps:
 
@@ -43,6 +101,7 @@ The implementation of the air harp program requires the following steps:
 
 > ### Using the tone() Function to Play Melody
 >
+><br />
 > When we want to control the buzzer to play notes or songs through the program, we need to set the frequency value of each note ourselves. If a song has many notes, it's too troublesome to adjust one by one, and it tests our music theory knowledge and pitch. Is there a simpler method? Of course! When defining notes, we can refer to the `tone()` function written on the Arduino website 🔗 <https://www.arduino.cc/en/Tutorial/BuiltInExamples/toneMelody>, this function defines the corresponding frequency of different notes through `pitches.h`, which is convenient for us to use the `tone()` function to set the notes emitted by the buzzer. The code of `pitches.h` is shown below:
 
 ``` cpp
@@ -214,8 +273,38 @@ void loop()
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicPiano_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L13_UltrasonicPiano_XIAO_en>
 
-**Step 4:** Connect the hardware and upload the program. Connect the ultrasonic distance sensor to the `A0` interface of the XIAO expansion board as shown below: ![页面_16.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&height=372&id=i60fc&originHeight=1686&originWidth=2071&originalType=binary&ratio=1&rotation=0&showTitle=false&size=301550&status=done&style=none&title=&width=457)
+**Step 4:** Connect the hardware and upload the program. Connect the ultrasonic distance sensor to the `A0` interface of the XIAO expansion board as shown below: 
 
-Use the data cable to connect XIAO to the computer, click the "Upload" button, upload the program to the hardware, when the debugging area shows "Upload Successful", open the serial monitor, and start playing with your palm. \## 3.3.4 Exterior Design The inspiration for the air harp comes from the piano, with a note every 2 cm also designed according to the style of the piano keys. In the process of creating the appearance, we can cut a harp surface from a basswood board, and fix the ultrasonic range sensor at the left end of the harp. We also provide laser cutting files for reference, which can be easily assembled, as shown in the picture: ![](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618279501210-18916324-9fcb-4186-adba-7f9fa8ba1f65.jpeg#averageHue=%23fdfcfc&from=drop&id=BhJ1k&originHeight=2406&originWidth=3308&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2726262&status=done&style=none&taskId=uf19a063b-ec0e-4da3-9532-c044f088a57&title=) Download the files suitable for the laser cutting machine 🔗 <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_Air_Piano.dxf>. ![1L13(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343963412-daf5e882-cf21-40b3-af6c-002e8ad88d52.jpeg#averageHue=%23d9cdc2&height=401&id=DU0XT&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3094846&status=done&style=none&title=&width=535) ![1L13(4).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343980271-f551df3d-1a6f-46cf-af0a-35600ceee9ff.jpeg#averageHue=%23e3ded4&height=460&id=NzZUa&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2493009&status=done&style=none&title=&width=614) ![1L13(3).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344008805-b3428704-b9da-44ff-b829-83ca8e03a0ea.jpeg#averageHue=%23ccc4af&height=350&id=8e8vZ&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3020181&status=done&style=none&title=&width=467) ![1L13(1).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344030111-9a57e3c1-9e92-4ff3-89a4-d4779a2a8cae.jpeg#averageHue=%23dbd5ca&height=359&id=zYRlA&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2066215&status=done&style=none&title=&width=478)
+<!-- ![页面_16.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616056707773-1e27b692-553f-4d41-996a-d6f74bb89904.png#averageHue=%23aaa8a4&height=372&id=i60fc&originHeight=1686&originWidth=2071&originalType=binary&ratio=1&rotation=0&showTitle=false&size=301550&status=done&style=none&title=&width=457) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_9.png)
+
+
+Use the data cable to connect XIAO to the computer, click the "Upload" button, upload the program to the hardware, when the debugging area shows "Upload Successful", open the serial monitor, and start playing with your palm. 
+
+## 3.3.4 Exterior Design 
+
+The inspiration for the air harp comes from the piano, with a note every 2 cm also designed according to the style of the piano keys. In the process of creating the appearance, we can cut a harp surface from a basswood board, and fix the ultrasonic range sensor at the left end of the harp. We also provide laser cutting files for reference, which can be easily assembled, as shown in the picture: 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1618279501210-18916324-9fcb-4186-adba-7f9fa8ba1f65.jpeg#averageHue=%23fdfcfc&from=drop&id=BhJ1k&originHeight=2406&originWidth=3308&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2726262&status=done&style=none&taskId=uf19a063b-ec0e-4da3-9532-c044f088a57&title=) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_10.jpg)
+
+
+Download the files suitable for the laser cutting machine 🔗 <br />
+<https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/dxf/XIAO_Air_Piano.dxf>. 
+
+<!-- ![1L13(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343963412-daf5e882-cf21-40b3-af6c-002e8ad88d52.jpeg#averageHue=%23d9cdc2&height=401&id=DU0XT&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3094846&status=done&style=none&title=&width=535)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_11.jpg)
+
+
+<!-- ![1L13(4).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617343980271-f551df3d-1a6f-46cf-af0a-35600ceee9ff.jpeg#averageHue=%23e3ded4&height=460&id=NzZUa&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2493009&status=done&style=none&title=&width=614)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_12.jpg)
+
+
+<!-- ![1L13(3).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344008805-b3428704-b9da-44ff-b829-83ca8e03a0ea.jpeg#averageHue=%23ccc4af&height=350&id=8e8vZ&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=3020181&status=done&style=none&title=&width=467)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_13.jpg)
+
+<!-- ![1L13(1).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1617344030111-9a57e3c1-9e92-4ff3-89a4-d4779a2a8cae.jpeg#averageHue=%23dbd5ca&height=359&id=zYRlA&originHeight=3024&originWidth=4032&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2066215&status=done&style=none&title=&width=478) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-3/chapter_3-3_14.jpg)

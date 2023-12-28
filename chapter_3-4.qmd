@@ -1,31 +1,100 @@
 # 3.4 Implementing Wi-Fi Connection and Applications with XIAO ESP32C3 {.unnumbered}
 
-Rather than saying computers have changed the world, it would be more accurate to say that computer networks have. The emergence of networks has truly made computers different from previous tools. The sharing and exchange of information have made computers an epoch-making product. In this section, we will learn how to implement network requests using XIAO ESP32C3, which has Wi-Fi and Bluetooth (BLE) capabilities. This includes connecting XIAO to a Wi-Fi network, pinging specified websites, and issuing GET/POST requests using the HTTP protocol. ![Seeed Studio XIAO ESP32C3](https://cdn.nlark.com/yuque/0/2022/png/2392200/1668493151650-8c620601-2584-46d5-a4d9-c1683e4e24ee.png#averageHue=%2395948e&clientId=u640cf75b-7515-4&from=paste&height=215&id=nu8Ft&originHeight=650&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=true&size=563331&status=done&style=none&taskId=uc70bf138-7cea-4a77-9c21-1d0b9e93d05&title=Seeed%20Studio%20XIAO%20ESP32C3&width=321 "Seeed Studio XIAO ESP32C3") \## 3.4.1 Background Knowledge \### 3.4.1.1 OSI Reference Model (Network Seven-Layer Model) OSI (Open System Interconnect) is commonly known as the OSI reference model or network seven-layer structure, which is the network interconnect model researched by the ISO organization in 1985. This architectural standard defines the seven-layer framework (physical layer, data link layer, network layer, transport layer, session layer, presentation layer, and application layer) for network interconnection. For ease of understanding, the following diagram uses a logistics transportation process to correspond to each layer of the OSI model. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685343834538-7399e43c-c460-495a-ab1a-dedecfb1c5fb.jpeg)
+Rather than saying computers have changed the world, it would be more accurate to say that computer networks have. The emergence of networks has truly made computers different from previous tools. The sharing and exchange of information have made computers an epoch-making product. In this section, we will learn how to implement network requests using XIAO ESP32C3, which has Wi-Fi and Bluetooth (BLE) capabilities. This includes connecting XIAO to a Wi-Fi network, pinging specified websites, and issuing GET/POST requests using the HTTP protocol. 
 
-The following knowledge will use the concepts of these layers. \### 3.4.1.2 ICMP (Internet Control Message Protocol) and ping Command ICMP (Internet Control Message Protocol) is a sub-protocol of the TCP/IP protocol suite. It is used to transmit control messages between IP hosts and routers. Control messages refer to messages about the network itself, such as whether the network is available, whether the host is reachable, whether the route is available, etc. Although these control messages do not transmit user data, they play an important role in the transmission of user data. \> 🎓 Learn more: visit [the Wikipedia entry on ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol).
+<!-- ![Seeed Studio XIAO ESP32C3](https://cdn.nlark.com/yuque/0/2022/png/2392200/1668493151650-8c620601-2584-46d5-a4d9-c1683e4e24ee.png#averageHue=%2395948e&clientId=u640cf75b-7515-4&from=paste&height=215&id=nu8Ft&originHeight=650&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=true&size=563331&status=done&style=none&taskId=uc70bf138-7cea-4a77-9c21-1d0b9e93d05&title=Seeed%20Studio%20XIAO%20ESP32C3&width=321 "Seeed Studio XIAO ESP32C3")  -->
 
-We often use the ICMP protocol in the network, such as the `Ping` command (available in both Linux and Windows) we often use to check whether the network is available. This `Ping` process is actually the working process of the ICMP protocol. `ping` can test the connection speed between two devices and accurately report the time it takes for a packet to reach its destination and return to the sender's device. Although `ping` does not provide data about routing or hops, it is still a useful metric for measuring latency between two devices. Below we will learn how to implement `ping` requests on XIAO ESP32C3. Before starting this attempt, we need to learn how to connect XIAO ESP32C3 with your Wi-Fi. \## 3.4.2 Task 1: Using Wi-Fi Network on XIAO ESP32C3 XIAO ESP32C3 supports Wi-Fi connections with IEEE 802.11b/g/n. The following will introduce the basic knowledge of using Wi-Fi on this board.
+<div style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_1.png" width="400" height="auto" style="margin:0 auto" /><br /><sub>Seeed Studio XIAO ESP32C3</sub></div>
+<br />
 
-> ⚠️ Note: Be careful when attempting to use the XIAO ESP32C3 development board as a hotspot (access point). Overheating issues may occur and lead to burns.
+## 3.4.1 Background Knowledge 
 
-#### Hardware Setup: Connect an Antenna to the XIAO ESP32C3 and Connect it to Your Computer
+### 3.4.1.1 OSI Reference Model (Network Seven-Layer Model) 
 
-**Step 1.** Connect the provided Wi-Fi/Bluetooth antenna to the IPEX connector on the development board. ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1671593226962-acd28780-ba60-42a2-9e6c-f965cc516fa1.png#averageHue=%23908e8a&clientId=u573b9584-9406-4&from=paste&height=1265&id=d3k01&originHeight=1920&originWidth=589&originalType=url&ratio=1&rotation=90&showTitle=false&size=103504&status=done&style=none&taskId=u1581d1a6-ddda-4a25-9e0f-6690541b9cc&title=&width=388) **Step 2.** Connect the XIAO ESP32C3 to your computer via a USB Type-C data cable. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677379321876-f263e7bb-5c0f-4f9a-a7dd-70e4531fef9a.jpeg) \#### Software Setup: Add the ESP32 Board Package to the Arduino IDE **Step 1.** Open the Arduino IDE preferences to add the Board Manager URL.
+OSI (Open System Interconnect) is commonly known as the OSI reference model or network seven-layer structure, which is the network interconnect model researched by the ISO organization in 1985. This architectural standard defines the seven-layer framework (physical layer, data link layer, network layer, transport layer, session layer, presentation layer, and application layer) for network interconnection. For ease of understanding, the following diagram uses a logistics transportation process to correspond to each layer of the OSI model. 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685343834538-7399e43c-c460-495a-ab1a-dedecfb1c5fb.jpeg) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_2.jpeg)
+
+
+The following knowledge will use the concepts of these layers. 
+
+### 3.4.1.2 ICMP (Internet Control Message Protocol) and ping Command 
+
+ICMP (Internet Control Message Protocol) is a sub-protocol of the TCP/IP protocol suite. It is used to transmit control messages between IP hosts and routers. Control messages refer to messages about the network itself, such as whether the network is available, whether the host is reachable, whether the route is available, etc. Although these control messages do not transmit user data, they play an important role in the transmission of user data. 
+
+> 🎓 Learn more: visit [the Wikipedia entry on ICMP](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol).
+
+We often use the ICMP protocol in the network, such as the `Ping` command (available in both Linux and Windows) we often use to check whether the network is available. This `Ping` process is actually the working process of the ICMP protocol. `ping` can test the connection speed between two devices and accurately report the time it takes for a packet to reach its destination and return to the sender's device. Although `ping` does not provide data about routing or hops, it is still a useful metric for measuring latency between two devices. Below we will learn how to implement `ping` requests on XIAO ESP32C3. <br />
+Before starting this attempt, we need to learn how to connect XIAO ESP32C3 with your Wi-Fi. 
+
+## 3.4.2 Task 1: Using Wi-Fi Network on XIAO ESP32C3 
+
+XIAO ESP32C3 supports Wi-Fi connections with IEEE 802.11b/g/n. The following will introduce the basic knowledge of using Wi-Fi on this board.
+
+> ⚠️ Note:<br /> 
+> Be careful when attempting to use the XIAO ESP32C3 development board as a hotspot (access point). Overheating issues may occur and lead to burns.
+
+#### **Hardware Setup: Connect an Antenna to the XIAO ESP32C3 and Connect it to Your Computer**
+
+**Step 1.** Connect the provided Wi-Fi/Bluetooth antenna to the IPEX connector on the development board. 
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1671593226962-acd28780-ba60-42a2-9e6c-f965cc516fa1.png#averageHue=%23908e8a&clientId=u573b9584-9406-4&from=paste&height=1265&id=d3k01&originHeight=1920&originWidth=589&originalType=url&ratio=1&rotation=90&showTitle=false&size=103504&status=done&style=none&taskId=u1581d1a6-ddda-4a25-9e0f-6690541b9cc&title=&width=388)  -->
+<div style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_3.png" width="400" height="auto" style="margin:0 auto" /></div>
+<br />
+
+**Step 2.** Connect the XIAO ESP32C3 to your computer via a USB Type-C data cable. 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677379321876-f263e7bb-5c0f-4f9a-a7dd-70e4531fef9a.jpeg)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_4.jpeg)
+
+
+#### **Software Setup: Add the ESP32 Board Package to the Arduino IDE **
+
+**Step 1.** Open the Arduino IDE preferences to add the Board Manager URL.
 
 -   For Windows users, first open your Arduino IDE, click on "File→Preferences" in the top menu bar, and copy the following URL into "Additional Board Manager URLs".
 -   For Mac users, first open your Arduino IDE, click on "Arduino IDE→Preferences" in the top menu bar, and copy the following URL into "Additional Board Manager URLs".
 
-For Seeed Studio XIAO ESP32C3, copy the link below: <https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json> to the Board Manager URL bar and confirm, as shown in the figure below. ![L14-企业微信20230529-154118\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346119044-f14e471a-f3bc-4cb9-82fe-fc368b77848c.png#averageHue=%23c5c8c8&clientId=uea85d720-6c57-4&from=ui&id=ub7bd94b2&originHeight=1270&originWidth=1904&originalType=binary&ratio=2&rotation=0&showTitle=false&size=211373&status=done&style=none&taskId=u7e245529-1a70-4c66-9885-5ad5515f5c8&title=) **Step 2.** In the Arduino IDE menu, click "Tools→Board→Board Manager", type "esp32" into the search bar, find the latest version of ESP32 Arduino in the resulting entries, and click "Install". When the installation starts, you will see an output pop-up. Once the installation is complete, the "Installed" option will appear. **Step 3.** Select the Board. Navigate to "Tools \> Board \> ESP32 Arduino" and select "XIAO_ESP32C3". The list will be a bit long, and you will need to scroll down to find it, as shown in the figure below. ![L14-企业微信20230529-154414\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346367578-6dc48db9-e0eb-4ce0-8df0-c47559039dde.png#averageHue=%23788485&clientId=uea85d720-6c57-4&from=ui&id=uac42f724&originHeight=2234&originWidth=3456&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1179463&status=done&style=none&taskId=u48aa5df0-fb13-40d5-bb6f-7ce1dddc7c0&title=)
+For Seeed Studio XIAO ESP32C3, copy the link below: <br />
+<https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json> <br />
+to the Board Manager URL bar and confirm, as shown in the figure below. 
 
-**Step 4.** Add Port. Check if the port connection is correct in the Arudino IDE. If not, you need to manually select.
+<!-- ![L14-企业微信20230529-154118\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346119044-f14e471a-f3bc-4cb9-82fe-fc368b77848c.png#averageHue=%23c5c8c8&clientId=uea85d720-6c57-4&from=ui&id=ub7bd94b2&originHeight=1270&originWidth=1904&originalType=binary&ratio=2&rotation=0&showTitle=false&size=211373&status=done&style=none&taskId=u7e245529-1a70-4c66-9885-5ad5515f5c8&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_5.png)
+
+
+**Step 2.** In the Arduino IDE menu, click "Tools→Board→Board Manager", type "esp32" into the search bar, find the latest version of ESP32 Arduino in the resulting entries, and click "Install". When the installation starts, you will see an output pop-up. Once the installation is complete, the "Installed" option will appear. 
+
+**Step 3.** Select the Board. 
+
+Navigate to "Tools > Board > ESP32 Arduino" and select "XIAO_ESP32C3". The list will be a bit long, and you will need to scroll down to find it, as shown in the figure below. 
+
+<!-- ![L14-企业微信20230529-154414\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346367578-6dc48db9-e0eb-4ce0-8df0-c47559039dde.png#averageHue=%23788485&clientId=uea85d720-6c57-4&from=ui&id=uac42f724&originHeight=2234&originWidth=3456&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1179463&status=done&style=none&taskId=u48aa5df0-fb13-40d5-bb6f-7ce1dddc7c0&title=) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_6.png)
+
+
+**Step 4.** Add Port. 
+
+Check if the port connection is correct in the Arudino IDE. If not, you need to manually select.
 
 -   For Windows systems, the serial port is displayed as "COM+number", as shown in the figure below.
 
-![L14-企业微信20230529-155124\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346759383-b6f85d0c-ff83-4167-a43a-26c280a28705.png#averageHue=%23d9cab9&clientId=uea85d720-6c57-4&from=ui&height=340&id=uc42ffce1&originHeight=826&originWidth=1264&originalType=binary&ratio=2&rotation=0&showTitle=false&size=166742&status=done&style=stroke&taskId=u5ae1a3fa-119f-4c72-a06b-950e2fd0e85&title=&width=520)
+<!-- ![L14-企业微信20230529-155124\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346759383-b6f85d0c-ff83-4167-a43a-26c280a28705.png#averageHue=%23d9cab9&clientId=uea85d720-6c57-4&from=ui&height=340&id=uc42ffce1&originHeight=826&originWidth=1264&originalType=binary&ratio=2&rotation=0&showTitle=false&size=166742&status=done&style=stroke&taskId=u5ae1a3fa-119f-4c72-a06b-950e2fd0e85&title=&width=520) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_7.png)
+
 
 -   On Mac or Linux systems, the port name is typically `/dev/tty.usbmodem+number` or `/dev/cu.usbmodem+number`, as shown in the figure below.
 
-![L14-企业微信20230529-154825\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346709683-7a736599-af0d-461f-b464-63196ba33671.png#averageHue=%23e7b64e&clientId=uea85d720-6c57-4&from=ui&height=341&id=uRGRf&originHeight=1490&originWidth=2304&originalType=binary&ratio=2&rotation=0&showTitle=false&size=321121&status=done&style=stroke&taskId=u2a35149e-d2fd-46b9-bcfd-2a75371c154&title=&width=527) \#### Scanning Nearby Wi-Fi Networks (STA Mode) In this example, we will use the XIAO ESP32C3 to scan for available Wi-Fi networks in the area. The development board in this example will be configured in STA mode. **Step 1.** Copy and paste the code below into the Arduino IDE.
+<!-- ![L14-企业微信20230529-154825\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685346709683-7a736599-af0d-461f-b464-63196ba33671.png#averageHue=%23e7b64e&clientId=uea85d720-6c57-4&from=ui&height=341&id=uRGRf&originHeight=1490&originWidth=2304&originalType=binary&ratio=2&rotation=0&showTitle=false&size=321121&status=done&style=stroke&taskId=u2a35149e-d2fd-46b9-bcfd-2a75371c154&title=&width=527)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_8.png)
+
+
+#### **Scanning Nearby Wi-Fi Networks (STA Mode) **
+
+In this example, we will use the XIAO ESP32C3 to scan for available Wi-Fi networks in the area. The development board in this example will be configured in STA mode. 
+
+**Step 1.** Copy and paste the code below into the Arduino IDE.
 
 ``` cpp
 #include "WiFi.h"
@@ -73,9 +142,19 @@ void loop()
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Scanwifi_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Scanwifi_XIAO_en>
 
-**Step 2.** Upload the code and open the serial monitor to start scanning for Wi-Fi networks, as shown in the figure below. ![L14-企业微信20230529-160725\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685348127115-f35f67f9-c230-4c2b-975a-aa7bd7496409.png#averageHue=%23d18a5f&clientId=u562d138d-862f-4&from=ui&id=u561bb89b&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=399256&status=done&style=stroke&taskId=u97345602-2652-4f30-9ec1-3f1b7945ede&title=) \#### Connecting to a Wi-Fi Network In this example, we will use the XIAO ESP32C3 to connect to your Wi-Fi network. **Step 1.** Copy and paste the code below into the Arduino IDE.
+**Step 2.** Upload the code and open the serial monitor to start scanning for Wi-Fi networks, as shown in the figure below. 
+
+<!-- ![L14-企业微信20230529-160725\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685348127115-f35f67f9-c230-4c2b-975a-aa7bd7496409.png#averageHue=%23d18a5f&clientId=u562d138d-862f-4&from=ui&id=u561bb89b&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=399256&status=done&style=stroke&taskId=u97345602-2652-4f30-9ec1-3f1b7945ede&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_9.png)
+
+#### **Connecting to a Wi-Fi Network** 
+
+In this example, we will use the XIAO ESP32C3 to connect to your Wi-Fi network. 
+
+**Step 1.** Copy and paste the code below into the Arduino IDE.
 
 ``` cpp
 #include <WiFi.h>
@@ -112,15 +191,34 @@ void loop()
   }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Connectwifi_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Connectwifi_XIAO_en>
 
 Then, replace `your-ssid` in the code with the name of your Wi-Fi network, and replace `your-password` in the code with the password for your Wi-Fi network.
 
-**Step 2.** Upload the code and open the serial monitor to check whether the development board is connected to the Wi-Fi network, as shown in the figure below. ![L14-企业微信20230529-163441\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349471522-ee87524d-4200-41e8-a601-6f3b2a9a1bfc.png#averageHue=%23d28b60&clientId=u562d138d-862f-4&from=ui&id=u21a9b0d9&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=344018&status=done&style=stroke&taskId=u05b61f81-ca78-4510-889b-6bc57dec395&title=) \> 🎓 Learn more: You can read the [Wiki documentation](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/) for more about using the XIAO ESP32C3.
+**Step 2.** Upload the code and open the serial monitor to check whether the development board is connected to the Wi-Fi network, as shown in the figure below. 
+
+<!-- ![L14-企业微信20230529-163441\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349471522-ee87524d-4200-41e8-a601-6f3b2a9a1bfc.png#averageHue=%23d28b60&clientId=u562d138d-862f-4&from=ui&id=u21a9b0d9&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=344018&status=done&style=stroke&taskId=u05b61f81-ca78-4510-889b-6bc57dec395&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_10.png)
+
+> 🎓 Learn more: You can read the [Wiki documentation](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/) for more about using the XIAO ESP32C3.
 
 ## 3.4.3 Task 2: Ping a Specified Website
 
-With the knowledge above, we can now learn how to use the XIAO ESP32C3 to ping a specified website. **Step 1.** Download and install the ESP32Ping library. Enter the URL 🔗 <https://github.com/marian-craciunescu/ESP32Ping> to go to the GitHub page, click on Code→Download ZIP to download the resource pack to your local machine, as shown in the figure below. ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1671606106896-eb364ac9-6ce7-403e-8da7-c44f26b5546d.png#averageHue=%23c5e3c1&clientId=u573b9584-9406-4&from=paste&height=397&id=ogU0i&originHeight=793&originWidth=1133&originalType=binary&ratio=1&rotation=0&showTitle=false&size=185167&status=done&style=stroke&taskId=u55d4265c-d44c-42a7-a849-f25c8e75938&title=&width=566.5) After downloading, open the Arduino IDE, click on Sketch→Include Library→Add .ZIP Library, and choose the ZIP file you just downloaded. ![L14-企业微信20230529-164251\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349822660-9447c8fa-efd8-4dcd-970b-59fc413d06ae.png#averageHue=%2373a15d&clientId=u562d138d-862f-4&from=ui&id=u818fcc4b&originHeight=1098&originWidth=1908&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=636794&status=done&style=stroke&taskId=u5900e086-a5b3-434e-a466-ef757e4f73d&title=) **Step 2.** Copy and paste the code below into the Arduino IDE. This code sets the test website to `www.seeedstudio.com`. Remember to replace `your-ssid` in the code with your Wi-Fi network name and `your-password` in the code with your Wi-Fi password.
+With the knowledge above, we can now learn how to use the XIAO ESP32C3 to ping a specified website. 
+
+**Step 1.** Download and install the ESP32Ping library. Enter the URL 🔗 <https://github.com/marian-craciunescu/ESP32Ping> to go to the GitHub page, click on Code→Download ZIP to download the resource pack to your local machine, as shown in the figure below. 
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1671606106896-eb364ac9-6ce7-403e-8da7-c44f26b5546d.png#averageHue=%23c5e3c1&clientId=u573b9584-9406-4&from=paste&height=397&id=ogU0i&originHeight=793&originWidth=1133&originalType=binary&ratio=1&rotation=0&showTitle=false&size=185167&status=done&style=stroke&taskId=u55d4265c-d44c-42a7-a849-f25c8e75938&title=&width=566.5)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_11.png)
+
+After downloading, open the Arduino IDE, click on Sketch→Include Library→Add .ZIP Library, and choose the ZIP file you just downloaded. 
+
+<!-- ![L14-企业微信20230529-164251\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685349822660-9447c8fa-efd8-4dcd-970b-59fc413d06ae.png#averageHue=%2373a15d&clientId=u562d138d-862f-4&from=ui&id=u818fcc4b&originHeight=1098&originWidth=1908&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=636794&status=done&style=stroke&taskId=u5900e086-a5b3-434e-a466-ef757e4f73d&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_12.png)
+
+
+**Step 2.** Copy and paste the code below into the Arduino IDE. This code sets the test website to `www.seeedstudio.com`. Remember to replace `your-ssid` in the code with your Wi-Fi network name and `your-password` in the code with your Wi-Fi password.
 
 ``` cpp
 ////////////////////////////////////////////////////////////////////////////////
@@ -190,14 +288,38 @@ void loop()
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Ping_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_Ping_XIAO_en>
 
-**Step 3.** Upload the code and open the serial monitor to check the ping results, as shown in the figure below. ![L14-企业微信20230529-170259\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685351005677-97bb715f-f048-4051-866c-4b9f71cfec95.png#averageHue=%23cf8e60&clientId=u562d138d-862f-4&from=ui&id=u9d9ebc5b&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=368346&status=done&style=stroke&taskId=u7d524643-206b-4feb-b05f-a2c2a12c9a8&title=) \## 3.4.4 Project Creation: Using XIAO ESP32C3 to Make HTTP GET and HTTP POST Requests \### 3.4.4.1 Introduction to HTTP Protocol HTTP stands for HyperText Transfer Protocol. It's an application-layer protocol for distributed, collaborative, and hypermedia information systems. HTTP is the most widely used network transmission protocol on the Internet, and all WWW files must comply with this standard. HTTP is designed for communication between Web browsers and Web servers, but it can also be used for other purposes. HTTP is a protocol that uses TCP/IP to transmit data (such as HTML files, image files, query results, etc.). Despite its wide use, HTTP has significant security flaws, mainly its plain text data transmission and lack of message integrity checks. These are exactly the two most critical security aspects in emerging applications like online payment, online trading, Internet of Things, etc. Browsers like Google Chrome, Internet Explorer, and Firefox issue warnings about insecure connections when visiting websites with mixed content composed of encrypted and unencrypted content using HTTP. \### 3.4.4.2 Introduction to HTTPS Protocol HTTPS stands for HyperText Transfer Protocol Secure. It's a protocol for secure communication over a computer network. HTTPS communicates via HTTP but uses SSL/TLS to encrypt packets. The main purpose of HTTPS is to authenticate the website server's identity and protect the privacy and integrity of the exchanged data.
+**Step 3.** Upload the code and open the serial monitor to check the ping results, as shown in the figure below. 
 
-![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677388728990-795425f3-9ebb-4728-bd60-86c69387d67e.jpeg) \### 3.4.4.3 HTTP Request Methods According to the HTTP standard, HTTP requests can use multiple request methods. HTTP1.0 defined three request methods: GET, POST, and HEAD. HTTP1.1 added six new request methods: OPTIONS, PUT, PATCH, DELETE, TRACE, and CONNECT.
+<!-- ![L14-企业微信20230529-170259\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685351005677-97bb715f-f048-4051-866c-4b9f71cfec95.png#averageHue=%23cf8e60&clientId=u562d138d-862f-4&from=ui&id=u9d9ebc5b&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=368346&status=done&style=stroke&taskId=u7d524643-206b-4feb-b05f-a2c2a12c9a8&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_13.png)
+
+## 3.4.4 Project Creation: Using XIAO ESP32C3 to Make HTTP GET and HTTP POST Requests 
+
+### 3.4.4.1 Introduction to HTTP Protocol 
+
+HTTP stands for HyperText Transfer Protocol. It's an application-layer protocol for distributed, collaborative, and hypermedia information systems. HTTP is the most widely used network transmission protocol on the Internet, and all WWW files must comply with this standard. <br />
+HTTP is designed for communication between Web browsers and Web servers, but it can also be used for other purposes. HTTP is a protocol that uses TCP/IP to transmit data (such as HTML files, image files, query results, etc.). <br />
+Despite its wide use, HTTP has significant security flaws, mainly its plain text data transmission and lack of message integrity checks. These are exactly the two most critical security aspects in emerging applications like online payment, online trading, Internet of Things, etc. Browsers like Google Chrome, Internet Explorer, and Firefox issue warnings about insecure connections when visiting websites with mixed content composed of encrypted and unencrypted content using HTTP. 
+
+### 3.4.4.2 Introduction to HTTPS Protocol 
+
+HTTPS stands for HyperText Transfer Protocol Secure. It's a protocol for secure communication over a computer network. HTTPS communicates via HTTP but uses SSL/TLS to encrypt packets. The main purpose of HTTPS is to authenticate the website server's identity and protect the privacy and integrity of the exchanged data.
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1677388728990-795425f3-9ebb-4728-bd60-86c69387d67e.jpeg)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_14.jpeg)
+
+
+### 3.4.4.3 HTTP Request Methods 
+
+According to the HTTP standard, HTTP requests can use multiple request methods.  <br />
+HTTP1.0 defined three request methods: GET, POST, and HEAD. <br />
+HTTP1.1 added six new request methods: OPTIONS, PUT, PATCH, DELETE, TRACE, and CONNECT.
 
 | **No.** | **Method** | **Description**                                                                                                                                                                                                                                     |
-|------------------------|------------------------|------------------------|
+|---------|--------------|-------------------------------|
 | 1       | GET        | Requests specified page information and returns the entity body.                                                                                                                                                                                    |
 | 2       | HEAD       | Similar to a GET request, but the response returned doesn't contain specific content, used to obtain headers.                                                                                                                                       |
 | 3       | POST       | Submits data for processing to a specified resource (e.g., submits a form or uploads a file). The data is included in the request body. POST requests may result in the creation of a new resource and/or the modification of an existing resource. |
@@ -208,7 +330,17 @@ void loop()
 | 8       | TRACE      | Echoes the request received by the server, mainly used for testing or diagnosis.                                                                                                                                                                    |
 | 9       | PATCH      | It's a supplement to the PUT method, used to partially update a known resource.                                                                                                                                                                     |
 
-We've already learned how to connect to a Wi-Fi network using XIAO ESP32C3. Now, let's try some more complex operations based on the network. The following sections will introduce how to use XIAO ESP32C3 to send HTTP GET and HTTP POST requests. \### 3.4.4.4 Task 3: Using XIAO ESP32C3 to Send an HTTP GET Request To send an HTTP GET request, a corresponding backend server that supports the request is required. For convenient testing, we can set up a backend server on our own PC, allowing XIAO ESP32C3 to send an HTTP GET request to the PC through the local Wi-Fi connection. There are many ways to set up a backend service. In this case, we'll use the popular Python web framework --- FastAPI to set up the backend server. To learn more about this tool, visit its [official documentation](https://fastapi.tiangolo.com/zh/). \#### Setting Up a Backend Server with FastAPI Here is the Python server code.
+We've already learned how to connect to a Wi-Fi network using XIAO ESP32C3. Now, let's try some more complex operations based on the network. The following sections will introduce how to use XIAO ESP32C3 to send HTTP GET and HTTP POST requests. 
+
+### 3.4.4.4 Task 3: Using XIAO ESP32C3 to Send an HTTP GET Request 
+
+To send an HTTP GET request, a corresponding backend server that supports the request is required. For convenient testing, we can set up a backend server on our own PC, allowing XIAO ESP32C3 to send an HTTP GET request to the PC through the local Wi-Fi connection. 
+
+There are many ways to set up a backend service. In this case, we'll use the popular Python web framework --- FastAPI to set up the backend server. To learn more about this tool, visit its [official documentation](https://fastapi.tiangolo.com/zh/). 
+
+#### **Setting Up a Backend Server with FastAPI **
+
+Here is the Python server code.
 
 ``` python
 from typing import Union
@@ -242,36 +374,40 @@ def read_root():
     return {"Hello": "World"}
 ```
 
-This code snippet, implemented using the Python FastAPI framework, can return the latest information of the Sensor stored on the backend server when we use a `get` request on `http://domain/items/sensor`. When we use `post` to send data to `http://domain/sensor/`, it can modify and record the latest Sensor value. The operation steps are as follows: **Step 1.** Create a python file named `main.py` locally, copy and paste the code above into `main.py`. Then, on your PC, open the terminal and execute the following commands to install FastAPI.
+This code snippet, implemented using the Python FastAPI framework, can return the latest information of the Sensor stored on the backend server when we use a `get` request on `http://domain/items/sensor`. When we use `post` to send data to `http://domain/sensor/`, it can modify and record the latest Sensor value. The operation steps are as follows: 
 
-``` shell
+**Step 1.** Create a python file named `main.py` locally, copy and paste the code above into `main.py`. Then, on your PC, open the terminal and execute the following commands to install FastAPI.
+
+<!--  (the message below is shell not cpp) -->
+``` cpp       
 pip install fastapi
 pip install "uvicorn[standard]"
 ```
 
 **Step 2.** Execute the following command to start the backend service and local monitoring.
 
-``` shell
+``` cpp
 uvicorn main:app --reload --host 0.0.0.0
 ```
 
-> ⚠️ Note: When running the command above, make sure the terminal is currently in the directory where `main:app` resides. If there is a prompt during running:
+> ⚠️ Note: <br />
+> When running the command above, make sure the terminal is currently in the directory where `main:app` resides. If there is a prompt during running:
 
-``` shell
+``` cpp
 ERROR:    [Errno 48] Address already in use
 ```
 
 > This means the current address is already occupied and there is an address conflict. You can specify a specific port as shown in the command below.
 
-``` shell
+``` cpp
 uvicorn main:app --reload --host 0.0.0.0 --port 1234
 ```
 
-> If the \[Errno 48\] error still appears, you can modify the port number after port.
+> If the [Errno 48] error still appears, you can modify the port number after port.
 
 The prompt information after the command is successfully run is as follows
 
-``` shell
+``` cpp
 INFO:     Will watch for changes in these directories: ['']
 INFO:     Uvicorn running on http://0.0.0.0:1234 (Press CTRL+C to quit)
 INFO:     Started reloader process [53850] using WatchFiles
@@ -280,7 +416,12 @@ INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
 
-The backend server for testing is now running normally. \#### Using XIAO ESP32C3 to Send an HTTP GET Request Next, we'll perform a request test on XIAO ESP32C3. The GET method should only be used for reading data, and should not be used in operations that generate "side effects". GET requests directly issued by browsers can only be triggered by a URL. If you want to carry some parameters outside of the URL in GET, you can only rely on the querystring (query string) attached to the URL.
+The backend server for testing is now running normally. 
+
+#### **Using XIAO ESP32C3 to Send an HTTP GET Request **
+
+Next, we'll perform a request test on XIAO ESP32C3. <br />
+The GET method should only be used for reading data, and should not be used in operations that generate "side effects". GET requests directly issued by browsers can only be triggered by a URL. If you want to carry some parameters outside of the URL in GET, you can only rely on the querystring (query string) attached to the URL.
 
 **Step 1:** Copy and paste the following code into the Arduino IDE. This code sets the tested `serverName` to `http://192.168.1.2/items/sensor`. The `192.168.1.2` needs to be replaced with the IP address of your PC acting as the backend server. To get the IP address of your PC, Windows users can enter the `ipconfig` command in the command line window, and Mac users can enter the `ifconfig` command in the terminal window. Remember to change `your-ssid` in the code to your Wi-Fi network name and `your-password` to the corresponding Wi-Fi password.
 
@@ -347,11 +488,28 @@ void loop()
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPget_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPget_XIAO_en>
 
-> ⚠️ Note: We need to change the `serverName` in the Arduino code to the IP address of the host running the backend service. The XIAO ESP32C3 needs to be on the same local area network as it. If the local area network IP of the backend server (in this example, your PC) is `192.168.1.2`, then the GET request interface is `http://192.168.1.2/items/sensor`, and other interfaces are similar. If you specified a port when running the backend service and local monitoring, the GET request interface would be `http://192.168.1.2:1234/items/sensor`.
+> ⚠️ Note: <br />
+> We need to change the `serverName` in the Arduino code to the IP address of the host running the backend service. The XIAO ESP32C3 needs to be on the same local area network as it. If the local area network IP of the backend server (in this example, your PC) is `192.168.1.2`, then the GET request interface is `http://192.168.1.2/items/sensor`, and other interfaces are similar. If you specified a port when running the backend service and local monitoring, the GET request interface would be `http://192.168.1.2:1234/items/sensor`.
 
-**Step 2:** Upload the code to XIAO ESP32C3 in the Arduino IDE. After the upload is successful, open the serial monitor to check the result returned by our backend server after the GET is issued, as shown in the figure below. ![L14-企业微信20230529-181015\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685355061575-0b66c69f-b816-4408-96fa-9a255422693e.png#averageHue=%23d18f61&clientId=u562d138d-862f-4&from=ui&id=ucc3a3a73&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=445026&status=done&style=stroke&taskId=u6aaa0659-ecb7-428f-a122-c5e2a269265&title=) The prompt `HTTP Response code: 200` means the request has been successful, and our XIAO ESP32C3 has successfully gotten data from the server. \### 3.4.4.5 Task 4: Using XIAO ESP32C3 to Send an HTTP POST Request Submit data to a specified resource and request the server to process it (for example, submit a form or upload a file). The data is included in the request body. This request may create new resources or modify existing resources, or both. Each time it is submitted, the form data is encoded into the body of the HTTP request by the browser. The body of a POST request issued by a browser mainly has two formats, one is `application/x-www-form-urlencoded` used to transmit simple data, roughly in the format of `key1=value1&key2=value2`. The other is for transmitting files and will use the `multipart/form-data` format. The latter is adopted because the encoding method of `application/x-www-form-urlencoded` is very inefficient for binary data like files. Next, we will submit experimental data to the backend server built on our machine in a manner similar to submitting a form, and verify whether the backend server has received the data. **Step 1:** Before starting this example, make sure that the backend server built with FastAPI in the previous step is running normally. If not, please refer to the above instructions to start the server program. **Step 2:** Copy and paste the following code into the Arduino IDE. This code sets the tested `serverName` to `http://192.168.1.2/sensor/`. The `192.168.1.2` needs to be replaced with the IP address of your PC acting as the backend server. Remember to change `your-ssid` in the code to your Wi-Fi network name and `your-password` to the corresponding Wi-Fi password.
+**Step 2:** Upload the code to XIAO ESP32C3 in the Arduino IDE. After the upload is successful, open the serial monitor to check the result returned by our backend server after the GET is issued, as shown in the figure below. 
+
+<!-- ![L14-企业微信20230529-181015\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685355061575-0b66c69f-b816-4408-96fa-9a255422693e.png#averageHue=%23d18f61&clientId=u562d138d-862f-4&from=ui&id=ucc3a3a73&originHeight=1490&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=445026&status=done&style=stroke&taskId=u6aaa0659-ecb7-428f-a122-c5e2a269265&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_15.png)
+
+
+The prompt `HTTP Response code: 200` means the request has been successful, and our XIAO ESP32C3 has successfully gotten data from the server. 
+
+### 3.4.4.5 Task 4: Using XIAO ESP32C3 to Send an HTTP POST Request 
+
+Submit data to a specified resource and request the server to process it (for example, submit a form or upload a file). The data is included in the request body. This request may create new resources or modify existing resources, or both. Each time it is submitted, the form data is encoded into the body of the HTTP request by the browser. The body of a POST request issued by a browser mainly has two formats, one is `application/x-www-form-urlencoded` used to transmit simple data, roughly in the format of `key1=value1&key2=value2`. The other is for transmitting files and will use the `multipart/form-data` format. The latter is adopted because the encoding method of `application/x-www-form-urlencoded` is very inefficient for binary data like files. <br />
+Next, we will submit experimental data to the backend server built on our machine in a manner similar to submitting a form, and verify whether the backend server has received the data. 
+
+**Step 1:** Before starting this example, make sure that the backend server built with FastAPI in the previous step is running normally. If not, please refer to the above instructions to start the server program. 
+
+**Step 2:** Copy and paste the following code into the Arduino IDE. This code sets the tested `serverName` to `http://192.168.1.2/sensor/`. The `192.168.1.2` needs to be replaced with the IP address of your PC acting as the backend server. Remember to change `your-ssid` in the code to your Wi-Fi network name and `your-password` to the corresponding Wi-Fi password.
 
 ``` cpp
 #include <WiFi.h>
@@ -409,6 +567,18 @@ void loop() {
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPpost_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L14_HTTPpost_XIAO_en>
 
-Step 2: Upload the code to XIAO ESP32C3 using the Arduino IDE. After a successful upload, open the Serial Monitor to examine the result returned by our backend server in response to the GET request. The image below illustrates the process. ![L14-企业微信20230529-182525\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356197478-3f391ca1-a374-4d62-94c8-012290f93dfe.png#averageHue=%23c69360&clientId=u562d138d-862f-4&from=ui&id=uf3d3fe37&originHeight=1606&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=425006&status=done&style=stroke&taskId=u45acb132-2b11-442e-bbb7-3ef5841eea4&title=) The message `**HTTP Response code: 200**` signifies a successful request. On your local PC, open a browser and navigate to `**http://192.168.1.2/items/sensor**` (please replace the IP address according to your actual PC's IP address, and if a port has been set, append a colon followed by the designated port number after the IP address). You should now see the most recent data sent by the XIAO ESP32C3. Since XIAO sends data every 5 seconds, you can always view the most recent data received by the backend server by refreshing the current page (the timestamp of the data will change). ![L14-企业微信20230529-183703\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356647204-53e829b3-83ac-499c-a8a2-65f9cf974e8c.png#averageHue=%23fcfcfc&clientId=u562d138d-862f-4&from=ui&id=u1992e56b&originHeight=512&originWidth=1934&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=71628&status=done&style=stroke&taskId=uef9ceadf-b39a-49c7-bb67-b55c74b78c3&title=) We have now successfully sent data from XIAO ESP32C3 to the local backend server.
+Step 2: Upload the code to XIAO ESP32C3 using the Arduino IDE. After a successful upload, open the Serial Monitor to examine the result returned by our backend server in response to the GET request. The image below illustrates the process. 
+
+<!-- ![L14-企业微信20230529-182525\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356197478-3f391ca1-a374-4d62-94c8-012290f93dfe.png#averageHue=%23c69360&clientId=u562d138d-862f-4&from=ui&id=uf3d3fe37&originHeight=1606&originWidth=2304&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=425006&status=done&style=stroke&taskId=u45acb132-2b11-442e-bbb7-3ef5841eea4&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_16.png)
+
+
+The message `**HTTP Response code: 200**` signifies a successful request. On your local PC, open a browser and navigate to `**http://192.168.1.2/items/sensor**` (please replace the IP address according to your actual PC's IP address, and if a port has been set, append a colon followed by the designated port number after the IP address). You should now see the most recent data sent by the XIAO ESP32C3. Since XIAO sends data every 5 seconds, you can always view the most recent data received by the backend server by refreshing the current page (the timestamp of the data will change). 
+
+<!-- ![L14-企业微信20230529-183703\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685356647204-53e829b3-83ac-499c-a8a2-65f9cf974e8c.png#averageHue=%23fcfcfc&clientId=u562d138d-862f-4&from=ui&id=u1992e56b&originHeight=512&originWidth=1934&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=71628&status=done&style=stroke&taskId=uef9ceadf-b39a-49c7-bb67-b55c74b78c3&title=)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_3-4/chapter_3-4_17.png)
+
+We have now successfully sent data from XIAO ESP32C3 to the local backend server.

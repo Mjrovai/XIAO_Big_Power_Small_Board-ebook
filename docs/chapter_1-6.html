@@ -410,7 +410,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background-knowledge" id="toc-background-knowledge" class="nav-link active" data-scroll-target="#background-knowledge">1.6.1 Background Knowledge</a>
+  <ul class="collapse">
+  <li><a href="#oled-display" id="toc-oled-display" class="nav-link" data-scroll-target="#oled-display">1.6.1.1 OLED Display</a></li>
+  <li><a href="#how-to-download-and-install-the-u8g2_arduino-library" id="toc-how-to-download-and-install-the-u8g2_arduino-library" class="nav-link" data-scroll-target="#how-to-download-and-install-the-u8g2_arduino-library">1.6.1.2 How to Download and Install the U8g2_Arduino Library</a></li>
+  <li><a href="#u8g2-library-for-oled" id="toc-u8g2-library-for-oled" class="nav-link" data-scroll-target="#u8g2-library-for-oled">1.6.1.3 U8g2 Library for OLED</a></li>
+  </ul></li>
+  <li><a href="#task-1-display-hello-world-on-the-oled-of-the-xiao-expansion-board" id="toc-task-1-display-hello-world-on-the-oled-of-the-xiao-expansion-board" class="nav-link" data-scroll-target="#task-1-display-hello-world-on-the-oled-of-the-xiao-expansion-board">1.6.2 Task 1: Display Hello World! on the OLED of the XIAO expansion board</a></li>
+  <li><a href="#task-2-draw-a-circle-on-the-oled-display" id="toc-task-2-draw-a-circle-on-the-oled-display" class="nav-link" data-scroll-target="#task-2-draw-a-circle-on-the-oled-display">1.6.3 Task 2: Draw a Circle on the OLED Display</a></li>
+  <li><a href="#extended-exercise" id="toc-extended-exercise" class="nav-link" data-scroll-target="#extended-exercise">1.6.4 Extended Exercise</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_1-6.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_1-6.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -432,15 +446,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In our daily life, we see displays everywhere - televisions, computers, phones, car displays, LCD billboards in shopping malls… Without a variety of screens, our lives would lose much of its fun. Of course, these screens, besides leisure and entertainment, are also indispensable tools for daily life. Common displays include LCD displays, OLED displays, etc. They all have their own strengths and weaknesses as display devices and can be applied in different fields and scenarios. The XIAO expansion board integrates an OLED display. In this lesson, we will learn how to use OLED to display text, patterns, and images. ## 1.6.1 Background Knowledge ### 1.6.1.1 OLED Display OLED, also known as Organic Light Emitting Diode, has advantages such as self-luminous, low power consumption, fast response speed, high resolution, light weight, etc. Its application field is very wide. The XIAO expansion board integrates a 0.96 inch 128x64 pixel OLED display, which can be used directly without wiring. During project production, we can display time, temperature and humidity, and other sensor return values through the OLED display, and we can also directly display letters, numbers, graphics, and even patterns, achieving visual interactive effects. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615276959688-448f39e5-eac5-4f84-a9e8-43165daf8416.png#averageHue=%23545454&amp;height=169&amp;id=lNCST&amp;originHeight=516&amp;originWidth=671&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=41135&amp;status=done&amp;style=none&amp;title=&amp;width=220" class="img-fluid" alt="OLED.png"> ### 1.6.1.2 How to Download and Install the U8g2_Arduino Library A library is a collection of program codes, which encapsulates some commonly used functions into a file for users to call. When we use OLED displays, temperature and humidity sensors, etc., we need to use the corresponding libraries. Where can these libraries be downloaded and how to install them? We will explain using the U8g2_Arduino library file of the OLED display as an example. Enter the website link 🔗 <a href="https://github.com/olikraus/u8g2_arduino" class="uri">https://github.com/olikraus/u8g2_arduino</a> to enter the GitHub page, click Code→Download ZIP to download the resource package to the local, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669095424276-2c8bcfd3-2e7f-43f1-84d2-03b016f992f9.jpeg" class="img-fluid"> After the download is complete, open the Arduino IDE, click Sketch→Include Library→Add .ZIP Library, and select the ZIP file you just downloaded. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685001646302-9aacd3be-14b8-476a-83d3-e8032693f682.png#averageHue=%2392be76&amp;clientId=ua691b286-183f-4&amp;from=ui&amp;id=hxII5&amp;originHeight=1550&amp;originWidth=1898&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=531750&amp;status=done&amp;style=none&amp;taskId=ue89f3f3a-a814-439e-afa5-50ec0e5407e&amp;title=" class="img-fluid" alt="L6-企业微信20230525-160018@2x.png"> If the library is installed correctly, you can see the prompt information for successful library installation in the output window. ### 1.6.1.3 U8g2 Library for OLED <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1615968476586-5d2f5111-c755-47bd-b91a-d65072b32528.jpeg#averageHue=%23f07d16&amp;height=224&amp;id=d8hN2&amp;originHeight=224&amp;originWidth=320&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=21706&amp;status=done&amp;style=none&amp;title=&amp;width=320" class="img-fluid" alt="uc1701_dogs102_uno_board_320.jpg"> U8g2 is a monochrome graphics library for embedded devices, which supports various types of OLED displays, making it easy for us to write programs to achieve the desired effects. The U8g2 library also includes the U8x8 library, and the two libraries have different functions: #### U8g2 Includes all graphic procedures (line/box/circle drawing); Supports various fonts, (almost) no restrictions on font height; Some memory in the microcontroller is needed to display. #### U8x8 Only supports text (character) output; Only allows each character to use a fixed-size font (8x8 pixels); Writes directly to the display, no buffer is needed in the microcontroller. Simply put, when we want the OLED display to display various fonts, graphics, patterns, and present visual content more flexibly, we can use the U8g2 library; when we want to display characters more directly, with no font requirements, just to display sensor values, time, etc., we can use the U8x8 library, which is more efficient. We can find many example programs in “File→Examples→U8g2”, and familiarize ourselves with the use of the library through the example programs. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685004995329-4b857906-0e64-4354-a98a-fe2cbf7d653f.jpeg" class="img-fluid"> Next, we will display characters and draw circles using two libraries respectively. ## 1.6.2 Task 1: Display Hello World! on the OLED of the XIAO expansion board &gt; ⚠️ Note Before starting to write a program for the OLED of the XIAO expansion board, make sure the Arduino IDE has loaded the <code>U8g2_Arduino</code> library file. The loading method can be referred to the description in the “How to Download and Install Arduino Library” section of this lesson.</p>
+<p><br> In our daily life, we see displays everywhere - televisions, computers, phones, car displays, LCD billboards in shopping malls… Without a variety of screens, our lives would lose much of its fun. Of course, these screens, besides leisure and entertainment, are also indispensable tools for daily life. Common displays include LCD displays, OLED displays, etc. They all have their own strengths and weaknesses as display devices and can be applied in different fields and scenarios. The XIAO expansion board integrates an OLED display. In this lesson, we will learn how to use OLED to display text, patterns, and images.</p>
+<section id="background-knowledge" class="level2">
+<h2 class="anchored" data-anchor-id="background-knowledge">1.6.1 Background Knowledge</h2>
+<section id="oled-display" class="level3">
+<h3 class="anchored" data-anchor-id="oled-display">1.6.1.1 OLED Display</h3>
+<p>OLED, also known as Organic Light Emitting Diode, has advantages such as self-luminous, low power consumption, fast response speed, high resolution, light weight, etc. Its application field is very wide. The XIAO expansion board integrates a 0.96 inch 128x64 pixel OLED display, which can be used directly without wiring. During project production, we can display time, temperature and humidity, and other sensor return values through the OLED display, and we can also directly display letters, numbers, graphics, and even patterns, achieving visual interactive effects.</p>
+<!-- ![OLED.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615276959688-448f39e5-eac5-4f84-a9e8-43165daf8416.png#averageHue=%23545454&height=169&id=lNCST&originHeight=516&originWidth=671&originalType=binary&ratio=1&rotation=0&showTitle=false&size=41135&status=done&style=none&title=&width=220)  -->
+<!-- ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_1.png) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_1.png" alt="verify-button.png" width="300" height="auto"></p>
+</section>
+<section id="how-to-download-and-install-the-u8g2_arduino-library" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-download-and-install-the-u8g2_arduino-library">1.6.1.2 How to Download and Install the U8g2_Arduino Library</h3>
+<p>A library is a collection of program codes, which encapsulates some commonly used functions into a file for users to call. When we use OLED displays, temperature and humidity sensors, etc., we need to use the corresponding libraries. Where can these libraries be downloaded and how to install them? We will explain using the U8g2_Arduino library file of the OLED display as an example. Enter the website link 🔗 <a href="https://github.com/olikraus/u8g2_arduino" class="uri">https://github.com/olikraus/u8g2_arduino</a> to enter the GitHub page, click Code→Download ZIP to download the resource package to the local, as shown in the figure below.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669095424276-2c8bcfd3-2e7f-43f1-84d2-03b016f992f9.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_2.jpeg" class="img-fluid"></p>
+<p>After the download is complete, open the Arduino IDE, click Sketch→Include Library→Add .ZIP Library, and select the ZIP file you just downloaded.</p>
+<!-- ![L6-企业微信20230525-160018\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685001646302-9aacd3be-14b8-476a-83d3-e8032693f682.png#averageHue=%2392be76&clientId=ua691b286-183f-4&from=ui&id=hxII5&originHeight=1550&originWidth=1898&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=531750&status=done&style=none&taskId=ue89f3f3a-a814-439e-afa5-50ec0e5407e&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_3.png" class="img-fluid"></p>
+<p>If the library is installed correctly, you can see the prompt information for successful library installation in the output window.</p>
+</section>
+<section id="u8g2-library-for-oled" class="level3">
+<h3 class="anchored" data-anchor-id="u8g2-library-for-oled">1.6.1.3 U8g2 Library for OLED</h3>
+<!-- ![uc1701_dogs102_uno_board_320.jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1615968476586-5d2f5111-c755-47bd-b91a-d65072b32528.jpeg#averageHue=%23f07d16&height=224&id=d8hN2&originHeight=224&originWidth=320&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21706&status=done&style=none&title=&width=320)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_4.jpg" class="img-fluid"></p>
+<p>U8g2 is a monochrome graphics library for embedded devices, which supports various types of OLED displays, making it easy for us to write programs to achieve the desired effects. The U8g2 library also includes the U8x8 library, and the two libraries have different functions:</p>
+<section id="u8g2" class="level4">
+<h4 class="anchored" data-anchor-id="u8g2"><strong>U8g2</strong></h4>
+<p>Includes all graphic procedures (line/box/circle drawing); Supports various fonts, (almost) no restrictions on font height; Some memory in the microcontroller is needed to display.</p>
+</section>
+<section id="u8x8" class="level4">
+<h4 class="anchored" data-anchor-id="u8x8"><strong>U8x8</strong></h4>
+<p>Only supports text (character) output; Only allows each character to use a fixed-size font (8x8 pixels); Writes directly to the display, no buffer is needed in the microcontroller. Simply put, when we want the OLED display to display various fonts, graphics, patterns, and present visual content more flexibly, we can use the U8g2 library; when we want to display characters more directly, with no font requirements, just to display sensor values, time, etc., we can use the U8x8 library, which is more efficient. We can find many example programs in “File→Examples→U8g2”, and familiarize ourselves with the use of the library through the example programs.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685004995329-4b857906-0e64-4354-a98a-fe2cbf7d653f.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_5.jpeg" class="img-fluid"></p>
+<p>Next, we will display characters and draw circles using two libraries respectively.</p>
+</section>
+</section>
+</section>
+<section id="task-1-display-hello-world-on-the-oled-of-the-xiao-expansion-board" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-display-hello-world-on-the-oled-of-the-xiao-expansion-board">1.6.2 Task 1: Display Hello World! on the OLED of the XIAO expansion board</h2>
+<blockquote class="blockquote">
+<p>⚠️ Note Before starting to write a program for the OLED of the XIAO expansion board, make sure the Arduino IDE has loaded the <code>U8g2_Arduino</code> library file. The loading method can be referred to the description in the “How to Download and Install Arduino Library” section of this lesson.</p>
+</blockquote>
 <section id="analysis" class="level4">
-<h4 class="anchored" data-anchor-id="analysis">Analysis</h4>
+<h4 class="anchored" data-anchor-id="analysis"><strong>Analysis</strong></h4>
 <p>If you just want to display “Hello World!” on the OLED, you can directly write characters with the U8x8 library. The steps are as follows:</p>
 <ul>
 <li>Declare the library file, set the constructor, and the constructor defines the display type, controller, RAM buffer size, and communication protocol.</li>
 <li>Initialize the display.</li>
-<li>Set the display font, set the print starting position, and output “Hello World!”. #### Write the program <strong>Step 1:</strong> Declare the library file, set the constructor, and the constructor defines the display type, controller, RAM buffer size, and communication protocol.</li>
+<li>Set the display font, set the print starting position, and output “Hello World!”.</li>
 </ul>
+</section>
+<section id="write-the-program" class="level4">
+<h4 class="anchored" data-anchor-id="write-the-program"><strong>Write the program </strong></h4>
+<p><strong>Step 1:</strong> Declare the library file, set the constructor, and the constructor defines the display type, controller, RAM buffer size, and communication protocol.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;U8x8lib.h&gt;</span><span class="co">//Use U8x8 library file</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8<span class="op">(</span><span class="co">/* reset=*/</span> U8X8_PIN_NONE<span class="op">);</span></span>
@@ -477,14 +537,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </section>
 <section id="program-upload" class="level4">
-<h4 class="anchored" data-anchor-id="program-upload">Program Upload:</h4>
-<p>After the program is written, we connect the XIAO main control board to the computer interface using a data cable, as shown in the image below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615972066074-7b4972f8-2c67-4e40-85a2-b37d26caa4b5.png#averageHue=%23dddcdc&amp;height=1073&amp;id=CnWn1&amp;originHeight=1073&amp;originWidth=2896&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=171180&amp;status=done&amp;style=none&amp;title=&amp;width=2896" class="img-fluid" alt="资源 1@4x.png"> Click “Upload” to transfer the program to the main control board. Once the upload is complete, check if the OLED display shows “Hello World!”. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616922722229-2d7ff640-f554-4603-b569-9b8deea25435.jpeg#averageHue=%23b1afa5&amp;height=393&amp;id=OjC8h&amp;originHeight=2320&amp;originWidth=3099&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1857145&amp;status=done&amp;style=none&amp;title=&amp;width=525" class="img-fluid" alt="L6.jpg"> ## 1.6.3 Task 2: Draw a Circle on the OLED Display #### Analysis To draw a circle on the OLED display, we need to use the <code>U8g2</code> library. Programming involves four steps:</p>
+<h4 class="anchored" data-anchor-id="program-upload"><strong>Program Upload:</strong></h4>
+<p>After the program is written, we connect the XIAO main control board to the computer interface using a data cable, as shown in the image below:</p>
+<!-- ![资源 1\@4x.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615972066074-7b4972f8-2c67-4e40-85a2-b37d26caa4b5.png#averageHue=%23dddcdc&height=1073&id=CnWn1&originHeight=1073&originWidth=2896&originalType=binary&ratio=1&rotation=0&showTitle=false&size=171180&status=done&style=none&title=&width=2896)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_6.png" class="img-fluid"></p>
+<p>Click “Upload” to transfer the program to the main control board. Once the upload is complete, check if the OLED display shows “Hello World!”.</p>
+<!-- ![L6.jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616922722229-2d7ff640-f554-4603-b569-9b8deea25435.jpeg#averageHue=%23b1afa5&height=393&id=OjC8h&originHeight=2320&originWidth=3099&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1857145&status=done&style=none&title=&width=525)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_7.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="task-2-draw-a-circle-on-the-oled-display" class="level2">
+<h2 class="anchored" data-anchor-id="task-2-draw-a-circle-on-the-oled-display">1.6.3 Task 2: Draw a Circle on the OLED Display</h2>
+<section id="analysis-1" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-1"><strong>Analysis</strong></h4>
+<p>To draw a circle on the OLED display, we need to use the <code>U8g2</code> library. Programming involves four steps:</p>
 <ul>
 <li>Declare the <code>U8g2</code> library file, determine whether to use SPI or I2C protocol, and set up the constructor to connect to the OLED display.</li>
 <li>The <code>draw()</code> function uses the <code>u8g2.drawCircle</code> function to draw a circle on the OLED.</li>
 <li>Initialize the <code>U8g2</code> library.</li>
-<li>In the <code>loop()</code> function, call related functions to draw images on the OLED. #### Program Writing <strong>Step 1:</strong> Declare the <code>U8g2</code> library file, determine whether to use SPI or I2C protocol, and set up the constructor to connect to the OLED display.</li>
+<li>In the <code>loop()</code> function, call related functions to draw images on the OLED.</li>
 </ul>
+</section>
+<section id="program-writing" class="level4">
+<h4 class="anchored" data-anchor-id="program-writing"><strong>Program Writing </strong></h4>
+<p><strong>Step 1:</strong> Declare the <code>U8g2</code> library file, determine whether to use SPI or I2C protocol, and set up the constructor to connect to the OLED display.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;Arduino.h&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;U8g2lib.h&gt;</span><span class="co">//Use U8g2 library</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -526,8 +602,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </section>
 <section id="uploading-the-program" class="level4">
-<h4 class="anchored" data-anchor-id="uploading-the-program">Uploading the Program</h4>
-<p>After writing the program, connect the XIAO main control board to the computer using a data cable, as shown below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615972066074-7b4972f8-2c67-4e40-85a2-b37d26caa4b5.png#averageHue=%23dddcdc&amp;height=1073&amp;id=mgN2W&amp;originHeight=1073&amp;originWidth=2896&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=&amp;width=2896" class="img-fluid"> Once connected, click on the “Upload” button to upload the program to the hardware. When the debugging area displays “Upload Successful”, check if the OLED display screen has shown a circular pattern. <img src="https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616923633490-077b6b69-4bf1-4cd1-af58-1e93951f3917.jpeg#averageHue=%23b5b2a9&amp;height=420&amp;id=CyKne&amp;originHeight=2320&amp;originWidth=3099&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1845636&amp;status=done&amp;style=none&amp;title=&amp;width=561" class="img-fluid" alt="L6(2).jpg"> ## 1.6.4 Extended Exercise Try drawing some more complex patterns.</p>
+<h4 class="anchored" data-anchor-id="uploading-the-program"><strong>Uploading the Program</strong></h4>
+<p>After writing the program, connect the XIAO main control board to the computer using a data cable, as shown below:</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615972066074-7b4972f8-2c67-4e40-85a2-b37d26caa4b5.png#averageHue=%23dddcdc&height=1073&id=mgN2W&originHeight=1073&originWidth=2896&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=&width=2896)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_6.png" class="img-fluid"></p>
+<p>Once connected, click on the “Upload” button to upload the program to the hardware. When the debugging area displays “Upload Successful”, check if the OLED display screen has shown a circular pattern.</p>
+<!-- ![L6(2).jpg](https://cdn.nlark.com/yuque/0/2021/jpeg/2746511/1616923633490-077b6b69-4bf1-4cd1-af58-1e93951f3917.jpeg#averageHue=%23b5b2a9&height=420&id=CyKne&originHeight=2320&originWidth=3099&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1845636&status=done&style=none&title=&width=561)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-6/chapter_1-6_8.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="extended-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="extended-exercise">1.6.4 Extended Exercise</h2>
+<p>Try drawing some more complex patterns.</p>
 
 
 </section>
@@ -800,7 +886,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">XIAO: Big Power, Small Board</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_1-6.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_1-6.qmd" class="toc-action">View source</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

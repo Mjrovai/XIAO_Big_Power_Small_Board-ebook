@@ -8,18 +8,24 @@ Exploring Machine Learning on the tremendous new tiny device of the Seeed XIAO f
 
 ### 4.4.1.1 Hardware components
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5)[Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5) -->
+
+[Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-4_1.png" width="400" height="auto" />
+
+
 
 ### 4.4.2 Software apps and online services
 
--   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48) [Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
--   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&clientId=ud4d22600-5c37-4&from=paste&height=48&id=k6jic&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8524&status=done&style=none&taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&title=&width=48) [Edge Impulse Studio](https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2)
+<!-- -   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48)  -->
+- ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png)[Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
+
+-   ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_5.png) [Edge Impulse Studio](https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2)
 
 ## 4.4.2 Introduction
 
 More and more, we are facing an artificial intelligence (AI) revolution where, as stated by Gartner, **Edge AI** has a very high impact potential, and **it is for now**!
 
-![image.png](https://hackster.imgix.net/uploads/attachments/1587506/image_EZKT6sirt5.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![](https://hackster.imgix.net/uploads/attachments/1587506/image_EZKT6sirt5.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 In the "bull-eye" of emerging technologies, radar is the *Edge Computer Vision*, and when we talk about Machine Learning (ML) applied to vision, the first thing that comes to mind is **Image Classification**, a kind of ML "Hello World"!
 
@@ -30,31 +36,33 @@ Seeed Studio released a new affordable development board, the [XIAO ESP32S3 Sens
 **XIAO ESP32S3 Sense Main Features**
 
 -   **Powerful MCU Board**: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported
--   **Advanced Functionality**: Detachable OV2640 camera sensor for 1600\*1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone
+-   **Advanced Functionality**: Detachable OV2640 camera sensor for 1600 * 1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone
 -   **Elaborate Power Design**: Lithium battery charge management capability offer four power consumption model, which allows for deep sleep mode with power consumption as low as 14μA
 -   **Great Memory for more Possibilities**: Offer 8MB PSRAM and 8MB FLASH, supporting SD card slot for external 32GB FAT memory
 -   **Outstanding RF performance**: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna
 -   **Thumb-sized Compact Design**: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices
 
-![MTY4ODg1NTkyNTI4NTEyMg_561868_B55w78PjvcK7SUlF_1679553921.png](https://hackster.imgix.net/uploads/attachments/1587508/mty4odg1ntkynti4nteymg_561868_b55w78pjvck7sulf_1679553921_9rsX6h2aAP.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![](https://hackster.imgix.net/uploads/attachments/1587508/mty4odg1ntkynti4nteymg_561868_b55w78pjvck7sulf_1679553921_9rsX6h2aAP.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+
 
 Below is the general board pinout:
 
-![XIAO_ESP32C3_Sense_pin-out.png](https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![](https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-> For more details, please refer to Seeed Studio WiKi page: https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
+> For more details, please refer to Seeed Studio WiKi page: <br />
+> https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
 
 ## 4.4.3 Installing the XIAO ESP32S3 Sense on Arduino IDE
 
-On Arduino IDE, navigate to **File \> Preferences**, and fill in the URL:
+On Arduino IDE, navigate to **File > Preferences**, and fill in the URL:
 
 [*https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json*](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json)
 
-on the field ==\> **Additional Boards Manager URLs**
+on the field ==> **Additional Boards Manager URLs**
 
 ![Pasted Graphic.png](https://hackster.imgix.net/uploads/attachments/1587510/pasted_graphic_JkHMkNOmPR.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Next, open boards manager. Go to **Tools** \> **Board** \> **Boards Manager...** and enter with *esp32.* Select and install the most updated and stable package (avoid *alpha* versions) :
+Next, open boards manager. Go to **Tools** > **Board** > **Boards Manager...** and enter with *esp32.* Select and install the most updated and stable package (avoid *alpha* versions) :
 
 ![Pasted Graphic 2.png](https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -70,7 +78,7 @@ That is it! The device should be OK. Let's do some tests.
 
 The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it (using the LED_BUILTIN Arduino constant) or by changing the Blink sketch accordantly:
 
-```         
+```cpp         
 #define LED_BUILT_IN 21 
 
 void setup() {
@@ -164,7 +172,7 @@ Like before, go to GitHub to download the folder with the sketch: [SimpleWiFiSer
 
 Before running the sketch, you should enter your network credentials:
 
-```         
+```cpp         
 const char* ssid     = "Your credentials here";
 const char* password = "Your credentials here";
 ```
@@ -306,7 +314,7 @@ Another important technic to be used with Deep Learning is **Data Augmentation**
 
 Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:
 
-```         
+```cpp         
 # Implements the data augmentation policy
 def augment_image(image, label):
     # Flips the image randomly
@@ -354,7 +362,7 @@ Open the Static Buffer example:
 
 You can see that the first line of code is exactly the calling of a library with all the necessary stuff for running inference on your device.
 
-```         
+```cpp         
 #include <XIAO-ESP32S3-CAM-Fruits-vs-Veggies_inferencing.h>
 ```
 
@@ -388,7 +396,7 @@ Go to the Arduino IDE Examples and download from your project the sketch esp32_c
 
 You should change lines 32 to 75, which define the camera model and pins, using the data related to our model. Copy and paste the below lines, replacing the lines 32-75:
 
-```         
+```cpp         
 #define PWDN_GPIO_NUM     -1 
 #define RESET_GPIO_NUM    -1 
 #define XCLK_GPIO_NUM     10 

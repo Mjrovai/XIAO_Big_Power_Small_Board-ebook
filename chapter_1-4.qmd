@@ -1,26 +1,90 @@
 # 1.4 Monitor Knob Value Changes with Serial Monitor {.unnumbered}
+<br />
+When we write a few lines of code to control the board to light up the LED, or to use a button switch to control the buzzer, we can intuitively see the working state of these external hardware. If it achieves our expected results, it is very fortunate. What if it doesn't? The program compiles without error, where is the mistake? It would be nice if they could speak up. In this section, we will learn how to communicate with the computer through the serial monitor and check the running status and information of the program and hardware. 
 
-When we write a few lines of code to control the board to light up the LED, or to use a button switch to control the buzzer, we can intuitively see the working state of these external hardware. If it achieves our expected results, it is very fortunate. What if it doesn't? The program compiles without error, where is the mistake? It would be nice if they could speak up. In this section, we will learn how to communicate with the computer through the serial monitor and check the running status and information of the program and hardware. \## 1.4.1 Background Knowledge \### 1.4.1.1 Rotary Potentiometer The rotary potentiometer, although it doesn't seem common, has a very wide range of uses in household appliances and industrial equipment. For example, the volume knob on the sound system. ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615884101164-d2520bfe-4c22-427c-8d36-debf45973631.png#averageHue=%23e3e2e0&height=293&id=UzSSZ&originHeight=293&originWidth=622&originalType=binary&ratio=1&rotation=0&showTitle=false&size=89079&status=done&style=none&title=&width=622) The rotary potentiometer can produce an analog output value between 0 and VCC (the voltage of the connected circuit) on its connected pins. By rotating the knob, you can change the output voltage value. The range of the knob's angle is 300°, and the output value is 0-1023. We can use the rotary potentiometer to control the LED light to show brightness changes, or control the servo to rotate at different angles, etc. ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1613485032481-2488751d-9e4b-4c8c-acff-47cb9bfb5b72.png#averageHue=%23a99681&height=168&id=syUsX&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=361140&status=done&style=none&title=&width=224) \### 1.4.1.2 Analog I/O In the Arduino series of development boards, the pins with "A" in front of the pin number are analog input pins. We can read the analog value on these pins to achieve the effect we want. \#### Analog Signal In life, analog signals are everywhere, such as the change in sound, light, temperature, etc., the frequency, amplitude, etc. of the signal can change continuously with time. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684917511360-8d2327f5-4145-4763-81e1-82e59a80e11b.jpeg) So how do we read the analog value of the pin through the development board? The analog input pin has an ADC (analog-to-digital converter), which can convert the external input analog signal into a digital signal that the development board can recognize, thereby achieving the function of reading in analog values, i.e., it can convert a 0-5V voltage signal into an integer value of 0-1023.
+## 1.4.1 Background Knowledge 
+
+### 1.4.1.1 Rotary Potentiometer 
+
+The rotary potentiometer, although it doesn't seem common, has a very wide range of uses in household appliances and industrial equipment. For example, the volume knob on the sound system. 
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615884101164-d2520bfe-4c22-427c-8d36-debf45973631.png#averageHue=%23e3e2e0&height=293&id=UzSSZ&originHeight=293&originWidth=622&originalType=binary&ratio=1&rotation=0&showTitle=false&size=89079&status=done&style=none&title=&width=622)  -->
+
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_1.png)
+
+The rotary potentiometer can produce an analog output value between 0 and VCC (the voltage of the connected circuit) on its connected pins. By rotating the knob, you can change the output voltage value. The range of the knob's angle is 300°, and the output value is 0-1023. We can use the rotary potentiometer to control the LED light to show brightness changes, or control the servo to rotate at different angles, etc.
+
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1613485032481-2488751d-9e4b-4c8c-acff-47cb9bfb5b72.png#averageHue=%23a99681&height=168&id=syUsX&originHeight=525&originWidth=700&originalType=binary&ratio=1&rotation=0&showTitle=false&size=361140&status=done&style=none&title=&width=224)  -->
+<!-- ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_2.png) -->
+<img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_2.png" alt="verify-button.png" width="250" height="auto" />
+
+### 1.4.1.2 Analog I/O 
+
+In the Arduino series of development boards, the pins with "A" in front of the pin number are analog input pins. We can read the analog value on these pins to achieve the effect we want. 
+
+#### **Analog Signal** 
+
+In life, analog signals are everywhere, such as the change in sound, light, temperature, etc., the frequency, amplitude, etc. of the signal can change continuously with time. 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684917511360-8d2327f5-4145-4763-81e1-82e59a80e11b.jpeg)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_3.jpeg)
+
+
+So how do we read the analog value of the pin through the development board? The analog input pin has an ADC (analog-to-digital converter), which can convert the external input analog signal into a digital signal that the development board can recognize, thereby achieving the function of reading in analog values, i.e., it can convert a 0-5V voltage signal into an integer value of 0-1023.
 
 -   `analogRead();`
 
-Read the value from the specified analog pin. **Syntax** `analogRead(pin);` **Parameters** `pin:`The name of the analog input pin to be read.
+Read the value from the specified analog pin. <br />
+**Syntax** <br />
+`analogRead(pin);` <br />
+**Parameters** <br />
+`pin:`The name of the analog input pin to be read.
 
 -   `analogWrite();`
 
-Corresponding to analog input is analog output. We use the `analogWrite()` function to achieve this function. It should be noted that when using this function, it is only through a special way to output different voltages to achieve the effect of approximate analog values. This method is called PWM pulse width modulation, so we are writing PWM square waves to the specified pin, not the true analog value. **Syntax** `analogWrite(pin, value);` **Parameters** `pin:`The pin to output PWM, allowed data type: int. `value:` Duty cycle, between 0-255, allowed data type: int. \> \### PWM Pulse Width Modulation \> Pulse width modulation (PWM) is a way to achieve analog results through digital output. Simply put, you can control the charging current by adjusting the period of PWM and the duty cycle of PWM. As shown in the figure, the voltage is switched back and forth between 0V (low level) and 5V (high level). A switchback is a period. In this period, if the time of high voltage is 25% and the time of low voltage is 75%, the duty cycle is 25%, and the output voltage is 5V. \> When we write a few lines of code to control the lighting of LEDs on the development board, or use button switches to control the buzzer, we can directly observe the working status of these external hardware. If it achieves our expected results, we are lucky. But what if it doesn't? The program compiles without errors, so where is the problem? It would be nice if they could talk. In this section, we will learn how to communicate with the computer, monitor the running status and information of the program and hardware through the serial monitor. \> ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1613458123437-662c754b-9ca0-4ba5-8038-162b5ebb7e8e.png#averageHue=%230b0b0b&height=438&id=F1X4U&originHeight=438&originWidth=400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22878&status=done&style=none&title=&width=400)
+Corresponding to analog input is analog output. We use the `analogWrite()` function to achieve this function. It should be noted that when using this function, it is only through a special way to output different voltages to achieve the effect of approximate analog values. This method is called PWM pulse width modulation, so we are writing PWM square waves to the specified pin, not the true analog value. 
+
+**Syntax** <br />
+`analogWrite(pin, value);` 
+
+**Parameters** <br />
+`pin:`The pin to output PWM, allowed data type: int. <br />
+`value:` Duty cycle, between 0-255, allowed data type: int. 
+
+>### PWM Pulse Width Modulation 
+> Pulse width modulation (PWM) is a way to achieve analog results through digital output. Simply put, you can control the charging current by adjusting the period of PWM and the duty cycle of PWM. As shown in the figure, the voltage is switched back and forth between 0V (low level) and 5V (high level). A switchback is a period. In this period, if the time of high voltage is 25% and the time of low voltage is 75%, the duty cycle is 25%, and the output voltage is 5V. <br />
+> When we write a few lines of code to control the lighting of LEDs on the development board, or use button switches to control the buzzer, we can directly observe the working status of these external hardware. If it achieves our expected results, we are lucky. But what if it doesn't? The program compiles without errors, so where is the problem? It would be nice if they could talk. In this section, we will learn how to communicate with the computer, monitor the running status and information of the program and hardware through the serial monitor. <br />
+<!-- > ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1613458123437-662c754b-9ca0-4ba5-8038-162b5ebb7e8e.png#averageHue=%230b0b0b&height=438&id=F1X4U&originHeight=438&originWidth=400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22878&status=done&style=none&title=&width=400) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_4.png)
+
 
 ### 1.4.1.3 Serial Communication
 
-When we want to communicate with other devices using XIAO, the most common method is serial communication. All Arduino series development boards have this functionality. As we know, computers understand binary data (like 1010). Therefore, among electronic devices, serial communication achieves its function by sending and receiving such data. The key component to implement this function is the USART (Universal Synchronous/Asynchronous Receiver Transmitter). In the Arduino IDE, we can observe the sent and received data through the Serial Monitor, and we need related serial communication functions to implement this feature. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684918306693-34cb5007-fd14-49d9-a1c0-3a3e2c5a578f.jpeg)
+When we want to communicate with other devices using XIAO, the most common method is serial communication. All Arduino series development boards have this functionality. As we know, computers understand binary data (like 1010). Therefore, among electronic devices, serial communication achieves its function by sending and receiving such data. The key component to implement this function is the USART (Universal Synchronous/Asynchronous Receiver Transmitter). In the Arduino IDE, we can observe the sent and received data through the Serial Monitor, and we need related serial communication functions to implement this feature. 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684918306693-34cb5007-fd14-49d9-a1c0-3a3e2c5a578f.jpeg) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_5.jpeg)
+
 
 -   `**Serial.begin()；**`
 
-This function is used to open the serial port and set the data transmission rate. **Syntax** `Serial.begin(speed);` **Parameters** `Serial`: Serial port object. `speed`: Baud rate, commonly set to values like 9600, 115200, etc.
+This function is used to open the serial port and set the data transmission rate. 
+
+**Syntax** <br />
+`Serial.begin(speed);` 
+
+**Parameters** <br />
+`Serial`: Serial port object. <br />
+`speed`: Baud rate, commonly set to values like 9600, 115200, etc.
 
 -   `**Serial.println();**`
 
-**Syntax** `Serial.println(val);` **Parameters** `Serial`: Serial port object. `val`: The value to be printed, which can be of any data type.
+**Syntax** <br />
+`Serial.println(val);` 
+
+**Parameters** <br />
+`Serial`: Serial port object. <br />
+`val`: The value to be printed, which can be of any data type.
 
 For example, to print "hello world!!!" to the Serial Monitor, we need to initialize the serial port in the `setup()` function and output "hello world!!!" through the serial port in the `loop()` function:
 
@@ -33,11 +97,21 @@ void loop() {
 }
 ```
 
-Returning to the question at the beginning of this section: when we have written the code and verified it to be correct, but the effect of running the code exceeds expectations or the hardware doesn't respond at all, where is the problem? At this time, we can use the Serial Monitor to observe the data sent or received by the hardware to make a judgment. For instance, we can control the on-off state of an LED with a button, and we can use the Serial Monitor to check the returned value when the button is pressed to determine whether the button is working properly. Next, we will learn how to use the Serial Monitor to make the hardware "speak". \## 1.4.2 Task 1: Use the Serial Monitor to Check if the Button is Pressed \#### Analysis Remember controlling the on-off state of an LED with a button? Some of the code can be reused. We only need to read the button on-off setting and button on-off state code, and then add the initialization of the serial port and the data sent to the serial port. The program writing still follows three steps:
+Returning to the question at the beginning of this section: when we have written the code and verified it to be correct, but the effect of running the code exceeds expectations or the hardware doesn't respond at all, where is the problem? At this time, we can use the Serial Monitor to observe the data sent or received by the hardware to make a judgment. For instance, we can control the on-off state of an LED with a button, and we can use the Serial Monitor to check the returned value when the button is pressed to determine whether the button is working properly. Next, we will learn how to use the Serial Monitor to make the hardware "speak". 
+
+## 1.4.2 Task 1: Use the Serial Monitor to Check if the Button is Pressed 
+
+#### **Analysis **
+
+Remember controlling the on-off state of an LED with a button? Some of the code can be reused. We only need to read the button on-off setting and button on-off state code, and then add the initialization of the serial port and the data sent to the serial port. The program writing still follows three steps:
 
 -   Define button pins and variables.
 -   Initialize the serial port, set the serial port baud rate, and set the status of the button on-off pin.
--   Read the button state and send it to the serial port. \#### Write the program **Step 1:** Define the button pin and variable.
+-   Read the button state and send it to the serial port. 
+
+#### **Write the program **
+
+**Step 1:** Define the button pin and variable.
 
 ``` cpp
 const int buttonPin = 1; // Define the button switch as pin 1. If you are using XIAO RP2040/XIAO ESP32, please change 1 to D1
@@ -63,21 +137,40 @@ void loop() {
 }
 ```
 
-> Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadButton_XIAO_en>
+> Get this program from Github <br />
+> <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadButton_XIAO_en>
 
-#### Upload the program:
+#### **Upload the program:**
 
-We will upload the written program to the hardware. First, connect the XIAO to the computer with the data cable from the kit. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684977221668-62259e38-ab6e-4645-b9c9-be8b2ec59bdb.jpeg) Note the position of the buttons on the XIAO extensions used for testing in the figure.
+We will upload the written program to the hardware. First, connect the XIAO to the computer with the data cable from the kit. 
 
-Click ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&clientId=u44ac5ada-7982-4&from=paste&height=33&id=rMAbX&originHeight=66&originWidth=70&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4632&status=done&style=none&taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&title=&width=35) (Verify Button) in the Arduino IDE to verify the program. If the verification is correct, click ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&clientId=u44ac5ada-7982-4&from=paste&height=34&id=hqQPy&originHeight=68&originWidth=68&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4597&status=done&style=none&taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&title=&width=34)(Upload Button) to upload the program to XIAO. When the debug area shows "Done uploading.", open the serial monitor and observe the value changes printed by the serial monitor when the button is pressed and released. What did you find?
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684977221668-62259e38-ab6e-4645-b9c9-be8b2ec59bdb.jpeg) 
+ -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-2/chapter_1-2_10.jpeg)
 
-![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979740759-7ec42f4e-4930-46e1-a8ca-657b3988c1fe.jpeg)
 
-When we press the button on the XIAO expansion board, the serial monitor shows `0`, and when we release the button, the serial monitor shows `1`. \## 1.4.3 Task 2: Using the Serial Monitor to View Knob Value Changes \#### Analysis: In Task 1, the button switch is a digital input that sends out digital signals 0 and 1, while the knob potentiometer returns an analog signal. We need to read the rotation angle value of the knob potentiometer on pin `A0` and send it to the serial port. The program also consists of three steps:
+Note the position of the buttons on the XIAO extensions used for testing in the figure.
+
+Click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/verify-button.png" alt="verify-button.png" width="30" height="30" /> (Verify Button) in the Arduino IDE to verify the program. If the verification is correct, click <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/upload-button.png" alt="upload-button.png" width="30" height="30" /> (Upload Button) to upload the program to XIAO. When the debug area shows "Done uploading.", open the serial monitor and observe the value changes printed by the serial monitor when the button is pressed and released. What did you find?
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979740759-7ec42f4e-4930-46e1-a8ca-657b3988c1fe.jpeg) -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_6.jpeg)
+
+
+When we press the button on the XIAO expansion board, the serial monitor shows `0`, and when we release the button, the serial monitor shows `1`. 
+
+## 1.4.3 Task 2: Using the Serial Monitor to View Knob Value Changes 
+
+#### **Analysis: **
+
+In Task 1, the button switch is a digital input that sends out digital signals 0 and 1, while the knob potentiometer returns an analog signal. We need to read the rotation angle value of the knob potentiometer on pin `A0` and send it to the serial port. The program also consists of three steps:
 
 -   Define the knob potentiometer pin and variables.
 -   Initialize the serial port and set the status of the knob potentiometer pin.
--   Read and calculate the rotation angle value of the knob potentiometer and send it to the serial port. \#### Write the program **Step 1:** Define the knob potentiometer pin and variables. Here we need to define the voltage value of the ADC (Analog-to-Digital Converter) and the reference voltage of the Grove module interface, because we will calculate the voltage changes in the circuit where the knob switch is connected through these voltage values.
+-   Read and calculate the rotation angle value of the knob potentiometer and send it to the serial port. 
+
+#### **Write the program ** 
+**Step 1:** Define the knob potentiometer pin and variables. Here we need to define the voltage value of the ADC (Analog-to-Digital Converter) and the reference voltage of the Grove module interface, because we will calculate the voltage changes in the circuit where the knob switch is connected through these voltage values.
 
 ``` cpp
 #define ROTARY_ANGLE_SENSOR A0  // Define the rotary potentiometer interface A0
@@ -146,6 +239,29 @@ void loop()
 
 > Get this program from Github <https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/tree/main/code/L4_ReadRotary_XIAO_en>
 
-#### Upload the program:
+#### **Upload the program:**
 
-After writing the program, since external sensors are used, connect the knob module to the `A0` interface using the four-color Grove cable as shown in the image below: ![页面_6.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615960111957-ae473500-4455-4879-95bc-1a9ef78e59ba.png#averageHue=%23bdbab6&height=424&id=SqEDk&originHeight=792&originWidth=1135&originalType=binary&ratio=1&rotation=0&showTitle=false&size=90418&status=done&style=none&title=&width=607) After connecting, connect the XIAO main control board to your computer using a data cable. In the Arduino IDE, click on the verification button ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&clientId=u44ac5ada-7982-4&from=paste&height=33&id=Ahp1c&originHeight=66&originWidth=70&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4632&status=done&style=none&taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&title=&width=35) to verify the program. If it verifies correctly, click the upload button to upload the program to![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&clientId=u44ac5ada-7982-4&from=paste&height=34&id=RDMtQ&originHeight=68&originWidth=68&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4597&status=done&style=none&taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&title=&width=34) the hardware. When the debugging area shows "Done uploading.", you can proceed. Open the serial monitor and rotate the knob potentiometer to observe the data changes displayed in the serial monitor. These changes represent the angle value of the knob. ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979680733-1fe3cef3-4d32-4d6c-b7ab-a15e09bdd107.jpeg) \## 1.4.4 Extended Exercise While observing the angle value of the knob potentiometer in the serial monitor, we find that the value is constantly jumping and changing. Observing through the numbers alone is not very intuitive. At this time, we can use the serial plotter. With it, we can plot the data that is printed to the Arduino's serial port in real time. Based on the second task, close the serial monitor and open the **"Tools → Serial Plotter"** as shown in the image below: ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979746835-ffab0b7c-2970-40b3-bb5e-0084f7801040.jpeg) The serial plotter draws the data obtained from the serial port into an XY axis curve chart, where the X-axis represents the change in time and the Y-axis represents the data obtained from the serial port. Through the chart, you can more intuitively see the change in data. Please give it a try.
+After writing the program, since external sensors are used, connect the knob module to the `A0` interface using the four-color Grove cable as shown in the image below: 
+
+<!-- ![页面_6.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615960111957-ae473500-4455-4879-95bc-1a9ef78e59ba.png#averageHue=%23bdbab6&height=424&id=SqEDk&originHeight=792&originWidth=1135&originalType=binary&ratio=1&rotation=0&showTitle=false&size=90418&status=done&style=none&title=&width=607)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_7.png)
+
+
+After connecting, connect the XIAO main control board to your computer using a data cable. 
+
+In the Arduino IDE, click on the verification button <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/verify-button.png" alt="verify-button.png" width="30" height="30" /> to verify the program. If it verifies correctly, click the upload button to upload the program to <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/upload-button.png" alt="upload-button.png" width="30" height="30" /> the hardware. When the debugging area shows "Done uploading.", you can proceed. Open the serial monitor and rotate the knob potentiometer to observe the data changes displayed in the serial monitor. These changes represent the angle value of the knob. 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979680733-1fe3cef3-4d32-4d6c-b7ab-a15e09bdd107.jpeg)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_6.jpeg)
+
+
+
+## 1.4.4 Extended Exercise 
+
+While observing the angle value of the knob potentiometer in the serial monitor, we find that the value is constantly jumping and changing. Observing through the numbers alone is not very intuitive. At this time, we can use the serial plotter. With it, we can plot the data that is printed to the Arduino's serial port in real time. Based on the second task, close the serial monitor and open the **"Tools → Serial Plotter"** as shown in the image below: 
+
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684979746835-ffab0b7c-2970-40b3-bb5e-0084f7801040.jpeg)  -->
+![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-4/chapter_1-4_8.jpeg)
+
+
+The serial plotter draws the data obtained from the serial port into an XY axis curve chart, where the X-axis represents the change in time and the Y-axis represents the data obtained from the serial port. Through the chart, you can more intuitively see the change in data. Please give it a try.

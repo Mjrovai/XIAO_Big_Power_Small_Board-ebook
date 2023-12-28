@@ -419,6 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#hardware-components" id="toc-hardware-components" class="nav-link" data-scroll-target="#hardware-components">Hardware components</a></li>
   <li><a href="#software-apps-and-online-services" id="toc-software-apps-and-online-services" class="nav-link" data-scroll-target="#software-apps-and-online-services">Software apps and online services</a></li>
   </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">4.3.2 Introduction</a></li>
   <li><a href="#the-kws-project" id="toc-the-kws-project" class="nav-link" data-scroll-target="#the-kws-project">4.3.3 The KWS Project</a>
   <ul class="collapse">
   <li><a href="#the-machine-learning-workflow" id="toc-the-machine-learning-workflow" class="nav-link" data-scroll-target="#the-machine-learning-workflow">4.3.3.1 The Machine Learning Workflow</a></li>
@@ -430,6 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-impulse-pre-process-model-definition" id="toc-creating-impulse-pre-process-model-definition" class="nav-link" data-scroll-target="#creating-impulse-pre-process-model-definition">4.3.3.7 Creating Impulse (Pre-Process / Model definition)</a></li>
   <li><a href="#pre-processing-mfcc" id="toc-pre-processing-mfcc" class="nav-link" data-scroll-target="#pre-processing-mfcc">4.3.3.8 Pre-Processing (MFCC)</a></li>
   <li><a href="#model-design-and-training" id="toc-model-design-and-training" class="nav-link" data-scroll-target="#model-design-and-training">4.3.3.9 Model Design and Training</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">4.3.3.10 Testing</a></li>
   <li><a href="#deploy-and-inference" id="toc-deploy-and-inference" class="nav-link" data-scroll-target="#deploy-and-inference">4.3.3.11 Deploy and Inference</a></li>
   <li><a href="#postprocessing" id="toc-postprocessing" class="nav-link" data-scroll-target="#postprocessing">4.3.3.12 Postprocessing</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.3.3.13 Conclusion</a></li>
@@ -457,45 +459,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489386491-5f565da3-b045-473a-af15-1610d3fe0df7.png#averageHue=%235d918e&amp;clientId=u0674af82-de24-4&amp;from=paste&amp;height=472&amp;id=u45e9b289&amp;originHeight=500&amp;originWidth=666&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=444034&amp;status=done&amp;style=none&amp;taskId=u9c2a33f1-28ec-4080-a923-67a555f4de1&amp;title=&amp;width=628.9971618652344" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489386491-5f565da3-b045-473a-af15-1610d3fe0df7.png#averageHue=%235d918e&clientId=u0674af82-de24-4&from=paste&height=472&id=u45e9b289&originHeight=500&originWidth=666&originalType=binary&ratio=1&rotation=0&showTitle=false&size=444034&status=done&style=none&taskId=u9c2a33f1-28ec-4080-a923-67a555f4de1&title=&width=628.9971618652344) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_1.png" class="img-fluid"></p>
 <p>We are continuing our exploration of Machine Learning on a giant tiny device, the Seeed Studio XIAO nRF52840 Sense（also called XIAO BLE Sense. And now, classifying sound waves.</p>
 <section id="things-used-in-this-project" class="level2">
 <h2 class="anchored" data-anchor-id="things-used-in-this-project">4.3.1 Things used in this project</h2>
 <section id="hardware-components" class="level3">
 <h3 class="anchored" data-anchor-id="hardware-components">Hardware components</h3>
 <ul>
-<li><p><a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed Studio XIAO nRF52840 Sense</a> × 1 <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1668492017246-6f04d198-1961-4f7b-a990-dd6937468025.png#averageHue=%23a6997f&amp;clientId=u640cf75b-7515-4&amp;from=paste&amp;height=78&amp;id=tGTo8&amp;originHeight=650&amp;originWidth=970&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=512355&amp;status=done&amp;style=none&amp;taskId=u369408e4-7109-4379-8247-0698cf19286&amp;title=&amp;width=116" class="img-fluid" alt="image.png"></p></li>
-<li><p><a href="https://www.hackster.io/seeed/products/seeeduino-xiao-expansion-board?ref=project-2fb3ab">Seeed Studio Seeeduino XIAO Expansion board</a> × 1</p></li>
+<li><a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed Studio XIAO nRF52840 Sense</a> × 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_2.png" width="400" height="auto"></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489721847-bce1ee9e-bdfe-4f3f-b34c-afaa846f95b5.png#averageHue=%23d5d0c2&amp;clientId=u4cbf8898-7b24-4&amp;from=paste&amp;height=92&amp;id=TtqSF&amp;originHeight=450&amp;originWidth=600&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=199731&amp;status=done&amp;style=none&amp;taskId=u81ddb6bb-32a5-40a5-9248-5eb5ae6af92&amp;title=&amp;width=123" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1668492017246-6f04d198-1961-4f7b-a990-dd6937468025.png#averageHue=%23a6997f&clientId=u640cf75b-7515-4&from=paste&height=78&id=tGTo8&originHeight=650&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=false&size=512355&status=done&style=none&taskId=u369408e4-7109-4379-8247-0698cf19286&title=&width=116) -->
+<ul>
+<li><a href="https://www.hackster.io/seeed/products/seeeduino-xiao-expansion-board?ref=project-2fb3ab">Seeed Studio Seeeduino XIAO Expansion board</a> × 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_3.png" width="400" height="auto"></li>
+</ul>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489721847-bce1ee9e-bdfe-4f3f-b34c-afaa846f95b5.png#averageHue=%23d5d0c2&clientId=u4cbf8898-7b24-4&from=paste&height=92&id=TtqSF&originHeight=450&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&size=199731&status=done&style=none&taskId=u81ddb6bb-32a5-40a5-9248-5eb5ae6af92&title=&width=123) -->
 </section>
 <section id="software-apps-and-online-services" class="level3">
 <h3 class="anchored" data-anchor-id="software-apps-and-online-services">Software apps and online services</h3>
 <ul>
-<li><a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
+<li><a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a> <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png" class="img-fluid"></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&amp;clientId=u413b5b5e-84eb-4&amp;from=paste&amp;height=48&amp;id=bESIK&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9015&amp;status=done&amp;style=none&amp;taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&amp;title=&amp;width=48" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48) -->
 <ul>
-<li><a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
+<li><a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a> <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_5.png" class="img-fluid"></li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&amp;clientId=ud4d22600-5c37-4&amp;from=paste&amp;height=48&amp;id=k6jic&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8524&amp;status=done&amp;style=none&amp;taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&amp;title=&amp;width=48" class="img-fluid" alt="image.png"> ## 4.3.2 Introduction In the last section, <em>TinyML Made Easy: Anomaly Detection &amp; Motion Classification</em>, we explored Embedded Machine Learning, or simply TinyML, running on the <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed XIAO nRF52840 Sense.</a> Besides installing and testing the device, we explored motion classification using actual data signals from its onboard accelerometer. This new project will use the same XIAO nRF52840 Sense to classify sound, explicitly working as “Key Word Spotting” (KWS). A KWS is a typical TinyML application and an essential part of a voice assistant.</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&clientId=ud4d22600-5c37-4&from=paste&height=48&id=k6jic&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8524&status=done&style=none&taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&title=&width=48)  -->
+</section>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">4.3.2 Introduction</h2>
+<p>In the last section, <strong>TinyML Made Easy: Anomaly Detection &amp; Motion Classification</strong>, we explored Embedded Machine Learning, or simply TinyML, running on the <a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed XIAO nRF52840 Sense.</a> Besides installing and testing the device, we explored motion classification using actual data signals from its onboard accelerometer. This new project will use the same XIAO nRF52840 Sense to classify sound, explicitly working as “Key Word Spotting” (KWS). A KWS is a typical TinyML application and an essential part of a voice assistant.</p>
+<blockquote class="blockquote">
 <p><strong>But how does a voice assistant work?</strong></p>
-<p>To start, it is essential to realize that Voice Assistants on the market, like Google Home or Amazon Echo-Dot, only react to humans when they are “waked up” by particular keywords such as ” Hey Google” on the first one and “Alexa” on the second. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685693750936-1d2ebed6-c962-4f52-b256-cc4808feec38.jpeg" class="img-fluid"></p>
+</blockquote>
+<p>To start, it is essential to realize that Voice Assistants on the market, like Google Home or Amazon Echo-Dot, only react to humans when they are “waked up” by particular keywords such as ” Hey Google” on the first one and “Alexa” on the second.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685693750936-1d2ebed6-c962-4f52-b256-cc4808feec38.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_6.jpeg" class="img-fluid"></p>
 <p>In other words, recognizing voice commands is based on a multi-stage model or Cascade Detection. <img src="imgs_4-3/stages.jpg" class="img-fluid" alt="L18-image_Zd5vTdG9RB.png"></p>
 <p><strong>Stage 1:</strong> A smaller microprocessor inside the <em>Echo Dot</em> or <em>Google Home</em> continuously listens to the sound, waiting for the keyword to be spotted. For such detection, a TinyML model at the edge is used (KWS application).</p>
 <p><strong>Stage 2:</strong> Only when triggered by the KWS application on Stage 1 is the data sent to the cloud and processed on a larger model.</p>
@@ -504,10 +504,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To explore the above Google Assistant project, please see the tutorial: <a href="https://www.hackster.io/mjrobot/building-an-intelligent-voice-assistant-from-scratch-2199c3">Building an Intelligent Voice Assistant From Scratch</a>.</p>
 </blockquote>
 </section>
-</section>
 <section id="the-kws-project" class="level2">
 <h2 class="anchored" data-anchor-id="the-kws-project">4.3.3 The KWS Project</h2>
-<p>The diagram below will give an idea of how the final KWS application should work (during inference): <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685694103808-97a66dbf-9b0e-4a2e-b6c1-24e8672fe4ad.png#averageHue=%23e1eee1&amp;clientId=u35667e24-ee4e-4&amp;from=ui&amp;id=u49b43526&amp;originHeight=1160&amp;originWidth=2560&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=3096488&amp;status=done&amp;style=none&amp;taskId=u97d564de-dd6b-408b-967a-82e3bc76589&amp;title=" class="img-fluid" alt="L18-image_j6Hkf5YADI.png"></p>
+<!-- The diagram below will give an idea of how the final KWS application should work (during inference): ![L18-image_j6Hkf5YADI.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685694103808-97a66dbf-9b0e-4a2e-b6c1-24e8672fe4ad.png#averageHue=%23e1eee1&clientId=u35667e24-ee4e-4&from=ui&id=u49b43526&originHeight=1160&originWidth=2560&originalType=binary&ratio=2.200000047683716&rotation=0&showTitle=false&size=3096488&status=done&style=none&taskId=u97d564de-dd6b-408b-967a-82e3bc76589&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_7.png" class="img-fluid"></p>
 <p>Our KWS application will recognize three classes of sound:</p>
 <ul>
 <li>Keyword 1: <strong>UNIFEI</strong></li>
@@ -520,12 +520,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-machine-learning-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="the-machine-learning-workflow">4.3.3.1 The Machine Learning Workflow</h3>
 <p>The main component of the KWS application is its model. So, we must train such a model with our specific keywords:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685694470384-32af2579-6145-4963-9eaf-e21f512dea68.png#averageHue=%23dde5d9&amp;clientId=u35667e24-ee4e-4&amp;from=ui&amp;id=ud089c6fd&amp;originHeight=1575&amp;originWidth=3840&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=5767304&amp;status=done&amp;style=none&amp;taskId=u1cdfaec0-926a-45c3-8281-d5679524ccc&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-image_VjDpbeenv9.png</figcaption>
-</figure>
-</div>
+<!-- ![L18-image_VjDpbeenv9.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685694470384-32af2579-6145-4963-9eaf-e21f512dea68.png#averageHue=%23dde5d9&clientId=u35667e24-ee4e-4&from=ui&id=ud089c6fd&originHeight=1575&originWidth=3840&originalType=binary&ratio=2.200000047683716&rotation=0&showTitle=false&size=5767304&status=done&style=none&taskId=u1cdfaec0-926a-45c3-8281-d5679524ccc&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_8.png" class="img-fluid"></p>
 </section>
 <section id="dataset" class="level3">
 <h3 class="anchored" data-anchor-id="dataset">4.3.3.2 Dataset</h3>
@@ -553,44 +549,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="capturing-audio-data-with-the-xiao-nrf52840-sense" class="level3">
 <h3 class="anchored" data-anchor-id="capturing-audio-data-with-the-xiao-nrf52840-sense">4.3.3.4 Capturing Audio Data with the XIAO nRF52840 Sense</h3>
 <p>The easiest way to capture audio and save it locally as a .wav file is using an expansion board for the XIAO family of devices, the <a href="https://wiki.seeedstudio.com/Seeeduino-XIAO-Expansion-Board/">Seeed Studio XIAO Expansion board</a>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489850021-2dcd8493-ddf3-4fc0-ac78-ec11cc423f5e.png#averageHue=%23f4f5ee&amp;clientId=u37ea6ca3-4802-4&amp;from=paste&amp;id=uc7652580&amp;originHeight=555&amp;originWidth=740&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=273948&amp;status=done&amp;style=none&amp;taskId=ub98ea55a-a982-44bc-b1d6-a02813f120a&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489850021-2dcd8493-ddf3-4fc0-ac78-ec11cc423f5e.png#averageHue=%23f4f5ee&clientId=u37ea6ca3-4802-4&from=paste&id=uc7652580&originHeight=555&originWidth=740&originalType=url&ratio=1&rotation=0&showTitle=false&size=273948&status=done&style=none&taskId=ub98ea55a-a982-44bc-b1d6-a02813f120a&title=) -->
+<div style="text-align:center;">
+<img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_3.png" width="500" height="auto" style="margin:0 auto">
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685694857338-ba3ec638-0295-4266-8aee-43e6660f1c55.jpeg#averageHue=%23d2d1d1&amp;clientId=u35667e24-ee4e-4&amp;from=ui&amp;id=u50b0e775&amp;originHeight=1667&amp;originWidth=3334&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=498653&amp;status=done&amp;style=none&amp;taskId=u08187048-68e2-4387-a861-c0ffcc09dbb&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-XIAO-Expansion-2.jpeg</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685694871959-56286a5b-a2d1-4227-8849-2005594a0756.jpeg#averageHue=%23d5d5d4&amp;clientId=u35667e24-ee4e-4&amp;from=ui&amp;id=u00fc5acd&amp;originHeight=1663&amp;originWidth=3334&amp;originalType=binary&amp;ratio=2.200000047683716&amp;rotation=0&amp;showTitle=false&amp;size=438418&amp;status=done&amp;style=none&amp;taskId=u10446bde-ccac-4ad8-b5d5-ac9ac89ca36&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-XIAO-Expansion-3.jpeg</figcaption>
-</figure>
-</div>
+<!-- ![L18-XIAO-Expansion-2.jpeg](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685694857338-ba3ec638-0295-4266-8aee-43e6660f1c55.jpeg#averageHue=%23d2d1d1&clientId=u35667e24-ee4e-4&from=ui&id=u50b0e775&originHeight=1667&originWidth=3334&originalType=binary&ratio=2.200000047683716&rotation=0&showTitle=false&size=498653&status=done&style=none&taskId=u08187048-68e2-4387-a861-c0ffcc09dbb&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_10.jpeg" class="img-fluid"></p>
+<!-- ![L18-XIAO-Expansion-3.jpeg](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685694871959-56286a5b-a2d1-4227-8849-2005594a0756.jpeg#averageHue=%23d5d5d4&clientId=u35667e24-ee4e-4&from=ui&id=u00fc5acd&originHeight=1663&originWidth=3334&originalType=binary&ratio=2.200000047683716&rotation=0&showTitle=false&size=438418&status=done&style=none&taskId=u10446bde-ccac-4ad8-b5d5-ac9ac89ca36&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_11.jpeg" class="img-fluid"></p>
 <p>This expansion board enables the building of prototypes and projects easily and quickly, using its rich peripherals such as OLED Display, SD Card interface, RTC, passive buzzer, RESET/User button, 5V servo connector, and multiple data interfaces.</p>
 <p>This project will focus on classifying keywords, and the MicroSD card available on the device will be very important in helping us with data capture.</p>
 <section id="saving-recorded-audio-from-the-microphone-on-an-sd-card" class="level4">
 <h4 class="anchored" data-anchor-id="saving-recorded-audio-from-the-microphone-on-an-sd-card">Saving recorded audio from the microphone on an SD card</h4>
 <p>Connect the XIAO nRF52840 Sense on the Expansion Board and insert an SD card into the SD card slot at the back. &gt; The SD Card should be pre-formated as FAT or exFAT.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685695024054-f81c8a0a-4753-4092-86a9-8f4d0a1ba151.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685695024054-f81c8a0a-4753-4092-86a9-8f4d0a1ba151.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_12.jpeg" class="img-fluid"></p>
 <p>Next, download the <a href="https://github.com/Seeed-Studio/Seeed_Arduino_Mic">Seeed_Arduino_FS Library</a> as a zip file:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670550468338-07de9328-e76b-4d80-9a00-3118cc441387.png#averageHue=%23d6846e&amp;clientId=ud2340ef8-d908-4&amp;from=paste&amp;height=821&amp;id=ud863a9ee&amp;originHeight=1642&amp;originWidth=2944&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=525096&amp;status=done&amp;style=stroke&amp;taskId=uf1d23493-8e8d-4a12-94ba-c96f2b26134&amp;title=&amp;width=1472" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670550468338-07de9328-e76b-4d80-9a00-3118cc441387.png#averageHue=%23d6846e&clientId=ud2340ef8-d908-4&from=paste&height=821&id=ud863a9ee&originHeight=1642&originWidth=2944&originalType=binary&ratio=1&rotation=0&showTitle=false&size=525096&status=done&style=stroke&taskId=uf1d23493-8e8d-4a12-94ba-c96f2b26134&title=&width=1472) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_13.png" class="img-fluid"></p>
 <p>And install the downloaded library: <code>Seeed_Arduino_Mic-master.zip</code> on your Arduino IDE: <code>Sketch -&gt; Include Library -&gt; Add .ZIP Library...</code></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;id=u9f875294&amp;originHeight=792&amp;originWidth=1894&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=406334&amp;status=done&amp;style=stroke&amp;taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-企业微信20230602-154602@2x.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-企业微信20230602-154602\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&clientId=ub5d6cce2-8f0f-4&from=ui&id=u9f875294&originHeight=792&originWidth=1894&originalType=binary&ratio=2&rotation=0&showTitle=false&size=406334&status=done&style=stroke&taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_14.png" class="img-fluid"></p>
 <p>Next, navigate to <code>File &gt; Examples &gt; Seeed Arduino Mic &gt; mic_Saved_OnSDcard</code> to open the sketch: <strong>mic_Saved_OnSDcard</strong>.</p>
 <p>Each time you press the reset button, a <strong>5 seconds audio sample</strong> is recorded and saved on the SD card. I changed the original file to add LEDs to help during the recording process as below:</p>
 <ul>
@@ -601,51 +580,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I realized that sometimes at the beginning and the end of each sample, a “spike” was recorded, so I cut the initial 300ms from each 5s sample. The spike verified at the end always happened after the recording process and should be eliminated on Edge Impulse Studio before training. Also, I increased the microphone gain to 30 dB.</p>
 <p>The complete file (Xiao_mic_Saved_OnSDcard.ino) can be found on the Git Hub (3_KWS): <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense">Seeed-XIAO-BLE-Sense</a>.</p>
 <p>During the recording process, the.wav file names are shown on Serial Monitor:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696269211-205774ff-0419-4792-b59b-40170b5d1b82.png#averageHue=%23f2f4f0&amp;clientId=u6422ead4-943d-4&amp;from=ui&amp;id=uf5f88742&amp;originHeight=2007&amp;originWidth=2529&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=4774534&amp;status=done&amp;style=none&amp;taskId=u04711aa0-20d4-4111-b21e-2f6e14da078&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-image_I9mglC3IAw.png</figcaption>
-</figure>
-</div>
+<!-- ![L18-image_I9mglC3IAw.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696269211-205774ff-0419-4792-b59b-40170b5d1b82.png#averageHue=%23f2f4f0&clientId=u6422ead4-943d-4&from=ui&id=uf5f88742&originHeight=2007&originWidth=2529&originalType=binary&ratio=2&rotation=0&showTitle=false&size=4774534&status=done&style=none&taskId=u04711aa0-20d4-4111-b21e-2f6e14da078&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_15.png" class="img-fluid"></p>
 <p>Take the SD card from the Expansion Board and insert it into your computer:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696389225-c4924e7e-d3d1-4d8d-b915-6fb4b48148d5.png#averageHue=%23c3d0e5&amp;clientId=u6422ead4-943d-4&amp;from=ui&amp;id=ub432b882&amp;originHeight=1182&amp;originWidth=2172&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=2645893&amp;status=done&amp;style=none&amp;taskId=ue45d5d2d-d7a2-4693-a5e0-f53b15ad4f9&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-image_ozO8BV0wsG.png</figcaption>
-</figure>
-</div>
+<!-- ![L18-image_ozO8BV0wsG.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696389225-c4924e7e-d3d1-4d8d-b915-6fb4b48148d5.png#averageHue=%23c3d0e5&clientId=u6422ead4-943d-4&from=ui&id=ub432b882&originHeight=1182&originWidth=2172&originalType=binary&ratio=2&rotation=0&showTitle=false&size=2645893&status=done&style=none&taskId=ue45d5d2d-d7a2-4693-a5e0-f53b15ad4f9&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_16.png" class="img-fluid"></p>
 <p>The files are ready to be uploaded to Edge Impulse Studio</p>
 </section>
 </section>
 <section id="capturing-offline-audio-data-with-a-smartphone-or-pc" class="level3">
 <h3 class="anchored" data-anchor-id="capturing-offline-audio-data-with-a-smartphone-or-pc">4.3.3.5 Capturing (offline) Audio Data with a smartphone or PC</h3>
 <p>Alternatively, you can use your PC or smartphone to capture audio data with a sampling frequency 16KHz and a bit depth of 16 Bits. A good app for that is <a href="https://www.bejbej.ca/app/voicerecordpro">Voice Recorder Pro</a> (IOS). Save your record as .wav files and send them to your computer.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696719798-87803373-b19b-403e-a8ba-d569395d5257.png#averageHue=%23ab9972&amp;clientId=u6422ead4-943d-4&amp;from=ui&amp;id=u89ca211c&amp;originHeight=2328&amp;originWidth=3840&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=11480352&amp;status=done&amp;style=none&amp;taskId=u81ee6ed5-9678-4133-9808-698d39c721a&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L18-app_yaxj1pljMf.png</figcaption>
-</figure>
-</div>
+<!-- ![L18-app_yaxj1pljMf.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685696719798-87803373-b19b-403e-a8ba-d569395d5257.png#averageHue=%23ab9972&clientId=u6422ead4-943d-4&from=ui&id=u89ca211c&originHeight=2328&originWidth=3840&originalType=binary&ratio=2&rotation=0&showTitle=false&size=11480352&status=done&style=none&taskId=u81ee6ed5-9678-4133-9808-698d39c721a&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_17.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Note that any smartphone app can be used for audio recording or even your computer, for example using <a href="https://www.audacityteam.org/">Audacity</a>.</p>
 </blockquote>
 </section>
 <section id="training-model-with-edge-impulse-studio" class="level3">
 <h3 class="anchored" data-anchor-id="training-model-with-edge-impulse-studio">4.3.3.6 Training model with Edge Impulse Studio</h3>
-<p>When the raw dataset is created, you should initiate a new project at Edge Impulse Studio: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574639880-36bc0112-987e-4ad1-bc08-d168708c8eb9.png#averageHue=%23eaf7ef&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=631&amp;id=u039f9331&amp;originHeight=896&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=483699&amp;status=done&amp;style=none&amp;taskId=u0ff950ae-5baf-4987-98c1-6a5302f3c51&amp;title=&amp;width=901" class="img-fluid" alt="image.png"> Once the project is created, go to the <code>Data Acquisition</code> section and select the <code>Upload Existing Data</code> tool. Choose the files to be uploaded, for example, I started uploading the samples recorded with the XIAO nRF52840 Sense: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574658720-7cc92b25-4cb3-42f9-b945-9011467b775d.png#averageHue=%23fbfcf8&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=522&amp;id=ub63a93b3&amp;originHeight=896&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=351834&amp;status=done&amp;style=none&amp;taskId=ua03d7b14-a6f0-487e-8aae-1d2b0dba37b&amp;title=&amp;width=746" class="img-fluid" alt="image.png"> The samples will now appear in the <code>Data acquisition</code> section: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574679994-ed5f3048-6c35-45ad-b736-cb5cd6bc9961.png#averageHue=%23f9fcfb&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=511&amp;id=u51384247&amp;originHeight=896&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=388967&amp;status=done&amp;style=none&amp;taskId=u88d881a0-6b6d-43dd-b001-586fbfc181b&amp;title=&amp;width=730" class="img-fluid" alt="image.png"> Click on three dots after the sample name and select <code>Split sample</code>. Once inside de tool, split the data into 1-second records (try to avoid start and end portions): <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574704664-5dfd923d-2d8c-436f-9532-aab12f400485.png#averageHue=%23b6c8d3&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=520&amp;id=u86b83505&amp;originHeight=896&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=351455&amp;status=done&amp;style=none&amp;taskId=uce59c33c-442d-4ba2-a976-d893ecedf06&amp;title=&amp;width=743" class="img-fluid" alt="image.png"> This procedure should be repeated for all samples. After that, upload other class samples (IESTI and SILENCE) captured with the XIAO and your PC or smartphone. &gt; Note: For longer audio files (minutes), first, split into 10-second segments and after that, use the tool again to get the final 1-second splits.</p>
-<p>In the end, the dataset has around 70 1-second samples for each class: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574788563-f09e0ff9-248e-415e-bd93-0d707833567a.png#averageHue=%23f3f7f5&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=568&amp;id=u2145f346&amp;originHeight=960&amp;originWidth=1261&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=437821&amp;status=done&amp;style=none&amp;taskId=ud4fdcee3-8d62-49d2-b927-77a1b0ebfb9&amp;title=&amp;width=745.4971313476562" class="img-fluid" alt="image.png"> Now, you should split that dataset into Train/Test. You can do it manually (using the <code>three dots</code> menu, moving samples individually) or using <code>Perform Train / Test Split</code> on <code>Dashboard - Danger Zone</code>.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670807815083-cce34622-1f80-4ecd-b400-c97263eb441e.jpeg" class="img-fluid"></p>
-<p>We can optionally check all datasets using the tab <code>Data Explorer</code>. The data points seem apart, which means that the classification model should work: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574804384-39fdb1af-f2c1-4ade-b688-a03f9aae980d.png#averageHue=%23eef3e8&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=555&amp;id=ubfc99ff2&amp;originHeight=950&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=328548&amp;status=done&amp;style=none&amp;taskId=ue547460c-aa4d-4150-b2d8-dee00a34a5e&amp;title=&amp;width=748" class="img-fluid" alt="image.png"></p>
+<p>When the raw dataset is created, you should initiate a new project at Edge Impulse Studio:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574639880-36bc0112-987e-4ad1-bc08-d168708c8eb9.png#averageHue=%23eaf7ef&clientId=uaddd96ed-c6d3-4&from=paste&height=631&id=u039f9331&originHeight=896&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=483699&status=done&style=none&taskId=u0ff950ae-5baf-4987-98c1-6a5302f3c51&title=&width=901)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_18.png" class="img-fluid"></p>
+<p>Once the project is created, go to the <code>Data Acquisition</code> section and select the <code>Upload Existing Data</code> tool. Choose the files to be uploaded, for example, I started uploading the samples recorded with the XIAO nRF52840 Sense:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574658720-7cc92b25-4cb3-42f9-b945-9011467b775d.png#averageHue=%23fbfcf8&clientId=uaddd96ed-c6d3-4&from=paste&height=522&id=ub63a93b3&originHeight=896&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351834&status=done&style=none&taskId=ua03d7b14-a6f0-487e-8aae-1d2b0dba37b&title=&width=746)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_19.png" class="img-fluid"></p>
+<p>The samples will now appear in the <code>Data acquisition</code> section:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574679994-ed5f3048-6c35-45ad-b736-cb5cd6bc9961.png#averageHue=%23f9fcfb&clientId=uaddd96ed-c6d3-4&from=paste&height=511&id=u51384247&originHeight=896&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=388967&status=done&style=none&taskId=u88d881a0-6b6d-43dd-b001-586fbfc181b&title=&width=730)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_20.png" class="img-fluid"></p>
+<p>Click on three dots after the sample name and select <code>Split sample</code>. Once inside de tool, split the data into 1-second records (try to avoid start and end portions):</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574704664-5dfd923d-2d8c-436f-9532-aab12f400485.png#averageHue=%23b6c8d3&clientId=uaddd96ed-c6d3-4&from=paste&height=520&id=u86b83505&originHeight=896&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=351455&status=done&style=none&taskId=uce59c33c-442d-4ba2-a976-d893ecedf06&title=&width=743)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_21.png" class="img-fluid"></p>
+<p>This procedure should be repeated for all samples. After that, upload other class samples (IESTI and SILENCE) captured with the XIAO and your PC or smartphone.</p>
+<blockquote class="blockquote">
+<p>Note: For longer audio files (minutes), first, split into 10-second segments and after that, use the tool again to get the final 1-second splits.</p>
+</blockquote>
+<p>In the end, the dataset has around 70 1-second samples for each class:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574788563-f09e0ff9-248e-415e-bd93-0d707833567a.png#averageHue=%23f3f7f5&clientId=uaddd96ed-c6d3-4&from=paste&height=568&id=u2145f346&originHeight=960&originWidth=1261&originalType=binary&ratio=1&rotation=0&showTitle=false&size=437821&status=done&style=none&taskId=ud4fdcee3-8d62-49d2-b927-77a1b0ebfb9&title=&width=745.4971313476562)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_22.png" class="img-fluid"></p>
+<p>Now, you should split that dataset into Train/Test. You can do it manually (using the <code>three dots</code> menu, moving samples individually) or using <code>Perform Train / Test Split</code> on <code>Dashboard - Danger Zone</code>.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670807815083-cce34622-1f80-4ecd-b400-c97263eb441e.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_23.jpeg" class="img-fluid"></p>
+<p>We can optionally check all datasets using the tab <code>Data Explorer</code>. The data points seem apart, which means that the classification model should work:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574804384-39fdb1af-f2c1-4ade-b688-a03f9aae980d.png#averageHue=%23eef3e8&clientId=uaddd96ed-c6d3-4&from=paste&height=555&id=ubfc99ff2&originHeight=950&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=328548&status=done&style=none&taskId=ue547460c-aa4d-4150-b2d8-dee00a34a5e&title=&width=748) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_24.png" class="img-fluid"></p>
 </section>
 <section id="creating-impulse-pre-process-model-definition" class="level3">
 <h3 class="anchored" data-anchor-id="creating-impulse-pre-process-model-definition">4.3.3.7 Creating Impulse (Pre-Process / Model definition)</h3>
-<p>An impulse takes raw data, uses signal processing to extract features, and then uses a learning block to classify new data. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574820779-46d614d4-ae3f-47e5-858e-4e0e603b87d6.png#averageHue=%239be3ce&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=586&amp;id=ubcf76228&amp;originHeight=960&amp;originWidth=1220&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=402575&amp;status=done&amp;style=none&amp;taskId=u474e7e8f-f6e5-4861-bcf0-76747c97aca&amp;title=&amp;width=745" class="img-fluid" alt="image.png"> First, we will take the data points with a 1-second window, augmenting the data, sliding that window each 500ms. Note that the option zero-point pad is set. It is important to fill with zeros samples smaller than 1 second (in some cases, I reduced the 1000 ms window on the split tool to avoid noises and spikes.</p>
+<p>An impulse takes raw data, uses signal processing to extract features, and then uses a learning block to classify new data.</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574820779-46d614d4-ae3f-47e5-858e-4e0e603b87d6.png#averageHue=%239be3ce&clientId=uaddd96ed-c6d3-4&from=paste&height=586&id=ubcf76228&originHeight=960&originWidth=1220&originalType=binary&ratio=1&rotation=0&showTitle=false&size=402575&status=done&style=none&taskId=u474e7e8f-f6e5-4861-bcf0-76747c97aca&title=&width=745)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_25.png" class="img-fluid"></p>
+<p>First, we will take the data points with a 1-second window, augmenting the data, sliding that window each 500ms. Note that the option zero-point pad is set. It is important to fill with zeros samples smaller than 1 second in some cases, I reduced the 1000 ms window on the split tool to avoid noises and spikes.</p>
 <p>Each 1-second audio sample should be pre-processed and converted to an image (for example, 13 x 50 x 1). We will use <code>Audio (MFCC)</code>, which extracts features from audio signals using <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Mel Frequency Cepstral Coefficients</a>, which are well suited for the human voice, which is our case here.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574838689-06fe6e4f-178d-4db1-8e6f-26fffd1b6d27.png#averageHue=%23f7f7f5&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=242&amp;id=ubcf21d25&amp;originHeight=483&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=245017&amp;status=done&amp;style=none&amp;taskId=uf01b73b0-5935-4803-8ed4-2afd5d3ea7a&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> Next, we select the <code>Classification</code> block to build our model from scratch using a Convolution Neural Network (CNN).</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574838689-06fe6e4f-178d-4db1-8e6f-26fffd1b6d27.png#averageHue=%23f7f7f5&clientId=uaddd96ed-c6d3-4&from=paste&height=242&id=ubcf21d25&originHeight=483&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=245017&status=done&style=none&taskId=uf01b73b0-5935-4803-8ed4-2afd5d3ea7a&title=&width=640)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_26.png" class="img-fluid"></p>
+<p>Next, we select the <code>Classification</code> block to build our model from scratch using a Convolution Neural Network (CNN).</p>
 </section>
 <section id="pre-processing-mfcc" class="level3">
 <h3 class="anchored" data-anchor-id="pre-processing-mfcc">4.3.3.8 Pre-Processing (MFCC)</h3>
-<p>The next step is to create the images to be trained in the next phase: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574851203-a56eefb8-2710-4158-9a4d-1de96058e5b5.png#averageHue=%23eaefec&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=682&amp;id=u044eb65a&amp;originHeight=960&amp;originWidth=1047&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=362382&amp;status=done&amp;style=none&amp;taskId=ue3a2cb5a-5e6f-4043-bb37-5413b491272&amp;title=&amp;width=743.4943237304688" class="img-fluid" alt="image.png"> We will keep the default parameter values. We do not spend much memory to pre-process data (only 17KB), but the processing time is relatively high (177 ms for a Cortex-M4 CPU as our XIAO). Save parameters and generate features: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574864986-6d89fa30-e259-48ab-9daa-188a613dc5fb.png#averageHue=%23aec7b7&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=658&amp;id=uc032a8ce&amp;originHeight=960&amp;originWidth=1047&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=382044&amp;status=done&amp;style=none&amp;taskId=ucd339d59-95a0-4120-8f4f-66b051718d8&amp;title=&amp;width=717.4943237304688" class="img-fluid" alt="image.png"></p>
+<p>The next step is to create the images to be trained in the next phase:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574851203-a56eefb8-2710-4158-9a4d-1de96058e5b5.png#averageHue=%23eaefec&clientId=uaddd96ed-c6d3-4&from=paste&height=682&id=u044eb65a&originHeight=960&originWidth=1047&originalType=binary&ratio=1&rotation=0&showTitle=false&size=362382&status=done&style=none&taskId=ue3a2cb5a-5e6f-4043-bb37-5413b491272&title=&width=743.4943237304688)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_27.png" class="img-fluid"></p>
+<p>We will keep the default parameter values. We do not spend much memory to pre-process data (only 17KB), but the processing time is relatively high (177 ms for a Cortex-M4 CPU as our XIAO). Save parameters and generate features:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574864986-6d89fa30-e259-48ab-9daa-188a613dc5fb.png#averageHue=%23aec7b7&clientId=uaddd96ed-c6d3-4&from=paste&height=658&id=uc032a8ce&originHeight=960&originWidth=1047&originalType=binary&ratio=1&rotation=0&showTitle=false&size=382044&status=done&style=none&taskId=ucd339d59-95a0-4120-8f4f-66b051718d8&title=&width=717.4943237304688) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_28.png" class="img-fluid"></p>
 <p><strong>Going under the hood</strong></p>
 <p>To understand better how the raw sound is preprocessed, look at the <em>Feature Engineering for Audio Classification</em> chapter. You can play with the MFCC features generation by downloading this <a href="https://github.com/Mjrovai/Arduino_Nicla_Vision/blob/main/KWS/KWS_MFCC_Analysis.ipynb">notebook</a> from GitHub or <a href="https://colab.research.google.com/github/Mjrovai/Arduino_Nicla_Vision/blob/main/KWS/KWS_MFCC_Analysis.ipynb">Opening it In Colab</a>.</p>
 </section>
@@ -657,42 +655,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Using 1D convolutions is more efficient because it requires fewer parameters than 2D convolutions, making them more suitable for resource-constrained environments.</p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574893876-7fd35816-45ab-4c2d-9d8b-c305399021a1.png#averageHue=%23e3ecdb&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=398&amp;id=ud81f09e4&amp;originHeight=690&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=235253&amp;status=done&amp;style=none&amp;taskId=u5059c89a-fe24-40f8-a64e-320c9d689fe&amp;title=&amp;width=738" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574893876-7fd35816-45ab-4c2d-9d8b-c305399021a1.png#averageHue=%23e3ecdb&clientId=uaddd96ed-c6d3-4&from=paste&height=398&id=ud81f09e4&originHeight=690&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=235253&status=done&style=none&taskId=u5059c89a-fe24-40f8-a64e-320c9d689fe&title=&width=738) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_29.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>If you want to understand what is happening “under the hood,” you can download the pre-processed dataset (<code>MFCC training data</code>) from the <code>Dashboard</code> tab and run this <a href="https://github.com/Mjrovai/Arduino_Nicla_Vision/blob/main/KWS/KWS_CNN_training.ipynb">Jupyter Notebook</a>, playing with the code or <a href="https://colab.research.google.com/github/Mjrovai/Arduino_Nicla_Vision/blob/main/KWS/KWS_CNN_training.ipynb">Opening it In Colab</a>. You should adapt the notebook for your data and model. For example, you can analyze the accuracy by each epoch:</p>
 </blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574906833-68ffb21b-35d0-4872-96ad-99a6c6fd7bd8.png#averageHue=%23f7f7f6&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=363&amp;id=u327200d0&amp;originHeight=725&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=246725&amp;status=done&amp;style=none&amp;taskId=ua14211b8-bef2-4614-b3b6-b1a961f58f5&amp;title=&amp;width=640" class="img-fluid" alt="image.png"> ### 4.3.3.10 Testing Testing the model with the data put apart before training (Test Data), we got an accuracy of 75%. Based on the small amount of data used, it is OK, but I strongly suggest increasing the number of samples. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574920824-394213b5-d259-448c-892f-731fbea8db68.png#averageHue=%23dcf0df&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=526&amp;id=u61db1a19&amp;originHeight=937&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=467609&amp;status=done&amp;style=none&amp;taskId=u37a9267b-7256-4404-be2e-7a7ac0b45c0&amp;title=&amp;width=718" class="img-fluid" alt="image.png"> Collecting more data, the Test accuracy moved up around 5%, going from 75% to around 81%: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670831567845-1249aa1a-c9ce-4ce1-8ab2-7d8c4e262ca6.png#averageHue=%236adcad&amp;clientId=u73aadf43-52e7-4&amp;from=paste&amp;height=279&amp;id=u6bad1dc9&amp;originHeight=558&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=175334&amp;status=done&amp;style=none&amp;taskId=ue9ad1c23-8481-47a5-9c1e-8a39393e5a0&amp;title=&amp;width=640" class="img-fluid" alt="image.png"></p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574906833-68ffb21b-35d0-4872-96ad-99a6c6fd7bd8.png#averageHue=%23f7f7f6&clientId=uaddd96ed-c6d3-4&from=paste&height=363&id=u327200d0&originHeight=725&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=246725&status=done&style=none&taskId=ua14211b8-bef2-4614-b3b6-b1a961f58f5&title=&width=640)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_30.png" class="img-fluid"></p>
+</section>
+<section id="testing" class="level3">
+<h3 class="anchored" data-anchor-id="testing">4.3.3.10 Testing</h3>
+<p>Testing the model with the data put apart before training (Test Data), we got an accuracy of 75%. Based on the small amount of data used, it is OK, but I strongly suggest increasing the number of samples.</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574920824-394213b5-d259-448c-892f-731fbea8db68.png#averageHue=%23dcf0df&clientId=uaddd96ed-c6d3-4&from=paste&height=526&id=u61db1a19&originHeight=937&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=467609&status=done&style=none&taskId=u37a9267b-7256-4404-be2e-7a7ac0b45c0&title=&width=718)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_31.png" class="img-fluid"></p>
+<p>Collecting more data, the Test accuracy moved up around 5%, going from 75% to around 81%:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670831567845-1249aa1a-c9ce-4ce1-8ab2-7d8c4e262ca6.png#averageHue=%236adcad&clientId=u73aadf43-52e7-4&from=paste&height=279&id=u6bad1dc9&originHeight=558&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=175334&status=done&style=none&taskId=ue9ad1c23-8481-47a5-9c1e-8a39393e5a0&title=&width=640) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_32.png" class="img-fluid"></p>
 <p>Now, we can proceed with the project, but before deployment on our device, it is possible to perform Live Classification using a Smart Phone, confirming that the model is working with live and real data:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574948631-063cbc26-fc53-4368-a673-63535c20db79.png#averageHue=%23c8e17c&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=340&amp;id=u17ba6005&amp;originHeight=582&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=199655&amp;status=done&amp;style=none&amp;taskId=u4b6c09bd-a720-4f08-adee-756ad3f5e99&amp;title=&amp;width=747" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670574948631-063cbc26-fc53-4368-a673-63535c20db79.png#averageHue=%23c8e17c&clientId=uaddd96ed-c6d3-4&from=paste&height=340&id=u17ba6005&originHeight=582&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=199655&status=done&style=none&taskId=u4b6c09bd-a720-4f08-adee-756ad3f5e99&title=&width=747) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_33.png" class="img-fluid"></p>
 </section>
 <section id="deploy-and-inference" class="level3">
 <h3 class="anchored" data-anchor-id="deploy-and-inference">4.3.3.11 Deploy and Inference</h3>
 <p>The Studio will package all the needed libraries, preprocessing functions, and trained models, downloading them to your computer. You should select the option Arduino Library and at the bottom, choose <code>Quantized (Int8)</code> and <code>[Build]</code>.</p>
+<!-- ![image.png](/Users/marcelo_rovai/Dropbox/2023/50_MJRoBot/0-XIAO-eBook/Chapter%204/L4-3/deploy.jpg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_40.png" class="img-fluid"></p>
+<p>A Zip file will be created and downloaded to your computer:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./Users/marcelo_rovai/Dropbox/2023/50_MJRoBot/0-XIAO-eBook/Chapter 4/L4-3/deploy.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
+<p><img src="imgs_4-3/deploy-2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image-20231204104927199</figcaption>
 </figure>
 </div>
-<p>A Zip file will be created and downloaded to your computer: <img src="imgs_4-3/deploy-2.png" class="img-fluid" alt="image-20231204104927199"> On your Arduino IDE, go to the <code>Sketch</code> tab and select the option <code>Add .ZIP Library</code>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;id=fb2Kq&amp;originHeight=792&amp;originWidth=1894&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=406334&amp;status=done&amp;style=stroke&amp;taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-企业微信20230602-154602@2x.png</figcaption>
-</figure>
-</div>
-<p>And Choose the.zip file downloaded by the Studio: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575001992-240a05cb-fd05-42ad-acae-1175f6df246a.png#averageHue=%23f3f2f0&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=281&amp;id=uf4a07154&amp;originHeight=393&amp;originWidth=1041&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=99739&amp;status=done&amp;style=none&amp;taskId=uea6feb86-25fd-438a-bb56-f9c11548bd0&amp;title=&amp;width=745.4971313476562" class="img-fluid" alt="image.png"> Now, it is time for a real test. We will make inferences wholly disconnected from the Studio. Let’s change one of the code examples created when you deploy the Arduino Library.</p>
-<p>In your Arduino IDE, go to the <code>File/Examples</code> tab and look for your project, and on examples, select <code>nano_ble33_sense_microphone_continuous</code>: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575011168-1d5c94b2-e4de-4e2a-b3f3-f04198451f61.png#averageHue=%23676864&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=501&amp;id=ub2781cf4&amp;originHeight=827&amp;originWidth=1204&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=246497&amp;status=done&amp;style=none&amp;taskId=ua9129c42-4e58-4fff-a22f-70167ce3aa2&amp;title=&amp;width=729.9957275390625" class="img-fluid" alt="image.png"> Even though the XIAO is not the same as the Arduino, both have the same MPU and PDM microphone, so the code works as it is. Upload the sketch to XIAO and open the Serial Monitor. Start talking about one or another Keyword and confirm that the model is working correctly: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575022732-f0ce0ce8-9bcd-4a9a-af3a-f9ed630954d1.png#averageHue=%23aeaeae&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=514&amp;id=uc2d58b70&amp;originHeight=665&amp;originWidth=954&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=177078&amp;status=done&amp;style=none&amp;taskId=u20ac6882-962f-4b67-aa58-dae7a169963&amp;title=&amp;width=736.9957275390625" class="img-fluid" alt="image.png"></p>
+<p>On your Arduino IDE, go to the <code>Sketch</code> tab and select the option <code>Add .ZIP Library</code>.</p>
+<!-- ![L17-企业微信20230602-154602\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&clientId=ub5d6cce2-8f0f-4&from=ui&id=fb2Kq&originHeight=792&originWidth=1894&originalType=binary&ratio=2&rotation=0&showTitle=false&size=406334&status=done&style=stroke&taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_34.png" class="img-fluid"></p>
+<p>And Choose the.zip file downloaded by the Studio:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575001992-240a05cb-fd05-42ad-acae-1175f6df246a.png#averageHue=%23f3f2f0&clientId=uaddd96ed-c6d3-4&from=paste&height=281&id=uf4a07154&originHeight=393&originWidth=1041&originalType=binary&ratio=1&rotation=0&showTitle=false&size=99739&status=done&style=none&taskId=uea6feb86-25fd-438a-bb56-f9c11548bd0&title=&width=745.4971313476562)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_35.png" class="img-fluid"></p>
+<p>Now, it is time for a real test. We will make inferences wholly disconnected from the Studio. Let’s change one of the code examples created when you deploy the Arduino Library.</p>
+<p>In your Arduino IDE, go to the <code>File/Examples</code> tab and look for your project, and on examples, select <code>nano_ble33_sense_microphone_continuous</code>:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575011168-1d5c94b2-e4de-4e2a-b3f3-f04198451f61.png#averageHue=%23676864&clientId=uaddd96ed-c6d3-4&from=paste&height=501&id=ub2781cf4&originHeight=827&originWidth=1204&originalType=binary&ratio=1&rotation=0&showTitle=false&size=246497&status=done&style=none&taskId=ua9129c42-4e58-4fff-a22f-70167ce3aa2&title=&width=729.9957275390625)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_36.png" class="img-fluid"></p>
+<p>Even though the XIAO is not the same as the Arduino, both have the same MPU and PDM microphone, so the code works as it is. Upload the sketch to XIAO and open the Serial Monitor. Start talking about one or another Keyword and confirm that the model is working correctly:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575022732-f0ce0ce8-9bcd-4a9a-af3a-f9ed630954d1.png#averageHue=%23aeaeae&clientId=uaddd96ed-c6d3-4&from=paste&height=514&id=uc2d58b70&originHeight=665&originWidth=954&originalType=binary&ratio=1&rotation=0&showTitle=false&size=177078&status=done&style=none&taskId=u20ac6882-962f-4b67-aa58-dae7a169963&title=&width=736.9957275390625) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_37.png" class="img-fluid"></p>
 </section>
 <section id="postprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="postprocessing">4.3.3.12 Postprocessing</h3>
@@ -718,7 +725,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    u8x8<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    u8x8<span class="op">.</span>print<span class="op">(</span><span class="st">"Hello World!"</span><span class="op">);</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And you should see the “Hello World” displayed on the SSD: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575383601-88429aa0-568b-43b9-8f16-631228134bf7.png#averageHue=%235f675b&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=346&amp;id=u009d1047&amp;originHeight=691&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=764681&amp;status=done&amp;style=none&amp;taskId=u4a3e47d6-656b-4838-a3a7-cb9e3e0a679&amp;title=&amp;width=640" class="img-fluid" alt="image.png"></p>
+<p>And you should see the “Hello World” displayed on the SSD:</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575383601-88429aa0-568b-43b9-8f16-631228134bf7.png#averageHue=%235f675b&clientId=uaddd96ed-c6d3-4&from=paste&height=346&id=u009d1047&originHeight=691&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=764681&status=done&style=none&taskId=u4a3e47d6-656b-4838-a3a7-cb9e3e0a679&title=&width=640) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_38.png" class="img-fluid"></p>
 <p>Now, let’s create some functions that, depending on the values of pred_index and pred_value, will trigger the proper LED and display the class and probability. The code below will simulate some inference results and present them on display and LEDs:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Includes ---------------------------------------------------------------- */</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
@@ -801,12 +810,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Running the above code, you should get the below result:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575400385-3e2f9033-8229-4704-a80a-8ad4d0c2e8ea.png#averageHue=%23446960&amp;clientId=uaddd96ed-c6d3-4&amp;from=paste&amp;height=360&amp;id=u9553b381&amp;originHeight=720&amp;originWidth=1280&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1195192&amp;status=done&amp;style=none&amp;taskId=ud85fa751-e381-469e-9feb-8fd3f212ee0&amp;title=&amp;width=640" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670575400385-3e2f9033-8229-4704-a80a-8ad4d0c2e8ea.png#averageHue=%23446960&clientId=uaddd96ed-c6d3-4&from=paste&height=360&id=u9553b381&originHeight=720&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1195192&status=done&style=none&taskId=ud85fa751-e381-469e-9feb-8fd3f212ee0&title=&width=640) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_39.png" class="img-fluid"></p>
 <p>You should merge the above code (Initialization and functions) with the <code>nano_ble33_sense_microphone_continuous.ino</code> you initially used to test your model. Also, you should include the below code on <code>loop()</code> between the lines:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ei_printf<span class="op">(</span><span class="st">": </span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>

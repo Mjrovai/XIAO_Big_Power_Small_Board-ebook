@@ -421,7 +421,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#structure-of-arduino-programs" id="toc-structure-of-arduino-programs" class="nav-link" data-scroll-target="#structure-of-arduino-programs">Structure of Arduino Programs</a></li>
   <li><a href="#digital-signals-and-io-settings" id="toc-digital-signals-and-io-settings" class="nav-link" data-scroll-target="#digital-signals-and-io-settings">Digital Signals and I/O Settings</a></li>
   </ul></li>
-  <li><a href="#task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led" id="toc-task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led" class="nav-link" data-scroll-target="#task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led">1.1.4 Task 2: Complete the Blink example by connecting an external LED to Seeed XIAO ESP32C3 without LED</a></li>
+  <li><a href="#task-1-run-blink-to-make-xiaos-led-flash" id="toc-task-1-run-blink-to-make-xiaos-led-flash" class="nav-link" data-scroll-target="#task-1-run-blink-to-make-xiaos-led-flash">1.1.3 Task 1: Run Blink to Make XIAO’s LED Flash</a>
+  <ul class="collapse">
+  <li><a href="#code-analysis" id="toc-code-analysis" class="nav-link" data-scroll-target="#code-analysis">Code Analysis</a></li>
+  <li><a href="#upload-the-program" id="toc-upload-the-program" class="nav-link" data-scroll-target="#upload-the-program">Upload the Program</a></li>
+  </ul></li>
+  <li><a href="#task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led" id="toc-task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led" class="nav-link" data-scroll-target="#task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led">1.1.4 Task 2: Complete the Blink example by connecting an external LED to Seeed XIAO ESP32C3 without LED</a>
+  <ul class="collapse">
+  <li><a href="#code-analysis-1" id="toc-code-analysis-1" class="nav-link" data-scroll-target="#code-analysis-1">Code Analysis <br></a></li>
+  </ul></li>
   <li><a href="#extended-exercise" id="toc-extended-exercise" class="nav-link" data-scroll-target="#extended-exercise">1.1.5 Extended Exercise</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_1-1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_1-1.qmd" class="toc-action">View source</a></p></div></div></nav>
@@ -453,22 +461,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="arduino-ide-text-editor">1.1.1 Arduino IDE Text Editor</h2>
 <p>We need to program the hardware through the Arduino IDE text editor. If you have not installed the Arduino IDE, go to the download page to install it: 🔗 <a href="https://www.arduino.cc/en/software">Software</a>. The Arduino IDE (Integrated Development Environment) is a programming software designed explicitly for Arduino. Through it, we can write and upload different programs for Arduino hardware. When we open the Arduino IDE software, it will create a new file named Sketch, which we can rename.</p>
 <section id="for-windows-users" class="level4">
-<h4 class="anchored" data-anchor-id="for-windows-users">For Windows Users</h4>
+<h4 class="anchored" data-anchor-id="for-windows-users"><strong>For Windows Users</strong></h4>
 <p>The interface of the Arduino IDE is spotless, and can be divided into four parts: menu bar, toolbar, editing area, and debug window.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684140531171-ced7dbd3-4817-47c9-85cd-2502cd74e546.jpeg" class="img-fluid"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669014289466-69df6fdf-59d8-425a-9017-0467fa8d1197.png#averageHue=%23938834&amp;clientId=u1e012138-7f24-4&amp;from=ui&amp;height=31&amp;id=u82169a32&amp;originHeight=64&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1759&amp;status=done&amp;style=none&amp;taskId=ubd08ee6e-d831-44dd-a1e1-083aea4ccbf&amp;title=&amp;width=33" class="img-fluid" alt="yuque_diagram-1.png"> Menu bar: Includes files, edit, sketch, tools, and help, such as new, save, example programs, select serial port, etc. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669014346076-85c627c7-71c0-4a52-9555-5f1d3e39cdd3.png#averageHue=%23918633&amp;clientId=u1e012138-7f24-4&amp;from=ui&amp;height=32&amp;id=u95ab65b8&amp;originHeight=64&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2079&amp;status=done&amp;style=none&amp;taskId=u0850a495-97c7-435a-a31a-ab8990b0c48&amp;title=&amp;width=34" class="img-fluid" alt="yuque_diagram-2.png"> Horizontal toolbar: Contains several commonly used function buttons: verify, upload, debug, board selection, serial plotter, and serial monitor selection. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669014391728-2a5becf8-18b3-45b5-94df-1f79d807fd24.png#averageHue=%23918533&amp;clientId=u1e012138-7f24-4&amp;from=ui&amp;height=32&amp;id=u81a5c3c2&amp;originHeight=64&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2182&amp;status=done&amp;style=none&amp;taskId=ub2111239-63eb-4882-bb1c-0df1c2e67c7&amp;title=&amp;width=34" class="img-fluid" alt="yuque_diagram-3.png">Vertical toolbar: Contains shortcuts to the project folder, board manager, library manager, debug, and search. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669017211350-66d61fb7-2e88-4bfa-8054-39b5ff7036bd.png#averageHue=%23918533&amp;clientId=uc9acbb3c-7b43-4&amp;from=ui&amp;height=32&amp;id=uc877f784&amp;originHeight=64&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1939&amp;status=done&amp;style=none&amp;taskId=u18715cc3-4782-4aca-9b8c-793f8472bda&amp;title=&amp;width=34" class="img-fluid" alt="yuque_diagram-4.png"> Code editing area: This is where you write program code, just as we usually type text in a Word window. Write the program code in this area. <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669017227268-8d361966-442e-44f8-bd9e-3e0e937e78f6.png#averageHue=%23918533&amp;clientId=uc9acbb3c-7b43-4&amp;from=ui&amp;height=33&amp;id=u88424789&amp;originHeight=64&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2162&amp;status=done&amp;style=none&amp;taskId=uef269e17-9edb-4925-9d94-05ad8ce99cc&amp;title=&amp;width=35" class="img-fluid" alt="yuque_diagram-5.png">Serial monitor, output window: On the right side of the horizontal toolbar, you can open or close the serial monitor window.</p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_1.jpeg" class="img-fluid"></p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/yuque_diagram-1.png" alt="yuque_diagram-1.png" width="30" height="30"> Menu bar: Includes files, edit, sketch, tools, and help, such as new, save, example programs, select serial port, etc.</p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/yuque_diagram-2.png" alt="yuque_diagram-2.png" width="30" height="30"> Horizontal toolbar: Contains several commonly used function buttons: verify, upload, debug, board selection, serial plotter, and serial monitor selection.</p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/yuque_diagram-3.png" alt="yuque_diagram-3.png" width="30" height="30"> Vertical toolbar: Contains shortcuts to the project folder, board manager, library manager, debug, and search.</p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/yuque_diagram-4.png" alt="yuque_diagram-4.png" width="30" height="30"> Code editing area: This is where you write program code, just as we usually type text in a Word window. Write the program code in this area.</p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/yuque_diagram-5.png" alt="yuque_diagram-5.png" width="30" height="30"> Serial monitor, output window: On the right side of the horizontal toolbar, you can open or close the serial monitor window.</p>
 </section>
 <section id="for-mac-users" class="level4">
-<h4 class="anchored" data-anchor-id="for-mac-users">For MAC Users</h4>
+<h4 class="anchored" data-anchor-id="for-mac-users"><strong>For MAC Users</strong></h4>
 <p>Except for the location of the menu bar (at the top), which is slightly different from Windows users, all other tools and experiences are the same.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684139774017-9637ff60-7153-4379-8c52-9ba3d9d59e82.jpeg" class="img-fluid"></p>
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_2.jpeg" class="img-fluid"></p>
 </section>
 </section>
 <section id="adding-seeed-studio-xiao-to-arduino-ide" class="level2">
 <h2 class="anchored" data-anchor-id="adding-seeed-studio-xiao-to-arduino-ide">1.1.2 Adding Seeed Studio XIAO to Arduino IDE</h2>
 <blockquote class="blockquote">
-<h3 id="attention" class="anchored">⚠️ Attention</h3>
-<p>Due to space limitations, all parts of this course’s program code and hardware connection are based on Seeed Studio <a href="https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html">XIAO SAMD21</a>. Most of the code in the book can be applied to all products in the Seeed Studio XIAO series. If there are exceptions, they will be additionally marked or explained for applicable hardware. If not marked, they apply to multiple products.</p>
+<h4 id="attention" class="anchored">⚠️ <strong>Attention</strong></h4>
+<p><br> Due to space limitations, all parts of this course’s program code and hardware connection are based on Seeed Studio <a href="https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html">XIAO SAMD21</a>. Most of the code in the book can be applied to all products in the Seeed Studio XIAO series. If there are exceptions, they will be additionally marked or explained for applicable hardware. If not marked, they apply to multiple products.</p>
 </blockquote>
 <p>We must add the Seeed Studio XIAO series products to the Arduino IDE to start our learning journey.</p>
 <ul>
@@ -478,20 +490,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For Seeed Studio XIAO RP2040, copy the link address below: <a href="https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json" class="uri">https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json</a></li>
 <li>For Seeed Studio XIAO ESP32C3, XIAO ESP32S3, copy the link address below: <a href="https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json" class="uri">https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json</a></li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684140735129-effa8acd-c059-4c64-8c84-ab96e0fbf929.jpeg" class="img-fluid"></p>
-<p>If you frequently use multiple different models of XIAO at the same time, you can click on the<img src=".png" class="img-fluid"></p>
-<p><img src="images/chapter_1/icon.jpg" style="width:10mm;height:6mm">icon on the right side of the address bar and add all three addresses above to the board manager, as shown in the figure below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684140807895-8ef9ffa6-0789-4d41-ad32-cc442f972263.png#averageHue=%23c6c9c9&amp;clientId=u86b65af4-f8b6-4&amp;from=ui&amp;id=nPsaW&amp;originHeight=1054&amp;originWidth=1590&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=158716&amp;status=done&amp;style=none&amp;taskId=ua51ba116-bd3c-4646-8bd5-4cb01b49502&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L1-arduino-ide-mac-setup-2.png</figcaption>
-</figure>
-</div>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684140735129-effa8acd-c059-4c64-8c84-ab96e0fbf929.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_3.jpeg" class="img-fluid"></p>
+<p>If you frequently use multiple different models of XIAO at the same time, you can click on the<img src="images/chapter_1/icon.jpg" style="width:10mm;height:6mm">icon on the right side of the address bar and add all three addresses above to the board manager, as shown in the figure below.</p>
+<!-- ![L1-arduino-ide-mac-setup-2.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684140807895-8ef9ffa6-0789-4d41-ad32-cc442f972263.png#averageHue=%23c6c9c9&clientId=u86b65af4-f8b6-4&from=ui&id=nPsaW&originHeight=1054&originWidth=1590&originalType=binary&ratio=2&rotation=0&showTitle=false&size=158716&status=done&style=none&taskId=ua51ba116-bd3c-4646-8bd5-4cb01b49502&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_4.png" class="img-fluid"></p>
 <p>Next, click “Tools→Board→Board Manager,” enter the keyword <code>Seeeduino XIAO</code> in the search bar, find <code>Seeed SAMD Boards</code> in the appeared entries, and click <code>INSTALL</code>.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684142355010-1f33512f-94a8-4c29-86cd-e21a263f3a15.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684142355010-1f33512f-94a8-4c29-86cd-e21a263f3a15.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_5.jpeg" class="img-fluid"></p>
 <p>When the installation starts, you will see an output pop-up window. After the installation is complete, an “INSTALLED” option will appear.</p>
 <blockquote class="blockquote">
-<p>⚠️ Attention</p>
+<h4 id="attention-1" class="anchored">⚠️ <strong>Attention</strong></h4>
 <ul>
 <li>Enter “RP2040” in the search bar to find the installation package for Seeed XIAO RP2040.</li>
 <li>Enter “XIAO nrf52840” to find two installation packages: Seeed nRF52 Boards (for low-power projects) and Seeed nRF52 mbed-enabled Boards (for higher-power TinyML projects).</li>
@@ -500,15 +509,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="connecting-seeed-studio-xiao-to-arduino-ide" class="level3">
 <h3 class="anchored" data-anchor-id="connecting-seeed-studio-xiao-to-arduino-ide">Connecting Seeed Studio XIAO to Arduino IDE</h3>
-<p>Connect XIAO to the computer with a data cable, as shown in the figure below: <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1615797195994-1d69441c-5fee-42ba-9700-58b330040dd1.png#averageHue=%23efefee&amp;height=962&amp;id=acnTk&amp;originHeight=1073&amp;originWidth=2896&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=134360&amp;status=done&amp;style=none&amp;title=&amp;width=2597" class="img-fluid" alt="XIAO连接电脑@4x.png"> Next, click on “Tools→Board”, find “Seeeduino XIAO,” and select it, as shown in the figure below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684142575447-8cf375ed-cdc8-46b8-ada6-10b7167f508a.png#averageHue=%2389b575&amp;clientId=u86b65af4-f8b6-4&amp;from=ui&amp;id=u58618537&amp;originHeight=1186&amp;originWidth=2460&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=759602&amp;status=done&amp;style=none&amp;taskId=ub04c07af-24b0-4f77-919a-e41f78ac26e&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L1-WeCom20230515-172140@2x.png</figcaption>
-</figure>
-</div>
+<p>Connect XIAO to the computer with a data cable, as shown in the figure below: <!-- ![XIAO连接电脑\@4x.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1615797195994-1d69441c-5fee-42ba-9700-58b330040dd1.png#averageHue=%23efefee&height=962&id=acnTk&originHeight=1073&originWidth=2896&originalType=binary&ratio=1&rotation=0&showTitle=false&size=134360&status=done&style=none&title=&width=2597)  --> <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_6.png" class="img-fluid"></p>
+<p>Next, click on “Tools→Board”, find “Seeeduino XIAO,” and select it, as shown in the figure below.</p>
+<!-- ![L1-WeCom20230515-172140\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684142575447-8cf375ed-cdc8-46b8-ada6-10b7167f508a.png#averageHue=%2389b575&clientId=u86b65af4-f8b6-4&from=ui&id=u58618537&originHeight=1186&originWidth=2460&originalType=binary&ratio=2&rotation=0&showTitle=false&size=759602&status=done&style=none&taskId=ub04c07af-24b0-4f77-919a-e41f78ac26e&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_7.png" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>⚠️ Attention If your development board is XIAO nRF52840, please select Seeed XIAO nrf52840. If your development board is XIAO nRF52840 Sense, please select Seeed XIAO nrf52840 Sense. If your development board is XIAO RP2040, please select Seeed XIAO RP2040. If your development board is XIAO ESP32C3, please select XIAO_ESP32C3. If your development board is XIAO ESP32S3, please select XIAO_ESP32S3.</p>
+<p>⚠️ Attention</p>
+<p>If your development board is XIAO nRF52840, please select Seeed XIAO nrf52840. <br> If your development board is XIAO nRF52840 Sense, please select Seeed XIAO nrf52840 Sense. <br> If your development board is XIAO RP2040, please select Seeed XIAO RP2040. <br> If your development board is XIAO ESP32C3, please select XIAO_ESP32C3. <br> If your development board is XIAO ESP32S3, please select XIAO_ESP32S3. <br></p>
 </blockquote>
 <p>Check if the port connection is correct; if not, select it manually.</p>
 <ul>
@@ -517,22 +524,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Now, we can start programming XIAO through the software.</p>
 <blockquote class="blockquote">
-<p>⚠️<br>
-XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to specify the development board and port manually.</p>
+<p>⚠️ <strong>XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to specify the development board and port manually.</strong></p>
 </blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219110243-6ef7e05f-4618-495a-8a2d-167422d04677.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219110243-6ef7e05f-4618-495a-8a2d-167422d04677.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_8.jpeg" class="img-fluid"></p>
+<blockquote class="blockquote">
 <p>When ESP32C3 is plugged into a PC with Arduino IDE 2, it may not be able to match the correct development board automatically. As shown in the figure below, the display is not the XIAO ESP32 development board; you need to specify manually. Select ” Other Board &amp; Port…” from the Port drop-down menu. Enter “xiao” in the search bar of the development board, select the XIAO_ESP32C3 development board from the filtered list below, and confirm after selecting the port on the right.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219312231-9d33cecd-1be3-4904-aeee-49aa6151e94a.jpeg" class="img-fluid"></p>
+</blockquote>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219312231-9d33cecd-1be3-4904-aeee-49aa6151e94a.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_9.jpeg" class="img-fluid"></p>
+<blockquote class="blockquote">
 <p>Now you can see that the development board and port are in the correct state.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684219357868-bd5018f7-f729-4992-85fe-ec6d257399f7.png#averageHue=%23e8b64e&amp;clientId=u112af17f-1ac5-4&amp;from=ui&amp;id=u2fc47546&amp;originHeight=1428&amp;originWidth=1848&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=262798&amp;status=done&amp;style=none&amp;taskId=u4e8b42aa-f225-48f2-ac80-da53c1e3ad9&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L1-WeCom20230516-144210@2x.png</figcaption>
-</figure>
-</div>
+</blockquote>
+<!-- ![L1-WeCom20230516-144210\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684219357868-bd5018f7-f729-4992-85fe-ec6d257399f7.png#averageHue=%23e8b64e&clientId=u112af17f-1ac5-4&from=ui&id=u2fc47546&originHeight=1428&originWidth=1848&originalType=binary&ratio=2&rotation=0&showTitle=false&size=262798&status=done&style=none&taskId=u4e8b42aa-f225-48f2-ac80-da53c1e3ad9&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_10.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <h3 id="reset-seeed-studio-xiao" class="anchored">⚠️ Reset Seeed Studio XIAO</h3>
 <p>Sometimes when the program upload fails, the Seeed Studio XIAO port may disappear, and we need to perform a reset operation. The reset method will be different for different models of XIAO.</p>
+</blockquote>
+<blockquote class="blockquote">
 <h4 id="reset-of-seeed-studio-xiao-samd21" class="anchored">Reset of Seeed Studio XIAO SAMD21</h4>
 <ul>
 <li>Connect XIAO SAMD21 to your computer.</li>
@@ -541,9 +551,27 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <li>The reset is completed when the orange LED flashes and lights up.</li>
 </ul>
 </blockquote>
-<p>As shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/gif/2392200/1684219420537-9556aa71-3a89-4ccd-9676-1275e34e9b02.gif#averageHue=%2347918c&amp;clientId=u112af17f-1ac5-4&amp;from=ui&amp;id=uf0fe1613&amp;originHeight=337&amp;originWidth=519&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=1880265&amp;status=done&amp;style=none&amp;taskId=u93453dab-ba96-4ba5-ac42-f71f82b7414&amp;title=" class="img-fluid" alt="XIAO-reset.gif"> &gt; Reset of Seeed Studio XIAO PR2040 &gt; - Connect Seeed Studio XIAO RP2040 to your computer. &gt; - Press the reset button marked with “R” once, the position is shown in the figure below.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219597756-6dbd99e7-9be5-46ed-a3b4-a64208ee0d27.jpeg" class="img-fluid"> If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode. &gt; #### Reset of Seeed Studio XIAO nRF52840 and Sense version &gt; - Connect Seeed Studio XIAO nRF52840 or Sense version to your computer. &gt; - Press the reset button marked with “RST” once, the position is shown in the figure below.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219636704-506e4ca0-9ec1-4b3f-a609-8fd84a7f33d5.jpeg" class="img-fluid"> If this does not work, you can quickly click it twice to enter the bootloader mode.</p>
+<p>As shown in the figure below. <img src="https://files.seeedstudio.com/wiki/Seeeduino-XIAO/img/XIAO-reset.gif" class="img-fluid" alt="XIAO-reset.gif">.</p>
+<blockquote class="blockquote">
+<h4 id="reset-of-seeed-studio-xiao-pr2040" class="anchored">Reset of Seeed Studio XIAO PR2040</h4>
+<ul>
+<li>Connect Seeed Studio XIAO RP2040 to your computer.</li>
+<li>Press the reset button marked with “R” once, the position is shown in the figure below.</li>
+</ul>
+</blockquote>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219597756-6dbd99e7-9be5-46ed-a3b4-a64208ee0d27.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_11.jpeg" class="img-fluid"></p>
+<p>If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode.</p>
+<blockquote class="blockquote">
+<h4 id="reset-of-seeed-studio-xiao-nrf52840-and-sense-version" class="anchored">Reset of Seeed Studio XIAO nRF52840 and Sense version</h4>
+<ul>
+<li>Connect Seeed Studio XIAO nRF52840 or Sense version to your computer.</li>
+<li>Press the reset button marked with “RST” once, the position is shown in the figure below.</li>
+</ul>
+</blockquote>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684219636704-506e4ca0-9ec1-4b3f-a609-8fd84a7f33d5.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_12.jpeg" width="500" height="400"></p>
+<p>If this does not work, you can quickly click it twice to enter the bootloader mode.</p>
 <blockquote class="blockquote">
 <h4 id="reset-of-seeed-studio-xiao-esp32c3" class="anchored">Reset of Seeed Studio XIAO ESP32C3</h4>
 <ul>
@@ -551,7 +579,9 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <li>Press the reset button marked with “R” once, the position is shown in the figure below.</li>
 </ul>
 </blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684224461683-7ba8c18d-f005-4d77-b525-8845e0a38279.jpeg" class="img-fluid"> If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684224461683-7ba8c18d-f005-4d77-b525-8845e0a38279.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_13.jpeg" class="img-fluid"></p>
+<p>If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode.</p>
 <blockquote class="blockquote">
 <h4 id="reset-of-seeed-studio-xiao-esp32s3" class="anchored">Reset of Seeed Studio XIAO ESP32S3</h4>
 <ul>
@@ -559,16 +589,32 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <li>Press the reset button marked with “R” once, the position is shown in the figure below.</li>
 </ul>
 </blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1698388811596-f95d296a-a79d-4d08-8176-3abdbff63ccd.jpeg" class="img-fluid"> If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1698388811596-f95d296a-a79d-4d08-8176-3abdbff63ccd.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_14.jpeg" class="img-fluid"></p>
+<p>If this does not work, hold down the Boot button marked with “B”, connect the board to your computer while holding down the BOOT button, and then release it to enter the bootloader mode.</p>
 </section>
 <section id="structure-of-arduino-programs" class="level3">
 <h3 class="anchored" data-anchor-id="structure-of-arduino-programs">Structure of Arduino Programs</h3>
-<p>Now that we have the development board, how can we write programs into it to control its functions? That’s when the Arduino IDE text editor comes in handy. We’ve already introduced the interface functions of Arduino IDE in the introduction, it’s an important tool for writing and uploading programs. Arduino programs consist of two basic functions: <code>setup()</code> This function is called when the program begins. Use it to initialize variables, pin modes, start using libraries, etc. <code>setup()</code> runs only once each time the Arduino board is powered on or reset.</p>
-<p><code>loop()</code> After the program in <code>setup()</code> is executed, the program in <code>loop()</code> begins to execute. The program in <code>loop()</code> runs repeatedly. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684224618107-775f075d-575a-49c8-8b92-44ea1545cfa7.png#averageHue=%23bd9641&amp;clientId=u2787efb9-7ba6-4&amp;from=ui&amp;id=u1704f87c&amp;originHeight=1288&amp;originWidth=1786&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=202951&amp;status=done&amp;style=none&amp;taskId=u1d2f3e22-7542-42ca-84c2-4183b7d6003&amp;title=" class="img-fluid" alt="L1-企业微信20230516-160950@2x.png"> &gt; Knowledge window: &gt; - The contents after “/* */” and “//” are comments to help you understand and manage code, the comments will not affect the normal operation of the program; &gt; - When writing programs, we need to use “{}” to wrap a set of codes; &gt; - After each line of code, use “;” as an end symbol to tell the Arduino editor that this line of code instruction is over.</p>
+<p>Now that we have the development board, how can we write programs into it to control its functions? That’s when the Arduino IDE text editor comes in handy. We’ve already introduced the interface functions of Arduino IDE in the introduction, it’s an important tool for writing and uploading programs. Arduino programs consist of two basic functions:</p>
+<p><code>setup()</code> <br> This function is called when the program begins. Use it to initialize variables, pin modes, start using libraries, etc. <code>setup()</code> runs only once each time the Arduino board is powered on or reset.</p>
+<p><code>loop()</code> <br> After the program in <code>setup()</code> is executed, the program in <code>loop()</code> begins to execute. The program in <code>loop()</code> runs repeatedly.</p>
+<!-- ![L1-企业微信20230516-160950\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684224618107-775f075d-575a-49c8-8b92-44ea1545cfa7.png#averageHue=%23bd9641&clientId=u2787efb9-7ba6-4&from=ui&id=u1704f87c&originHeight=1288&originWidth=1786&originalType=binary&ratio=2&rotation=0&showTitle=false&size=202951&status=done&style=none&taskId=u1d2f3e22-7542-42ca-84c2-4183b7d6003&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_15.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<h5 id="knowledge-window" class="anchored">Knowledge window:</h5>
+<ul>
+<li>The contents after “/* */” and “//” are comments to help you understand and manage code, the comments will not affect the normal operation of the program;</li>
+<li>When writing programs, we need to use “{}” to wrap a set of codes;</li>
+<li>After each line of code, use “;” as an end symbol to tell the Arduino editor that this line of code instruction is over.</li>
+</ul>
+</blockquote>
 </section>
 <section id="digital-signals-and-io-settings" class="level3">
 <h3 class="anchored" data-anchor-id="digital-signals-and-io-settings">Digital Signals and I/O Settings</h3>
-<p>Simply put, digital signals are signals represented in binary form of 0 and 1. In Arduino, digital signals are represented by high and low levels, high level means digital signal 1, and low level means digital signal 0. Seeed Studio XIAO has 11 digital pins, we can set these pins to perform the function of inputting or outputting digital signals. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684224782661-b9e9d160-2a27-4838-a66a-395d814662fb.jpeg" class="img-fluid"> In Arduino, you can use functions to set the status and function of pins. Here are the basic steps to set pins through functions:</p>
+<p>Simply put, digital signals are signals represented in binary form of 0 and 1. In Arduino, digital signals are represented by high and low levels, high level means digital signal 1, and low level means digital signal 0. Seeed Studio XIAO has 11 digital pins, we can set these pins to perform the function of inputting or outputting digital signals.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684224782661-b9e9d160-2a27-4838-a66a-395d814662fb.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_16.jpeg" class="img-fluid"></p>
+<p>In Arduino, you can use functions to set the status and function of pins. Here are the basic steps to set pins through functions:</p>
 <ol type="1">
 <li>First, determine the pin number of the pin you want to control.</li>
 <li>In the Arduino code, use the <code>pinMode()</code> function to set the function of the pin, such as input or output. For example, to set the pin to output mode, you can use the following code:</li>
@@ -592,7 +638,17 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>buttonPin<span class="op">);</span> <span class="co">// Read the status of the pin</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>By using functions like <code>pinMode()</code>, <code>digitalWrite()</code>, and <code>digitalRead()</code>, you can easily set and control the status and function of pins in Arduino. ## 1.1.3 Task 1: Run Blink to Make XIAO’s LED Flash Just as “Hello World” is the first section in all programming languages, “Blink” is akin to “Hello World” in Arduino programming. It is the key to our journey in learning Arduino. Arduino provides many example codes to help us get started quickly, and Blink is one of them. We can select “File → Examples → 01.Basics → Blink” in the Arduino window to open the example program Blink. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684226229927-10eec161-495c-4d40-8fdf-c5cfed2bbeff.png#averageHue=%2383907e&amp;clientId=u2787efb9-7ba6-4&amp;from=ui&amp;id=ucdfe75f1&amp;originHeight=1736&amp;originWidth=1880&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=1002046&amp;status=done&amp;style=none&amp;taskId=uaff646d1-dfa6-4606-9228-873d313f5da&amp;title=" class="img-fluid" alt="L1-企业微信20230516-163205@2x.png"> After opening the example program, you can see the following code, which implements the effect of LED flashing. You can see that the code has orange and green color prompts, which proves that your input is correct. Pay attention to the difference between uppercase and lowercase. <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1684226225853-9759173f-84ab-4394-874c-b9c7c6b4c994.png#averageHue=%23f6f6f6&amp;clientId=u2787efb9-7ba6-4&amp;from=ui&amp;id=u799467eb&amp;originHeight=1888&amp;originWidth=1842&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=434936&amp;status=done&amp;style=none&amp;taskId=u97c65326-a1ba-44b7-8c39-f998431318a&amp;title=" class="img-fluid" alt="L1-blink.png"></p>
+<p>By using functions like <code>pinMode()</code>, <code>digitalWrite()</code>, and <code>digitalRead()</code>, you can easily set and control the status and function of pins in Arduino.</p>
+</section>
+</section>
+<section id="task-1-run-blink-to-make-xiaos-led-flash" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-run-blink-to-make-xiaos-led-flash">1.1.3 Task 1: Run Blink to Make XIAO’s LED Flash</h2>
+<p>Just as “Hello World” is the first section in all programming languages, “Blink” is akin to “Hello World” in Arduino programming. It is the key to our journey in learning Arduino. Arduino provides many example codes to help us get started quickly, and Blink is one of them. We can select “File → Examples → 01.Basics → Blink” in the Arduino window to open the example program Blink.</p>
+<!-- ![L1-企业微信20230516-163205\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684226229927-10eec161-495c-4d40-8fdf-c5cfed2bbeff.png#averageHue=%2383907e&clientId=u2787efb9-7ba6-4&from=ui&id=ucdfe75f1&originHeight=1736&originWidth=1880&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1002046&status=done&style=none&taskId=uaff646d1-dfa6-4606-9228-873d313f5da&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_17.png" class="img-fluid"></p>
+<p>After opening the example program, you can see the following code, which implements the effect of LED flashing. You can see that the code has orange and green color prompts, which proves that your input is correct. Pay attention to the difference between uppercase and lowercase.</p>
+<!-- ![L1-blink.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1684226225853-9759173f-84ab-4394-874c-b9c7c6b4c994.png#averageHue=%23f6f6f6&clientId=u2787efb9-7ba6-4&from=ui&id=u799467eb&originHeight=1888&originWidth=1842&originalType=binary&ratio=2&rotation=0&showTitle=false&size=434936&status=done&style=none&taskId=u97c65326-a1ba-44b7-8c39-f998431318a&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_18.png" class="img-fluid"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Blink</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -630,19 +686,58 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> LOW<span class="op">);</span>   <span class="co">// turn the LED off by making the voltage LOW</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>                      <span class="co">// wait for a second</span></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="code-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="code-analysis">Code Analysis</h4>
+<section id="code-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="code-analysis">Code Analysis</h3>
 <section id="pinmodeled_builtin-output" class="level5">
 <h5 class="anchored" data-anchor-id="pinmodeled_builtin-output"><code>pinMode(LED_BUILTIN, OUTPUT);</code></h5>
-<p>The first thing the code does is to initialize <code>LED_BUILTIN</code> as an output pin in the <code>setup()</code> function. Most Arduino series boards default the onboard LED to digital pin 13. The constant <code>LED_BUILTIN</code> connects the onboard LED to pin 13. ##### <code>digitalWrite(LED_BUILTIN, HIGH);</code> In the <code>loop()</code> function, we set the <code>LED_BUILTIN</code> pin to the “on” state, outputting 5V or 3.3V voltage to this pin, which can be represented by <code>HIGH</code>. However, note that all I/O pins on XIAO are 3.3V. Do not input a voltage exceeding 3.3V, or it may damage the CPU. ##### <code>digitalWrite(LED_BUILTIN, LOW);</code> What comes on must turn off. This statement sets the <code>LED_BUILTIN</code> pin to the “off” state, outputting 0V voltage to this pin, which can be represented by <code>LOW</code>. ##### <code>delay(1000);</code> This is a delay statement. It means that the LED can maintain the “on” or “off” state for 1 second, because the parameter in the function is in milliseconds, so 1000 milliseconds is 1 second. After controlling the “on” and “off” statements of the LED, a delay must be added, and the waiting time should be the same to ensure that the LED flashes evenly. #### Upload the Program Next, we will learn how to upload the program. Use the data cable in the kit to connect XIAO to the computer, as shown in the figure. <img src="https://cdn.nlark.com/yuque/0/2021/png/2746511/1616585195669-ba0d4324-bcce-40a5-93fc-706d3d0c959e.png#averageHue=%23e8e7e4&amp;height=350&amp;id=XWmAM&amp;originHeight=350&amp;originWidth=992&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=85068&amp;status=done&amp;style=none&amp;title=&amp;width=992" class="img-fluid" alt="image.png"> Choose the serial port of the development board from the “Tools” bar. For Windows users, it is generally COM3 or a larger number. Select it as shown in the figure below.</p>
-<p>If several ports are displayed for selection, unplug the data cable, reopen the “Tools” bar, and the port that disappears is the XIAO port. Reconnect the circuit board and then select this serial port. After selecting the board and the serial port, you can see the controller model and corresponding serial port that have been set up in the lower right corner of the IDE interface. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307022559-5118c887-4787-4265-9e29-2e22fd1421b9.jpeg" class="img-fluid"> In Mac or Linux systems, the serial port name is generally <code>/dev/tty.usbmodem+number</code> or <code>/dev/cu.usbmodem+number</code>, as shown in the figure below. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307463342-df84ffd3-5b68-4fad-8bb8-93aed75dd343.jpeg" class="img-fluid"> Next, we can upload the program. Before uploading, we can click the <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004781256-2ef9b2ff-3f2a-42e1-8c1d-cc287586a2e8.png#averageHue=%235e999d&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=33&amp;id=HPi8k&amp;originHeight=66&amp;originWidth=70&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4632&amp;status=done&amp;style=none&amp;taskId=ue885d468-20b4-4a75-a714-5bdd6ab0124&amp;title=&amp;width=35" class="img-fluid" alt="image.png"> (verify button) to verify whether the program is correct. If “Compilation Completed” is displayed, the program is correct. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307793146-ee233003-4240-45b2-8248-a421fcdcfce9.jpeg" class="img-fluid"> Click the<img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1674004809585-a8842718-f1e3-4ec8-accf-4d73c892568e.png#averageHue=%235c979b&amp;clientId=u44ac5ada-7982-4&amp;from=paste&amp;height=34&amp;id=qvNjL&amp;originHeight=68&amp;originWidth=68&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4597&amp;status=done&amp;style=none&amp;taskId=u04fce7db-6d4d-4dee-a583-4e4b115e8fb&amp;title=&amp;width=34" class="img-fluid" alt="image.png"> (upload button), the debug window will display “Compiling Project→Upload”. When “Upload Completed” is displayed, you can see the effect of the program running on XIAO, as shown in the upload successful prompt window displayed on a Mac computer. <img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307706997-bd9fd76b-01e3-45c3-8af9-372269278c0e.jpeg" class="img-fluid"> &gt; ### ⚠️ Note &gt; When you start writing code, you will often forget the rules of uppercase and lowercase, punctuation, and make mistakes. Therefore, try to write code by yourself instead of copying and pasting. After the example program is successfully uploaded, try to create a new Sketch and start manually inputting the code.</p>
+<p>The first thing the code does is to initialize <code>LED_BUILTIN</code> as an output pin in the <code>setup()</code> function. Most Arduino series boards default the onboard LED to digital pin 13. The constant <code>LED_BUILTIN</code> connects the onboard LED to pin 13.</p>
+<p><br></p>
+</section>
+<section id="digitalwriteled_builtin-high" class="level5">
+<h5 class="anchored" data-anchor-id="digitalwriteled_builtin-high"><code>digitalWrite(LED_BUILTIN, HIGH);</code></h5>
+<p>In the <code>loop()</code> function, we set the <code>LED_BUILTIN</code> pin to the “on” state, outputting 5V or 3.3V voltage to this pin, which can be represented by <code>HIGH</code>. However, note that all I/O pins on XIAO are 3.3V. Do not input a voltage exceeding 3.3V, or it may damage the CPU.</p>
+</section>
+<section id="digitalwriteled_builtin-low" class="level5">
+<h5 class="anchored" data-anchor-id="digitalwriteled_builtin-low"><code>digitalWrite(LED_BUILTIN, LOW);</code></h5>
+<p>What comes on must turn off. This statement sets the <code>LED_BUILTIN</code> pin to the “off” state, outputting 0V voltage to this pin, which can be represented by <code>LOW</code>.</p>
+</section>
+<section id="delay1000" class="level5">
+<h5 class="anchored" data-anchor-id="delay1000"><code>delay(1000);</code></h5>
+<p>This is a delay statement. It means that the LED can maintain the “on” or “off” state for 1 second, because the parameter in the function is in milliseconds, so 1000 milliseconds is 1 second. After controlling the “on” and “off” statements of the LED, a delay must be added, and the waiting time should be the same to ensure that the LED flashes evenly.</p>
 </section>
 </section>
+<section id="upload-the-program" class="level3">
+<h3 class="anchored" data-anchor-id="upload-the-program">Upload the Program</h3>
+<p>Next, we will learn how to upload the program. Use the data cable in the kit to connect XIAO to the computer, as shown in the figure.</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2021/png/2746511/1616585195669-ba0d4324-bcce-40a5-93fc-706d3d0c959e.png#averageHue=%23e8e7e4&height=350&id=XWmAM&originHeight=350&originWidth=992&originalType=binary&ratio=1&rotation=0&showTitle=false&size=85068&status=done&style=none&title=&width=992)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_19.png" class="img-fluid"></p>
+<p>Choose the serial port of the development board from the “Tools” bar. For Windows users, it is generally COM3 or a larger number. Select it as shown in the figure below.</p>
+<p>If several ports are displayed for selection, unplug the data cable, reopen the “Tools” bar, and the port that disappears is the XIAO port. Reconnect the circuit board and then select this serial port. After selecting the board and the serial port, you can see the controller model and corresponding serial port that have been set up in the lower right corner of the IDE interface.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307022559-5118c887-4787-4265-9e29-2e22fd1421b9.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_20.jpeg" class="img-fluid"></p>
+<p>In Mac or Linux systems, the serial port name is generally <code>/dev/tty.usbmodem+number</code> or <code>/dev/cu.usbmodem+number</code>, as shown in the figure below.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307463342-df84ffd3-5b68-4fad-8bb8-93aed75dd343.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_21.jpeg" class="img-fluid"></p>
+<p>Next, we can upload the program. Before uploading, we can click the <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/verify-button.png" alt="verify-button.png" width="30" height="30">(verify button) to verify whether the program is correct. If “Compilation Completed” is displayed, the program is correct.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307793146-ee233003-4240-45b2-8248-a421fcdcfce9.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_22.jpeg" class="img-fluid"></p>
+<p>Click the <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/upload-button.png" alt="upload-button.png" width="30" height="30"> (upload button), the debug window will display “Compiling Project→Upload”. When “Upload Completed” is displayed, you can see the effect of the program running on XIAO, as shown in the upload successful prompt window displayed on a Mac computer.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1684307706997-bd9fd76b-01e3-45c3-8af9-372269278c0e.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_23.jpeg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<h4 id="note" class="anchored">⚠️ <strong>Note</strong></h4>
+<p>When you start writing code, you will often forget the rules of uppercase and lowercase, punctuation, and make mistakes. Therefore, try to write code by yourself instead of copying and pasting. After the example program is successfully uploaded, try to create a new Sketch and start manually inputting the code.</p>
+</blockquote>
 </section>
 </section>
 <section id="task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led" class="level2">
 <h2 class="anchored" data-anchor-id="task-2-complete-the-blink-example-by-connecting-an-external-led-to-seeed-xiao-esp32c3-without-led">1.1.4 Task 2: Complete the Blink example by connecting an external LED to Seeed XIAO ESP32C3 without LED</h2>
-<p>If the XIAO you have on hand is Seeed XIAO ESP32C3, since it does not have an onboard LED available for users, in order to run the Blink program, you need to first connect an LED to the <code>D10</code> pin of the board, as shown below: <img src="https://cdn.nlark.com/yuque/0/2022/png/2586586/1666778092446-9a6e722a-8823-48fe-a890-9016f300cb66.png#averageHue=%23d8d4cb&amp;clientId=u5d6c62e5-f3ec-4&amp;from=paste&amp;id=riopo&amp;originHeight=1068&amp;originWidth=1920&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uacd00b90-dfae-494b-96d7-a127e884d1f&amp;title=" class="img-fluid"> &gt; ⚠️ Note You must connect a resistor (about 150Ω) in series with the LED to limit the current flowing through the LED to prevent the strong current from burning the LED.</p>
+<p>If the XIAO you have on hand is Seeed XIAO ESP32C3, since it does not have an onboard LED available for users, in order to run the Blink program, you need to first connect an LED to the <code>D10</code> pin of the board, as shown below:</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/png/2586586/1666778092446-9a6e722a-8823-48fe-a890-9016f300cb66.png#averageHue=%23d8d4cb&clientId=u5d6c62e5-f3ec-4&from=paste&id=riopo&originHeight=1068&originWidth=1920&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uacd00b90-dfae-494b-96d7-a127e884d1f&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_1-1/chapter_1-1_24.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>⚠️ Note <br> You must connect a resistor (about 150Ω) in series with the LED to limit the current flowing through the LED to prevent the strong current from burning the LED.</p>
+</blockquote>
 <p>Then copy the following program to the Arduino IDE:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define the LED pin according to the pin diagram</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led <span class="op">=</span> D10<span class="op">;</span></span>
@@ -659,11 +754,14 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>               <span class="co">// Wait for a second</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_Blinks_XIAO_ESP32C3/L1_Blinks_XIAO_ESP32C3.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_Blinks_XIAO_ESP32C3/L1_Blinks_XIAO_ESP32C3.ino</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_Blinks_XIAO_ESP32C3/L1_Blinks_XIAO_ESP32C3.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_Blinks_XIAO_ESP32C3/L1_Blinks_XIAO_ESP32C3.ino</a></p>
 </blockquote>
-<section id="code-analysis-1" class="level4">
-<h4 class="anchored" data-anchor-id="code-analysis-1">Code Analysis</h4>
-<p><code>int led = D10;</code> Seeed XIAO ESP32C3 does not have an onboard LED, so we did not preset an LED corresponding pin in the Arduino core. Just now, we connected the LED to the <code>D10</code> pin, so we need to declare it in the program. <code>pinMode(led, OUTPUT);</code> We defined <code>led</code> as <code>D10</code>, and this step is to initialize led(D10) as an output pin.</p>
+<section id="code-analysis-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-analysis-1">Code Analysis <br></h3>
+<p><code>int led = D10;</code></p>
+<p>Seeed XIAO ESP32C3 does not have an onboard LED, so we did not preset an LED corresponding pin in the Arduino core. Just now, we connected the LED to the <code>D10</code> pin, so we need to declare it in the program.</p>
+<p><code>pinMode(led, OUTPUT);</code></p>
+<p>We defined <code>led</code> as <code>D10</code>, and this step is to initialize led(D10) as an output pin.</p>
 </section>
 </section>
 <section id="extended-exercise" class="level2">
@@ -680,7 +778,7 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span>   </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_Blinks_1_en/L1_ll_Blinks_1_en.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_Blinks_1_en/L1_ll_Blinks_1_en.ino</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_Blinks_1_en/L1_ll_Blinks_1_en.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_Blinks_1_en/L1_ll_Blinks_1_en.ino</a></p>
 </blockquote>
 <p>For XIAO ESP32C3, we also need to modify the pin definition part of the program:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led <span class="op">=</span> D10<span class="op">;</span></span>
@@ -694,7 +792,7 @@ XIAO ESP32C3 may not be adequately recognized in Arduino IDE 2, and you need to 
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this program from Github <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_blinks_2_en/L1_ll_blinks_2_en.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_blinks_2_en/L1_ll_blinks_2_en.ino</a></p>
+<p>Get this program from Github <br> <a href="https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_blinks_2_en/L1_ll_blinks_2_en.ino" class="uri">https://github.com/mouseart/XIAO-Mastering-Arduino-and-TinyML/blob/main/code/L1_ll_blinks_2_en/L1_ll_blinks_2_en.ino</a></p>
 </blockquote>
 
 

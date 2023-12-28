@@ -2,18 +2,20 @@
 
 Exploring Computer Vision applications with the XIAO ESP32S3 Sense,Edge Impulse Studio and Arduino IDE.
 
-![img](https://hackster.imgix.net/uploads/attachments/1654474/_i6VjLqLn1X.blob?auto=compress%2Cformat&w=900&h=675&fit=min))
+![img](https://hackster.imgix.net/uploads/attachments/1654474/_i6VjLqLn1X.blob?auto=compress%2Cformat&w=900&h=675&fit=min)
 
 ## 4.5.1 Things used in this project
 
 ### 4.5.1.1 Hardware components
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5)[Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5) -->
+[Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-4_1.png" width="400" height="auto" />
+
 
 ### 4.5.2 Software apps and online services
 
--   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48) [Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
--   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&clientId=ud4d22600-5c37-4&from=paste&height=48&id=k6jic&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8524&status=done&style=none&taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&title=&width=48) [Edge Impulse Studio](https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2)
+-   ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png) [Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
+-   ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_5.png) [Edge Impulse Studio](https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2)
 
 ## 4.5.2 Introduction
 
@@ -247,7 +249,7 @@ Under the Examples tab on Arduino IDE, you should find a sketch code (esp32 \> e
 
 You should change lines 32 to 75, which define the camera model and pins, by the data related to our model. Copy and paste the below lines, replacing the lines 32-75:
 
-```         
+```cpp         
 #define PWDN_GPIO_NUM     -1 
 #define RESET_GPIO_NUM    -1 
 #define XCLK_GPIO_NUM     10 

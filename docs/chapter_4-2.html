@@ -422,6 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">4.2.2 Introduction</a></li>
   <li><a href="#xiao-nrf52840-sense" id="toc-xiao-nrf52840-sense" class="nav-link" data-scroll-target="#xiao-nrf52840-sense">4.2.3 XIAO nRF52840 Sense</a>
   <ul class="collapse">
+  <li><a href="#connecting-the-xiao-nrf52840-sense-with-arduino-ide" id="toc-connecting-the-xiao-nrf52840-sense-with-arduino-ide" class="nav-link" data-scroll-target="#connecting-the-xiao-nrf52840-sense-with-arduino-ide">4.2.3.1 Connecting the XIAO nRF52840 Sense with Arduino IDE</a></li>
   <li><a href="#testing-the-microphone" id="toc-testing-the-microphone" class="nav-link" data-scroll-target="#testing-the-microphone">4.2.3.2 Testing the Microphone</a></li>
   <li><a href="#testing-the-imu" id="toc-testing-the-imu" class="nav-link" data-scroll-target="#testing-the-imu">4.2.3.3 Testing the IMU</a></li>
   </ul></li>
@@ -465,12 +466,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489415530-2d597008-ee4f-42ca-b6e6-3e26fbe1082a.png#averageHue=%233d6160&amp;clientId=ua1a1be23-670f-4&amp;from=paste&amp;height=509&amp;id=ud9bbae99&amp;originHeight=675&amp;originWidth=900&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=721877&amp;status=done&amp;style=stroke&amp;taskId=ucde57e5a-1bea-4028-876a-9c3d70061e5&amp;title=&amp;width=678" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<p><br></p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489415530-2d597008-ee4f-42ca-b6e6-3e26fbe1082a.png#averageHue=%233d6160&clientId=ua1a1be23-670f-4&from=paste&height=509&id=ud9bbae99&originHeight=675&originWidth=900&originalType=binary&ratio=1&rotation=0&showTitle=false&size=721877&status=done&style=stroke&taskId=ucde57e5a-1bea-4028-876a-9c3d70061e5&title=&width=678) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_1.png" class="img-fluid"></p>
 <section id="things-used-in-this-project" class="level2">
 <h2 class="anchored" data-anchor-id="things-used-in-this-project">4.2.1 Things used in this project</h2>
 <section id="hardware-components" class="level3">
@@ -478,33 +476,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><a href="https://www.seeedstudio.com/Seeed-XIAO-BLE-Sense-nRF52840-p-5253.html">Seeed Studio XIAO nRF52840 Sense</a> × 1</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1668492017246-6f04d198-1961-4f7b-a990-dd6937468025.png#averageHue=%23a6997f&amp;clientId=u640cf75b-7515-4&amp;from=paste&amp;height=78&amp;id=tGTo8&amp;originHeight=650&amp;originWidth=970&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=512355&amp;status=done&amp;style=none&amp;taskId=u369408e4-7109-4379-8247-0698cf19286&amp;title=&amp;width=116" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1668492017246-6f04d198-1961-4f7b-a990-dd6937468025.png#averageHue=%23a6997f&clientId=u640cf75b-7515-4&from=paste&height=78&id=tGTo8&originHeight=650&originWidth=970&originalType=binary&ratio=1&rotation=0&showTitle=false&size=512355&status=done&style=none&taskId=u369408e4-7109-4379-8247-0698cf19286&title=&width=116) -->
+<!-- ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_2.png) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_2.png" width="300" height="auto"></p>
 </section>
 <section id="software-apps-and-online-services" class="level3">
 <h3 class="anchored" data-anchor-id="software-apps-and-online-services">Software apps and online services</h3>
 <ul>
-<li><a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
+<li><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_3.png" class="img-fluid"> <a href="https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2">Arduino IDE</a></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&amp;clientId=u413b5b5e-84eb-4&amp;from=paste&amp;height=48&amp;id=bESIK&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9015&amp;status=done&amp;style=none&amp;taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&amp;title=&amp;width=48" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48) -->
+<!-- <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo//chapter_4-2/chapter_4-2_3.png" alt="verify-button.png" width="30" height="30" /> -->
 <ul>
-<li><a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
+<li><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_4.png" class="img-fluid"> <a href="https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2">Edge Impulse Studio</a></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&amp;clientId=ud4d22600-5c37-4&amp;from=paste&amp;height=48&amp;id=k6jic&amp;originHeight=96&amp;originWidth=96&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8524&amp;status=done&amp;style=none&amp;taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&amp;title=&amp;width=48" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875769259-c9ab4bef-809a-4c6a-ad7a-aa9fb078eb9e.png#averageHue=%23cfe688&clientId=ud4d22600-5c37-4&from=paste&height=48&id=k6jic&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8524&status=done&style=none&taskId=uc8745d54-8c8b-4814-8de4-d9d8bbf9f31&title=&width=48) -->
 </section>
 </section>
 <section id="introduction" class="level2">
@@ -519,7 +505,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="xiao-nrf52840-sense" class="level2">
 <h2 class="anchored" data-anchor-id="xiao-nrf52840-sense">4.2.3 XIAO nRF52840 Sense</h2>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685667766488-5d45158f-c85d-473a-81c6-689bae2433cc.jpeg" class="img-fluid"> #### MainFeatures</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685667766488-5d45158f-c85d-473a-81c6-689bae2433cc.jpeg)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_5.jpeg" class="img-fluid"></p>
+<section id="mainfeatures" class="level4">
+<h4 class="anchored" data-anchor-id="mainfeatures"><strong>MainFeatures</strong></h4>
 <ul>
 <li>Bluetooth 5.0 with onboard antenna</li>
 <li>CPU: Nordic nRF52840, ARM® Cortex®-M4 32-bit processor with FPU, 64 MHz</li>
@@ -531,15 +520,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>6-axis LSM6DS3TR-C IMU</li>
 <li>Ultra Small Size: 20 x 17.5mm, XIAO series classic form-factor for wearable devices</li>
 <li>Rich interfaces: 1xUART, 1xI2C, 1xSPI, 1xNFC, 1xSWD, 11xGPIO(PWM), 6xADC</li>
-<li>Single-sided components, surface mounting design ### 4.2.3.1 Connecting the XIAO nRF52840 Sense with Arduino IDE</li>
+<li>Single-sided components, surface mounting design</li>
 </ul>
+</section>
+<section id="connecting-the-xiao-nrf52840-sense-with-arduino-ide" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-the-xiao-nrf52840-sense-with-arduino-ide">4.2.3.1 Connecting the XIAO nRF52840 Sense with Arduino IDE</h3>
 <p>The simple way to test and use this device is using the <a href="https://www.arduino.cc/en/software">Arduino IDE</a>. Once you have the IDE installed on your machine, navigate to <code>File &gt; Preferences</code>, and fill in “Additional Boards Manager URLs” with the URL below: <code>https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json</code></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685668325841-b1c7f194-5308-41ad-8d5c-148f19e2fc40.png#averageHue=%23e3e7eb&amp;clientId=u729ff438-6678-4&amp;from=ui&amp;id=uadf449c2&amp;originHeight=1676&amp;originWidth=2406&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=4453620&amp;status=done&amp;style=stroke&amp;taskId=u0440f0e4-475d-4b3d-9162-c7f2bc9a320&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A1.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-A1.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685668325841-b1c7f194-5308-41ad-8d5c-148f19e2fc40.png#averageHue=%23e3e7eb&clientId=u729ff438-6678-4&from=ui&id=uadf449c2&originHeight=1676&originWidth=2406&originalType=binary&ratio=2&rotation=0&showTitle=false&size=4453620&status=done&style=stroke&taskId=u0440f0e4-475d-4b3d-9162-c7f2bc9a320&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_6.png" class="img-fluid"></p>
 <p>Now, navigate to <code>Tools→Board→Board Manager</code> in the top menu, and type in the filter keyword <code>seeed nrf52</code> in the search box.</p>
 <p>You will see two installation packages: <code>Seeed nRF52 Boards</code> and <code>Seeed nRF52 mbed-enabled Boards</code>, the differences between these two packages are as follows:</p>
 <ul>
@@ -547,14 +535,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Seeed nRF52 mbed-enabled Boards</code>: Friendly for TinyML support, suitable for making TinyML or Bluetooth-related projects, but not suitable for applications with high low-power requirements.</li>
 </ul>
 <p>Because we will develop a TinyML project, we chose the latest version of the <code>Seeed nRF52 mbed-enabled Boards</code> package. Install it and wait until you see a successful installation prompt in the output window.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685685860046-a9e57617-0456-4934-bc68-9fa5bf949f5f.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685685860046-a9e57617-0456-4934-bc68-9fa5bf949f5f.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_7.jpeg" class="img-fluid"></p>
 <p>Now, you can access this device from your Arduino IDE by selecting the development board and serial port, as shown in the figure below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685669373078-d5441cc0-2d5b-4998-8666-6b883c8813d5.png#averageHue=%238ca280&amp;clientId=u729ff438-6678-4&amp;from=ui&amp;id=ub23a38a7&amp;originHeight=1568&amp;originWidth=2476&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=693202&amp;status=done&amp;style=stroke&amp;taskId=u9997ad84-bb39-41dc-83ea-a590e847817&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-企业微信20230602-092816@2x.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-企业微信20230602-092816\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685669373078-d5441cc0-2d5b-4998-8666-6b883c8813d5.png#averageHue=%238ca280&clientId=u729ff438-6678-4&from=ui&id=ub23a38a7&originHeight=1568&originWidth=2476&originalType=binary&ratio=2&rotation=0&showTitle=false&size=693202&status=done&style=stroke&taskId=u9997ad84-bb39-41dc-83ea-a590e847817&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_8.png" class="img-fluid"></p>
 <p>Your development board is now ready to run code on it. Let’s start with Blink - lighting up the LED. Note that the board does not have a regular LED like most Arduino boards. Instead, you will find an RGB LED that can be activated with “reverse logic” (you should apply LOW to activate each of the three separate LEDs). Test your RGB LED with the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -598,15 +583,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>  </span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this code online 🔗 <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/tree/main/Seeed_Xiao_Sense_bilnk_RGB" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/tree/main/Seeed_Xiao_Sense_bilnk_RGB</a></p>
+<p>Get this code online 🔗 <br> <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/tree/main/Seeed_Xiao_Sense_bilnk_RGB" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/tree/main/Seeed_Xiao_Sense_bilnk_RGB</a></p>
 </blockquote>
 <p>Here is the result:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669881875471-2c32f745-2860-43f3-a81e-d624868b8426.jpeg#averageHue=%23aab3b4&amp;clientId=u9d74cf2b-c0d4-4&amp;from=ui&amp;id=ubfb26eaf&amp;originHeight=540&amp;originWidth=1215&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=315766&amp;status=done&amp;style=stroke&amp;taskId=u43effa5c-768c-446d-bbbb-bae4664dafe&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L15-rgbblink.jpg</figcaption>
-</figure>
-</div>
+<!-- ![L15-rgbblink.jpg](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1669881875471-2c32f745-2860-43f3-a81e-d624868b8426.jpeg#averageHue=%23aab3b4&clientId=u9d74cf2b-c0d4-4&from=ui&id=ubfb26eaf&originHeight=540&originWidth=1215&originalType=binary&ratio=1&rotation=0&showTitle=false&size=315766&status=done&style=stroke&taskId=u43effa5c-768c-446d-bbbb-bae4664dafe&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_9.jpg" class="img-fluid"></p>
+</section>
 <section id="testing-the-microphone" class="level3">
 <h3 class="anchored" data-anchor-id="testing-the-microphone">4.2.3.2 Testing the Microphone</h3>
 <p>The XIAO nRF52840 Sense has a <a href="https://files.seeedstudio.com/wiki/XIAO-BLE/mic-MSM261D3526H1CPM-ENG.pdf">PDM digital output MEMS microphone</a>. Run the below code for testing it:</p>
@@ -680,12 +662,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    samplesRead <span class="op">=</span> bytesAvailable <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The above code will continuously capture data to its buffer, displaying it in the Serial Monitor and Plotter:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685670276037-7bcefe78-65ae-4064-b606-7f9f47e07d6a.png#averageHue=%23f6f9f8&amp;clientId=uc7a3e49a-ca50-4&amp;from=ui&amp;id=u8e67f0c0&amp;originHeight=1485&amp;originWidth=2532&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=3299193&amp;status=done&amp;style=stroke&amp;taskId=ua913a880-9a00-4ce0-a562-54a86745e9d&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A2.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-A2.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685670276037-7bcefe78-65ae-4064-b606-7f9f47e07d6a.png#averageHue=%23f6f9f8&clientId=uc7a3e49a-ca50-4&from=ui&id=u8e67f0c0&originHeight=1485&originWidth=2532&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=3299193&status=done&style=stroke&taskId=ua913a880-9a00-4ce0-a562-54a86745e9d&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_10.png" class="img-fluid"></p>
 <p>Also, note that the RGB LED will be set up depending on the intensity of sound.</p>
 <blockquote class="blockquote">
 <p>The Micrphone will not be used on this project in particular, but it is good to have it tested if it is your first time using the XIAO nRF52840 Sense.</p>
@@ -695,15 +673,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="testing-the-imu">4.2.3.3 Testing the IMU</h3>
 <p>Our tiny device also has integrated a 6-Axis IMU, the <a href="https://files.seeedstudio.com/wiki/XIAO-BLE/ST_LSM6DS3TR_Datasheet.pdf">LSM6DS3TR-C</a>, a system-in-package 3D digital accelerometer, and a 3D digital gyroscope. For testing, you should first install its library ‘<a href="https://github.com/Seeed-Studio/Seeed_Arduino_LSM6DS3/">Seeed Arduino LSM6DS3</a>’.</p>
 <p>Before programming the accelerometer with the Arduino IDE, you must add the necessary library for the sensor. Enter the library address 🔗 <a href="https://github.com/Seeed-Studio/Seeed_Arduino_LSM6DS3/" class="uri">https://github.com/Seeed-Studio/Seeed_Arduino_LSM6DS3/</a> in the browser address bar, go to the GitHub page, click <code>Code→Download ZIP</code> to download the resource pack <code>Seeed_Arduino_LSM6DS3-master.zip</code> to the local area, as shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669882744468-cd7bde80-125d-4545-a95e-a16f14ece8ba.png#averageHue=%2397ae72&amp;clientId=u72c77c6d-698e-4&amp;from=paste&amp;height=922&amp;id=Vs4pW&amp;originHeight=1844&amp;originWidth=2988&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=612047&amp;status=done&amp;style=stroke&amp;taskId=ub1e45245-4213-4aa7-9185-db763841e38&amp;title=&amp;width=1494" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669882744468-cd7bde80-125d-4545-a95e-a16f14ece8ba.png#averageHue=%2397ae72&clientId=u72c77c6d-698e-4&from=paste&height=922&id=Vs4pW&originHeight=1844&originWidth=2988&originalType=binary&ratio=1&rotation=0&showTitle=false&size=612047&status=done&style=stroke&taskId=ub1e45245-4213-4aa7-9185-db763841e38&title=&width=1494) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_11.png" class="img-fluid"></p>
 <p>Add the resource pack <code>Seeed_Arduino_LSM6DS3-master.zip</code> downloaded in the previous step in the menu bar’s <code>Sketch→Include Library→Add .ZIP Library</code> until you see a prompt that the library has been loaded successfully.</p>
 <section id="run-the-test-code-based-on-harvard-universitys-tinymlx---sensor-test" class="level4">
-<h4 class="anchored" data-anchor-id="run-the-test-code-based-on-harvard-universitys-tinymlx---sensor-test">Run the test code based on Harvard University’s tinymlx - Sensor Test</h4>
+<h4 class="anchored" data-anchor-id="run-the-test-code-based-on-harvard-universitys-tinymlx---sensor-test"><strong>Run the test code based on Harvard University’s tinymlx - Sensor Test</strong></h4>
 <p>Now, run the following test code based on Harvard University’s tinymlx - Sensor Test.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"LSM6DS3.h"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Wire.h"</span></span>
@@ -786,15 +760,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this code online 🔗 <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/xiao_test_IMU/xiao_test_IMU.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/xiao_test_IMU/xiao_test_IMU.ino</a></p>
+<p>Get this code online 🔗 <br> <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/xiao_test_IMU/xiao_test_IMU.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/xiao_test_IMU/xiao_test_IMU.ino</a></p>
 </blockquote>
 <p>Once you run the above sketch, open the Serial Monitor:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685674760199-fcc2ec38-c5c8-455d-9c82-62ddc755f20f.png#averageHue=%23e7eae7&amp;clientId=uc7a3e49a-ca50-4&amp;from=ui&amp;id=uf5b27123&amp;originHeight=1488&amp;originWidth=2532&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=2256272&amp;status=done&amp;style=stroke&amp;taskId=u7bd622f3-0388-4cf4-906f-c4f100db124&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A3.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-A3.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685674760199-fcc2ec38-c5c8-455d-9c82-62ddc755f20f.png#averageHue=%23e7eae7&clientId=uc7a3e49a-ca50-4&from=ui&id=uf5b27123&originHeight=1488&originWidth=2532&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=2256272&status=done&style=stroke&taskId=u7bd622f3-0388-4cf4-906f-c4f100db124&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_12.png" class="img-fluid"></p>
 <p>Choose one of the three options to test:</p>
 <ul>
 <li><strong>a</strong>: Accelerometer (see the result on Plotter)</li>
@@ -802,24 +772,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>t</strong>: Temperature (see the result on Serial Monitor)</li>
 </ul>
 <p>The following images show the result:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675264752-96e55676-8953-40a0-b1a3-5dbf1cc2cd1a.png#averageHue=%23e8f1e8&amp;clientId=uc7a3e49a-ca50-4&amp;from=ui&amp;id=u05c9d6eb&amp;originHeight=1326&amp;originWidth=2256&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=2776340&amp;status=done&amp;style=stroke&amp;taskId=ue3ffd0af-21aa-48ac-86a4-9d41fc132b5&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A4.png</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675277457-da381ee4-f2af-465b-999a-52a51bee9d32.png#averageHue=%23f3f7f4&amp;clientId=uc7a3e49a-ca50-4&amp;from=ui&amp;id=u5c647c32&amp;originHeight=1323&amp;originWidth=2256&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=2649215&amp;status=done&amp;style=stroke&amp;taskId=u09c052e3-d4fc-4a4c-be87-13f6349a844&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A5.png</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675290837-400ec846-36a6-44d4-8795-b9a9cfa466f4.png#averageHue=%23f0f2ef&amp;clientId=uc7a3e49a-ca50-4&amp;from=ui&amp;id=uae04aa1b&amp;originHeight=1326&amp;originWidth=2256&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=2559221&amp;status=done&amp;style=stroke&amp;taskId=uc9239d7b-018d-411e-99a0-703e9279d9b&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-A6.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-A4.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675264752-96e55676-8953-40a0-b1a3-5dbf1cc2cd1a.png#averageHue=%23e8f1e8&clientId=uc7a3e49a-ca50-4&from=ui&id=u05c9d6eb&originHeight=1326&originWidth=2256&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=2776340&status=done&style=stroke&taskId=ue3ffd0af-21aa-48ac-86a4-9d41fc132b5&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_13.png" class="img-fluid"></p>
+<!-- ![L17-A5.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675277457-da381ee4-f2af-465b-999a-52a51bee9d32.png#averageHue=%23f3f7f4&clientId=uc7a3e49a-ca50-4&from=ui&id=u5c647c32&originHeight=1323&originWidth=2256&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=2649215&status=done&style=stroke&taskId=u09c052e3-d4fc-4a4c-be87-13f6349a844&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_14.png" class="img-fluid"></p>
+<!-- ![L17-A6.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685675290837-400ec846-36a6-44d4-8795-b9a9cfa466f4.png#averageHue=%23f0f2ef&clientId=uc7a3e49a-ca50-4&from=ui&id=uae04aa1b&originHeight=1326&originWidth=2256&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=2559221&status=done&style=stroke&taskId=uc9239d7b-018d-411e-99a0-703e9279d9b&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_15.png" class="img-fluid"></p>
 </section>
 </section>
 </section>
@@ -832,11 +790,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Lift</strong> (Palettes being handled by Fork-Lift)</li>
 <li><strong>Idle</strong> (Palettes in Storage houses)</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685685932532-0d793d94-1fab-4f5b-9973-bef16d336345.png#averageHue=%23edf0ee&amp;clientId=u038c5b2f-1490-4&amp;from=ui&amp;id=u7189fe52&amp;originHeight=1020&amp;originWidth=1920&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=1943471&amp;status=done&amp;style=stroke&amp;taskId=u8e7c52e1-9882-487d-90e0-2fe2a69784d&amp;title=" class="img-fluid" alt="L17-a1.png">So, to start, we should collect data. Then, accelerometers will provide the data on the palette (or container).</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685685985710-08fb2dc7-ee7b-4ed4-b4dd-d3cd7e3caa98.png#averageHue=%23e5e8e6&amp;clientId=u038c5b2f-1490-4&amp;from=ui&amp;id=u238d82be&amp;originHeight=1044&amp;originWidth=1920&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=1925686&amp;status=done&amp;style=stroke&amp;taskId=u0ed48981-1c8a-4b50-a723-3dbf011cfc6&amp;title=" class="img-fluid" alt="L17-a2.png"> <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685686008994-915c02c4-40fe-4df7-97c3-a7672badd516.png#averageHue=%23a7afae&amp;clientId=u038c5b2f-1490-4&amp;from=ui&amp;id=u2118a7e7&amp;originHeight=988&amp;originWidth=1920&amp;originalType=binary&amp;ratio=2.5&amp;rotation=0&amp;showTitle=false&amp;size=2586939&amp;status=done&amp;style=stroke&amp;taskId=ua2558bb1-96da-4a6c-a881-03ea8517731&amp;title=" class="img-fluid" alt="L17-a3-data3_cjs9H0JLQs.png"> From the above images, we can see that primarily horizontal movements should be associated with “Terrestrial class,” Vertical movements to “Lift Class,” no activity to “Idle class,” and movent on all three axes to <a href="https://www.containerhandbuch.de/chb_e/stra/index.html?/chb_e/stra/stra_02_03_03.htm">Maritime class</a>.</p>
+<!-- ![L17-a1.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685685932532-0d793d94-1fab-4f5b-9973-bef16d336345.png#averageHue=%23edf0ee&clientId=u038c5b2f-1490-4&from=ui&id=u7189fe52&originHeight=1020&originWidth=1920&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=1943471&status=done&style=stroke&taskId=u8e7c52e1-9882-487d-90e0-2fe2a69784d&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_16.png" class="img-fluid"></p>
+<p>So, to start, we should collect data. Then, accelerometers will provide the data on the palette (or container).</p>
+<!-- ![L17-a2.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685685985710-08fb2dc7-ee7b-4ed4-b4dd-d3cd7e3caa98.png#averageHue=%23e5e8e6&clientId=u038c5b2f-1490-4&from=ui&id=u238d82be&originHeight=1044&originWidth=1920&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=1925686&status=done&style=stroke&taskId=u0ed48981-1c8a-4b50-a723-3dbf011cfc6&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_17.png" class="img-fluid"></p>
+<!-- ![L17-a3-data3_cjs9H0JLQs.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685686008994-915c02c4-40fe-4df7-97c3-a7672badd516.png#averageHue=%23a7afae&clientId=u038c5b2f-1490-4&from=ui&id=u2118a7e7&originHeight=988&originWidth=1920&originalType=binary&ratio=2.5&rotation=0&showTitle=false&size=2586939&status=done&style=stroke&taskId=ua2558bb1-96da-4a6c-a881-03ea8517731&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_18.png" class="img-fluid"></p>
+<p>From the above images, we can see that primarily horizontal movements should be associated with “Terrestrial class,” Vertical movements to “Lift Class,” no activity to “Idle class,” and movent on all three axes to <a href="https://www.containerhandbuch.de/chb_e/stra/index.html?/chb_e/stra/stra_02_03_03.htm">Maritime class</a>.</p>
 <section id="connecting-a-device-to-the-edge-impulse-studio" class="level3">
 <h3 class="anchored" data-anchor-id="connecting-a-device-to-the-edge-impulse-studio">4.2.4.1 Connecting a Device to the Edge Impulse Studio</h3>
-<p>For data collection, we can have several options. In a real case, we can have our device, for example, connected directly to one container, and the data collected on a file (for example .CSV) and stored on an SD card (via SPI connection) or an offline repo in your computer. Data can also be sent remotely to a nearby repository, such as a mobile phone, using Bluetooth (as done in this project: <a href="https://www.hackster.io/mjrobot/sensor-datalogger-50e44d">Sensor DataLogger</a>. Once your dataset is collected and stored as a .CSV file, it can be uploaded to the Studio using the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/data-acquisition/csv-wizard">CSV Wizard tool</a>.</p>
+<p>For data collection, we can have several options. In a real case, we can have our device, for example, connected directly to one container, and the data collected on a file (for example .CSV) and stored on an SD card (via SPI connection) or an offline repo in your computer. Data can also be sent remotely to a nearby repository, such as a mobile phone, using Bluetooth as done in this project: <a href="https://www.hackster.io/mjrobot/sensor-datalogger-50e44d">Sensor DataLogger</a>. Once your dataset is collected and stored as a .CSV file, it can be uploaded to the Studio using the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/data-acquisition/csv-wizard">CSV Wizard tool</a>.</p>
 <blockquote class="blockquote">
 <p>In this <a href="https://youtu.be/2KBPq_826WM">video</a>, you can learn alternative ways to send data to the Edge Impulse Studio.</p>
 </blockquote>
@@ -844,7 +808,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Follow the instructions <a href="https://docs.edgeimpulse.com/docs/edge-impulse-cli/cli-installation">here</a> to install the <a href="https://nodejs.org/en/">Node.js</a> and Edge Impulse CLI on your computer.</p>
 </blockquote>
-<p>Once the XIAO nRF52840 Sense is not a fully supported development board by Edge Impulse, we should use the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-cli/cli-data-forwarder">CLI Data Forwarder</a> to capture data from the accelerometer and send it to the Studio, as shown in this diagram: <img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685686519311-2773d934-32bc-414e-819d-6eb1b229e52c.png#averageHue=%23e9ece1&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;id=u97bf9406&amp;originHeight=1620&amp;originWidth=1710&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=2378395&amp;status=done&amp;style=stroke&amp;taskId=uc5cf36db-ed56-49ab-862d-970f8bdefd7&amp;title=" class="img-fluid" alt="L17-image_PHK0GELEYh.png"> Your device should be connected to the computer serial and running a code to capture IMU (Accelerometer) data and “print them” on the serial. Further, the Edge Impulse Studio will “capture” them. Run the code below:</p>
+<p>Once the XIAO nRF52840 Sense is not a fully supported development board by Edge Impulse, we should use the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-cli/cli-data-forwarder">CLI Data Forwarder</a> to capture data from the accelerometer and send it to the Studio, as shown in this diagram:</p>
+<!-- ![L17-image_PHK0GELEYh.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685686519311-2773d934-32bc-414e-819d-6eb1b229e52c.png#averageHue=%23e9ece1&clientId=ub5d6cce2-8f0f-4&from=ui&id=u97bf9406&originHeight=1620&originWidth=1710&originalType=binary&ratio=2&rotation=0&showTitle=false&size=2378395&status=done&style=stroke&taskId=uc5cf36db-ed56-49ab-862d-970f8bdefd7&title=)  -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_19.png" class="img-fluid"></p>
+<p>Your device should be connected to the computer serial and running a code to capture IMU (Accelerometer) data and “print them” on the serial. Further, the Edge Impulse Studio will “capture” them. Run the code below:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"LSM6DS3.h"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Wire.h"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -889,16 +856,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Get this code online 🔗 <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_Accelerometer_Data_Forewarder/XIAO_BLE_Sense_Accelerometer_Data_Forewarder.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_Accelerometer_Data_Forewarder/XIAO_BLE_Sense_Accelerometer_Data_Forewarder.ino</a></p>
+<p>Get this code online 🔗 <br> <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_Accelerometer_Data_Forewarder/XIAO_BLE_Sense_Accelerometer_Data_Forewarder.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_Accelerometer_Data_Forewarder/XIAO_BLE_Sense_Accelerometer_Data_Forewarder.ino</a></p>
 </blockquote>
 <p>Go to the Edge Impulse page and create a project. Next, start the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-cli/cli-data-forwarder">CLI Data Forwarder</a> on your terminal, entering (if it is the first time) the following command:</p>
-<pre class="shell"><code>$ edge-impulse-data-forwarder --clean</code></pre>
-<p>Next, enter your EI credentials, and choose your project, variable, and device names: <img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670381198672-c3ae89aa-b29d-4ea2-a243-8b71c73f2ade.png#averageHue=%232d7e40&amp;clientId=ub45caf77-7cac-4&amp;from=ui&amp;id=ue0fc8af3&amp;originHeight=1323&amp;originWidth=3348&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2412654&amp;status=done&amp;style=stroke&amp;taskId=u00f67c11-faa0-4901-8458-9d9d25cc170&amp;title=" class="img-fluid" alt="pasted_graphic_13_CklDujzQho-X3.png"></p>
+<!-- the command below is not cpp, is shell  -->
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="er">$</span> edge<span class="op">-</span>impulse<span class="op">-</span>data<span class="op">-</span>forwarder <span class="op">--</span>clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, enter your EI credentials, and choose your project, variable, and device names:</p>
+<!-- ![pasted_graphic_13_CklDujzQho-X3.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670381198672-c3ae89aa-b29d-4ea2-a243-8b71c73f2ade.png#averageHue=%232d7e40&clientId=ub45caf77-7cac-4&from=ui&id=ue0fc8af3&originHeight=1323&originWidth=3348&originalType=binary&ratio=1&rotation=0&showTitle=false&size=2412654&status=done&style=stroke&taskId=u00f67c11-faa0-4901-8458-9d9d25cc170&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_20.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>The Studio can read the sampled frequency as 51Hz instead of the 50Hz previously defined in the code. It is OK.</p>
 </blockquote>
 <p>Go to the <code>Devices</code> section on your EI Project and verify if the device is connected (the dot should be green):</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670392173492-a76af287-550c-4e4e-ac1e-4dfe612d3124.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670392173492-a76af287-550c-4e4e-ac1e-4dfe612d3124.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_21.jpeg" class="img-fluid"></p>
 </section>
 <section id="data-collection" class="level3">
 <h3 class="anchored" data-anchor-id="data-collection">4.2.4.2 Data Collection</h3>
@@ -909,26 +880,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>maritime</strong> (zig-zag, etc.)</li>
 <li><strong>idle</strong></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669886164444-232641c4-ed37-446a-ab43-27be0fbf03b0.png#averageHue=%23194c51&amp;clientId=u72c77c6d-698e-4&amp;from=paste&amp;id=u769a6ccd&amp;originHeight=555&amp;originWidth=738&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=486750&amp;status=done&amp;style=stroke&amp;taskId=ue2c3adaa-4b3f-47a8-adfd-44146e8c688&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669886164444-232641c4-ed37-446a-ab43-27be0fbf03b0.png#averageHue=%23194c51&clientId=u72c77c6d-698e-4&from=paste&id=u769a6ccd&originHeight=555&originWidth=738&originalType=url&ratio=1&rotation=0&showTitle=false&size=486750&status=done&style=stroke&taskId=ue2c3adaa-4b3f-47a8-adfd-44146e8c688&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_22.png" class="img-fluid"></p>
 <p>Below is one sample (10 seconds of raw data):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669886164950-5cab7b51-60db-46d2-afc5-a94bb9fee37e.png#averageHue=%231b2551&amp;clientId=u72c77c6d-698e-4&amp;from=paste&amp;id=u6caa7ae0&amp;originHeight=386&amp;originWidth=648&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=123522&amp;status=done&amp;style=stroke&amp;taskId=u627d5acd-467b-44b4-bb86-fe395ba4e4f&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669886164950-5cab7b51-60db-46d2-afc5-a94bb9fee37e.png#averageHue=%231b2551&clientId=u72c77c6d-698e-4&from=paste&id=u6caa7ae0&originHeight=386&originWidth=648&originalType=url&ratio=1&rotation=0&showTitle=false&size=123522&status=done&style=stroke&taskId=u627d5acd-467b-44b4-bb86-fe395ba4e4f&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_23.png" class="img-fluid"></p>
 <p>You can capture, for example, around 2 minutes (twelve samples of 10 seconds) for each of the four classes (a total of 8 minutes of data). Using the <code>three dots</code> menu after each one of the samples, select 2 of them, reserving them for the Test set. Alternatively, you can use the automatic <code>Train/Test Split tool</code> on the <code>Danger Zone</code> of <code>Dashboard</code> tab.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1669965981448-6be8c497-c763-4ea5-b2da-42a18562e088.png#averageHue=%23e1d868&amp;clientId=ub9a1075e-6942-4&amp;from=paste&amp;height=809&amp;id=uba0e9ac6&amp;originHeight=1618&amp;originWidth=2980&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=610988&amp;status=done&amp;style=stroke&amp;taskId=u83b2b23b-9588-4f62-b6b9-a265a1613b1&amp;title=&amp;width=1490" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669965981448-6be8c497-c763-4ea5-b2da-42a18562e088.png#averageHue=%23e1d868&clientId=ub9a1075e-6942-4&from=paste&height=809&id=uba0e9ac6&originHeight=1618&originWidth=2980&originalType=binary&ratio=1&rotation=0&showTitle=false&size=610988&status=done&style=stroke&taskId=u83b2b23b-9588-4f62-b6b9-a265a1613b1&title=&width=1490) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_24.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Once you have captured your dataset, you can explore it in more detail using the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/data-acquisition/data-explorer">Data Explorer</a>, a visual tool to find outliers or mislabeled data (helping to correct them). The data explorer first tries to extract meaningful features from your data (by applying signal processing and neural network embeddings) and then uses a dimensionality reduction algorithm such as <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a> or <a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> to map these features to a 2D space. This gives you a one-look overview of your complete dataset.</p>
 </blockquote>
@@ -940,7 +899,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>With a sampling rate (SR) of 50Hz and a window size of 2 seconds, we will get 100 samples per axis, or 300 in total (3 axis x 2 seconds x 50 samples). We will slide this window every 200ms, creating a larger dataset where each instance has 300 raw features.</p>
 </blockquote>
-<p><img src="imgs_4-2/pre-processing.jpg" class="img-fluid">Once the data is preprocessed and segmented, you can extract features that describe the motion’s characteristics. Some typical features extracted from accelerometer data include: - <strong>Time-domain</strong> features describe the data’s statistical properties within each segment, such as mean, median, standard deviation, skewness, kurtosis, and zero-crossing rate. - <strong>Frequency-domain</strong> features are obtained by transforming the data into the frequency domain using techniques like the Fast Fourier Transform (FFT). Some typical frequency-domain features include the power spectrum, spectral energy, dominant frequencies (amplitude and frequency), and spectral entropy. - <strong>Time-frequency</strong> domain features combine the time and frequency domain information, such as the Short-Time Fourier Transform (STFT) or the Discrete Wavelet Transform (DWT). They can provide a more detailed understanding of how the signal’s frequency content changes over time.</p>
+<p><img src="imgs_4-2/pre-processing.jpg" class="img-fluid"></p>
+<p>Once the data is preprocessed and segmented, you can extract features that describe the motion’s characteristics. Some typical features extracted from accelerometer data include: - <strong>Time-domain</strong> features describe the data’s statistical properties within each segment, such as mean, median, standard deviation, skewness, kurtosis, and zero-crossing rate. - <strong>Frequency-domain</strong> features are obtained by transforming the data into the frequency domain using techniques like the Fast Fourier Transform (FFT). Some typical frequency-domain features include the power spectrum, spectral energy, dominant frequencies (amplitude and frequency), and spectral entropy. - <strong>Time-frequency</strong> domain features combine the time and frequency domain information, such as the Short-Time Fourier Transform (STFT) or the Discrete Wavelet Transform (DWT). They can provide a more detailed understanding of how the signal’s frequency content changes over time.</p>
 <p>In many cases, the number of extracted features can be large, which may lead to overfitting or increased computational complexity. Feature selection techniques, such as mutual information, correlation-based methods, or principal component analysis (PCA), can help identify the most relevant features for a given application and reduce the dimensionality of the dataset. The Studio can help with such feature importance calculations.</p>
 <p><strong>EI Studio Spectral Features</strong></p>
 <p>Data preprocessing is a challenging area for embedded machine learning. Still, Edge Impulse helps overcome this with its digital signal processing (DSP) preprocessing step and, more specifically, the <a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/processing-blocks/spectral-features">Spectral Features Block</a>.</p>
@@ -966,58 +926,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="model-design" class="level3">
 <h3 class="anchored" data-anchor-id="model-design">4.2.4.4 Model Design</h3>
-<p>Our classifier will be a Dense Neural Network (DNN) that will have 63 neurons on its input layer, two hidden layers with 20 and 10 neurons, and an output layer with four neurons (one per each class), as shown here: <img src="imgs_4-2/model-dnn.jpg" class="img-fluid" alt="L17-image_5EhOcrcap5.png"></p>
+<p>Our classifier will be a Dense Neural Network (DNN) that will have 63 neurons on its input layer, two hidden layers with 20 and 10 neurons, and an output layer with four neurons (one per each class), as shown here:</p>
+<p><img src="imgs_4-2/model-dnn.jpg" class="img-fluid"></p>
 </section>
 <section id="impulse-design" class="level3">
 <h3 class="anchored" data-anchor-id="impulse-design">4.2.4.5 Impulse Design</h3>
 <p>A complete Impulse comprises three primary building blocks: the input block - which obtains the raw data, the processing block - which extracts features, and the learning block - which classifies the data. The following image shows the interface when the three building blocks still need to be added, and our machine-learning pipeline will be implemented by adding these three blocks.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670462163437-2af8025e-9160-46fd-8406-0dbdee3736b1.png#averageHue=%23e5f1f2&amp;clientId=ucd98b67c-148f-4&amp;from=paste&amp;height=349&amp;id=zM4yy&amp;originHeight=698&amp;originWidth=2942&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=335583&amp;status=done&amp;style=stroke&amp;taskId=u37bfbbdd-782f-41c0-9cba-766d8a4e76c&amp;title=&amp;width=1471" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670462163437-2af8025e-9160-46fd-8406-0dbdee3736b1.png#averageHue=%23e5f1f2&clientId=ucd98b67c-148f-4&from=paste&height=349&id=zM4yy&originHeight=698&originWidth=2942&originalType=binary&ratio=1&rotation=0&showTitle=false&size=335583&status=done&style=stroke&taskId=u37bfbbdd-782f-41c0-9cba-766d8a4e76c&title=&width=1471) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_25.png" class="img-fluid"></p>
 <p>Impulse obtains raw data through the input block, uses the processing block to extract features, and then uses the learning block to classify new data. In our continuous action recognition, the added blocks include:</p>
 <section id="adding-the-input-block-time-series-data" class="level4">
-<h4 class="anchored" data-anchor-id="adding-the-input-block-time-series-data">1. Adding the input block: Time Series Data</h4>
-<p>Click the “<strong>Add an Input Block</strong>” button and select <strong>Time Series Data</strong> in the pop-up window as shown below to match the sensor data type we collected. <img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670463704732-f0c7dbdc-a8ce-4fca-8567-38146eb7421b.jpeg" class="img-fluid"></p>
+<h4 class="anchored" data-anchor-id="adding-the-input-block-time-series-data"><strong>1. Adding the input block: Time Series Data</strong></h4>
+<p>Click the “<strong>Add an Input Block</strong>” button and select <strong>Time Series Data</strong> in the pop-up window as shown below to match the sensor data type we collected.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670463704732-f0c7dbdc-a8ce-4fca-8567-38146eb7421b.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_26.jpeg" class="img-fluid"></p>
 <p>As shown in the figure below, set the <strong>Window Size</strong> to <code>2000</code> ms (2 seconds), the <strong>Window Increase</strong> to <code>80</code> milliseconds, and the <strong>Frequency</strong> to <code>51</code> Hz based on the calculations we made in the data preprocessing section on the Time Series Data block that appears.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670463706801-62da9427-cf35-4df6-a985-45d065465014.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670463706801-62da9427-cf35-4df6-a985-45d065465014.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_27.jpeg" class="img-fluid"></p>
 </section>
 <section id="adding-the-processing-block-spectral-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="adding-the-processing-block-spectral-analysis">2. Adding the processing block: <strong>Spectral Analysis</strong></h4>
-<p>Click the “<strong>Add a Processing Block</strong>” button and select <strong>Spectral Analysis</strong> in the pop-up window as shown below to match our motion analysis task type. <img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670467154819-582ab75b-fab7-4194-b2d8-e17d205951f9.jpeg" class="img-fluid"></p>
+<h4 class="anchored" data-anchor-id="adding-the-processing-block-spectral-analysis"><strong>2. Adding the processing block: Spectral Analysis</strong></h4>
+<p>Click the “<strong>Add a Processing Block</strong>” button and select <strong>Spectral Analysis</strong> in the pop-up window as shown below to match our motion analysis task type.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670467154819-582ab75b-fab7-4194-b2d8-e17d205951f9.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_28.jpeg" class="img-fluid"></p>
 <p>The effect after adding the processing block is shown in the figure below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670467378869-6f86267c-eb1c-40bf-a54d-e3c2651942d6.png#averageHue=%237eccb4&amp;clientId=ucd98b67c-148f-4&amp;from=paste&amp;height=537&amp;id=G2JGq&amp;originHeight=1074&amp;originWidth=2534&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=517508&amp;status=done&amp;style=stroke&amp;taskId=u74c24df6-c3f1-4cae-a4d4-ae9662a1d39&amp;title=&amp;width=1267" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670467378869-6f86267c-eb1c-40bf-a54d-e3c2651942d6.png#averageHue=%237eccb4&clientId=ucd98b67c-148f-4&from=paste&height=537&id=G2JGq&originHeight=1074&originWidth=2534&originalType=binary&ratio=1&rotation=0&showTitle=false&size=517508&status=done&style=stroke&taskId=u74c24df6-c3f1-4cae-a4d4-ae9662a1d39&title=&width=1267) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_29.png" class="img-fluid"></p>
 </section>
 <section id="adding-the-learning-block-classification" class="level4">
-<h4 class="anchored" data-anchor-id="adding-the-learning-block-classification">3. Adding the learning block: Classification</h4>
+<h4 class="anchored" data-anchor-id="adding-the-learning-block-classification"><strong>3. Adding the learning block: Classification</strong></h4>
 <p>Click the “Add Learning Block” button and select <strong>Classification</strong> in the pop-up window as shown below to match our motion analysis task type.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670468235606-a97a61e5-8ca6-4fb8-b61d-03c828ffc9bd.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670468235606-a97a61e5-8ca6-4fb8-b61d-03c828ffc9bd.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_30.jpeg" class="img-fluid"></p>
 <p>The interface of Impulse design after addition is shown in the figure below, and now the machine learning pipeline has been built.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685689492358-2cc0ab9a-e1fe-4509-9a8f-4614d2186289.jpeg" class="img-fluid"></p>
-<p>In addition, we can also use a second model - K-means, which can be used for anomaly detection. If we imagine that we can treat our known classes as clusters, then any sample that does not fit into it might be an anomaly (for example, a container falling into the sea when the ship is at sea). <img src="imgs_4-2/kmeans.jpg" class="img-fluid"> For this, we can use the same input tensor entering the NN classifier as the input to the K-means model: <img src="imgs_4-2/blocks.jpg" class="img-fluid"> Click the “Add Learning Block” button again and select <strong>Anomaly Detection (K-means)</strong> in the pop-up window below.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670469508268-66748b99-710e-49ab-86af-171066e323a5.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2023/jpeg/2392200/1685689492358-2cc0ab9a-e1fe-4509-9a8f-4614d2186289.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_31.jpeg" class="img-fluid"></p>
+<p>In addition, we can also use a second model - K-means, which can be used for anomaly detection. If we imagine that we can treat our known classes as clusters, then any sample that does not fit into it might be an anomaly (for example, a container falling into the sea when the ship is at sea).</p>
+<p><img src="imgs_4-2/kmeans.jpg" class="img-fluid"></p>
+<p>For this, we can use the same input tensor entering the NN classifier as the input to the K-means model:</p>
+<p><img src="imgs_4-2/blocks.jpg" class="img-fluid"></p>
+<p>Click the “Add Learning Block” button again and select <strong>Anomaly Detection (K-means)</strong> in the pop-up window below.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670469508268-66748b99-710e-49ab-86af-171066e323a5.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_30.jpeg" class="img-fluid"></p>
 <p>The final Impulse design is as shown in the figure below, click the <strong>Save Impulse</strong> button on the far right.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670469607847-75f492c7-3d56-42d6-abc0-15d43bc7bb73.png#averageHue=%23eaf3f5&amp;clientId=ucd98b67c-148f-4&amp;from=paste&amp;height=748&amp;id=FO8nG&amp;originHeight=1496&amp;originWidth=2524&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=921643&amp;status=done&amp;style=stroke&amp;taskId=u712d7f46-16ab-4303-8ef7-067961a19a5&amp;title=&amp;width=1262" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670469607847-75f492c7-3d56-42d6-abc0-15d43bc7bb73.png#averageHue=%23eaf3f5&clientId=ucd98b67c-148f-4&from=paste&height=748&id=FO8nG&originHeight=1496&originWidth=2524&originalType=binary&ratio=1&rotation=0&showTitle=false&size=921643&status=done&style=stroke&taskId=u712d7f46-16ab-4303-8ef7-067961a19a5&title=&width=1262) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_33.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="generating-features" class="level3">
 <h3 class="anchored" data-anchor-id="generating-features">4.2.4.6 Generating features</h3>
 <p>At this point in our project, we have defined the pre-processing method and the model designed. Now, it is time to have the job done. First, let’s take the raw data (time-series type) and convert it to tabular data. Go to the <code>Spectral Features</code> tab, select <code>Save Parameters</code>,</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670469950498-a723603a-9752-4156-a6fd-55e14ff4e4d9.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670469950498-a723603a-9752-4156-a6fd-55e14ff4e4d9.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_34.jpeg" class="img-fluid"></p>
 <p>and at the top menu, select <code>Generate Features</code> option and <code>Generate Features</code> button:</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670473327644-03e562d2-2615-426f-a6c7-b94a5576c0f8.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670473327644-03e562d2-2615-426f-a6c7-b94a5576c0f8.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_35.jpeg" class="img-fluid"></p>
 <p>Each 2-second window data will be converted into one data point of 63 features. The Feature Explorer will show those data in 2D using <a href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a>.</p>
 <blockquote class="blockquote">
 <p>Uniform Manifold Approximation and Projection (UMAP) is a dimension reduction technique that can be used for visualisation similarly to t-SNE, but also for general non-linear dimension reduction.</p>
@@ -1046,27 +1009,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>If a K-means block for anomaly detection has been added during model design, an additional section for <code>Anomaly Detection</code> will appear under the <code>Impulse Design</code> column on the left, as shown in the image below. Once inside the Anomaly Detection section, click <code>[Select Suggested Axes]</code>, and the system will automatically make selections based on previously calculated important features. Then click on the <code>[Start Training]</code> button to begin the training. Results will be output in the Anomaly Explorer on the right after completion.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670473262571-3972f45b-9dfe-475d-a51c-9cd0570b07d9.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670473262571-3972f45b-9dfe-475d-a51c-9cd0570b07d9.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_36.jpeg" class="img-fluid"></p>
 <p>At this point, we have completed the basic machine learning training process.</p>
 </section>
 <section id="testing" class="level3">
 <h3 class="anchored" data-anchor-id="testing">4.2.4.8 Testing</h3>
 <p>Using the 20% of data set aside during the data collection phase, we can verify the model’s performance with unknown data. As shown in the image below, click on the <code>Model Testing</code> section on the left side of the Edge Impulse interface. Next to the <code>[Classify All]</code> button, there is an icon with three dots, click on it to open the <strong>Set Confidence Thresholds</strong> popup window. Here, you can set confidence thresholds for the results of the two learning blocks. We should define an acceptable threshold for results considered as anomalies. If a result is not 100% (which is often the case) but is within the threshold range, it is still usable.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670480041023-c796797c-ca90-464c-9aac-a1ee77c2b2ce.jpeg" class="img-fluid"></p>
-<p>Press the <code>[Classify All]</code> button to start the model testing. The model test results will be displayed upon completion, as shown in the image below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670479684301-22bda839-8c3d-4781-bbd0-6dce7720cb16.png#averageHue=%237eb04e&amp;clientId=ucd98b67c-148f-4&amp;from=paste&amp;height=934&amp;id=Unsmx&amp;originHeight=1868&amp;originWidth=2992&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=584226&amp;status=done&amp;style=stroke&amp;taskId=uc8a134aa-f47a-44dc-af24-0fa07453791&amp;title=&amp;width=1496" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670480041023-c796797c-ca90-464c-9aac-a1ee77c2b2ce.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_37.jpeg" class="img-fluid"></p>
+<p>Press the <strong><code>Classify All</code></strong> button to start the model testing. The model test results will be displayed upon completion, as shown in the image below.</p>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670479684301-22bda839-8c3d-4781-bbd0-6dce7720cb16.png#averageHue=%237eb04e&clientId=ucd98b67c-148f-4&from=paste&height=934&id=Unsmx&originHeight=1868&originWidth=2992&originalType=binary&ratio=1&rotation=0&showTitle=false&size=584226&status=done&style=stroke&taskId=uc8a134aa-f47a-44dc-af24-0fa07453791&title=&width=1496) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_38.png" class="img-fluid"></p>
 </section>
 <section id="live-classification" class="level3">
 <h3 class="anchored" data-anchor-id="live-classification">4.2.4.9 Live Classification</h3>
-<p>Once the model is obtained, you should use the opportunity to test the Live Classification when your device is still connected to the Edge Impulse Studio. As shown in the image below, click on the <code>Live Classification</code> section on the left side of the Edge Impulse interface, then click the <code>[Start Sampling]</code> button.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670481474542-c35895a9-c59d-418f-b79a-b10051845419.jpeg" class="img-fluid"></p>
+<p>Once the model is obtained, you should use the opportunity to test the Live Classification when your device is still connected to the Edge Impulse Studio. As shown in the image below, click on the <strong><code>Live Classification</code></strong> section on the left side of the Edge Impulse interface, then click the <strong><code>[Start Sampling]</code></strong> button.</p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670481474542-c35895a9-c59d-418f-b79a-b10051845419.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_39.jpeg" class="img-fluid"></p>
 <p>At this time, you can, for example, shake the XIAO, the process is the same as the sampling; wait a few seconds, and the classification results will be given. As shown in the image below, I shook the XIAO vigorously, and the model unhesitatingly inferred that the entire process was <strong>anomalous</strong>.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670482017791-df369a39-90e6-4146-8a3d-e4d94c757899.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670482017791-df369a39-90e6-4146-8a3d-e4d94c757899.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_40.jpeg" class="img-fluid"></p>
 <p>Try now with the same movements used during data capture. The result should match the class used for training.</p>
 <blockquote class="blockquote">
 <p>⚠️ Note: Here, you will capture real data with your device and upload it to the Edge Impulse Studio, where the trained model will be used for inference (though the model is not in your device).</p>
@@ -1077,37 +1040,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now it is time for magic˜! The Studio will package all the needed libraries, preprocessing functions, and trained models, downloading them to your computer. You should select the option Arduino Library and at the bottom, select <code>Quantized (Int8)</code> and <code>Build</code>.</p>
 <p><img src="imgs_4-2/deploy.jpg" class="img-fluid"></p>
 <p>A Zip file will be created and downloaded to your computer.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2022/png/2392200/1670483560867-e96d4d5b-a1a0-440d-bda1-3c950b090f7c.png#averageHue=%23fefefe&amp;clientId=ucd98b67c-148f-4&amp;from=paste&amp;height=437&amp;id=u13bd3b03&amp;originHeight=874&amp;originWidth=1768&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=95609&amp;status=done&amp;style=stroke&amp;taskId=u042e5d58-f650-4d72-b4c5-2229ccae30a&amp;title=&amp;width=884" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">image.png</figcaption>
-</figure>
-</div>
+<!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670483560867-e96d4d5b-a1a0-440d-bda1-3c950b090f7c.png#averageHue=%23fefefe&clientId=ucd98b67c-148f-4&from=paste&height=437&id=u13bd3b03&originHeight=874&originWidth=1768&originalType=binary&ratio=1&rotation=0&showTitle=false&size=95609&status=done&style=stroke&taskId=u042e5d58-f650-4d72-b4c5-2229ccae30a&title=&width=884) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_41.png" class="img-fluid"></p>
 <p>On your Arduino IDE, go to <code>Sketch</code> tab and select the option <code>Add .ZIP Library</code>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;id=u9f875294&amp;originHeight=792&amp;originWidth=1894&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=406334&amp;status=done&amp;style=stroke&amp;taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-企业微信20230602-154602@2x.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-企业微信20230602-154602\@2x.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692107316-a6dc7897-631a-4f69-8c19-5006e5e67216.png#averageHue=%2390c277&clientId=ub5d6cce2-8f0f-4&from=ui&id=u9f875294&originHeight=792&originWidth=1894&originalType=binary&ratio=2&rotation=0&showTitle=false&size=406334&status=done&style=stroke&taskId=u25983496-b79e-4e8c-8ec6-e8d986c3580&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_42.png" class="img-fluid"></p>
 <p>and Choose the.zip file downloaded by the Studio:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692322993-fcc16a72-c295-4e9f-975c-0b47b7c863b6.png#averageHue=%23eff3ef&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;id=u38eb6db6&amp;originHeight=1380&amp;originWidth=1647&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=1865063&amp;status=done&amp;style=stroke&amp;taskId=uf14b668c-d68d-40c6-a5d1-2e6a38249a7&amp;title=" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-image_mVLE7G5k2A.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-image_mVLE7G5k2A.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692322993-fcc16a72-c295-4e9f-975c-0b47b7c863b6.png#averageHue=%23eff3ef&clientId=ub5d6cce2-8f0f-4&from=ui&id=u38eb6db6&originHeight=1380&originWidth=1647&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1865063&status=done&style=stroke&taskId=uf14b668c-d68d-40c6-a5d1-2e6a38249a7&title=) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_43.png" class="img-fluid"></p>
 </section>
 <section id="inference" class="level3">
 <h3 class="anchored" data-anchor-id="inference">4.2.4.11 Inference</h3>
 <p>Now, it is time for a real test. We will make inferences wholly disconnected from the Studio. Let’s change one of the code examples created when you deploy the Arduino Library.</p>
 <p>In your Arduino IDE, go to <code>File/Examples</code> tab and look for your project, and on examples, select <code>nano_ble_sense_accelerometer</code>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692555489-d2e63b34-fd25-4bd1-8dd9-11f07b406351.png#averageHue=%23c7cad9&amp;clientId=ub5d6cce2-8f0f-4&amp;from=ui&amp;height=292&amp;id=uc8eafd0b&amp;originHeight=888&amp;originWidth=927&amp;originalType=binary&amp;ratio=2&amp;rotation=0&amp;showTitle=false&amp;size=1223642&amp;status=done&amp;style=stroke&amp;taskId=u6c0f8474-deaf-4875-a6f7-ffac9b4b7f6&amp;title=&amp;width=305.00848388671875" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">L17-image_mbxNmt3Kvu.png</figcaption>
-</figure>
-</div>
+<!-- ![L17-image_mbxNmt3Kvu.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1685692555489-d2e63b34-fd25-4bd1-8dd9-11f07b406351.png#averageHue=%23c7cad9&clientId=ub5d6cce2-8f0f-4&from=ui&height=292&id=uc8eafd0b&originHeight=888&originWidth=927&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1223642&status=done&style=stroke&taskId=u6c0f8474-deaf-4875-a6f7-ffac9b4b7f6&title=&width=305.00848388671875) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_44.png" width="400" height="auto"></p>
 <p>Of course, the Arduino Nano BLE 33 differs from your board, the XIAO, but we can have the code working with only a few changes. For example, at the beginning of the code, you have the library related to Arduino Sense IMU:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Includes -------------------------------------------------------------- */</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;XIAO_BLE_Sense_-_Motion_Classification_inferencing.h&gt;</span></span>
@@ -1135,9 +1082,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>buffer<span class="op">[</span>ix <span class="op">+</span> <span class="dv">2</span><span class="op">]</span> <span class="op">=</span> xIMU<span class="op">.</span>readFloatAccelZ<span class="op">();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And that is it! You can now upload the code to your device and proceed with the inferences. &gt; You can find the complete code on the project GitHub</p>
 <p>You can see the result of the inference of each class on the images:</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670488708472-dd862731-7b40-441c-982a-2bf355a5c919.jpeg" class="img-fluid"></p>
+<!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670488708472-dd862731-7b40-441c-982a-2bf355a5c919.jpeg) -->
+<p><img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_45.jpeg" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>Get this code online 🔗 <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_accelerometer/XIAO_BLE_Sense_accelerometer.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_accelerometer/XIAO_BLE_Sense_accelerometer.ino</a></p>
+<p>Get this code online 🔗 <br> <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_accelerometer/XIAO_BLE_Sense_accelerometer.ino" class="uri">https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_accelerometer/XIAO_BLE_Sense_accelerometer.ino</a></p>
 </blockquote>
 </section>
 <section id="post-processing" class="level3">
@@ -1147,14 +1095,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">4.2.4.12 Conclusion</h3>
-<p>The Seeed Studio XIAO nRF52840 Sense is a giant tiny device! It is powerful, trustworthy, not expensive, low power, and has suitable sensors to be used on the most common embedded machine learning applications. Even though Edge Impulse does not officially support XIAO nRF52840 Sense, we also realized that it could be easily connected with the Studio. &gt; On the GitHub repository, you will find the last version of the codes: <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense">Seeed-XIAO-BLE-Sense</a>.</p>
+<p>The Seeed Studio XIAO nRF52840 Sense is a giant tiny device! It is powerful, trustworthy, not expensive, low power, and has suitable sensors to be used on the most common embedded machine learning applications. Even though Edge Impulse does not officially support XIAO nRF52840 Sense, we also realized that it could be easily connected with the Studio.</p>
+<blockquote class="blockquote">
+<p>On the GitHub repository, you will find the last version of the codes: <a href="https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense">Seeed-XIAO-BLE-Sense</a>.</p>
+</blockquote>
 <p>The applications for motion classification and anomaly detection are extensive, and the XIAO is well-suited for scenarios where low power consumption and edge processing are advantageous. Its small form factor and efficiency in processing make it an ideal choice for deploying portable and remote applications where real-time processing is crucial and connectivity may be limited.</p>
 </section>
 <section id="case-applications" class="level3">
 <h3 class="anchored" data-anchor-id="case-applications">4.2.4.13 Case Applications</h3>
 <p>Before we finish, consider that Movement Classification and Object Detection can be utilized in many applications across various domains. Here are some of the potential applications:</p>
 <section id="industrial-and-manufacturing" class="level4">
-<h4 class="anchored" data-anchor-id="industrial-and-manufacturing">Industrial and Manufacturing</h4>
+<h4 class="anchored" data-anchor-id="industrial-and-manufacturing"><strong>Industrial and Manufacturing</strong></h4>
 <ul>
 <li><strong>Predictive Maintenance</strong>: Detecting anomalies in machinery motion to predict failures before they occur.</li>
 <li><strong>Quality Control</strong>: Monitoring the motion of assembly lines or robotic arms for precision assessment and deviation detection from the standard motion pattern.</li>
@@ -1162,7 +1113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="healthcare" class="level4">
-<h4 class="anchored" data-anchor-id="healthcare">Healthcare</h4>
+<h4 class="anchored" data-anchor-id="healthcare"><strong>Healthcare</strong></h4>
 <ul>
 <li><strong>Patient Monitoring</strong>: Detecting falls or abnormal movements in the elderly or those with mobility issues.</li>
 <li><strong>Rehabilitation</strong>: Monitoring the progress of patients recovering from injuries by classifying motion patterns during physical therapy sessions.</li>
@@ -1170,42 +1121,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="consumer-electronics" class="level4">
-<h4 class="anchored" data-anchor-id="consumer-electronics">Consumer Electronics</h4>
+<h4 class="anchored" data-anchor-id="consumer-electronics"><strong>Consumer Electronics</strong></h4>
 <ul>
 <li><strong>Gesture Control</strong>: Interpreting specific motions to control devices, such as turning on lights with a hand wave.</li>
 <li><strong>Gaming</strong>: Enhancing gaming experiences with motion-controlled inputs.</li>
 </ul>
 </section>
 <section id="transportation-and-logistics" class="level4">
-<h4 class="anchored" data-anchor-id="transportation-and-logistics">Transportation and Logistics</h4>
+<h4 class="anchored" data-anchor-id="transportation-and-logistics"><strong>Transportation and Logistics</strong></h4>
 <ul>
 <li><strong>Vehicle Telematics</strong>: Monitoring vehicle motion for unusual behavior such as hard braking, sharp turns, or accidents.</li>
 <li><strong>Cargo Monitoring</strong>: Ensuring the integrity of goods during transport by detecting unusual movements that could indicate tampering or mishandling.</li>
 </ul>
 </section>
 <section id="smart-cities-and-infrastructure" class="level4">
-<h4 class="anchored" data-anchor-id="smart-cities-and-infrastructure">Smart Cities and Infrastructure</h4>
+<h4 class="anchored" data-anchor-id="smart-cities-and-infrastructure"><strong>Smart Cities and Infrastructure</strong></h4>
 <ul>
 <li><strong>Structural Health Monitoring</strong>: Detecting vibrations or movements within structures that could indicate potential failures or maintenance needs.</li>
 <li><strong>Traffic Management</strong>: Analyzing the flow of pedestrians or vehicles to improve urban mobility and safety.</li>
 </ul>
 </section>
 <section id="security-and-surveillance" class="level4">
-<h4 class="anchored" data-anchor-id="security-and-surveillance">Security and Surveillance</h4>
+<h4 class="anchored" data-anchor-id="security-and-surveillance"><strong>Security and Surveillance</strong></h4>
 <ul>
 <li><strong>Intruder Detection</strong>: Detecting motion patterns typical of unauthorized access or other security breaches.</li>
 <li><strong>Wildlife Monitoring</strong>: Detecting poachers or abnormal animal movements in protected areas.</li>
 </ul>
 </section>
 <section id="agriculture" class="level4">
-<h4 class="anchored" data-anchor-id="agriculture">Agriculture</h4>
+<h4 class="anchored" data-anchor-id="agriculture"><strong>Agriculture</strong></h4>
 <ul>
 <li><strong>Equipment Monitoring</strong>: Tracking the performance and usage of agricultural machinery.</li>
 <li><strong>Animal Behavior Analysis</strong>: Monitoring livestock movements to detect behaviors indicating health issues or stress.</li>
 </ul>
 </section>
 <section id="environmental-monitoring" class="level4">
-<h4 class="anchored" data-anchor-id="environmental-monitoring">Environmental Monitoring</h4>
+<h4 class="anchored" data-anchor-id="environmental-monitoring"><strong>Environmental Monitoring</strong></h4>
 <ul>
 <li><strong>Seismic Activity</strong>: Detecting irregular motion patterns that precede earthquakes or other geologically relevant events.</li>
 <li><strong>Oceanography</strong>: Studying wave patterns or marine movements for research and safety purposes.</li>
