@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-# Project Practice Advanced
-## TinyML Applications {.unnumbered}
-
-<br /> Among the XIAO series products, the Seeed Studio XIAO nRF52840 Sense has Bluetooth 5.0 wireless connectivity, low power consumption, and onboard 6-axis IMU and PDM microphone sensors. Besides, the XIAO ESP32S3 Sense further integrates PSRAM, a camera, a digital microphone, and SD card support.
-=======
 # Chapter 4: Project Practice Advanced - TinyML Applications
 <br />
 Among the XIAO series products, the Seeed Studio XIAO nRF52840 Sense has Bluetooth 5.0 wireless connectivity, low power consumption, and onboard 6-axis IMU and PDM microphone sensors. Besides, the XIAO ESP32S3 Sense further integrates PSRAM, a camera, a digital microphone, and SD card support.
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 > Those characteristics make those devices powerful tools for TinyML (Tiny Machine Learning) projects.
 

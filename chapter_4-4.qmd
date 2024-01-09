@@ -1,8 +1,8 @@
-# 4.4 Image Classification {.unnumbered}
+# 4.4 TinyML Made Easy: Image Classification {.unnumbered}
 
-In this section, let's explore Computer Vision ML applications on the XIAO ESP32S3 Sense.
+Exploring Machine Learning on the tremendous new tiny device of the Seeed XIAO family, the ESP32S3 Sense.
 
-![](https://hackster.imgix.net/uploads/attachments/1587471/_nOXij20mq1.blob?auto=compress%2Cformat&w=900&h=675&fit=min)
+![img](https://hackster.imgix.net/uploads/attachments/1587471/_nOXij20mq1.blob?auto=compress%2Cformat&w=900&h=675&fit=min)
 
 ## 4.4.1 Things used in this project
 
@@ -10,23 +10,14 @@ In this section, let's explore Computer Vision ML applications on the XIAO ESP32
 
 <!-- ![image.png](https://cdn.nlark.com/yuque/0/2023/png/2392200/1698372025691-4acf4da8-34fb-418c-88e3-8f72474a4335.png#averageHue=%23c7c7c1&clientId=uc417d4eb-bab9-4&from=paste&height=100&id=ub288bc7f&originHeight=711&originWidth=1063&originalType=binary&ratio=2&rotation=0&showTitle=false&size=518407&status=done&style=none&taskId=u7d41cfbf-583c-4385-9c9d-a64b72bf904&title=&width=149.5) -->
 
-<<<<<<< HEAD
-[Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-4_1.png" width="400" height="auto"/>
-=======
 [Seeed Studio Seeed XIAO ESP32S3 Sense](https://www.hackster.io/seeed/products/seeed-xiao-esp32s3-sense?ref=project-cb42ae) x 1 <img src="https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-4_1.png" width="400" height="auto" />
 
 
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 ### 4.4.2 Software apps and online services
 
 <!-- -   ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1669875695345-b20a52ba-5da7-4ce2-b21b-5ecb9b9802c3.png#averageHue=%23f3f4f1&clientId=u413b5b5e-84eb-4&from=paste&height=48&id=bESIK&originHeight=96&originWidth=96&originalType=binary&ratio=1&rotation=0&showTitle=false&size=9015&status=done&style=none&taskId=u32e545f3-6819-4f99-b7ea-98db56952d2&title=&width=48)  -->
-<<<<<<< HEAD
-
--   ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png)[Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
-=======
 - ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_4.png)[Arduino IDE](https://www.hackster.io/arduino/products/arduino-ide?ref=project-958fd2)
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 -   ![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-3/chapter_4-3_5.png) [Edge Impulse Studio](https://www.hackster.io/EdgeImpulse/products/edge-impulse-studio?ref=project-958fd2)
 
@@ -40,38 +31,26 @@ In the "bull-eye" of emerging technologies, radar is the *Edge Computer Vision*,
 
 Seeed Studio released a new affordable development board, the [XIAO ESP32S3 Sense](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html), which integrates a camera sensor, digital microphone, and SD card support. Combining embedded ML computing power and photography capability, this development board is a great tool to start with TinyML (intelligent voice and vision AI).
 
-![](https://hackster.imgix.net/uploads/attachments/1587507/image_kRGbYBWevi.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587507/image_kRGbYBWevi.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 **XIAO ESP32S3 Sense Main Features**
 
 -   **Powerful MCU Board**: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported
-<<<<<<< HEAD
--   **Advanced Functionality**: Detachable OV2640 camera sensor for 1600 \* 1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone
--   **Elaborate Power Design**: Lithium battery charge management capability offers four power consumption models, which allows for deep sleep mode with power consumption as low as 14μA
-=======
 -   **Advanced Functionality**: Detachable OV2640 camera sensor for 1600 * 1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone
 -   **Elaborate Power Design**: Lithium battery charge management capability offer four power consumption model, which allows for deep sleep mode with power consumption as low as 14μA
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 -   **Great Memory for more Possibilities**: Offer 8MB PSRAM and 8MB FLASH, supporting SD card slot for external 32GB FAT memory
 -   **Outstanding RF performance**: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna
 -   **Thumb-sized Compact Design**: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices
 
 ![](https://hackster.imgix.net/uploads/attachments/1587508/mty4odg1ntkynti4nteymg_561868_b55w78pjvck7sulf_1679553921_9rsX6h2aAP.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
-<<<<<<< HEAD
-=======
 
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 Below is the general board pinout:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-<<<<<<< HEAD
-> For more details, please refer to Seeed Studio WiKi page: <br /> https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
-=======
 > For more details, please refer to Seeed Studio WiKi page: <br />
 > https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 ## 4.4.3 Installing the XIAO ESP32S3 Sense on Arduino IDE
 
@@ -81,15 +60,15 @@ On Arduino IDE, navigate to **File > Preferences**, and fill in the URL:
 
 on the field ==> **Additional Boards Manager URLs**
 
-![](https://hackster.imgix.net/uploads/attachments/1587510/pasted_graphic_JkHMkNOmPR.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic.png](https://hackster.imgix.net/uploads/attachments/1587510/pasted_graphic_JkHMkNOmPR.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Next, open boards manager. Go to **Tools** > **Board** > **Boards Manager...** and enter with *esp32.* Select and install the most updated and stable package (avoid *alpha* versions) :
 
-![](https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 2.png](https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 On **Tools**, select the Board (**XIAO ESP32S3**):
 
-![](https://hackster.imgix.net/uploads/attachments/1587512/pasted_graphic_4_srwnXRNO0l.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 4.png](https://hackster.imgix.net/uploads/attachments/1587512/pasted_graphic_4_srwnXRNO0l.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Last but not least, select the **Port** where the ESP32S3 is connected.
 
@@ -97,20 +76,16 @@ That is it! The device should be OK. Let's do some tests.
 
 ## 4.4.4 Testing the board with BLINK
 
-The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it is, using the LED_BUILTIN Arduino constant or by changing the Blink sketch accordingly:
+The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it (using the LED_BUILTIN Arduino constant) or by changing the Blink sketch accordantly:
 
-<<<<<<< HEAD
-``` cpp
-=======
 ```cpp         
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 #define LED_BUILT_IN 21 
 
 void setup() {
   pinMode(LED_BUILT_IN, OUTPUT); // Set the pin as output
 }
 
-// Remember that the pin works with inverted logic
+// Remember that the pin work with inverted logic
 // LOW to Turn on and HIGH to turn off
 void loop() {
   digitalWrite(LED_BUILT_IN, LOW); //Turn on
@@ -122,13 +97,13 @@ void loop() {
 
 > Note that the pins work with inverted logic: LOW to Turn on and HIGH to turn off
 
-![](https://hackster.imgix.net/uploads/attachments/1587515/blink_Lg3KqJa6ln.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![blink.png](https://hackster.imgix.net/uploads/attachments/1587515/blink_Lg3KqJa6ln.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 ## 4.4.5 Connecting Sense module (Expansion Board)
 
 When purchased, the expansion board is separated from the main board, but installing the expansion board is very simple. You need to align the connector on the expansion board with the B2B connector on the XIAO ESP32S3, press it hard, and when you hear a "click," the installation is complete.
 
-![](https://hackster.imgix.net/uploads/attachments/1587516/61.gif?auto=compress%2Cformat&gifq=35&w=740&h=555&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587516/61.gif?auto=compress%2Cformat&gifq=35&w=740&h=555&fit=max)
 
 As commented in the introduction, the expansion board, or the "sense" part of the device, has a 1600x1200 OV2640 camera, an SD card slot, and a digital microphone.
 
@@ -136,30 +111,30 @@ As commented in the introduction, the expansion board, or the "sense" part of th
 
 Let's start with sound detection. Go to the [GitHub project](https://github.com/Mjrovai/XIAO-ESP32S3-Sense) and download the sketch: [XIAOEsp2s3_Mic_Test](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Mic_Test/XiaoEsp32s3_Mic_Test) and run it on the Arduino IDE:
 
-![](https://hackster.imgix.net/uploads/attachments/1587517/pasted_graphic_9_g3jF00J26n.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 9.png](https://hackster.imgix.net/uploads/attachments/1587517/pasted_graphic_9_g3jF00J26n.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 When producing sound, you can verify it on the Serial Plotter.
 
 **Save recorded sound (.wav audio files) to a microSD card.**
 
-Now, the onboard SD Card reader can save .wav audio files. For that, we need to habilitate the XIAO PSRAM.
+Let's now use the onboard SD Card reader to save .wav audio files. For that, we need to habilitate the XIAO PSRAM.
 
-> ESP32-S3 has only a few hundred kilobytes of internal RAM on the MCU chip. It can be insufficient for some purposes, so ESP32-S3 can use up to 16 MB of external PSRAM (Psuedostatic RAM) connected in parallel with the SPI flash chip. The external memory is incorporated in the memory map and, with certain restrictions, is usable in the same way as internal data RAM.
+> ESP32-S3 has only a few hundred kilobytes of internal RAM on the MCU chip. It can be insufficient for some purposes so that ESP32-S3 can use up to 16 MB of external PSRAM (Psuedostatic RAM) connected in parallel with the SPI flash chip. The external memory is incorporated in the memory map and, with certain restrictions, is usable in the same way as internal data RAM.
 
 For a start, Insert the SD Card on the XIAO as shown in the photo below (the SD Card should be formatted to **FAT32**).
 
-![](https://hackster.imgix.net/uploads/attachments/1587521/image_Z0TlaWDD8O.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587521/image_Z0TlaWDD8O.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 -   Download the sketch [Wav_Record](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Mic_Test/Wav_Record), which you can find on GitHub.
 -   To execute the code (Wav Record), it is necessary to use the PSRAM function of the ESP-32 chip, so turn it on before uploading.: Tools\>PSRAM: "OPI PSRAM"\>OPI PSRAM
 
-![](https://hackster.imgix.net/uploads/attachments/1587522/pasted_graphic_10_VYMCMnnxD3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 10.png](https://hackster.imgix.net/uploads/attachments/1587522/pasted_graphic_10_VYMCMnnxD3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 -   Run the code Wav_Record.ino
--   This program is executed only once after the user **turns on the serial monitor**, recording for 20 seconds and saving the recording file to a microSD card as "arduino_rec.wav."
+-   This program is executed only once after the user **turns on the serial monitor**, recording for 20 seconds and saving the recording file to a microSD card as "arduino_rec.wav".
 -   When the "." is output every 1 second in the serial monitor, the program execution is finished, and you can play the recorded sound file with the help of a card reader.
 
-![](https://hackster.imgix.net/uploads/attachments/1587523/pasted_graphic_11_bBwAlY3SeD.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 11.png](https://hackster.imgix.net/uploads/attachments/1587523/pasted_graphic_11_bBwAlY3SeD.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The sound quality is excellent!
 
@@ -167,17 +142,17 @@ The sound quality is excellent!
 
 ## 4.4.7 Testing the Camera
 
-To test the camera, you should download the folder [take_photos_command](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/take_photos_command) from GitHub. The folder contains the sketch (.ino) and two .h files with camera details.
+For testing the camera, you should download the folder [take_photos_command](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/take_photos_command) from GitHub. The folder contains the sketch (.ino) and two .h files with camera details.
 
 -   Run the code: take_photos_command.ino. Open the Serial Monitor and send the command "capture" to capture and save the image on the SD Card:
 
-> Verify that `[Both NL & CR]` is selected on the Serial Monitor.
+> Verify that \[Both NL & CR\] is selected on Serial Monitor.
 
-![](https://hackster.imgix.net/uploads/attachments/1587526/capture_8aHAA2OzDt.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![capture.png](https://hackster.imgix.net/uploads/attachments/1587526/capture_8aHAA2OzDt.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Here is an example of a taken photo:
 
-![](https://hackster.imgix.net/uploads/attachments/1587527/image_vCiev0aEuH.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587527/image_vCiev0aEuH.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 ## 4.4.8 Testing WiFi
 
@@ -187,7 +162,7 @@ Go to Arduino IDE Examples and look for **WiFI ==\> WiFIScan**
 
 On the Serial monitor, you should see the wifi networks (SSIDs and RSSIs) in the range of your device. Here is what I got on the lab:
 
-![](https://hackster.imgix.net/uploads/attachments/1587529/pasted_graphic_14_mbFXPkj0kU.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 14.png](https://hackster.imgix.net/uploads/attachments/1587529/pasted_graphic_14_mbFXPkj0kU.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 **Simple WiFi Server (Turning LED ON/OFF)**
 
@@ -197,22 +172,18 @@ Like before, go to GitHub to download the folder with the sketch: [SimpleWiFiSer
 
 Before running the sketch, you should enter your network credentials:
 
-<<<<<<< HEAD
-``` cpp
-=======
 ```cpp         
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 const char* ssid     = "Your credentials here";
 const char* password = "Your credentials here";
 ```
 
 You can monitor how your server is working with the Serial Monitor.
 
-![](https://hackster.imgix.net/uploads/attachments/1587531/image_l0yhot2BP2.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587531/image_l0yhot2BP2.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Take the IP address and enter it on your browser:
 
-![](https://hackster.imgix.net/uploads/attachments/1587532/pasted_graphic_18_Tihy6lYH9T.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 18.png](https://hackster.imgix.net/uploads/attachments/1587532/pasted_graphic_18_Tihy6lYH9T.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 You will see a page with links that can turn ON and OFF the built-in LED of your XIAO.
 
@@ -226,17 +197,17 @@ Download from GitHub the [folder](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/
 
 Enter your credentials and run the sketch. On the Serial monitor, you can find the page address to enter in your browser:
 
-![](https://hackster.imgix.net/uploads/attachments/1587533/pasted_graphic_21_s4OswByvQx.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 21.png](https://hackster.imgix.net/uploads/attachments/1587533/pasted_graphic_21_s4OswByvQx.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Open the page on your browser (wait a few seconds to start the streaming). That's it.
 
-![](https://hackster.imgix.net/uploads/attachments/1587534/pasted_graphic_19_xsDOsUz1vB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 19.png](https://hackster.imgix.net/uploads/attachments/1587534/pasted_graphic_19_xsDOsUz1vB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Streamlining what your camera is "seen" can be important when you position it to capture a dataset for an ML project (for example, using the code "take_phots_commands.ino".
 
 Of course, we can do both things simultaneously, show what the camera is seeing on the page, and send a command to capture and save the image on the SD card. For that, you can use the code Camera_HTTP_Server_STA which [folder](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Camera_HTTP_Server_STA) can be downloaded from GitHub.
 
-![](https://hackster.imgix.net/uploads/attachments/1587535/pasted_graphic_29_Tq37VCI7wB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 29.png](https://hackster.imgix.net/uploads/attachments/1587535/pasted_graphic_29_Tq37VCI7wB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The program will do the following tasks:
 
@@ -248,7 +219,7 @@ The program will do the following tasks:
 -   The \[SAVE\] command will save an image on the SD Card, also showing the image on the web.
 -   Saved images will follow a sequential naming (image1.jpg, image2.jpg.
 
-![](https://hackster.imgix.net/uploads/attachments/1587540/pasted_graphic_32_XjZcdijNwT.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 32.png](https://hackster.imgix.net/uploads/attachments/1587540/pasted_graphic_32_XjZcdijNwT.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 > This program can be used for an image dataset capture with an Image Classification project.
 
@@ -256,13 +227,13 @@ Inspect the code; it will be easier to understand how the camera works. This cod
 
 ## 4.4.9 Fruits versus Veggies - A TinyML Image Classification project
 
-![](https://hackster.imgix.net/uploads/attachments/1587486/vegetables-g3276e6aa0_1280_y8LhyxRCDB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587486/vegetables-g3276e6aa0_1280_y8LhyxRCDB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Now that we have an embedded camera running, it is time to try image classification. For comparative motive, we will replicate the same image classification project developed to be used with an old ESP2-CAM:
 
 [ESP32-CAM: TinyML Image Classification - Fruits vs Veggies](https://www.hackster.io/mjrobot/esp32-cam-tinyml-image-classification-fruits-vs-veggies-4ab970)
 
-![](https://hackster.imgix.net/uploads/attachments/1587541/image_60a57gQ8VS.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587541/image_60a57gQ8VS.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The whole idea of our project will be training a model and proceeding with inference on the XIAO ESP32S3 Sense. For training, we should find some data **(in fact, tons of data!**).
 
@@ -291,17 +262,17 @@ We will use the Edge Impulse Studio for training our model. [Edge Impulse](https
 
 Enter your account credentials (or create a free account) at Edge Impulse. Next, create a new project:
 
-![](https://hackster.imgix.net/uploads/attachments/1587543/image_MDgkE355g3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587543/image_MDgkE355g3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 **Data Acquisition**
 
 Next, on the UPLOAD DATA section, upload from your computer the files from chosen categories:
 
-![](https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 You should now have your training dataset, split in three classes of data:
 
-![](https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 > You can upload extra data for further model testing or split the training data. I will leave as it, to use most data possible.
 
@@ -311,19 +282,19 @@ An impulse takes raw data (in this case, images), extracts features (resize pict
 
 As mentioned, classifying images is the most common use of Deep Learning, but much data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousand of images to "teach or model" to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We called this technic "Transfer Learning" (TL).
 
-![](https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 With TL, we can fine-tune a pre-trained image classification model on our data, performing well even with relatively small image datasets (our case).
 
 So, starting from the raw images, we will resize them (96x96) pixels and so, feeding them to our Transfer Learning block:
 
-![](https://hackster.imgix.net/uploads/attachments/1587491/image_QhTt0Av8u3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587491/image_QhTt0Av8u3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 **Pre-processing (Feature generation)**
 
 Besides resizing the images, we should change them to Grayscale instead to keep the actual RGB color depth. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.
 
-![](https://hackster.imgix.net/uploads/attachments/1587492/image_eqGdUoXrMb.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587492/image_eqGdUoXrMb.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Do not forget to "Save parameters." This will generate the features to be used in training.
 
@@ -343,11 +314,7 @@ Another important technic to be used with Deep Learning is **Data Augmentation**
 
 Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:
 
-<<<<<<< HEAD
-``` cpp
-=======
 ```cpp         
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 # Implements the data augmentation policy
 def augment_image(image, label):
     # Flips the image randomly
@@ -371,7 +338,7 @@ Exposure to these variations during training can help prevent your model from ta
 
 The final layer of our model will have 16 neurons with a 10% of dropout for overfitting prevention. Here is the Training output:
 
-![](https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The result is not great. The model reached around 77% of accuracy, but the amount of RAM expected to be used during the inference is relatively small (around 60 KBytes), which is very good.
 
@@ -379,27 +346,23 @@ The result is not great. The model reached around 77% of accuracy, but the amoun
 
 The trained model will be deployed as a.zip Arduino library:
 
-![](https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![img](https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Open your Arduino IDE, and under **Sketch,** go to **Include Library** and **add.ZIP Library.** Select the file you download from Edge Impulse Studio, and that's it!
 
-![](https://hackster.imgix.net/uploads/attachments/1587590/image_BQwzaHFlzZ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587590/image_BQwzaHFlzZ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Under the **Examples** tab on Arduino IDE, you should find a sketch code under your project name.
 
-![](https://hackster.imgix.net/uploads/attachments/1587591/image_Xglfrz0mwe.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587591/image_Xglfrz0mwe.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Open the Static Buffer example:
 
-![](https://hackster.imgix.net/uploads/attachments/1587593/image_1ZSC9qmEuR.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587593/image_1ZSC9qmEuR.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 You can see that the first line of code is exactly the calling of a library with all the necessary stuff for running inference on your device.
 
-<<<<<<< HEAD
-``` cpp
-=======
 ```cpp         
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 #include <XIAO-ESP32S3-CAM-Fruits-vs-Veggies_inferencing.h>
 ```
 
@@ -407,21 +370,21 @@ Of course, this is a generic code (a "template"), that only gets one sample of r
 
 We should get the sample (image) from the camera and pre-process it (resizing to 96x96, converting to grayscale, and flatting it). This will be the input tensor of our model. The output tensor will be a vector with three values (labels), showing the probabilities of each one of the classes.
 
-![](https://hackster.imgix.net/uploads/attachments/1587596/image_vrxwEjpaAl.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587596/image_vrxwEjpaAl.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Returning to your project (Tab Image), copy one of the Raw Data Sample:
 
-![](https://hackster.imgix.net/uploads/attachments/1587598/image_J6oBO8SFpW.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587598/image_J6oBO8SFpW.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 9, 216 features will be copied to the clipboard. This is the input tensor (a flattened image of 96x96x1), in this case, bananas. Past this Input tensor on features\[\] = {0xb2d77b, 0xb5d687, 0xd8e8c0, 0xeaecba, 0xc2cf67, ...}
 
-![](https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Edge Impulse included the [library ESP NN](https://github.com/espressif/esp-nn) in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (runing at Arduino IDE).
 
 Now, when running the inference, you should get, as a result, the highest score for "banana".
 
-![](https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 35.png](https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Great news! Our device handles an inference, discovering that the input image is a banana. Also, note that the inference time was around 317ms, resulting in a maximum of 3 fps if you tried to classify images from a video. It is a better result than the ESP32 CAM (525ms of latency).
 
@@ -429,15 +392,11 @@ Now, we should incorporate the camera and classify images in real-time.
 
 Go to the Arduino IDE Examples and download from your project the sketch esp32_camera:
 
-![](https://hackster.imgix.net/uploads/attachments/1587604/image_hjX5k8gTl8.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587604/image_hjX5k8gTl8.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 You should change lines 32 to 75, which define the camera model and pins, using the data related to our model. Copy and paste the below lines, replacing the lines 32-75:
 
-<<<<<<< HEAD
-``` cpp
-=======
 ```cpp         
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 #define PWDN_GPIO_NUM     -1 
 #define RESET_GPIO_NUM    -1 
 #define XCLK_GPIO_NUM     10 
@@ -458,7 +417,7 @@ You should change lines 32 to 75, which define the camera model and pins, using 
 
 Here you can see the resulting code:
 
-![](https://hackster.imgix.net/uploads/attachments/1587605/image_4VmERAOAfF.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587605/image_4VmERAOAfF.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The modified sketch can be downloaded from GitHub: [xiao_esp32s3_camera](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/xiao_esp32s3_camera).
 
@@ -468,21 +427,21 @@ Upload the code to your XIAO ESP32S3 Sense, and you should be OK to start classi
 
 ## 4.4.11 Testing the Model (Inference)
 
-![](https://hackster.imgix.net/uploads/attachments/1587606/inferencia_FM2hfD6ETR.jpg?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![inferencia.jpg](https://hackster.imgix.net/uploads/attachments/1587606/inferencia_FM2hfD6ETR.jpg?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Getting a photo with the camera, the classification result will appear on the Serial Monitor:
 
-![](https://hackster.imgix.net/uploads/attachments/1587607/pasted_graphic_40_6R61QEiLGp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![Pasted Graphic 40.png](https://hackster.imgix.net/uploads/attachments/1587607/pasted_graphic_40_6R61QEiLGp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Other tests:
 
-![](https://hackster.imgix.net/uploads/attachments/1587608/inferencia2_eGWjtNny2o.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![inferencia2.png](https://hackster.imgix.net/uploads/attachments/1587608/inferencia2_eGWjtNny2o.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 ## 4.4.12 Testing with a bigger model
 
 Now, let's go to the other side of the model size. Let's select a MobilinetV2 96x96 0.35, having as input RGB images.
 
-![](https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Even with a bigger model, the accuracy is not good, and worst, the amount of memory necessary to run the model increases five times, with latency increasing seven times (note that the performance here is estimated with a smaller device, the ESP-EYE. So, the real inference with the ESP32S3 should be better).
 
@@ -492,21 +451,21 @@ Even though our model did not improve in terms of accuracy, let's test whether t
 
 Let's redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it has no influence on accuracy.
 
-![](https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.
 
-![](https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![ESPnn-infe1.png](https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 In our tests, this option works with MobileNet V2 but not V1. So, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the resultin accuraccy was higher.
 
-![](https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 > Note that the estimated latency for an Arduino Portenta (ou Nicla), running with a clock of 480MHz is 45ms.
 
 Deploying the model, I got an inference of only 135ms, remembering that the XIAO run with half of the clock used by the Portenta/Nicla (240MHz):
 
-![](https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+![image.png](https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 ## 4.4.13 Conclusion
 

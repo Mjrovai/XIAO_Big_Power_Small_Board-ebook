@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-# Project Practice for Beginners
-
-## Introduction to Prototype Design {.unnumbered}
-
-<br /> This unit will delve into project practice with a few classic projects as case studies. We will learn how to create a quick verification prototype starting from an idea. Instead of analyzing code line by line as we've done previously, we will only explain critical steps in this unit. The focus will be more on the practical application of code. Arduino's libraries and example programs are abundant, as are community resources.
-=======
 # Chapter 2: Project Practice for Beginners - Introduction to Prototype Design
 <br />
 This unit will delve into project practice with a few classic projects as case studies. We will learn how to create a quick verification prototype starting from an idea. Instead of analyzing code line by line as we've done previously, we will only explain critical steps in this unit. The focus will be more on the practical application of code. Arduino's libraries and example programs are abundant, as are community resources.
->>>>>>> a620d1503eb9ae9997a7c6750132f44f1d0f7d3a
 
 When working on a project, we should be adept at finding these resources, referring to example programs, and adjusting the code according to our needs to achieve the desired effects more quickly. Furthermore, this unit will begin to cover how to design appearances based on the effects achieved by the program. We will start by repurposing items around us, combining these items with electronic hardware to quickly form prototype works.
