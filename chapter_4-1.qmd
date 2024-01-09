@@ -205,15 +205,17 @@ The following table provides some suggestions on the type of hardware needed to 
 
 [Source: <https://docs.edgeimpulse.com/docs/concepts/what-is-edge-machine-learning>]
 
-|                      |             |                              |  |        **XIAO for this kind of**           |                          |                      |
+|                      |             |                              |  |        **XIAO for this kind of task**        |                          |                      |
 |-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-|                      |             | **Low-End MCU**              | **High-End MCU**          | **NPU**<br /> (Neural Network Processor) | **MPU** (Microprocessor) | **GPU**  (Graphics Processor) | 
-|                      |             | Sensor Fusion Classification | Audio Classification      | Image Classification               | Complex Images or Sound  | Video Classification |
+|                      |             | **Low-End MCU**              | **High-End MCU**          | **NPU**<br /> (Neural Network Processor) | **MPU** (Microprocessor) | **GPU**  (Graphics Processor) |
+|                      | **Task** | Sensor Fusion Classification | Audio Classification      | Image Classification               | Complex Images or Sound and simple Videos | Video Classification |
 |                      | **Memory**  | 18KB                         | 50KB                      | 256KB                              | 1MB+                     | 1GB+                 |
 |                      | **Sensors** | ✅                           | ✅                        | ✅                                 | ✅                       | ✅                   |
-|                      | **Audio**   | ✅                           | ✅                        | ✅                                 | ✅                       | ✅                   |
-|                      | **Images**  |                              | ✅                        | ✅                                 | ✅                       | ✅                   |
+|                      | **Audio**   |                            | ✅                        | ✅                                 | ✅                       | ✅                   |
+|                      | **Images**  |                              |                         | ✅                                 | ✅                       | ✅                   |
 |                      | **Videos**  |                              |                           |                                    | ✅                       | ✅                   |
+| |  | | | |  |  |
+| | **XIAO** | **nRF52840 Sense** | **nRF52840 & ESP32S3 Sense** | **ESP32S3 Sense** | **ESP32S3 Sense** | ----------------- |
 
 > Embedded hardware is also rapidly evolving, and it's expected that the contents of this table will change soon.
 
