@@ -23,7 +23,7 @@ book:
   search: true
   repo-url: https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook
   repo-actions: [edit, issue, source]
-  downloads: [pdf, epub]
+#  downloads: [pdf, epub]
   sharing: [twitter, linkedin, facebook]
   reader-mode: true
   cover-image: cover.jpg
@@ -68,10 +68,11 @@ book:
       - chapter_4-3.qmd
       - chapter_4-4.qmd
       - chapter_4-5.qmd
+      - chapter_4-6.qmd
     - part: chapter_5.qmd
       chapters:
       - chapter_5-1.qmd
-    - references.qmd
+    # - references.qmd
     - about_authors.qmd
 
 bibliography: references.bib
@@ -96,13 +97,13 @@ format:
     anchor-sections: true
 
     
-  epub:
-    cover-image: cover.jpg
-    number_sections: true
-    #toc: true
-    css: epub-style.css
-    resource_files:
-    - fonts/*
+  # epub:
+  #   cover-image: cover.jpg
+  #   number_sections: true
+  #   #toc: true
+  #   css: epub-style.css
+  #   resource_files:
+  #   - fonts/*
     
 
 editor: visual

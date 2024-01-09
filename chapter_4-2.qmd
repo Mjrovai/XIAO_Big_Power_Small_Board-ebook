@@ -1,4 +1,5 @@
-# 4.2 TinyML Made Easy: Anomaly Detection & Motion Classification {.unnumbered}
+# 4.2 Anomaly Detection & Motion Classification {.unnumbered}
+
 <br />
 
 <!-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/2392200/1670489415530-2d597008-ee4f-42ca-b6e6-3e26fbe1082a.png#averageHue=%233d6160&clientId=ua1a1be23-670f-4&from=paste&height=509&id=ud9bbae99&originHeight=675&originWidth=900&originalType=binary&ratio=1&rotation=0&showTitle=false&size=721877&status=done&style=stroke&taskId=ucde57e5a-1bea-4028-876a-9c3d70061e5&title=&width=678) -->
@@ -734,15 +735,24 @@ buffer[ix + 1] = xIMU.readFloatAccelY();
 buffer[ix + 2] = xIMU.readFloatAccelZ();
 ```
 
-And that is it! You can now upload the code to your device and proceed with the inferences. \> You can find the complete code on the project GitHub
-
-You can see the result of the inference of each class on the images:
-
 <!-- ![](https://cdn.nlark.com/yuque/0/2022/jpeg/2392200/1670488708472-dd862731-7b40-441c-982a-2bf355a5c919.jpeg) -->
-![](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/chapter_4-2/chapter_4-2_45.jpeg)
 
 > Get this code online 🔗 <br />
 > <https://github.com/Mjrovai/Seeed-XIAO-BLE-Sense/blob/main/XIAO_BLE_Sense_accelerometer/XIAO_BLE_Sense_accelerometer.ino>
+
+And that is it! You can now upload the code to your device and proceed with the inferences. 
+
+You can see the result of the inference of each class on the images:
+
+![](imgs_4-2/class_1.jpg)
+
+![](imgs_4-2/class_2.jpg)
+
+![](imgs_4-2/class_3.jpg)
+
+![](imgs_4-2/class_4.jpg)
+
+![](imgs_4-2/class_5.jpg)
 
 ### Post-processing
 
