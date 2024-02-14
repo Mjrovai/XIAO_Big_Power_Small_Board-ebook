@@ -530,7 +530,7 @@ But first, we will need to download from Edge Impulse Studio, our **quantized .t
 
 5. On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: `[Upload Custom AI Model]`. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choos a Model Name and enter with labels (ID:Object): 
 
-![](/Users/marcelo_rovai/Documents/GitHub/XIAO_Big_Power_Small_Board-ebook/imgs_4-4/senseCraft-3.jpg) 
+![](imgs_4-4/senseCraft-3.jpg) 
 
 > Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: apple, banana, potato).
 

@@ -401,8 +401,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#test-model-with-live-classification" id="toc-test-model-with-live-classification" class="nav-link" data-scroll-target="#test-model-with-live-classification">4.5.6.1 Test model with “Live Classification”</a></li>
   </ul></li>
-  <li><a href="#deploying-the-model" id="toc-deploying-the-model" class="nav-link" data-scroll-target="#deploying-the-model">4.5.7 Deploying the Model</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.5.8 Conclusion</a></li>
+  <li><a href="#deploying-the-model-arduino-ide" id="toc-deploying-the-model-arduino-ide" class="nav-link" data-scroll-target="#deploying-the-model-arduino-ide">4.5.7 Deploying the Model (Arduino IDE)</a></li>
+  <li><a href="#deploying-the-model-sensecraft-web-toolkit" id="toc-deploying-the-model-sensecraft-web-toolkit" class="nav-link" data-scroll-target="#deploying-the-model-sensecraft-web-toolkit">4.5.8 Deploying the Model (SenseCraft-Web-Toolkit)</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.5.9 Conclusion</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_4-5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_4-5.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -619,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>One thing to be noted is that the model can produce false positives and negatives. This can be minimized by defining a proper Confidence Threshold (use the Three dots menu for the setup). Try with 0.8 or more.</p>
 </section>
 </section>
-<section id="deploying-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="deploying-the-model">4.5.7 Deploying the Model</h2>
+<section id="deploying-the-model-arduino-ide" class="level2">
+<h2 class="anchored" data-anchor-id="deploying-the-model-arduino-ide">4.5.7 Deploying the Model (Arduino IDE)</h2>
 <p>Select the Arduino Library and Quantized (int8) model, enable the EON Compiler on the Deploy Tab, and press [Build].</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1654537/img_22_Xu9uwecZuV.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Open your Arduino IDE, and under Sketch, go to Include Library and add.ZIP Library. Select the file you download from Edge Impulse Studio, and that’s it!</p>
@@ -655,8 +656,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1654543/bugs-inference_fXpzxJOZRj.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Note that the model latency is 143ms, and the frame rate per second is around 7 fps (similar to what we got with the Image Classification project). This happens because FOMO is cleverly built over a CNN model, not with an object detection model like the SSD MobileNet. For example, when running a MobileNetV2 SSD FPN-Lite 320x320 model on a Raspberry Pi 4, the latency is around five times higher (around 1.5 fps).</p>
 </section>
+<section id="deploying-the-model-sensecraft-web-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="deploying-the-model-sensecraft-web-toolkit">4.5.8 Deploying the Model (SenseCraft-Web-Toolkit)</h2>
+<p>Same as we disscussed on the Image Classification chapter, verifying inference with Image models on Arduino IDE is very challenging, because we can not see what the camera is really focusing. Again, let’s use the <strong>SenseCraft-Web-Toolkit</strong>.</p>
+<p>Follow the following steps to start the SenseCraft-Web-Toolkit:</p>
+<ol type="1">
+<li>Open the SenseCraft-Web-Toolkit <a href="https://seeed-studio.github.io/SenseCraft-Web-Toolk">website</a>.</li>
+<li>Connect the XIAO to your computer:</li>
+</ol>
+<ul>
+<li>Having the XIAO connected, select it as below:</li>
+</ul>
+<p><img src="imgs_4-4/senseCraft-1.jpg" class="img-fluid"></p>
+<ul>
+<li>Select the device/Port and press <code>[Connect]</code>:</li>
+</ul>
+<p><img src="imgs_4-4/senseCraft-2.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun!</p>
+</blockquote>
+<p>In our case, we will use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>.</p>
+<p>But first, we will need to download from Edge Impulse Studio, our <strong>quantized .tflite</strong> model.</p>
+<ol start="3" type="1">
+<li>Go to your project at Edge Impulse Studio, or clone this one:</li>
+</ol>
+<ul>
+<li><a href="https://studio.edgeimpulse.com/public/228516/live">XIAO-ESP32S3-CAM-Fruits-vs-Veggies-v1-ESP-NN</a></li>
+</ul>
+<ol start="4" type="1">
+<li>On <code>Dashboard</code>, download the model (“block output”): <code>Object Detection model - TensorFlow Lite (int8 quantized)</code></li>
+</ol>
+<p><img src="imgs-4-5/sense-craft-1.jpg" class="img-fluid"></p>
+<ol start="5" type="1">
+<li>On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object):</li>
+</ol>
+<p><img src="imgs-4-5/sense-craft-2.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: background, bug, fruit).</p>
+</blockquote>
+<p>After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:</p>
+<p><img src="imgs-4-5/sense-craft-3.jpg" class="img-fluid"></p>
+<p>The detect objects will be marked (the centroid). You can select the Confidence of your inference cursor <code>Confidence</code>. and <code>IoU</code>, which is used to assess the accuracy of predicted bounding boxes compared to truth bounding boxes</p>
+<p>Clicking in the top button (Device Log), you can open a Serial Monitor to follow the inference, same that we have done with the Arduino IDE.</p>
+<p><img src="imgs-4-5/monitor.png" class="img-fluid"></p>
+<p>On Device Log, you will get Information as:</p>
+<ul>
+<li>Preprocess time (image capture and Crop): 3ms;</li>
+<li>Inference time (model latency): 115ms,</li>
+<li>Postprocess time (display of the image and marking objects): 1ms.</li>
+<li>Output tensor (boxes), for example one of the boxes: [[30,150, 20, 20,97, 2]]; where 30,150, 20, 20 are the coordenates of the box (around the centroid); 97 is the inference result and 2 is the class (in this case 2: fruit)</li>
+</ul>
+<blockquote class="blockquote">
+<p>Note that in the above example, we got 5 boxes, because une of the fruit got 3 centroids. One soluction will be doing a post-processing where we can aggregate close centroids in one.</p>
+</blockquote>
+<p>Here are other screen shots:</p>
+<p><img src="imgs-4-5/sense-craft-4.jpg" class="img-fluid"></p>
+</section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">4.5.8 Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion">4.5.9 Conclusion</h2>
 <p>FOMO is a significant leap in the image processing space, as Louis Moreau and Mat Kelcey put it during its launch in 2022:</p>
 <blockquote class="blockquote">
 <p>FOMO is a ground-breaking algorithm that brings real-time object detection, tracking, and counting to microcontrollers for the first time.</p>
