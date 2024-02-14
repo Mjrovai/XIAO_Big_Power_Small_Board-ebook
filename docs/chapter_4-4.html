@@ -386,11 +386,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#microphone-test" id="toc-microphone-test" class="nav-link" data-scroll-target="#microphone-test">4.4.6 Microphone Test</a></li>
   <li><a href="#testing-the-camera" id="toc-testing-the-camera" class="nav-link" data-scroll-target="#testing-the-camera">4.4.7 Testing the Camera</a></li>
   <li><a href="#testing-wifi" id="toc-testing-wifi" class="nav-link" data-scroll-target="#testing-wifi">4.4.8 Testing WiFi</a></li>
-  <li><a href="#fruits-versus-veggies---a-tinyml-image-classification-project" id="toc-fruits-versus-veggies---a-tinyml-image-classification-project" class="nav-link" data-scroll-target="#fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification project</a></li>
+  <li><a href="#fruits-versus-veggies---a-tinyml-image-classification-project" id="toc-fruits-versus-veggies---a-tinyml-image-classification-project" class="nav-link" data-scroll-target="#fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification Project</a></li>
   <li><a href="#training-the-model-with-edge-impulse-studio" id="toc-training-the-model-with-edge-impulse-studio" class="nav-link" data-scroll-target="#training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</a></li>
   <li><a href="#testing-the-model-inference" id="toc-testing-the-model-inference" class="nav-link" data-scroll-target="#testing-the-model-inference">4.4.11 Testing the Model (Inference)</a></li>
   <li><a href="#testing-with-a-bigger-model" id="toc-testing-with-a-bigger-model" class="nav-link" data-scroll-target="#testing-with-a-bigger-model">4.4.12 Testing with a bigger model</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.4.13 Conclusion</a></li>
+  <li><a href="#runing-inference-on-the-sensecraft-web-toolkit" id="toc-runing-inference-on-the-sensecraft-web-toolkit" class="nav-link" data-scroll-target="#runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.4.14 Conclusion</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_4-4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_4-4.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -452,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Below is the general board pinout:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>For more details, please refer to Seeed Studio WiKi page: <br> https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/</p>
+<p>For more details, please refer to the Seeed Studio WiKi page: <br> https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/</p>
 </blockquote>
 </section>
 <section id="installing-the-xiao-esp32s3-sense-on-arduino-ide" class="level2">
@@ -463,6 +464,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587510/pasted_graphic_JkHMkNOmPR.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Next, open boards manager. Go to <strong>Tools</strong> &gt; <strong>Board</strong> &gt; <strong>Boards Manager…</strong> and enter with <em>esp32.</em> Select and install the most updated and stable package (avoid <em>alpha</em> versions) :</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Attention</strong></p>
+<p>Alpha versions (for example, 3.x-alpha) do not work correctly with the XIAO and Edge Impulse. Use the last stable version (for example, 2.0.11) instead.</p>
+</blockquote>
 <p>On <strong>Tools</strong>, select the Board (<strong>XIAO ESP32S3</strong>):</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587512/pasted_graphic_4_srwnXRNO0l.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Last but not least, select the <strong>Port</strong> where the ESP32S3 is connected.</p>
@@ -582,16 +587,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This program can be used for an image dataset capture with an Image Classification project.</p>
 </blockquote>
 <p>Inspect the code; it will be easier to understand how the camera works. This code was developed based on the great Rui Santos Tutorial: <a href="https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/">ESP32-CAM Take Photo and Display in Web Server</a>, which I invite all of you to visit.</p>
+<p><strong>Using the CameraWebServer</strong></p>
+<p>In <code>File \&gt; Examples \&gt; ESP32 \&gt; Camera</code>, select <code>CameraWebServer</code></p>
+<p>You also should comment on all cameras’ models, except the XIAO model pins:</p>
+<p><code>#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM</code></p>
+<p>and do not forget the <code>Tools</code> to enable the PSRAM.</p>
+<p>Enter your wifi credentials and upload the code to the device:</p>
+<p><img src="imgs_4-4/webCap1.jpg" class="img-fluid"></p>
+<p>If the code is executed correctly, you should see the address on the Serial Monitor:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs_4-4/serial_monitor.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image-20240214163034559</figcaption>
+</figure>
+</div>
+<p>Copy the address on your browser and wait for the page to be uploaded. Select the camera resolution (for example, QVGA) and select <code>[START STREAM]</code>. Wait for a few seconds/minutes, depending on your connection. You can save an image on your computer download area using the [Save] button.</p>
+<p><img src="imgs_4-4/img_cap.jpg" class="img-fluid"></p>
+<p>That’s it! You can save the images directly in your computer to be used on projects.</p>
 </section>
 <section id="fruits-versus-veggies---a-tinyml-image-classification-project" class="level2">
-<h2 class="anchored" data-anchor-id="fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification project</h2>
+<h2 class="anchored" data-anchor-id="fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification Project</h2>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587486/vegetables-g3276e6aa0_1280_y8LhyxRCDB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Now that we have an embedded camera running, it is time to try image classification. For comparative motive, we will replicate the same image classification project developed to be used with an old ESP2-CAM:</p>
 <p><a href="https://www.hackster.io/mjrobot/esp32-cam-tinyml-image-classification-fruits-vs-veggies-4ab970">ESP32-CAM: TinyML Image Classification - Fruits vs Veggies</a></p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587541/image_60a57gQ8VS.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>The whole idea of our project will be training a model and proceeding with inference on the XIAO ESP32S3 Sense. For training, we should find some data <strong>(in fact, tons of data!</strong>).</p>
+<p>The whole idea of our project will be to train a model and proceed with inference on the XIAO ESP32S3 Sense. For training, we should find some data <strong>(in fact, tons of data!</strong>).</p>
 <p><em>But first of all, we need a goal! What do we want to classify?</em></p>
-<p>With TinyML, a set of technics associated with machine learning inference on embedded devices, we should limit the classification to three or four categories due to limitations (mainly memory in this situation). We will differentiate <strong>apples</strong> from <strong>bananas</strong> and <strong>potatoes</strong> (you can try other categories)<strong>.</strong></p>
+<p>With TinyML, a set of techniques associated with machine learning inference on embedded devices, we should limit the classification to three or four categories due to limitations (mainly memory). We will differentiate <strong>apples</strong> from <strong>bananas</strong> and <strong>potatoes</strong> (you can try other categories)<strong>.</strong></p>
 <p>So, let’s find a specific dataset that includes images from those categories. Kaggle is a good start:</p>
 <p>https://www.kaggle.com/kritikseth/fruit-and-vegetable-image-recognition</p>
 <p>This dataset contains images of the following food items:</p>
@@ -604,40 +626,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Download the dataset from the Kaggle website to your computer.</li>
 </ul>
 <blockquote class="blockquote">
-<p>Optionally, you can add some fresh photos of bananas, apples, and potatoes from your home kitchen, using, for example, the sketch discussed in the last section.</p>
+<p>Optionally, you can add some fresh photos of bananas, apples, and potatoes from your home kitchen, using, for example, the codes discussed in the last section.</p>
 </blockquote>
 </section>
 <section id="training-the-model-with-edge-impulse-studio" class="level2">
 <h2 class="anchored" data-anchor-id="training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</h2>
-<p>We will use the Edge Impulse Studio for training our model. <a href="https://www.edgeimpulse.com/">Edge Impulse</a> is a leading development platform for machine learning on edge devices.</p>
+<p>We will use the Edge Impulse Studio to train our model. As you know, <a href="https://www.edgeimpulse.com/">Edge Impulse</a> is a leading development platform for machine learning on edge devices.</p>
 <p>Enter your account credentials (or create a free account) at Edge Impulse. Next, create a new project:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587543/image_MDgkE355g3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p><strong>Data Acquisition</strong></p>
 <p>Next, on the UPLOAD DATA section, upload from your computer the files from chosen categories:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>You should now have your training dataset, split in three classes of data:</p>
+<p>You should now have your training dataset split in three classes of data:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>You can upload extra data for further model testing or split the training data. I will leave as it, to use most data possible.</p>
+<p>You can upload extra data for further model testing or split the training data. I will leave it as it is to use the most data possible.</p>
 </blockquote>
 <p><strong>Impulse Design</strong></p>
+<blockquote class="blockquote">
 <p>An impulse takes raw data (in this case, images), extracts features (resize pictures), and then uses a learning block to classify new data.</p>
-<p>As mentioned, classifying images is the most common use of Deep Learning, but much data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousand of images to “teach or model” to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We called this technic “Transfer Learning” (TL).</p>
+</blockquote>
+<p>Classifying images is the most common use of deep learning, but a lot of data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousands of images to “teach or model” to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We call this technique “Transfer Learning” (TL).</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>With TL, we can fine-tune a pre-trained image classification model on our data, performing well even with relatively small image datasets (our case).</p>
-<p>So, starting from the raw images, we will resize them (96x96) pixels and so, feeding them to our Transfer Learning block:</p>
+<p>So, starting from the raw images, we will resize them (96x96) pixels and feed them to our Transfer Learning block:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587491/image_QhTt0Av8u3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p><strong>Pre-processing (Feature generation)</strong></p>
-<p>Besides resizing the images, we should change them to Grayscale instead to keep the actual RGB color depth. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.</p>
+<p>Besides resizing the images, we can change them to Grayscale or keep the actual RGB color depth. Let’s start selecting <code>Grayscale</code>. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587492/image_eqGdUoXrMb.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Do not forget to “Save parameters.” This will generate the features to be used in training.</p>
+<p>Do not forget to <code>[Save parameters]</code>.” This will generate the features to be used in training.</p>
 <p><strong>Training (Transfer Learning &amp; Data Augmentation)</strong></p>
-<p>In 2007, Google introduced <a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNetV1,</a>a family of general-purpose computer vision neural networks designed with mobile devices in mind to support classification, detection, and more. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints of various use cases.</p>
-<p>Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller and less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.</p>
-<p>Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different <strong>α</strong> values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The highest the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model and imply more latency.</p>
+<p>In 2007, Google introduced <a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNetV1,</a> a family of general-purpose computer vision neural networks designed with mobile devices in mind to support classification, detection, and more. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints of various use cases.</p>
+<p>Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller, less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.</p>
+<p>Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different <strong>α</strong> values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The higher the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model, implying more latency.</p>
 <p>The smaller footprint will be obtained at another extreme with <strong>MobileNet V1</strong> and α=0.10 (around 53.2K RAM and 101K ROM).</p>
 <p>When we first published this project to be running on an ESP32-CAM, we stayed at the lower side of possibilities which guaranteed the inference with small latency but not with high accuracy. For this first pass, we will keep this model design (<strong>MobileNet V1</strong> and α=0.10).</p>
-<p>Another important technic to be used with Deep Learning is <strong>Data Augmentation</strong>. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).</p>
+<p>Another necessary technique to use with deep learning is <strong>data augmentation</strong>. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).</p>
 <p>Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp"># </span><span class="er">Implements the data augmentation policy</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>def augment_image<span class="op">(</span>image<span class="op">,</span> label<span class="op">):</span></span>
@@ -661,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>The result is not great. The model reached around 77% of accuracy, but the amount of RAM expected to be used during the inference is relatively small (around 60 KBytes), which is very good.</p>
 <p><strong>Deployment</strong></p>
-<p>The trained model will be deployed as a.zip Arduino library:</p>
+<p>The trained model will be deployed as a .zip Arduino library:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Open your Arduino IDE, and under <strong>Sketch,</strong> go to <strong>Include Library</strong> and <strong>add.ZIP Library.</strong> Select the file you download from Edge Impulse Studio, and that’s it!</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587590/image_BQwzaHFlzZ.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -671,18 +695,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587593/image_1ZSC9qmEuR.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>You can see that the first line of code is exactly the calling of a library with all the necessary stuff for running inference on your device.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;XIAO-ESP32S3-CAM-Fruits-vs-Veggies_inferencing.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Of course, this is a generic code (a “template”), that only gets one sample of raw data (stored on the variable: <em>features = {}</em> and run the classifier, doing the inference. The result is shown on Serial Monitor.</p>
+<p>Of course, this is a generic code (a “template”) that only gets one sample of raw data (stored on the variable: features = {} and runs the classifier, doing the inference. The result is shown on the Serial Monitor.</p>
 <p>We should get the sample (image) from the camera and pre-process it (resizing to 96x96, converting to grayscale, and flatting it). This will be the input tensor of our model. The output tensor will be a vector with three values (labels), showing the probabilities of each one of the classes.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587596/image_vrxwEjpaAl.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Returning to your project (Tab Image), copy one of the Raw Data Sample:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587598/image_J6oBO8SFpW.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>9, 216 features will be copied to the clipboard. This is the input tensor (a flattened image of 96x96x1), in this case, bananas. Past this Input tensor on features[] = {0xb2d77b, 0xb5d687, 0xd8e8c0, 0xeaecba, 0xc2cf67, …}</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Edge Impulse included the <a href="https://github.com/espressif/esp-nn">library ESP NN</a> in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (runing at Arduino IDE).</p>
-<p>Now, when running the inference, you should get, as a result, the highest score for “banana”.</p>
+<p>Edge Impulse included the <a href="https://github.com/espressif/esp-nn">library ESP NN</a> in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (running at Arduino IDE).</p>
+<p>Now, when running the inference, you should get the highest score for “banana.”</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Great news! Our device handles an inference, discovering that the input image is a banana. Also, note that the inference time was around 317ms, resulting in a maximum of 3 fps if you tried to classify images from a video. It is a better result than the ESP32 CAM (525ms of latency).</p>
-<p>Now, we should incorporate the camera and classify images in real-time.</p>
+<p>Now, we should incorporate the camera and classify images in real time.</p>
 <p>Go to the Arduino IDE Examples and download from your project the sketch esp32_camera:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587604/image_hjX5k8gTl8.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>You should change lines 32 to 75, which define the camera model and pins, using the data related to our model. Copy and paste the below lines, replacing the lines 32-75:</p>
@@ -706,7 +730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587605/image_4VmERAOAfF.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>The modified sketch can be downloaded from GitHub: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/xiao_esp32s3_camera">xiao_esp32s3_camera</a>.</p>
 <blockquote class="blockquote">
-<p>Note that you can optionally keep the pins as a.h file as we did on previous sections.</p>
+<p>Note that you can optionally keep the pins as a .h file as we did in previous sections.</p>
 </blockquote>
 <p>Upload the code to your XIAO ESP32S3 Sense, and you should be OK to start classifying your fruits and vegetables! You can check the result on Serial Monitor.</p>
 </section>
@@ -722,16 +746,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="testing-with-a-bigger-model">4.4.12 Testing with a bigger model</h2>
 <p>Now, let’s go to the other side of the model size. Let’s select a MobilinetV2 96x96 0.35, having as input RGB images.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Even with a bigger model, the accuracy is not good, and worst, the amount of memory necessary to run the model increases five times, with latency increasing seven times (note that the performance here is estimated with a smaller device, the ESP-EYE. So, the real inference with the ESP32S3 should be better).</p>
+<p>Even with a bigger model, the accuracy is not that good, and the amount of memory necessary to run the model increases five times, with latency increasing seven times</p>
 <blockquote class="blockquote">
-<p>To make our model better, we will probably need more images to be trained.</p>
+<p>Note that the performance here is estimated with a smaller device, the ESP-EYE. The actual inference with the ESP32S3 should be better.</p>
 </blockquote>
+<p>To improve our model, we will need to train more images.</p>
 <p>Even though our model did not improve in terms of accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
 <p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it has no influence on accuracy.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>In our tests, this option works with MobileNet V2 but not V1. So, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the resultin accuraccy was higher.</p>
+<p>For test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuraccy was higher.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Note that the estimated latency for an Arduino Portenta (ou Nicla), running with a clock of 480MHz is 45ms.</p>
@@ -739,8 +764,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Deploying the model, I got an inference of only 135ms, remembering that the XIAO run with half of the clock used by the Portenta/Nicla (240MHz):</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 </section>
+<section id="runing-inference-on-the-sensecraft-web-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</h2>
+<p>On big limitation of viewing inference on Arduino IDE, is that we can not see what the camera is really focusing. A good alternative for that is the <strong>SenseCraft-Web-Toolkit</strong>, a visual model deployment tool provided by <a href="https://sensecraftma.seeed.cc/">SSCMA</a> (Seeed SenseCraft Model Assistant). With this tool, you can easily deploy models to various platforms through simple operations. The tool provides a user-friendly interface and does not require any coding.</p>
+<p>Follow the following steps to start the SenseCraft-Web-Toolkit:</p>
+<ol type="1">
+<li>Open the SenseCraft-Web-Toolkit <a href="https://seeed-studio.github.io/SenseCraft-Web-Toolk">website</a>.</li>
+<li>Connect the XIAO to your computer:</li>
+</ol>
+<ul>
+<li>Having the XIAO connected, select it as below:</li>
+</ul>
+<p><img src="imgs_4-4/senseCraft-1.jpg" class="img-fluid"></p>
+<ul>
+<li>Select the device/Port and press <code>[Connect]</code>:</li>
+</ul>
+<p><img src="imgs_4-4/senseCraft-2.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun!</p>
+</blockquote>
+<p>In our case, we will use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>.</p>
+<p>But first, we will need to download from Edge Impulse Studio, our <strong>quantized .tflite</strong> model.</p>
+<ol start="3" type="1">
+<li>Go to your project at Edge Impulse Studio, or clone this one:</li>
+</ol>
+<ul>
+<li><a href="https://studio.edgeimpulse.com/public/228516/live">XIAO-ESP32S3-CAM-Fruits-vs-Veggies-v1-ESP-NN</a></li>
+</ul>
+<ol start="4" type="1">
+<li>On <code>Dashboard</code>, download the model (“block output”): <code>Transfer learning mdodel - TensorFlow Lite (int8 quantized)</code></li>
+</ol>
+<p><img src="imgs_4-4/senseCraft-4.jpg" class="img-fluid"></p>
+<ol start="5" type="1">
+<li>On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choos a Model Name and enter with labels (ID:Object):</li>
+</ol>
+<p><img src="./Users/marcelo_rovai/Documents/GitHub/XIAO_Big_Power_Small_Board-ebook/imgs_4-4/senseCraft-3.jpg" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: apple, banana, potato).</p>
+</blockquote>
+<p>After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:</p>
+<p><img src="imgs_4-4/senseCraft-apple.jpg" class="img-fluid"></p>
+<p>The Classification result will be at at the top of the image. You can also select the Confidence of your inference cursor <code>Confidence</code>.</p>
+<p>Clicking in the top button (Device Log), you can open a Serial Monitor to follow the inference, same that we have done with the Arduino IDE:</p>
+<p><img src="imgs_4-4/senseCraft-apple-2.jpg" class="img-fluid"></p>
+<p>On Device Log, you will get Information as:</p>
+<p><img src="imgs_4-4/senseCraft-log.jpg" class="img-fluid"></p>
+<ul>
+<li>Preprocess time (image capture and Crop): 4ms;</li>
+<li>Inference time (model latency): 106ms,</li>
+<li>Postprocess time (display of the image and inclusion of data): 0ms.</li>
+<li>Output tensor (classes), for example: [[89,0]]; where 0 is Apple (and 1is banana and 2 is potato)</li>
+</ul>
+<p>Here are other screen shots:</p>
+<p><img src="imgs_4-4/inference.jpg" class="img-fluid"></p>
+</section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">4.4.13 Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion">4.4.14 Conclusion</h2>
 <p>The XIAO ESP32S3 Sense is a very flexible, not expensive, and easy-to-program device. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.</p>
 <p>On the GitHub repository, you will find the last version of the codes: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense">XIAO-ESP32S3-Sense.</a></p>
 

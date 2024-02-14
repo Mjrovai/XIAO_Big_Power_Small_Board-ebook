@@ -490,9 +490,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can use the XIAO, your phone, or other devices for the image capture. Here, we will use the XIAO with a code in the ESP32 library.</p>
 <section id="collecting-dataset-with-the-xiao-esp32s3" class="level3">
 <h3 class="anchored" data-anchor-id="collecting-dataset-with-the-xiao-esp32s3">4.5.4.1 Collecting Dataset with the XIAO ESP32S3</h3>
-<p>Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On <code>File \&gt; Examples \&gt; ESP32 \&gt; Camera</code>, select <code>CameraWebServer</code>. On the BOARDS MANAGER panel, confirm that you have installed the latest “stable” package.</p>
+<p>Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On <code>File \&gt; Examples \&gt; ESP32 \&gt; Camera</code>, select <code>CameraWebServer</code>.</p>
+<p>On the BOARDS MANAGER panel, confirm that you have installed the latest “stable” package.</p>
 <blockquote class="blockquote">
-<p>The current alpha versions (3.0) did not work correctly with the XIAO. The 2.0.14 works fine.</p>
+<p>⚠️ <strong>Attention</strong></p>
+<p>Alpha versions (for example, 3.x-alpha) do not work correctly with the XIAO and Edge Impulse. Use the last stable version (for example, 2.0.11) instead.</p>
 </blockquote>
 <p>You also should comment on all cameras’ models, except the XIAO model pins:</p>
 <p><code>#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM</code></p>

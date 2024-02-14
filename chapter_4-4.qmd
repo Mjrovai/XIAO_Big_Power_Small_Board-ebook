@@ -49,7 +49,7 @@ Below is the general board pinout:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587509/xiao_esp32c3_sense_pin-out_z24EXaHBen.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-> For more details, please refer to Seeed Studio WiKi page: <br />
+> For more details, please refer to the Seeed Studio WiKi page: <br />
 > https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/
 
 ## 4.4.3 Installing the XIAO ESP32S3 Sense on Arduino IDE
@@ -65,6 +65,10 @@ on the field ==> **Additional Boards Manager URLs**
 Next, open boards manager. Go to **Tools** > **Board** > **Boards Manager...** and enter with *esp32.* Select and install the most updated and stable package (avoid *alpha* versions) :
 
 ![](https://hackster.imgix.net/uploads/attachments/1587511/pasted_graphic_2_OtwAIVm5cJ.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+
+>  ⚠️ **Attention** 
+>
+> Alpha versions (for example, 3.x-alpha) do not work correctly with the XIAO and Edge Impulse. Use the last stable version (for example, 2.0.11) instead.
 
 On **Tools**, select the Board (**XIAO ESP32S3**):
 
@@ -225,7 +229,31 @@ The program will do the following tasks:
 
 Inspect the code; it will be easier to understand how the camera works. This code was developed based on the great Rui Santos Tutorial: [ESP32-CAM Take Photo and Display in Web Server](https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/), which I invite all of you to visit.
 
-## 4.4.9 Fruits versus Veggies - A TinyML Image Classification project
+**Using the CameraWebServer**
+
+In `File \> Examples \> ESP32 \> Camera`, select `CameraWebServer`
+
+You also should comment on all cameras' models, except the XIAO model pins: 
+
+`#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM` 
+
+and do not forget the `Tools` to enable the PSRAM. 
+
+Enter your wifi credentials and upload the code to the device: 
+
+![](imgs_4-4/webCap1.jpg)
+
+If the code is executed correctly, you should see the address on the Serial Monitor:
+
+![image-20240214163034559](imgs_4-4/serial_monitor.png)
+
+Copy the address on your browser and wait for the page to be uploaded. Select the camera resolution (for example, QVGA) and select `[START STREAM]`. Wait for a few seconds/minutes, depending on your connection. You can save an image on your computer download area using the \[Save\] button.
+
+![](imgs_4-4/img_cap.jpg)
+
+That's it! You can save the images directly in your computer to be used on projects.
+
+## 4.4.9 Fruits versus Veggies - A TinyML Image Classification Project
 
 ![](https://hackster.imgix.net/uploads/attachments/1587486/vegetables-g3276e6aa0_1280_y8LhyxRCDB.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -235,11 +263,11 @@ Now that we have an embedded camera running, it is time to try image classificat
 
 ![](https://hackster.imgix.net/uploads/attachments/1587541/image_60a57gQ8VS.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-The whole idea of our project will be training a model and proceeding with inference on the XIAO ESP32S3 Sense. For training, we should find some data **(in fact, tons of data!**).
+The whole idea of our project will be to train a model and proceed with inference on the XIAO ESP32S3 Sense. For training, we should find some data **(in fact, tons of data!**).
 
 *But first of all, we need a goal! What do we want to classify?*
 
-With TinyML, a set of technics associated with machine learning inference on embedded devices, we should limit the classification to three or four categories due to limitations (mainly memory in this situation). We will differentiate **apples** from **bananas** and **potatoes** (you can try other categories)**.**
+With TinyML, a set of techniques associated with machine learning inference on embedded devices, we should limit the classification to three or four categories due to limitations (mainly memory). We will differentiate **apples** from **bananas** and **potatoes** (you can try other categories)**.**
 
 So, let's find a specific dataset that includes images from those categories. Kaggle is a good start:
 
@@ -254,11 +282,11 @@ Each category is split into the **train** (100 images), **test** (10 images), an
 
 -   Download the dataset from the Kaggle website to your computer.
 
-> Optionally, you can add some fresh photos of bananas, apples, and potatoes from your home kitchen, using, for example, the sketch discussed in the last section.
+> Optionally, you can add some fresh photos of bananas, apples, and potatoes from your home kitchen, using, for example, the codes discussed in the last section. 
 
 ## 4.4.10 Training the model with Edge Impulse Studio
 
-We will use the Edge Impulse Studio for training our model. [Edge Impulse](https://www.edgeimpulse.com/) is a leading development platform for machine learning on edge devices.
+We will use the Edge Impulse Studio to train our model. As you know, [Edge Impulse](https://www.edgeimpulse.com/) is a leading development platform for machine learning on edge devices.
 
 Enter your account credentials (or create a free account) at Edge Impulse. Next, create a new project:
 
@@ -270,47 +298,47 @@ Next, on the UPLOAD DATA section, upload from your computer the files from chose
 
 ![](https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-You should now have your training dataset, split in three classes of data:
+You should now have your training dataset split in three classes of data:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-> You can upload extra data for further model testing or split the training data. I will leave as it, to use most data possible.
+> You can upload extra data for further model testing or split the training data. I will leave it as it is to use the most data possible.
 
 **Impulse Design**
 
-An impulse takes raw data (in this case, images), extracts features (resize pictures), and then uses a learning block to classify new data.
+> An impulse takes raw data (in this case, images), extracts features (resize pictures), and then uses a learning block to classify new data.
 
-As mentioned, classifying images is the most common use of Deep Learning, but much data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousand of images to "teach or model" to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We called this technic "Transfer Learning" (TL).
+Classifying images is the most common use of deep learning, but a lot of data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousands of images to "teach or model" to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We call this technique "Transfer Learning" (TL).
 
 ![](https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 With TL, we can fine-tune a pre-trained image classification model on our data, performing well even with relatively small image datasets (our case).
 
-So, starting from the raw images, we will resize them (96x96) pixels and so, feeding them to our Transfer Learning block:
+So, starting from the raw images, we will resize them (96x96) pixels and feed them to our Transfer Learning block:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587491/image_QhTt0Av8u3.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 **Pre-processing (Feature generation)**
 
-Besides resizing the images, we should change them to Grayscale instead to keep the actual RGB color depth. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.
+Besides resizing the images, we can change them to Grayscale or keep the actual RGB color depth. Let's start selecting `Grayscale`. Doing that, each one of our data samples will have dimension 9, 216 features (96x96x1). Keeping RGB, this dimension would be three times bigger. Working with Grayscale helps to reduce the amount of final memory needed for inference.
 
 ![](https://hackster.imgix.net/uploads/attachments/1587492/image_eqGdUoXrMb.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Do not forget to "Save parameters." This will generate the features to be used in training.
+Do not forget to `[Save parameters]`." This will generate the features to be used in training.
 
 **Training (Transfer Learning & Data Augmentation)**
 
-In 2007, Google introduced [MobileNetV1,](https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html)a family of general-purpose computer vision neural networks designed with mobile devices in mind to support classification, detection, and more. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints of various use cases.
+In 2007, Google introduced [MobileNetV1,](https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html) a family of general-purpose computer vision neural networks designed with mobile devices in mind to support classification, detection, and more. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints of various use cases.
 
-Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller and less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.
+Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller, less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.
 
-Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different **α** values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The highest the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model and imply more latency.
+Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different **α** values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The higher the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model, implying more latency.
 
 The smaller footprint will be obtained at another extreme with **MobileNet V1** and α=0.10 (around 53.2K RAM and 101K ROM).
 
 When we first published this project to be running on an ESP32-CAM, we stayed at the lower side of possibilities which guaranteed the inference with small latency but not with high accuracy. For this first pass, we will keep this model design (**MobileNet V1** and α=0.10).
 
-Another important technic to be used with Deep Learning is **Data Augmentation**. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).
+Another necessary technique to use with deep learning is **data augmentation**. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).
 
 Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:
 
@@ -344,7 +372,7 @@ The result is not great. The model reached around 77% of accuracy, but the amoun
 
 **Deployment**
 
-The trained model will be deployed as a.zip Arduino library:
+The trained model will be deployed as a .zip Arduino library:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -366,7 +394,7 @@ You can see that the first line of code is exactly the calling of a library with
 #include <XIAO-ESP32S3-CAM-Fruits-vs-Veggies_inferencing.h>
 ```
 
-Of course, this is a generic code (a "template"), that only gets one sample of raw data (stored on the variable: *features = {}* and run the classifier, doing the inference. The result is shown on Serial Monitor.
+Of course, this is a generic code (a "template") that only gets one sample of raw data (stored on the variable: features = {} and runs the classifier, doing the inference. The result is shown on the Serial Monitor.
 
 We should get the sample (image) from the camera and pre-process it (resizing to 96x96, converting to grayscale, and flatting it). This will be the input tensor of our model. The output tensor will be a vector with three values (labels), showing the probabilities of each one of the classes.
 
@@ -380,15 +408,15 @@ Returning to your project (Tab Image), copy one of the Raw Data Sample:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Edge Impulse included the [library ESP NN](https://github.com/espressif/esp-nn) in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (runing at Arduino IDE).
+Edge Impulse included the [library ESP NN](https://github.com/espressif/esp-nn) in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (running at Arduino IDE).
 
-Now, when running the inference, you should get, as a result, the highest score for "banana".
+Now, when running the inference, you should get the highest score for "banana."
 
 ![](https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Great news! Our device handles an inference, discovering that the input image is a banana. Also, note that the inference time was around 317ms, resulting in a maximum of 3 fps if you tried to classify images from a video. It is a better result than the ESP32 CAM (525ms of latency).
 
-Now, we should incorporate the camera and classify images in real-time.
+Now, we should incorporate the camera and classify images in real time.
 
 Go to the Arduino IDE Examples and download from your project the sketch esp32_camera:
 
@@ -421,7 +449,7 @@ Here you can see the resulting code:
 
 The modified sketch can be downloaded from GitHub: [xiao_esp32s3_camera](https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/xiao_esp32s3_camera).
 
-> Note that you can optionally keep the pins as a.h file as we did on previous sections.
+> Note that you can optionally keep the pins as a .h file as we did in previous sections.
 
 Upload the code to your XIAO ESP32S3 Sense, and you should be OK to start classifying your fruits and vegetables! You can check the result on Serial Monitor.
 
@@ -443,9 +471,11 @@ Now, let's go to the other side of the model size. Let's select a MobilinetV2 96
 
 ![](https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Even with a bigger model, the accuracy is not good, and worst, the amount of memory necessary to run the model increases five times, with latency increasing seven times (note that the performance here is estimated with a smaller device, the ESP-EYE. So, the real inference with the ESP32S3 should be better).
+Even with a bigger model, the accuracy is not that good, and the amount of memory necessary to run the model increases five times, with latency increasing seven times 
 
-> To make our model better, we will probably need more images to be trained.
+> Note that the performance here is estimated with a smaller device, the ESP-EYE. The actual inference with the ESP32S3 should be better.
+
+To improve our model, we will need to train more images.
 
 Even though our model did not improve in terms of accuracy, let's test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.
 
@@ -457,7 +487,7 @@ Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the 
 
 ![](https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-In our tests, this option works with MobileNet V2 but not V1. So, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the resultin accuraccy was higher.
+For test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuraccy was higher.
 
 ![](https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -467,7 +497,67 @@ Deploying the model, I got an inference of only 135ms, remembering that the XIAO
 
 ![](https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-## 4.4.13 Conclusion
+## 4.4.13 Runing inference on the SenseCraft-Web-Toolkit
+
+On big limitation of viewing inference on Arduino IDE, is that we can not see what the camera is really focusing. A good alternative for that is the **SenseCraft-Web-Toolkit**, a visual model deployment tool provided by [SSCMA](https://sensecraftma.seeed.cc/) (Seeed SenseCraft Model Assistant). With this tool, you can easily deploy models to various platforms through simple operations. The tool provides a user-friendly interface and does not require any coding.
+
+Follow the following steps to start the SenseCraft-Web-Toolkit:
+
+1. Open the SenseCraft-Web-Toolkit [website](https://seeed-studio.github.io/SenseCraft-Web-Toolk).
+2. Connect the XIAO to your computer:
+
+- Having the XIAO connected, select it as below:
+
+![](imgs_4-4/senseCraft-1.jpg)
+
+- Select the device/Port and press `[Connect]`: 
+
+![](imgs_4-4/senseCraft-2.jpg)
+
+> You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun! 
+
+In our case, we will use the blue button at the botton of the page: `[Upload Custom AI Model]`. 
+
+But first, we will need to download from Edge Impulse Studio, our **quantized .tflite** model. 
+
+3. Go to your project at Edge Impulse Studio, or clone this one:
+
+- [XIAO-ESP32S3-CAM-Fruits-vs-Veggies-v1-ESP-NN](https://studio.edgeimpulse.com/public/228516/live)
+
+4. On `Dashboard`, download the model ("block output"):  `Transfer learning mdodel - TensorFlow Lite (int8 quantized)`
+
+![](imgs_4-4/senseCraft-4.jpg) 
+
+5. On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: `[Upload Custom AI Model]`. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choos a Model Name and enter with labels (ID:Object): 
+
+![](/Users/marcelo_rovai/Documents/GitHub/XIAO_Big_Power_Small_Board-ebook/imgs_4-4/senseCraft-3.jpg) 
+
+> Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: apple, banana, potato).
+
+After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:
+
+![](imgs_4-4/senseCraft-apple.jpg)
+
+The Classification result will be at at the top of the image. You can also select the Confidence of your inference cursor `Confidence`. 
+
+Clicking in the top button (Device Log), you can open a Serial Monitor to follow the inference, same that we have done with the Arduino IDE:
+
+![](imgs_4-4/senseCraft-apple-2.jpg)
+
+On Device Log, you will get Information as: 
+
+![](imgs_4-4/senseCraft-log.jpg)
+
+- Preprocess time (image capture and Crop): 4ms;
+- Inference time (model latency): 106ms,
+- Postprocess time (display of the image and inclusion of data): 0ms. 
+- Output tensor (classes), for example: [[89,0]]; where 0 is Apple (and 1is banana and 2 is potato)
+
+Here are other screen shots:
+
+![](imgs_4-4/inference.jpg)
+
+## 4.4.14 Conclusion
 
 The XIAO ESP32S3 Sense is a very flexible, not expensive, and easy-to-program device. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.
 

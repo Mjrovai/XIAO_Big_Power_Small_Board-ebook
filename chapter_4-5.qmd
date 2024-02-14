@@ -77,9 +77,13 @@ You can use the XIAO, your phone, or other devices for the image capture. Here, 
 
 ### 4.5.4.1 Collecting Dataset with the XIAO ESP32S3
 
-Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On `File \> Examples \> ESP32 \> Camera`, select `CameraWebServer`. On the BOARDS MANAGER panel, confirm that you have installed the latest "stable" package.
+Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On `File \> Examples \> ESP32 \> Camera`, select `CameraWebServer`. 
 
-> The current alpha versions (3.0) did not work correctly with the XIAO. The 2.0.14 works fine.
+On the BOARDS MANAGER panel, confirm that you have installed the latest "stable" package.
+
+>  ⚠️ **Attention** 
+>
+> Alpha versions (for example, 3.x-alpha) do not work correctly with the XIAO and Edge Impulse. Use the last stable version (for example, 2.0.11) instead.
 
 You also should comment on all cameras' models, except the XIAO model pins: 
 
