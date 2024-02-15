@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#fruits-versus-veggies---a-tinyml-image-classification-project" id="toc-fruits-versus-veggies---a-tinyml-image-classification-project" class="nav-link" data-scroll-target="#fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification Project</a></li>
   <li><a href="#training-the-model-with-edge-impulse-studio" id="toc-training-the-model-with-edge-impulse-studio" class="nav-link" data-scroll-target="#training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</a></li>
   <li><a href="#testing-the-model-inference" id="toc-testing-the-model-inference" class="nav-link" data-scroll-target="#testing-the-model-inference">4.4.11 Testing the Model (Inference)</a></li>
-  <li><a href="#testing-with-a-bigger-model" id="toc-testing-with-a-bigger-model" class="nav-link" data-scroll-target="#testing-with-a-bigger-model">4.4.12 Testing with a bigger model</a></li>
+  <li><a href="#testing-with-a-bigger-model" id="toc-testing-with-a-bigger-model" class="nav-link" data-scroll-target="#testing-with-a-bigger-model">4.4.12 Testing with a Bigger Model</a></li>
   <li><a href="#runing-inference-on-the-sensecraft-web-toolkit" id="toc-runing-inference-on-the-sensecraft-web-toolkit" class="nav-link" data-scroll-target="#runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.4.14 Conclusion</a></li>
   </ul>
@@ -444,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>Powerful MCU Board</strong>: Incorporate the ESP32S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported</li>
 <li><strong>Advanced Functionality</strong>: Detachable OV2640 camera sensor for 1600 * 1200 resolution, compatible with OV5640 camera sensor, integrating an additional digital microphone</li>
-<li><strong>Elaborate Power Design</strong>: Lithium battery charge management capability offer four power consumption model, which allows for deep sleep mode with power consumption as low as 14μA</li>
+<li><strong>Elaborate Power Design</strong>: Lithium battery charge management capability offers four power consumption models, which allows for deep sleep mode with power consumption as low as 14μA</li>
 <li><strong>Great Memory for more Possibilities</strong>: Offer 8MB PSRAM and 8MB FLASH, supporting SD card slot for external 32GB FAT memory</li>
 <li><strong>Outstanding RF performance</strong>: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna</li>
 <li><strong>Thumb-sized Compact Design</strong>: 21 x 17.5mm, adopting the classic form factor of XIAO, suitable for space-limited projects like wearable devices</li>
@@ -470,12 +470,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>On <strong>Tools</strong>, select the Board (<strong>XIAO ESP32S3</strong>):</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587512/pasted_graphic_4_srwnXRNO0l.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Last but not least, select the <strong>Port</strong> where the ESP32S3 is connected.</p>
+<p>Last but not least, choose the <strong>Port</strong> where the ESP32S3 is connected.</p>
 <p>That is it! The device should be OK. Let’s do some tests.</p>
 </section>
 <section id="testing-the-board-with-blink" class="level2">
 <h2 class="anchored" data-anchor-id="testing-the-board-with-blink">4.4.4 Testing the board with BLINK</h2>
-<p>The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it (using the LED_BUILTIN Arduino constant) or by changing the Blink sketch accordantly:</p>
+<p>The XIAO ESP32S3 Sense has a built-in LED that is connected to GPIO21. So, you can run the blink sketch as it is (using the <code>LED_BUILTIN</code> Arduino constant) or by changing the Blink sketch accordingly:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_BUILT_IN </span><span class="dv">21</span><span class="pp"> </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
@@ -491,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  delay <span class="op">(</span><span class="dv">1000</span><span class="op">);</span> <span class="co">//Wait 1 sec</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Note that the pins work with inverted logic: LOW to Turn on and HIGH to turn off</p>
+<p>Note that the pins work with inverted logic: LOW to Turn on and HIGH to turn off.</p>
 </blockquote>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587515/blink_Lg3KqJa6ln.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 </section>
@@ -507,9 +507,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587517/pasted_graphic_9_g3jF00J26n.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>When producing sound, you can verify it on the Serial Plotter.</p>
 <p><strong>Save recorded sound (.wav audio files) to a microSD card.</strong></p>
-<p>Let’s now use the onboard SD Card reader to save .wav audio files. For that, we need to habilitate the XIAO PSRAM.</p>
+<p>Now, the onboard SD Card reader can save .wav audio files. For that, we need to habilitate the XIAO PSRAM.</p>
 <blockquote class="blockquote">
-<p>ESP32-S3 has only a few hundred kilobytes of internal RAM on the MCU chip. It can be insufficient for some purposes so that ESP32-S3 can use up to 16 MB of external PSRAM (Psuedostatic RAM) connected in parallel with the SPI flash chip. The external memory is incorporated in the memory map and, with certain restrictions, is usable in the same way as internal data RAM.</p>
+<p>ESP32-S3 has only a few hundred kilobytes of internal RAM on the MCU chip. It can be insufficient for some purposes so that ESP32-S3 can use up to 16 MB of external PSRAM (Psuedostatic RAM) connected with the SPI flash chip. The external memory is incorporated in the memory map and, with certain restrictions, is usable in the same way as internal data RAM.</p>
 </blockquote>
 <p>For a start, Insert the SD Card on the XIAO as shown in the photo below (the SD Card should be formatted to <strong>FAT32</strong>).</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587521/image_Z0TlaWDD8O.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -519,8 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587522/pasted_graphic_10_VYMCMnnxD3.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <ul>
-<li>Run the code Wav_Record.ino</li>
-<li>This program is executed only once after the user <strong>turns on the serial monitor</strong>, recording for 20 seconds and saving the recording file to a microSD card as “arduino_rec.wav”.</li>
+<li>Run the code <code>Wav_Record.ino</code></li>
+<li>This program is executed only once after the user <strong>turns on the serial monitor</strong>, recording for 20 seconds and saving the recording file to a microSD card as “arduino_rec.wav.”</li>
 <li>When the “.” is output every 1 second in the serial monitor, the program execution is finished, and you can play the recorded sound file with the help of a card reader.</li>
 </ul>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587523/pasted_graphic_11_bBwAlY3SeD.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -531,12 +531,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="testing-the-camera" class="level2">
 <h2 class="anchored" data-anchor-id="testing-the-camera">4.4.7 Testing the Camera</h2>
-<p>For testing the camera, you should download the folder <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/take_photos_command">take_photos_command</a> from GitHub. The folder contains the sketch (.ino) and two .h files with camera details.</p>
+<p>To test the camera, you should download the folder <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/take_photos_command">take_photos_command</a> from GitHub. The folder contains the sketch (.ino) and two .h files with camera details.</p>
 <ul>
-<li>Run the code: take_photos_command.ino. Open the Serial Monitor and send the command “capture” to capture and save the image on the SD Card:</li>
+<li>Run the code: <code>take_photos_command.ino</code>. Open the Serial Monitor and send the command <code>capture</code> to capture and save the image on the SD Card:</li>
 </ul>
 <blockquote class="blockquote">
-<p>Verify that [Both NL &amp; CR] is selected on Serial Monitor.</p>
+<p>Verify that <code>[Both NL &amp; CR]</code> is selected on Serial Monitor.</p>
 </blockquote>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587526/capture_8aHAA2OzDt.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Here is an example of a taken photo:</p>
@@ -546,11 +546,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="testing-wifi">4.4.8 Testing WiFi</h2>
 <p>One of the differentiators of the XIAO ESP32S3 is its WiFi capability. So, let’s test its radio, scanning the wifi networks around it. You can do it by running one of the code examples on the board.</p>
 <p>Go to Arduino IDE Examples and look for <strong>WiFI ==&gt; WiFIScan</strong></p>
-<p>On the Serial monitor, you should see the wifi networks (SSIDs and RSSIs) in the range of your device. Here is what I got on the lab:</p>
+<p>On the Serial monitor, you should see the wifi networks (SSIDs and RSSIs) in the range of your device. Here is what I got in the lab:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587529/pasted_graphic_14_mbFXPkj0kU.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p><strong>Simple WiFi Server (Turning LED ON/OFF)</strong></p>
 <p>Let’s test the device’s capability to behave as a WiFi Server. We will host a simple page on the device that sends commands to turn the XIAO built-in LED ON and OFF.</p>
-<p>Like before, go to GitHub to download the folder with the sketch: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/SimpleWiFiServer">SimpleWiFiServer</a>.</p>
+<p>Like before, go to GitHub to download the folder with the sketch <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/SimpleWiFiServer">SimpleWiFiServer</a>.</p>
 <p>Before running the sketch, you should enter your network credentials:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> ssid     <span class="op">=</span> <span class="st">"Your credentials here"</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"Your credentials here"</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -558,19 +558,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587531/image_l0yhot2BP2.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Take the IP address and enter it on your browser:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587532/pasted_graphic_18_Tihy6lYH9T.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>You will see a page with links that can turn ON and OFF the built-in LED of your XIAO.</p>
+<p>You will see a page with links that can turn the built-in LED of your XIAO ON and OFF.</p>
 <p><strong>Streaming video to Web</strong></p>
 <p>Now that you know that you can send commands from the webpage to your device, let’s do the reverse. Let’s take the image captured by the camera and stream it to a webpage:</p>
 <p>Download from GitHub the <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Streeming_Video">folder</a> that contains the code: XIAO-ESP32S3-Streeming_Video.ino.</p>
 <blockquote class="blockquote">
-<p>Remember that the folder contains not only the.ino file, but also a couple of.h files, necessary to handle the camera.</p>
+<p>Remember that the folder contains the.ino file and a couple of .h files necessary to handle the camera.</p>
 </blockquote>
 <p>Enter your credentials and run the sketch. On the Serial monitor, you can find the page address to enter in your browser:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587533/pasted_graphic_21_s4OswByvQx.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Open the page on your browser (wait a few seconds to start the streaming). That’s it.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587534/pasted_graphic_19_xsDOsUz1vB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Streamlining what your camera is “seen” can be important when you position it to capture a dataset for an ML project (for example, using the code “take_phots_commands.ino”.</p>
-<p>Of course, we can do both things simultaneously, show what the camera is seeing on the page, and send a command to capture and save the image on the SD card. For that, you can use the code Camera_HTTP_Server_STA which <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense/tree/main/Camera_HTTP_Server_STA">folder</a> can be downloaded from GitHub.</p>
+<p>Of course, we can do both things simultaneously: show what the camera sees on the page and send a command to capture and save the image on the SD card. For that, you can use the code Camera_HTTP_Server_STA, which can be downloaded from GitHub.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587535/pasted_graphic_29_Tq37VCI7wB.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>The program will do the following tasks:</p>
 <ul>
@@ -578,20 +578,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Create a web page (for example ==&gt; http://192.168.4.119//). The correct address will be displayed on the Serial Monitor.</li>
 <li>If server.on (“/capture”, HTTP_GET, serverCapture), the program takes a photo and sends it to the Web.</li>
 <li>It is possible to rotate the image on webPage using the button [ROTATE]</li>
-<li>The command [CAPTURE] only will preview the image on the webpage, showing its size on Serial Monitor</li>
-<li>The [SAVE] command will save an image on the SD Card, also showing the image on the web.</li>
+<li>The command [CAPTURE] only will preview the image on the webpage, showing its size on the Serial Monitor</li>
+<li>The <code>[SAVE]</code> command will save an image on the SD Card and show the image on the browser.</li>
 <li>Saved images will follow a sequential naming (image1.jpg, image2.jpg.</li>
 </ul>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587540/pasted_graphic_32_XjZcdijNwT.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>This program can be used for an image dataset capture with an Image Classification project.</p>
 </blockquote>
-<p>Inspect the code; it will be easier to understand how the camera works. This code was developed based on the great Rui Santos Tutorial: <a href="https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/">ESP32-CAM Take Photo and Display in Web Server</a>, which I invite all of you to visit.</p>
+<p>Inspect the code; it will be easier to understand how the camera works. This code was developed based on the great Rui Santos Tutorial <a href="https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/">ESP32-CAM Take Photo and Display in Web Server</a>, which I invite all of you to visit.</p>
 <p><strong>Using the CameraWebServer</strong></p>
-<p>In <code>File \&gt; Examples \&gt; ESP32 \&gt; Camera</code>, select <code>CameraWebServer</code></p>
+<p>In the Arduino IDE, go to <code>File &gt; Examples &gt; ESP32 &gt; Camera</code>, and select <code>CameraWebServer</code></p>
 <p>You also should comment on all cameras’ models, except the XIAO model pins:</p>
 <p><code>#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM</code></p>
-<p>and do not forget the <code>Tools</code> to enable the PSRAM.</p>
+<p>And do not forget the <code>Tools</code> to enable the PSRAM.</p>
 <p>Enter your wifi credentials and upload the code to the device:</p>
 <p><img src="imgs_4-4/webCap1.jpg" class="img-fluid"></p>
 <p>If the code is executed correctly, you should see the address on the Serial Monitor:</p>
@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Copy the address on your browser and wait for the page to be uploaded. Select the camera resolution (for example, QVGA) and select <code>[START STREAM]</code>. Wait for a few seconds/minutes, depending on your connection. You can save an image on your computer download area using the [Save] button.</p>
 <p><img src="imgs_4-4/img_cap.jpg" class="img-fluid"></p>
-<p>That’s it! You can save the images directly in your computer to be used on projects.</p>
+<p>That’s it! You can save the images directly on your computer to be used on projects.</p>
 </section>
 <section id="fruits-versus-veggies---a-tinyml-image-classification-project" class="level2">
 <h2 class="anchored" data-anchor-id="fruits-versus-veggies---a-tinyml-image-classification-project">4.4.9 Fruits versus Veggies - A TinyML Image Classification Project</h2>
@@ -637,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Data Acquisition</strong></p>
 <p>Next, on the UPLOAD DATA section, upload from your computer the files from chosen categories:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587488/image_brdDCN6bc5.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>You should now have your training dataset split in three classes of data:</p>
+<p>It would be best if you now had your training dataset split into three classes of data:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587489/image_QyxusuY3DM.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>You can upload extra data for further model testing or split the training data. I will leave it as it is to use the most data possible.</p>
@@ -646,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>An impulse takes raw data (in this case, images), extracts features (resize pictures), and then uses a learning block to classify new data.</p>
 </blockquote>
-<p>Classifying images is the most common use of deep learning, but a lot of data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousands of images to “teach or model” to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We call this technique “Transfer Learning” (TL).</p>
+<p>Classifying images is the most common use of deep learning, but much data should be used to accomplish this task. We have around 90 images for each category. Is this number enough? Not at all! We will need thousands of images to “teach or model” to differentiate an apple from a banana. But, we can solve this issue by re-training a previously trained model with thousands of images. We call this technique “Transfer Learning” (TL).</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587490/tl_fuVIsKd7YV.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>With TL, we can fine-tune a pre-trained image classification model on our data, performing well even with relatively small image datasets (our case).</p>
 <p>So, starting from the raw images, we will resize them (96x96) pixels and feed them to our Transfer Learning block:</p>
@@ -660,7 +660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Although the base MobileNet architecture is already tiny and has low latency, many times, a specific use case or application may require the model to be smaller and faster. MobileNet introduces a straightforward parameter α (alpha) called width multiplier to construct these smaller, less computationally expensive models. The role of the width multiplier α is to thin a network uniformly at each layer.</p>
 <p>Edge Impulse Studio has available MobileNet V1 (96x96 images) and V2 (96x96 and 160x160 images), with several different <strong>α</strong> values (from 0.05 to 1.0). For example, you will get the highest accuracy with V2, 160x160 images, and α=1.0. Of course, there is a trade-off. The higher the accuracy, the more memory (around 1.3M RAM and 2.6M ROM) will be needed to run the model, implying more latency.</p>
 <p>The smaller footprint will be obtained at another extreme with <strong>MobileNet V1</strong> and α=0.10 (around 53.2K RAM and 101K ROM).</p>
-<p>When we first published this project to be running on an ESP32-CAM, we stayed at the lower side of possibilities which guaranteed the inference with small latency but not with high accuracy. For this first pass, we will keep this model design (<strong>MobileNet V1</strong> and α=0.10).</p>
+<p>When we first published this project to be running on an ESP32-CAM, we stayed at the lower side of possibilities, which guaranteed the inference with small latency but not with high accuracy. For this first pass, we will keep this model design (<strong>MobileNet V1</strong> and α=0.10).</p>
 <p>Another necessary technique to use with deep learning is <strong>data augmentation</strong>. Data augmentation is a method that can help improve the accuracy of machine learning models, creating additional artificial data. A data augmentation system makes small, random changes to your training data during the training process (such as flipping, cropping, or rotating the images).</p>
 <p>Under the rood, here you can see how Edge Impulse implements a data Augmentation policy on your data:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp"># </span><span class="er">Implements the data augmentation policy</span></span>
@@ -683,11 +683,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Exposure to these variations during training can help prevent your model from taking shortcuts by “memorizing” superficial clues in your training data, meaning it may better reflect the deep underlying patterns in your dataset.</p>
 <p>The final layer of our model will have 16 neurons with a 10% of dropout for overfitting prevention. Here is the Training output:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>The result is not great. The model reached around 77% of accuracy, but the amount of RAM expected to be used during the inference is relatively small (around 60 KBytes), which is very good.</p>
+<p>The result could be better. The model reached around 77% accuracy, but the amount of RAM expected to be used during the inference is relatively tiny (about 60 KBytes), which is very good.</p>
 <p><strong>Deployment</strong></p>
 <p>The trained model will be deployed as a .zip Arduino library:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587494/image_QqiDK41Uyp.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Open your Arduino IDE, and under <strong>Sketch,</strong> go to <strong>Include Library</strong> and <strong>add.ZIP Library.</strong> Select the file you download from Edge Impulse Studio, and that’s it!</p>
+<p>Open your Arduino IDE, and under <strong>Sketch,</strong> go to <strong>Include Library</strong> and <strong>add.ZIP Library.</strong> Please select the file you download from Edge Impulse Studio, and that’s it!</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587590/image_BQwzaHFlzZ.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Under the <strong>Examples</strong> tab on Arduino IDE, you should find a sketch code under your project name.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587591/image_Xglfrz0mwe.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -703,7 +703,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>9, 216 features will be copied to the clipboard. This is the input tensor (a flattened image of 96x96x1), in this case, bananas. Past this Input tensor on features[] = {0xb2d77b, 0xb5d687, 0xd8e8c0, 0xeaecba, 0xc2cf67, …}</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587599/image_YYAJaMDMSG.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Edge Impulse included the <a href="https://github.com/espressif/esp-nn">library ESP NN</a> in its SDK, which contains optimized NN (Neural Network) functions for various Espressif chips, including the ESP32S3 (running at Arduino IDE).</p>
-<p>Now, when running the inference, you should get the highest score for “banana.”</p>
+<p>When running the inference, you should get the highest score for “banana.”</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587603/pasted_graphic_35_3MfEQ8f4Zg.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Great news! Our device handles an inference, discovering that the input image is a banana. Also, note that the inference time was around 317ms, resulting in a maximum of 3 fps if you tried to classify images from a video. It is a better result than the ESP32 CAM (525ms of latency).</p>
 <p>Now, we should incorporate the camera and classify images in real time.</p>
@@ -743,16 +743,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587608/inferencia2_eGWjtNny2o.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 </section>
 <section id="testing-with-a-bigger-model" class="level2">
-<h2 class="anchored" data-anchor-id="testing-with-a-bigger-model">4.4.12 Testing with a bigger model</h2>
+<h2 class="anchored" data-anchor-id="testing-with-a-bigger-model">4.4.12 Testing with a Bigger Model</h2>
 <p>Now, let’s go to the other side of the model size. Let’s select a MobilinetV2 96x96 0.35, having as input RGB images.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587626/image_wUPCEECR3t.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Even with a bigger model, the accuracy is not that good, and the amount of memory necessary to run the model increases five times, with latency increasing seven times</p>
+<p>Even with a bigger model, the accuracy could be better, and the amount of memory necessary to run the model increases five times, with latency increasing seven times.</p>
 <blockquote class="blockquote">
 <p>Note that the performance here is estimated with a smaller device, the ESP-EYE. The actual inference with the ESP32S3 should be better.</p>
 </blockquote>
 <p>To improve our model, we will need to train more images.</p>
-<p>Even though our model did not improve in terms of accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
-<p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it has no influence on accuracy.</p>
+<p>Even though our model did not improve accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
+<p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it does not influence accuracy.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -766,7 +766,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="runing-inference-on-the-sensecraft-web-toolkit" class="level2">
 <h2 class="anchored" data-anchor-id="runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</h2>
-<p>On big limitation of viewing inference on Arduino IDE, is that we can not see what the camera is really focusing. A good alternative for that is the <strong>SenseCraft-Web-Toolkit</strong>, a visual model deployment tool provided by <a href="https://sensecraftma.seeed.cc/">SSCMA</a> (Seeed SenseCraft Model Assistant). With this tool, you can easily deploy models to various platforms through simple operations. The tool provides a user-friendly interface and does not require any coding.</p>
+<p>One significant limitation of viewing inference on Arduino IDE is that we can not see what the camera focuses on. A good alternative is the <strong>SenseCraft-Web-Toolkit</strong>, a visual model deployment tool provided by <a href="https://sensecraftma.seeed.cc/">SSCMA</a>(Seeed SenseCraft Model Assistant). This tool allows you to deploy models to various platforms easily through simple operations. The tool provides a user-friendly interface and does not require any coding.</p>
 <p>Follow the following steps to start the SenseCraft-Web-Toolkit:</p>
 <ol type="1">
 <li>Open the SenseCraft-Web-Toolkit <a href="https://seeed-studio.github.io/SenseCraft-Web-Toolk">website</a>.</li>
@@ -783,8 +783,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun!</p>
 </blockquote>
-<p>In our case, we will use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>.</p>
-<p>But first, we will need to download from Edge Impulse Studio, our <strong>quantized .tflite</strong> model.</p>
+<p>In our case, we will use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>.</p>
+<p>But first, we will need to download from Edge Impulse Studio our <strong>quantized .tflite</strong> model.</p>
 <ol start="3" type="1">
 <li>Go to your project at Edge Impulse Studio, or clone this one:</li>
 </ol>
@@ -796,7 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><img src="imgs_4-4/senseCraft-4.jpg" class="img-fluid"></p>
 <ol start="5" type="1">
-<li>On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choos a Model Name and enter with labels (ID:Object):</li>
+<li>On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID:Object):</li>
 </ol>
 <p><img src="imgs_4-4/senseCraft-3.jpg" class="img-fluid"></p>
 <blockquote class="blockquote">
@@ -804,8 +804,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:</p>
 <p><img src="imgs_4-4/senseCraft-apple.jpg" class="img-fluid"></p>
-<p>The Classification result will be at at the top of the image. You can also select the Confidence of your inference cursor <code>Confidence</code>.</p>
-<p>Clicking in the top button (Device Log), you can open a Serial Monitor to follow the inference, same that we have done with the Arduino IDE:</p>
+<p>The Classification result will be at the top of the image. You can also select the Confidence of your inference cursor <code>Confidence</code>.</p>
+<p>Clicking on the top button (Device Log), you can open a Serial Monitor to follow the inference, the same that we have done with the Arduino IDE:</p>
 <p><img src="imgs_4-4/senseCraft-apple-2.jpg" class="img-fluid"></p>
 <p>On Device Log, you will get Information as:</p>
 <p><img src="imgs_4-4/senseCraft-log.jpg" class="img-fluid"></p>

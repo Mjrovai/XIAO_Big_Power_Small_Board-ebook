@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-object-detection-project-goal" class="level2">
 <h2 class="anchored" data-anchor-id="the-object-detection-project-goal">4.5.3 The Object Detection Project Goal</h2>
-<p>All Machine Learning projects need to start with a detailed goal. Let’s assume we are in an industrial or rural facility and must sort and count <strong>oranges (fruits)</strong> and special <strong>frogs (bugs)</strong>.</p>
+<p>All Machine Learning projects need to start with a detailed goal. Let’s assume we are in an industrial or rural facility and must sort and count <strong>oranges (fruits)</strong> and particular <strong>frogs (bugs)</strong>.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1654479/oranges-frogs_nHEaTqne53.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>In other words, we should perform a multi-label classification, where each image can have three classes:</p>
 <ul>
@@ -499,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>You also should comment on all cameras’ models, except the XIAO model pins:</p>
 <p><code>#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM</code></p>
-<p>and on <code>Tools</code>, enable the PSRAM. Enter your wifi credentials and upload the code to the device:</p>
+<p>And on <code>Tools</code>, enable the PSRAM. Enter your wifi credentials and upload the code to the device:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1654482/ide_UM8udFSg8J.jpg?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>If the code is executed correctly, you should see the address on the Serial Monitor:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1654483/serial_monitor_0sYoddSZfP.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
@@ -511,7 +511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>We suggest around 50 images mixing the objects and varying the number of each appearing on the scene. Try to capture different angles, backgrounds, and light conditions.</p>
 <blockquote class="blockquote">
-<p>The stored images use a QVGA frame size of 320x240 and RGB565 (color pixel format).</p>
+<p>The stored images use a QVGA frame size 320x240 and RGB565 (color pixel format).</p>
 </blockquote>
 <p>After capturing your dataset, [Stop Stream] and move your images to a folder.</p>
 </section>
@@ -675,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun!</p>
 </blockquote>
-<p>In our case, we will use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>.</p>
+<p>In our case, we will use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>.</p>
 <p>But first, we will need to download from Edge Impulse Studio, our <strong>quantized .tflite</strong> model.</p>
 <ol start="3" type="1">
 <li>Go to your project at Edge Impulse Studio, or clone this one:</li>
@@ -688,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><img src="imgs-4-5/sense-craft-1.jpg" class="img-fluid"></p>
 <ol start="5" type="1">
-<li>On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: <code>[Upload Custom AI Model]</code>. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object):</li>
+<li>On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object):</li>
 </ol>
 <p><img src="imgs-4-5/sense-craft-2.jpg" class="img-fluid"></p>
 <blockquote class="blockquote">
