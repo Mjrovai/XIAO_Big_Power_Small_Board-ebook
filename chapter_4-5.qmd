@@ -53,7 +53,7 @@ In this Hands-On project, we will explore Object Detection using FOMO.
 
 ## 4.5.3 The Object Detection Project Goal
 
-All Machine Learning projects need to start with a detailed goal. Let's assume we are in an industrial or rural facility and must sort and count **oranges (fruits)** and special **frogs (bugs)**.
+All Machine Learning projects need to start with a detailed goal. Let's assume we are in an industrial or rural facility and must sort and count **oranges (fruits)** and particular **frogs (bugs)**.
 
 ![](https://hackster.imgix.net/uploads/attachments/1654479/oranges-frogs_nHEaTqne53.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -89,7 +89,7 @@ You also should comment on all cameras' models, except the XIAO model pins:
 
 `#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM` 
 
-and on `Tools`, enable the PSRAM. Enter your wifi credentials and upload the code to the device:
+And on `Tools`, enable the PSRAM. Enter your wifi credentials and upload the code to the device:
 
 ![](https://hackster.imgix.net/uploads/attachments/1654482/ide_UM8udFSg8J.jpg?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -107,7 +107,7 @@ Edge impulse suggests that the objects should be of similar size and not overlap
 
 We suggest around 50 images mixing the objects and varying the number of each appearing on the scene. Try to capture different angles, backgrounds, and light conditions.
 
-> The stored images use a QVGA frame size of 320x240 and RGB565 (color pixel format).
+> The stored images use a QVGA frame size 320x240 and RGB565 (color pixel format).
 
 After capturing your dataset, \[Stop Stream\] and move your images to a folder.
 
@@ -313,7 +313,7 @@ Follow the following steps to start the SenseCraft-Web-Toolkit:
 
 > You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun! 
 
-In our case, we will use the blue button at the botton of the page: `[Upload Custom AI Model]`. 
+In our case, we will use the blue button at the bottom of the page: `[Upload Custom AI Model]`. 
 
 But first, we will need to download from Edge Impulse Studio, our **quantized .tflite** model. 
 
@@ -325,7 +325,7 @@ But first, we will need to download from Edge Impulse Studio, our **quantized .t
 
 ![](imgs-4-5/sense-craft-1.jpg) 
 
-5. On SenseCraft-Web-Toolkit, use the blue button at the botton of the page: `[Upload Custom AI Model]`. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object): 
+5. On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: `[Upload Custom AI Model]`. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object): 
 
 ![](imgs-4-5/sense-craft-2.jpg) 
 
