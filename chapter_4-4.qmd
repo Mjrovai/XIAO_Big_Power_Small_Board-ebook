@@ -364,7 +364,7 @@ def augment_image(image, label):
 
 Exposure to these variations during training can help prevent your model from taking shortcuts by "memorizing" superficial clues in your training data, meaning it may better reflect the deep underlying patterns in your dataset.
 
-The final layer of our model will have 16 neurons with a 10% of dropout for overfitting prevention. Here is the Training output:
+The final layer of our model will have 16 neurons with a 10% dropout for overfitting prevention. Here is the Training output:
 
 ![](https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -483,27 +483,27 @@ Let's redeploy the model. If the EON Compiler is enabled when you generate the l
 
 ![](https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.
+Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was 219ms, which is great for such a bigger model.
 
 ![](https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-For test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuraccy was higher.
+For the test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuracy was higher.
 
 ![](https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 > Note that the estimated latency for an Arduino Portenta (ou Nicla), running with a clock of 480MHz is 45ms.
 
-Deploying the model, I got an inference of only 135ms, remembering that the XIAO run with half of the clock used by the Portenta/Nicla (240MHz):
+Deploying the model, I got an inference of only 135ms, remembering that the XIAO runs with half of the clock used by the Portenta/Nicla (240MHz):
 
 ![](https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-## 4.4.13 Runing inference on the SenseCraft-Web-Toolkit
+## 4.4.13 Running inference on the SenseCraft-Web-Toolkit
 
-One significant limitation of viewing inference on Arduino IDE is that we can not see what the camera focuses on. A good alternative is the **SenseCraft-Web-Toolkit**, a visual model deployment tool provided by [SSCMA ](https://sensecraftma.seeed.cc/)(Seeed SenseCraft Model Assistant). This tool allows you to deploy models to various platforms easily through simple operations. The tool provides a user-friendly interface and does not require any coding.
+One significant limitation of viewing inference on Arduino IDE is that we can not see what the camera focuses on. A good alternative is the **SenseCraft-Web-Toolkit**, a visual model deployment tool provided by [SSCMA ](https://sensecraftma.seeed.cc/)(Seeed SenseCraft Model Assistant). This tool allows you to deploy models to various platforms easily through simple operations. The tool offers a user-friendly interface and does not require any coding.
 
 Follow the following steps to start the SenseCraft-Web-Toolkit:
 
-1. Open the SenseCraft-Web-Toolkit [website](https://seeed-studio.github.io/SenseCraft-Web-Toolk).
+1. Open the [SenseCraft-Web-Toolkit website.](https://seeed-studio.github.io/SenseCraft-Web-Toolkit/#/setup/process)
 2. Connect the XIAO to your computer:
 
 - Having the XIAO connected, select it as below:
@@ -518,23 +518,23 @@ Follow the following steps to start the SenseCraft-Web-Toolkit:
 
 In our case, we will use the blue button at the bottom of the page: `[Upload Custom AI Model]`. 
 
-But first, we will need to download from Edge Impulse Studio our **quantized .tflite** model. 
+But first, we must download from Edge Impulse Studio our **quantized .tflite** model. 
 
 3. Go to your project at Edge Impulse Studio, or clone this one:
 
 - [XIAO-ESP32S3-CAM-Fruits-vs-Veggies-v1-ESP-NN](https://studio.edgeimpulse.com/public/228516/live)
 
-4. On `Dashboard`, download the model ("block output"):  `Transfer learning mdodel - TensorFlow Lite (int8 quantized)`
+4. On the `Dashboard`, download the model ("block output"):  `Transfer learning model - TensorFlow Lite (int8 quantized).`
 
 ![](imgs_4-4/senseCraft-4.jpg) 
 
-5. On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: `[Upload Custom AI Model]`. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID:Object):
+5. On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: `[Upload Custom AI Model]`. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID: Object):
 
 ![](imgs_4-4/senseCraft-3.jpg) 
 
-> Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: apple, banana, potato).
+> Note that you should use the labels trained on EI Studio, entering them in alphabetic order (in our case: apple, banana, potato).
 
-After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:
+After a few seconds (or minutes), the model will be uploaded to your device, and the camera image will appear in real-time on the Preview Sector:
 
 ![](imgs_4-4/senseCraft-apple.jpg)
 
@@ -544,7 +544,7 @@ Clicking on the top button (Device Log), you can open a Serial Monitor to follow
 
 ![](imgs_4-4/senseCraft-apple-2.jpg)
 
-On Device Log, you will get Information as: 
+On Device Log, you will get information as: 
 
 ![](imgs_4-4/senseCraft-log.jpg)
 
@@ -553,12 +553,12 @@ On Device Log, you will get Information as:
 - Postprocess time (display of the image and inclusion of data): 0ms. 
 - Output tensor (classes), for example: [[89,0]]; where 0 is Apple (and 1is banana and 2 is potato)
 
-Here are other screen shots:
+Here are other screenshots:
 
 ![](imgs_4-4/inference.jpg)
 
 ## 4.4.14 Conclusion
 
-The XIAO ESP32S3 Sense is a very flexible, not expensive, and easy-to-program device. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.
+The XIAO ESP32S3 Sense is very flexible, inexpensive, and easy to program. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.
 
-On the GitHub repository, you will find the last version of the codes: [XIAO-ESP32S3-Sense.](https://github.com/Mjrovai/XIAO-ESP32S3-Sense)
+You will find the last version of the codes on the GitHub repository: [XIAO-ESP32S3-Sense.](https://github.com/Mjrovai/XIAO-ESP32S3-Sense)

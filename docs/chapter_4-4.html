@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#training-the-model-with-edge-impulse-studio" id="toc-training-the-model-with-edge-impulse-studio" class="nav-link" data-scroll-target="#training-the-model-with-edge-impulse-studio">4.4.10 Training the model with Edge Impulse Studio</a></li>
   <li><a href="#testing-the-model-inference" id="toc-testing-the-model-inference" class="nav-link" data-scroll-target="#testing-the-model-inference">4.4.11 Testing the Model (Inference)</a></li>
   <li><a href="#testing-with-a-bigger-model" id="toc-testing-with-a-bigger-model" class="nav-link" data-scroll-target="#testing-with-a-bigger-model">4.4.12 Testing with a Bigger Model</a></li>
-  <li><a href="#runing-inference-on-the-sensecraft-web-toolkit" id="toc-runing-inference-on-the-sensecraft-web-toolkit" class="nav-link" data-scroll-target="#runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</a></li>
+  <li><a href="#running-inference-on-the-sensecraft-web-toolkit" id="toc-running-inference-on-the-sensecraft-web-toolkit" class="nav-link" data-scroll-target="#running-inference-on-the-sensecraft-web-toolkit">4.4.13 Running inference on the SenseCraft-Web-Toolkit</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">4.4.14 Conclusion</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/edit/main/chapter_4-4.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook/blob/main/chapter_4-4.qmd" class="toc-action">View source</a></p></div></div></nav>
@@ -681,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> image<span class="op">,</span> label</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exposure to these variations during training can help prevent your model from taking shortcuts by “memorizing” superficial clues in your training data, meaning it may better reflect the deep underlying patterns in your dataset.</p>
-<p>The final layer of our model will have 16 neurons with a 10% of dropout for overfitting prevention. Here is the Training output:</p>
+<p>The final layer of our model will have 16 neurons with a 10% dropout for overfitting prevention. Here is the Training output:</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1587493/image_iqCv79Lhga.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>The result could be better. The model reached around 77% accuracy, but the amount of RAM expected to be used during the inference is relatively tiny (about 60 KBytes), which is very good.</p>
 <p><strong>Deployment</strong></p>
@@ -754,22 +754,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Even though our model did not improve accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
 <p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it does not influence accuracy.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was of 219ms, what it is great for such bigger model.</p>
+<p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was 219ms, which is great for such a bigger model.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
-<p>For test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuraccy was higher.</p>
+<p>For the test, I trained the model again, using the smallest version of MobileNet V2, with an alpha of 0.05. Interesting that the result in accuracy was higher.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591705/image_lwYLKM696A.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Note that the estimated latency for an Arduino Portenta (ou Nicla), running with a clock of 480MHz is 45ms.</p>
 </blockquote>
-<p>Deploying the model, I got an inference of only 135ms, remembering that the XIAO run with half of the clock used by the Portenta/Nicla (240MHz):</p>
+<p>Deploying the model, I got an inference of only 135ms, remembering that the XIAO runs with half of the clock used by the Portenta/Nicla (240MHz):</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591706/image_dAfOl9Tguz.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 </section>
-<section id="runing-inference-on-the-sensecraft-web-toolkit" class="level2">
-<h2 class="anchored" data-anchor-id="runing-inference-on-the-sensecraft-web-toolkit">4.4.13 Runing inference on the SenseCraft-Web-Toolkit</h2>
-<p>One significant limitation of viewing inference on Arduino IDE is that we can not see what the camera focuses on. A good alternative is the <strong>SenseCraft-Web-Toolkit</strong>, a visual model deployment tool provided by <a href="https://sensecraftma.seeed.cc/">SSCMA</a>(Seeed SenseCraft Model Assistant). This tool allows you to deploy models to various platforms easily through simple operations. The tool provides a user-friendly interface and does not require any coding.</p>
+<section id="running-inference-on-the-sensecraft-web-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="running-inference-on-the-sensecraft-web-toolkit">4.4.13 Running inference on the SenseCraft-Web-Toolkit</h2>
+<p>One significant limitation of viewing inference on Arduino IDE is that we can not see what the camera focuses on. A good alternative is the <strong>SenseCraft-Web-Toolkit</strong>, a visual model deployment tool provided by <a href="https://sensecraftma.seeed.cc/">SSCMA</a>(Seeed SenseCraft Model Assistant). This tool allows you to deploy models to various platforms easily through simple operations. The tool offers a user-friendly interface and does not require any coding.</p>
 <p>Follow the following steps to start the SenseCraft-Web-Toolkit:</p>
 <ol type="1">
-<li>Open the SenseCraft-Web-Toolkit <a href="https://seeed-studio.github.io/SenseCraft-Web-Toolk">website</a>.</li>
+<li>Open the <a href="https://seeed-studio.github.io/SenseCraft-Web-Toolkit/#/setup/process">SenseCraft-Web-Toolkit website.</a></li>
 <li>Connect the XIAO to your computer:</li>
 </ol>
 <ul>
@@ -784,7 +784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can try several Computer Vision models previously uploaded by Seeed Studio. Try them and have fun!</p>
 </blockquote>
 <p>In our case, we will use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>.</p>
-<p>But first, we will need to download from Edge Impulse Studio our <strong>quantized .tflite</strong> model.</p>
+<p>But first, we must download from Edge Impulse Studio our <strong>quantized .tflite</strong> model.</p>
 <ol start="3" type="1">
 <li>Go to your project at Edge Impulse Studio, or clone this one:</li>
 </ol>
@@ -792,22 +792,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://studio.edgeimpulse.com/public/228516/live">XIAO-ESP32S3-CAM-Fruits-vs-Veggies-v1-ESP-NN</a></li>
 </ul>
 <ol start="4" type="1">
-<li>On <code>Dashboard</code>, download the model (“block output”): <code>Transfer learning mdodel - TensorFlow Lite (int8 quantized)</code></li>
+<li>On the <code>Dashboard</code>, download the model (“block output”): <code>Transfer learning model - TensorFlow Lite (int8 quantized).</code></li>
 </ol>
 <p><img src="imgs_4-4/senseCraft-4.jpg" class="img-fluid"></p>
 <ol start="5" type="1">
-<li>On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID:Object):</li>
+<li>On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: <code>[Upload Custom AI Model]</code>. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID: Object):</li>
 </ol>
 <p><img src="imgs_4-4/senseCraft-3.jpg" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: apple, banana, potato).</p>
+<p>Note that you should use the labels trained on EI Studio, entering them in alphabetic order (in our case: apple, banana, potato).</p>
 </blockquote>
-<p>After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:</p>
+<p>After a few seconds (or minutes), the model will be uploaded to your device, and the camera image will appear in real-time on the Preview Sector:</p>
 <p><img src="imgs_4-4/senseCraft-apple.jpg" class="img-fluid"></p>
 <p>The Classification result will be at the top of the image. You can also select the Confidence of your inference cursor <code>Confidence</code>.</p>
 <p>Clicking on the top button (Device Log), you can open a Serial Monitor to follow the inference, the same that we have done with the Arduino IDE:</p>
 <p><img src="imgs_4-4/senseCraft-apple-2.jpg" class="img-fluid"></p>
-<p>On Device Log, you will get Information as:</p>
+<p>On Device Log, you will get information as:</p>
 <p><img src="imgs_4-4/senseCraft-log.jpg" class="img-fluid"></p>
 <ul>
 <li>Preprocess time (image capture and Crop): 4ms;</li>
@@ -815,13 +815,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Postprocess time (display of the image and inclusion of data): 0ms.</li>
 <li>Output tensor (classes), for example: [[89,0]]; where 0 is Apple (and 1is banana and 2 is potato)</li>
 </ul>
-<p>Here are other screen shots:</p>
+<p>Here are other screenshots:</p>
 <p><img src="imgs_4-4/inference.jpg" class="img-fluid"></p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">4.4.14 Conclusion</h2>
-<p>The XIAO ESP32S3 Sense is a very flexible, not expensive, and easy-to-program device. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.</p>
-<p>On the GitHub repository, you will find the last version of the codes: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense">XIAO-ESP32S3-Sense.</a></p>
+<p>The XIAO ESP32S3 Sense is very flexible, inexpensive, and easy to program. The project proves the potential of TinyML. Memory is not an issue; the device can handle many post-processing tasks, including communication.</p>
+<p>You will find the last version of the codes on the GitHub repository: <a href="https://github.com/Mjrovai/XIAO-ESP32S3-Sense">XIAO-ESP32S3-Sense.</a></p>
 
 
 </section>

@@ -77,7 +77,7 @@ You can use the XIAO, your phone, or other devices for the image capture. Here, 
 
 ### 4.5.4.1 Collecting Dataset with the XIAO ESP32S3
 
-Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On `File \> Examples \> ESP32 \> Camera`, select `CameraWebServer`. 
+Open the Arduino IDE and select the XIAO_ESP32S3 board (and the port where it is connected). On `File > Examples > ESP32 > Camera`, select `CameraWebServer`. 
 
 On the BOARDS MANAGER panel, confirm that you have installed the latest "stable" package.
 
@@ -135,7 +135,7 @@ On Studio, go to the `Data acquisition` tab, and on the `UPLOAD DATA` section, u
 
 ![](https://hackster.imgix.net/uploads/attachments/1654492/img_9_evgYUfkKcp.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-All the not-labeled images (47) were uploaded but still need to be labeled appropriately before being used as a project dataset. The Studio has a tool for that purpose, which you can find in the link Labeling queue (47).
+All the not-labeled images (47) were uploaded but must be labeled appropriately before being used as a project dataset. The Studio has a tool for that purpose, which you can find in the link Labeling queue (47).
 
 There are two ways you can use to perform AI-assisted labeling on the Edge Impulse Studio (free version):
 
@@ -158,7 +158,7 @@ Continue with this process until the queue is empty. At the end, all images shou
 
 ![](https://hackster.imgix.net/uploads/attachments/1654502/img_11_J1KJZAc2T7.jpg?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Next, review the labeled samples on the Data acquisition tab. If one of the labels is wrong, you can edit it using the *three dots* menu after the sample name:
+Next, review the labeled samples on the `Data acquisition` tab. If one of the labels is wrong, you can edit it using the *three dots* menu after the sample name:
 
 ![](https://hackster.imgix.net/uploads/attachments/1654512/img_12_szymDAiZSt.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
@@ -187,13 +187,13 @@ In this section, select **Color depth** as Grayscale, suitable for use with FOMO
 
 ![](https://hackster.imgix.net/uploads/attachments/1654526/img_15_RNibQ5TKZd.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-The Studio moves automatically to the next section, Generate features, where all samples will be pre-processed, resulting in a dataset with individual 96x96x1 images or 9, 216 features.
+The Studio moves automatically to the next section, Generate features, where all samples will be pre-processed, resulting in a dataset with individual 96x96x1 images or 9,216 features.
 
 ![](https://hackster.imgix.net/uploads/attachments/1654529/img_16_7WukfTFmf6.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 The feature explorer shows that all samples evidence a good separation after the feature generation.
 
-> Some samples seem to be in the wrong space, but clicking on them confirms that the labeling is correct.
+> Some samples seem to be in the wrong space, but clicking on them confirms the correct labeling.
 
 ## 4.5.6 Model Design, Training, and Test
 
@@ -249,11 +249,11 @@ Open your Arduino IDE, and under Sketch, go to Include Library and add.ZIP Libra
 
 ![](https://hackster.imgix.net/uploads/attachments/1654538/img_24_bokujC4nFg.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-Under the Examples tab on Arduino IDE, you should find a sketch code (esp32 \> esp32_camera) under your project name.
+Under the Examples tab on Arduino IDE, you should find a sketch code (`esp32 > esp32_camera`) under your project name.
 
 ![](https://hackster.imgix.net/uploads/attachments/1654539/img_23_gm9v86mJkL.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
-You should change lines 32 to 75, which define the camera model and pins, by the data related to our model. Copy and paste the below lines, replacing the lines 32-75:
+You should change lines 32 to 75, which define the camera model and pins, using the data related to our model. Copy and paste the below lines, replacing the lines 32-75:
 
 ```cpp         
 #define PWDN_GPIO_NUM     -1 
@@ -296,11 +296,11 @@ Note that the model latency is 143ms, and the frame rate per second is around 7 
 
 ## 4.5.8 Deploying the Model (SenseCraft-Web-Toolkit)
 
-Same as we disscussed on the Image Classification chapter,  verifying inference with Image models on Arduino IDE is very challenging, because we can not see what the camera is really focusing. Again, let's use the **SenseCraft-Web-Toolkit**. 
+As discussed in the Image Classification chapter,  verifying inference with Image models on Arduino IDE is very challenging because we can not see what the camera focuses on. Again, let's use the **SenseCraft-Web Toolkit**. 
 
 Follow the following steps to start the SenseCraft-Web-Toolkit:
 
-1. Open the SenseCraft-Web-Toolkit [website](https://seeed-studio.github.io/SenseCraft-Web-Toolk).
+1. Open the [SenseCraft-Web-Toolkit website.](https://seeed-studio.github.io/SenseCraft-Web-Toolkit/#/setup/process)
 2. Connect the XIAO to your computer:
 
 - Having the XIAO connected, select it as below:
@@ -315,7 +315,7 @@ Follow the following steps to start the SenseCraft-Web-Toolkit:
 
 In our case, we will use the blue button at the bottom of the page: `[Upload Custom AI Model]`. 
 
-But first, we will need to download from Edge Impulse Studio, our **quantized .tflite** model. 
+But first, we must download from Edge Impulse Studio our **quantized .tflite** model. 
 
 3. Go to your project at Edge Impulse Studio, or clone this one:
 
@@ -325,30 +325,30 @@ But first, we will need to download from Edge Impulse Studio, our **quantized .t
 
 ![](imgs-4-5/sense-craft-1.jpg) 
 
-5. On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: `[Upload Custom AI Model]`. A window will pop-up. Enter with the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name and enter with labels (ID:Object): 
+5. On SenseCraft-Web-Toolkit, use the blue button at the bottom of the page: `[Upload Custom AI Model]`. A window will pop up. Enter the Model file that you downloaded to your computer from Edge Impulse Studio, choose a Model Name, and enter with labels (ID: Object): 
 
 ![](imgs-4-5/sense-craft-2.jpg) 
 
-> Note that you should use the labels trained on EI Studio, entering them at alphabetic order (in our case: background, bug, fruit).
+> Note that you should use the labels trained on EI Studio, entering them in alphabetic order (in our case: background, bug, fruit).
 
-After a few seconds (or minutes), the model will be uploaded to your device and the camera image will appear in real-time on the Preview Sector:
+After a few seconds (or minutes), the model will be uploaded to your device, and the camera image will appear in real-time on the Preview Sector:
 
 ![](imgs-4-5/sense-craft-3.jpg)
 
-The detect objects will be marked (the centroid).  You can select the Confidence of your inference cursor `Confidence`. and `IoU`,  which is used to assess the accuracy of predicted bounding boxes compared to truth bounding boxes
+The detected objects will be marked (the centroid).  You can select the Confidence of your inference cursor `Confidence`. and `IoU`,  which is used to assess the accuracy of predicted bounding boxes compared to truth bounding boxes
 
-Clicking in the top button (Device Log), you can open a Serial Monitor to follow the inference, same that we have done with the Arduino IDE. 
+Clicking on the top button (Device Log), you can open a Serial Monitor to follow the inference, as we did with the Arduino IDE. 
 
 ![](imgs-4-5/monitor.png)
 
-On Device Log, you will get Information as: 
+On Device Log, you will get information as: 
 
-- Preprocess time (image capture and Crop): 3ms;
-- Inference time (model latency): 115ms,
-- Postprocess time (display of the image and marking objects): 1ms. 
-- Output tensor (boxes), for example one of the boxes: [[30,150, 20, 20,97, 2]]; where 30,150, 20, 20 are the coordenates of the box (around the centroid); 97 is the inference result and 2 is the class (in this case 2: fruit)
+- Preprocess time (image capture and Crop): 3 ms;
+- Inference time (model latency): 115 ms,
+- Postprocess time (display of the image and marking objects): 1 ms. 
+- Output tensor (boxes), for example, one of the boxes: [[30,150, 20, 20,97, 2]]; where 30,150, 20, 20 are the coordinates of the box (around the centroid); 97 is the inference result, and 2 is the class (in this case 2: fruit)
 
->  Note that in the above example, we got 5 boxes, because une of the fruit got 3 centroids. One soluction will be doing a post-processing where we can aggregate close centroids in one. 
+>  Note that in the above example, we got 5 boxes because none of the fruits got 3 centroids. One solution will be post-processing, where we can aggregate close centroids in one. 
 
 Here are other screen shots:
 
