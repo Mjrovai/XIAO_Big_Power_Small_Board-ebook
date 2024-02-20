@@ -481,6 +481,8 @@ Even though our model did not improve accuracy, let's test whether the XIAO can 
 
 Let's redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it does not influence accuracy.
 
+> ⚠️ **Attention** - The Xiao ESP32S3 with PSRAM enable has enought memory to  run the inference, even in such bigger model. Keep the EON Compiler **NOT ENABLED**.
+
 ![](https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
 
 Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was 219ms, which is great for such a bigger model.
