@@ -24,7 +24,7 @@ book:
   repo-url: https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook
   repo-actions: [edit, issue, source]
   downloads: [pdf]
-  sharing: [twitter, linkedin, facebook]
+  # sharing: [twitter, linkedin, facebook]
   reader-mode: true
   cover-image: cover.jpg
   favicon: cover.jpg
