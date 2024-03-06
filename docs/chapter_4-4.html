@@ -111,8 +111,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">XIAO: Big Power, Small Board</span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto">
+        <div class="quarto-navbar-tools ms-auto tools-wide">
     <a href="https://github.com/Mjrovai/XIAO_Big_Power_Small_Board-ebook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./XIAO–Big-Power,-Small-Board.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -753,6 +777,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To improve our model, we will need to train more images.</p>
 <p>Even though our model did not improve accuracy, let’s test whether the XIAO can handle such a bigger model. We will do a simple inference test with the Static Buffer sketch.</p>
 <p>Let’s redeploy the model. If the EON Compiler is enabled when you generate the library, the total memory needed for inference should be reduced, but it does not influence accuracy.</p>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Attention</strong> - The Xiao ESP32S3 with PSRAM enable has enought memory to run the inference, even in such bigger model. Keep the EON Compiler <strong>NOT ENABLED</strong>.</p>
+</blockquote>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591694/image_Ne6NKwD297.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
 <p>Doing an inference with MobilinetV2 96x96 0.35, having as input RGB images, the latency was 219ms, which is great for such a bigger model.</p>
 <p><img src="https://hackster.imgix.net/uploads/attachments/1591700/espnn-infe1_c5bolsFLaK.png?auto=compress%2Cformat&amp;w=1280&amp;h=960&amp;fit=max" class="img-fluid"></p>
