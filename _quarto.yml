@@ -40,6 +40,7 @@ book:
     - Acknowledgements.qmd
     - intro.qmd
     - about_book.qmd
+    - Download_READMD.qmd
     - part: chapter_1.qmd
       chapters:
       - chapter_1-1.qmd
