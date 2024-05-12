@@ -1,0 +1,33 @@
+# Download the eBook PDF Version {.unnumbered}
+
+## Xiao: Big Power, Small Board - PDF Edition
+
+We are excited to offer the PDF version of "Xiao: Big Power, Small Board," an in-depth eBook dedicated to the Xiao development board. This edition is tailored for digital reading, providing an accessible format for those who prefer electronic devices. Whether you're a hobbyist, a student, or a professional, this guide is designed to help you explore the full capabilities of the Xiao board in a convenient PDF format.
+
+### How to Download
+
+To download the PDF edition of the eBook, simply click the link below:
+
+[Download PDF Edition - Xiao: Big Power, Small Board](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/XIAO_Big_Power_Small_Board_v20240307.pdf)
+
+### eBook Preview (PDF Version)
+
+Below are some screenshots from the PDF version of the eBook, offering a sneak peek into the content:
+
+![Cover Page of PDF Edition](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/20240318-155302@2x.png "Cover of PDF Edition")
+
+![Table of Contents - PDF Edition](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/20240318-155422@2x.png "Table of Contents - PDF Edition")
+
+![Introduction Chapter - PDF Edition](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/20240318-155610@2x.png "Introduction Chapter - PDF Edition")
+
+![Introduction Chapter - PDF Edition](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/20240318-155645@2x.png "Introduction Chapter - PDF Edition")
+
+![Introduction Chapter - PDF Edition](https://files.seeedstudio.com/wiki/XIAO_Big_Power-Board-ebook-photo/20240318-155718@2x.png "Introduction Chapter - PDF Edition")
+
+We have crafted this PDF edition to ensure a seamless reading experience, packed with valuable insights and information. Should you have any inquiries or require further information, feel free to reach out to us.
+
+Happy reading, and we hope you find the eBook both informative and inspiring!
+
+---
+
+For additional resources and more information about the Xiao development board, visit our official website: [https://mjrovai.github.io/XIAO_Big_Power_Small_Board-ebook/](https://mjrovai.github.io/XIAO_Big_Power_Small_Board-ebook/)
